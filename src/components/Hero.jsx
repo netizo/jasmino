@@ -258,47 +258,6 @@ export default function Hero() {
             .hero-btn-secondary:hover { color: var(--blue) !important; }
         `}</style>
             </section>
-
-            {/* STATS BAR */}
-            <div className="stats-bar" style={{
-                borderTop: '1px solid var(--gray-200)', background: 'var(--white)'
-            }}>
-                <div className="container" style={{ maxWidth: 1400, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
-                    {[
-                        { n: '40+', l: 'Years of Engineering' },
-                        { n: '15', l: 'Countries' },
-                        { n: '97%', l: 'Reorder Rate' },
-                        { n: '3rd', l: 'Largest Globally' }
-                    ].map((s, i) => (
-                        <div key={s.l} className="stat" style={{
-                            padding: '40px 48px',
-                            borderRight: i < 3 ? '1px solid var(--gray-200)' : 'none',
-                            textAlign: 'center'
-                        }}>
-                            <div className="stat-number" style={{
-                                fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: 36,
-                                color: 'var(--blue)', lineHeight: 1, marginBottom: 6
-                            }}>
-                                {s.n}
-                            </div>
-                            <div className="stat-label" style={{
-                                fontSize: 13, color: 'var(--gray-400)', fontWeight: 500, letterSpacing: 0.3
-                            }}>
-                                {s.l}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                {/* Responsive Styles for Stats */}
-                <style>{`
-            @media (max-width: 640px) {
-                .stats-bar .container { grid-template-columns: repeat(2,1fr) !important; }
-                .stat { padding: 24px !important; border-bottom: 1px solid var(--gray-200); }
-                .stat:nth-last-child(-n+2) { border-bottom: none; }
-                .stat:nth-child(2) { border-right: none !important; }
-            }
-          `}</style>
-            </div>
         </>
     );
 }

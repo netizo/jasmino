@@ -6,30 +6,15 @@ import Hero from '../components/Hero';
 import Divisions from '../components/Divisions';
 import IntegratedModel from '../components/IntegratedModel';
 import Industries from '../components/Industries';
+import TrustBand from '../components/TrustBand';
+import GlobalPresence from '../components/GlobalPresence';
 
 export default function Home() {
   return (
     <main>
       <Hero />
 
-      <section className="white-section" style={{ padding: '20px 56px', borderBottom: '1px solid var(--g150)' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-            {certifications.map(cert => (
-              <span key={cert} className="trust-badge">{cert}</span>
-            ))}
-          </div>
-          <div style={{ width: 1, height: 28, background: 'var(--g200)', margin: '0 8px' }} />
-          <div style={{ display: 'flex', gap: 24 }}>
-            {[{ n: '40+', l: 'Years' }, { n: '15+', l: 'Countries' }, { n: '97%', l: 'Reorder' }].map(s => (
-              <div key={s.l} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 600, color: 'var(--blue)' }}>{s.n}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--g400)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TrustBand />
 
       <Divisions />
 
@@ -37,53 +22,7 @@ export default function Home() {
 
       <Industries />
 
-      <section className="dark-section" style={{ padding: '48px 56px' }}>
-        <div className="container">
-          <div className="resp-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32, textAlign: 'center' }}>
-            {companyStats.map(s => (
-              <div key={s.label}>
-                <div className="stat-number"><CountUp target={s.num} /></div>
-                <div className="stat-label" style={{ marginTop: 8 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="navy-section eng-grid-dark section-pad">
-        <div className="container">
-          <div className="resp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'center' }}>
-            <ScrollReveal>
-              <div className="globe-placeholder">
-                <div className="globe-visual">
-                  <GlobeSVG />
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div>
-                <span className="overline overline-with-line">Global Presence</span>
-                <h2 style={{ marginTop: 12, marginBottom: 12 }}>Three continents, one <span className="italic-accent">standard</span></h2>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginBottom: 32, lineHeight: 1.7 }}>
-                  Jasmino operates from facilities in India, Germany, and Turkey — deploying 150+ technicians across 15+ countries.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {facilities.map(f => (
-                    <div className="facility-card" key={f.name}>
-                      <span className="flag">{f.flag}</span>
-                      <div className="info">
-                        <h4>{f.name}</h4>
-                        <div className="subtitle">{f.area} · {f.country}</div>
-                        <p>{f.capabilities}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+      <GlobalPresence />
 
       <section className="cream-section eng-grid section-pad">
         <div className="container">

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasmino — S6 Global Presence</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root {
+  --navy:#0B1D34;--dark:#0D2847;--blue:#1B4B8F;--blue-bright:#3B7BDB;
+  --green:#04E586;
+  --g50:#FAFBFC;--g100:#F0F2F5;--g150:#E4E7EC;--g200:#D5D9E0;
+  --g300:#B0B7C3;--g400:#8892A2;--g500:#6B7280;--g600:#4B5563;
+  --g800:#1F2937;--g900:#0C1220;
+  --r:12px;--r-lg:18px;--r-xl:24px;
+  --serif:'Fraunces',serif;--sans:'Sora',sans-serif;--mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--g50);color:var(--g900);-webkit-font-smoothing:antialiased;line-height:1.6}
+
+/* ══════════════════════════════════════════
+   S6 — GLOBAL PRESENCE (Light Mode)
+   ══════════════════════════════════════════ */
+.s6{
+  position:relative;
+  background:#fff;
+  overflow:hidden;
+}
+
+/* Engineering grid */
+.s6-grid{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(27,75,143,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.03) 1px,transparent 1px),
+    linear-gradient(rgba(27,75,143,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.06) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+}
+
+.s6-inner{
+  max-width:1100px;margin:0 auto;padding:100px 48px 80px;
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* ── Header ── */
+.s6-header{text-align:center;margin-bottom:8px;position:relative;z-index:3}
+
+.s6-over{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--green);margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+}
+.s6-over::before,.s6-over::after{content:'';width:24px;height:1px;background:var(--green);opacity:0.4}
+
+.s6-h2{
+  font-family:var(--serif);font-weight:400;font-size:48px;line-height:1.08;
+  letter-spacing:-0.025em;color:var(--g900);margin-bottom:14px;
+}
+.s6-h2 em{font-style:italic;font-weight:300;color:var(--green)}
+
+.s6-body{
+  font-size:15px;line-height:1.75;color:var(--g500);max-width:500px;margin:0 auto;
+}
+
+/* ── Globe ── */
+.globe-wrap{
+  width:100%;max-width:640px;aspect-ratio:1/0.85;
+  position:relative;
+  margin:-10px 0 -10px;
+}
+
+.globe-canvas-wrap{
+  width:100%;height:100%;position:relative;
+}
+.globe-canvas-wrap canvas{
+  display:block;width:100%!important;height:100%!important;
+}
+
+/* Shadow beneath globe */
+.globe-shadow{
+  position:absolute;bottom:12%;left:50%;transform:translateX(-50%);
+  width:55%;height:8%;
+  background:radial-gradient(ellipse,rgba(11,29,52,0.07) 0%,transparent 70%);
+  pointer-events:none;z-index:1;
+  border-radius:50%;
+}
+
+/* Loading */
+.globe-loading{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  font-family:var(--mono);font-size:11px;color:var(--g400);
+  letter-spacing:0.08em;
+}
+.globe-loading.hidden{display:none}
+.globe-spinner{
+  width:28px;height:28px;border:2px solid var(--g200);
+  border-top-color:var(--green);border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Facility cards row ── */
+.fac-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  width:100%;max-width:960px;position:relative;z-index:3;
+}
+
+.fac-card{
+  background:#fff;
+  border:1px solid var(--g150);
+  border-radius:var(--r-lg);
+  padding:28px 24px;
+  transition:all 0.4s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Top accent line */
+.fac-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s var(--ease);
+}
+
+.fac-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.06);
+  border-color:var(--g200);
+}
+.fac-card:hover::before{transform:scaleX(1)}
+
+.fac-card-top{
+  display:flex;align-items:center;gap:14px;margin-bottom:16px;
+}
+
+.fac-flag{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--g100);border:1px solid var(--g150);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  transition:all 0.3s var(--ease);
+}
+.fac-card:hover .fac-flag{
+  background:rgba(4,229,134,0.06);
+  border-color:rgba(4,229,134,0.15);
+}
+
+.fac-name{
+  font-family:var(--sans);font-weight:700;font-size:15px;
+  color:var(--g900);margin-bottom:1px;
+}
+.fac-country{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--g400);
+}
+
+.fac-stat{
+  display:flex;align-items:baseline;gap:6px;margin-bottom:10px;
+}
+.fac-stat-num{
+  font-family:var(--mono);font-weight:600;font-size:20px;color:var(--blue);line-height:1;
+}
+.fac-stat-unit{
+  font-family:var(--mono);font-size:11px;color:var(--g400);
+}
+
+/* Green accent bar */
+.fac-bar{width:24px;height:2px;background:var(--green);border-radius:1px;margin-bottom:10px;opacity:0.5}
+
+.fac-detail{
+  font-size:13px;line-height:1.6;color:var(--g500);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .s6-inner{padding:80px 32px 60px}
+  .s6-h2{font-size:40px}
+  .globe-wrap{max-width:500px}
+}
+@media(max-width:768px){
+  .s6-inner{padding:60px 20px 50px}
+  .s6-h2{font-size:32px}
+  .fac-row{grid-template-columns:1fr;max-width:400px}
+  .globe-wrap{max-width:380px;margin:0}
+}
+</style>
+</head>
+<body>
+
+<section class="s6" id="s6">
+  <div class="s6-grid"></div>
+  <div class="s6-inner">
+
+    <!-- Header -->
+    <div class="s6-header">
+      <div class="s6-over">Global Presence</div>
+      <h2 class="s6-h2">Three continents, one<br><em>standard</em></h2>
+      <p class="s6-body">Jasmino operates from facilities in India, Germany, and Turkey — deploying 150+ technicians across 15+ countries.</p>
+    </div>
+
+    <!-- Globe -->
+    <div class="globe-wrap">
+      <div class="globe-canvas-wrap" id="globeMount">
+        <div class="globe-loading" id="globeLoading">
+          <div class="globe-spinner"></div>
+          <span>Loading globe...</span>
+        </div>
+      </div>
+      <div class="globe-shadow"></div>
+    </div>
+
+    <!-- Facility cards -->
+    <div class="fac-row">
+      <div class="fac-card">
+        <div class="fac-card-top">
+          <div class="fac-flag">🇮🇳</div>
+          <div>
+            <div class="fac-name">Jasmino HQ</div>
+            <div class="fac-country">India</div>
+          </div>
+        </div>
+        <div class="fac-stat">
+          <span class="fac-stat-num">80,000</span>
+          <span class="fac-stat-unit">m²</span>
+        </div>
+        <div class="fac-bar"></div>
+        <div class="fac-detail">Engineering, Manufacturing, Rubber Products</div>
+      </div>
+
+      <div class="fac-card">
+        <div class="fac-card-top">
+          <div class="fac-flag">🇩🇪</div>
+          <div>
+            <div class="fac-name">HAW Linings</div>
+            <div class="fac-country">Germany</div>
+          </div>
+        </div>
+        <div class="fac-stat">
+          <span class="fac-stat-num">30,000</span>
+          <span class="fac-stat-unit">m²</span>
+        </div>
+        <div class="fac-bar"></div>
+        <div class="fac-detail">Rubber & Plastic Linings</div>
+      </div>
+
+      <div class="fac-card">
+        <div class="fac-card-top">
+          <div class="fac-flag">🇹🇷</div>
+          <div>
+            <div class="fac-name">GBT</div>
+            <div class="fac-country">Turkey</div>
+          </div>
+        </div>
+        <div class="fac-stat">
+          <span class="fac-stat-num">20,000</span>
+          <span class="fac-stat-unit">m²</span>
+        </div>
+        <div class="fac-bar"></div>
+        <div class="fac-detail">Linings & Coatings</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   THREE.JS DOTTED GLOBE — Light Mode
+   ══════════════════════════════════════════════════════════════ */
+
+const GLOBE = {
+  radius: 2.2,
+  rows: 120,
+  dotSize: 0.016,
+  autoRotate: 0.15,
+  mouseFactor: 0.3,
+  damping: 0.04,
+  colors: {
+    land: 0x2a3a52,       // navy-ish — reads well on white
+    landLight: 0x4a607a,  // secondary land tone
+    ocean: 0xd0d4da,      // very light gray
+    presence: 0x04E586,   // Jasmino green
+    ring: 0x04E586,
+    atmo: 0x1B4B8F,       // blue atmosphere
+    atmoGlow: 0x04E586,
+  },
+};
+
+const LOCATIONS = [
+  { lat:19.0, lng:73.0, name:'Jasmino HQ', type:'hq' },
+  { lat:51.5, lng:7.0,  name:'HAW Linings', type:'facility' },
+  { lat:40.0, lng:29.0, name:'GBT',         type:'facility' },
+  { lat:25.3, lng:55.3, type:'service' },
+  { lat:25.3, lng:51.5, type:'service' },
+  { lat:26.2, lng:50.6, type:'service' },
+  { lat:23.6, lng:58.5, type:'service' },
+  { lat:24.7, lng:46.7, type:'service' },
+  { lat:29.4, lng:48.0, type:'service' },
+  { lat:1.35, lng:103.8, type:'service' },
+  { lat:3.14, lng:101.7, type:'service' },
+  { lat:-6.2, lng:106.8, type:'service' },
+  { lat:13.8, lng:100.5, type:'service' },
+  { lat:-33.9, lng:18.4, type:'service' },
+  { lat:30.0, lng:31.2, type:'service' },
+  { lat:-25.7, lng:28.2, type:'service' },
+  { lat:52.5, lng:13.4, type:'service' },
+  { lat:48.9, lng:2.35, type:'service' },
+  { lat:41.0, lng:-73.9, type:'service' },
+  { lat:-23.5, lng:-46.6, type:'service' },
+  { lat:-33.4, lng:151.2, type:'service' },
+];
+
+/* ── Helpers ── */
+function latLngToVec3(lat, lng, r) {
+  const phi = (90 - lat) * Math.PI / 180;
+  const theta = (lng + 180) * Math.PI / 180;
+  return new THREE.Vector3(
+    -r * Math.sin(phi) * Math.cos(theta),
+     r * Math.cos(phi),
+     r * Math.sin(phi) * Math.sin(theta)
+  );
+}
+
+function nearPresence(lat, lng) {
+  for (const loc of LOCATIONS) {
+    const d = Math.sqrt((lat-loc.lat)**2 + (lng-loc.lng)**2);
+    if (d < 4) return loc;
+  }
+  return null;
+}
+
+/* ── TopoJSON decoder ── */
+function decodeTopojson(topo, objectName) {
+  const obj = topo.objects[objectName];
+  const arcs = topo.arcs;
+  const tf = topo.transform;
+  const polygons = [];
+
+  function decodeArc(idx) {
+    const rev = idx < 0;
+    const arc = arcs[rev ? ~idx : idx];
+    const coords = [];
+    let x = 0, y = 0;
+    for (const pt of arc) {
+      x += pt[0]; y += pt[1];
+      coords.push([
+        x * tf.scale[0] + tf.translate[0],
+        y * tf.scale[1] + tf.translate[1]
+      ]);
+    }
+    return rev ? coords.reverse() : coords;
+  }
+
+  function decodeRing(arcIdxs) {
+    let ring = [];
+    for (const idx of arcIdxs) ring = ring.concat(decodeArc(idx));
+    return ring;
+  }
+
+  function processGeometry(geom) {
+    if (geom.type === 'Polygon') {
+      geom.arcs.forEach(r => polygons.push(decodeRing(r)));
+    } else if (geom.type === 'MultiPolygon') {
+      geom.arcs.forEach(poly => poly.forEach(r => polygons.push(decodeRing(r))));
+    } else if (geom.type === 'GeometryCollection') {
+      geom.geometries.forEach(g => processGeometry(g));
+    }
+  }
+  processGeometry(obj);
+  return polygons;
+}
+
+function pointInPolygon(x, y, ring) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0], yi = ring[i][1];
+    const xj = ring[j][0], yj = ring[j][1];
+    if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
+function isLandCheck(lng, lat, polys) {
+  for (const ring of polys) {
+    if (pointInPolygon(lng, lat, ring)) return true;
+  }
+  return false;
+}
+
+/* Simple spatial hash for two-tone land */
+function hash(x, y) {
+  let h = x * 374761393 + y * 668265263;
+  h = (h ^ (h >> 13)) * 1274126177;
+  return (h ^ (h >> 16)) & 0x7fffffff;
+}
+
+/* ── Build globe ── */
+(async function initGlobe() {
+  const el = document.getElementById('globeMount');
+  const loadingEl = document.getElementById('globeLoading');
+  if (!el) return;
+
+  const w = el.clientWidth || 580, h = el.clientHeight || 580;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, w / h, 0.1, 100);
+  camera.position.set(0, 0.2, 9.5);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(w, h);
+  renderer.setClearColor(0x000000, 0);
+  el.appendChild(renderer.domElement);
+
+  const globe = new THREE.Group();
+  scene.add(globe);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+  // ── Fetch land data ──
+  let landPolys = [];
+  try {
+    const resp = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json');
+    const topo = await resp.json();
+    landPolys = decodeTopojson(topo, 'land');
+  } catch (e) {
+    console.warn('Failed to load land data');
+  }
+
+  if (loadingEl) loadingEl.classList.add('hidden');
+
+  // ── Generate dots ──
+  const { radius, rows, dotSize } = GLOBE;
+  const landDarkPts = [], landLightPts = [], oceanPts = [], presPts = [];
+
+  for (let lat = -85; lat <= 85; lat += 180 / rows) {
+    const circ = Math.cos(lat * Math.PI / 180);
+    const cols = Math.max(1, Math.floor(rows * 2.2 * circ));
+    for (let j = 0; j < cols; j++) {
+      const lng = -180 + (360 / cols) * j;
+      const pos = latLngToVec3(lat, lng, radius);
+      const onLand = landPolys.length > 0 ? isLandCheck(lng, lat, landPolys) : false;
+      const pres = nearPresence(lat, lng);
+
+      if (onLand && pres) {
+        presPts.push(pos);
+      } else if (onLand) {
+        // Two-tone land for depth
+        const h = hash(Math.round(lat * 10), Math.round(lng * 10));
+        if (h % 3 === 0) {
+          landLightPts.push(pos);
+        } else {
+          landDarkPts.push(pos);
+        }
+      } else {
+        oceanPts.push(pos);
+      }
+    }
+  }
+
+  // ── Instanced meshes ──
+  const dotGeo = new THREE.CircleGeometry(dotSize, 6);
+  const dummy = new THREE.Object3D();
+  const nrm = new THREE.Vector3();
+
+  function makeInstanced(pts, color, opacity, scl) {
+    const mat = new THREE.MeshBasicMaterial({
+      color, side: THREE.DoubleSide, transparent: true, opacity
+    });
+    const mesh = new THREE.InstancedMesh(dotGeo, mat, pts.length);
+    pts.forEach((pos, i) => {
+      dummy.position.copy(pos);
+      dummy.scale.setScalar(scl || 1);
+      nrm.copy(pos).normalize();
+      dummy.lookAt(nrm.clone().multiplyScalar(radius + 1).add(pos));
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    return mesh;
+  }
+
+  globe.add(makeInstanced(oceanPts, GLOBE.colors.ocean, 0.22, 1));
+  globe.add(makeInstanced(landDarkPts, GLOBE.colors.land, 0.85, 1));
+  globe.add(makeInstanced(landLightPts, GLOBE.colors.landLight, 0.55, 1));
+  globe.add(makeInstanced(presPts, GLOBE.colors.presence, 1.0, 1.8));
+
+  // ── Presence markers ──
+  const ringGeo = new THREE.RingGeometry(0.04, 0.065, 24);
+  const pulseGeo = new THREE.RingGeometry(0.065, 0.11, 24);
+  const markers = [];
+
+  LOCATIONS.filter(l => l.type === 'hq' || l.type === 'facility').forEach(loc => {
+    const pos = latLngToVec3(loc.lat, loc.lng, radius + 0.015);
+    const n = pos.clone().normalize();
+    const scl = loc.type === 'hq' ? 2.4 : 1.6;
+
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: GLOBE.colors.ring, side: THREE.DoubleSide, transparent: true, opacity: 0.9
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.position.copy(pos);
+    ring.lookAt(n.clone().multiplyScalar(radius + 5).add(pos));
+    ring.scale.setScalar(scl);
+    globe.add(ring);
+
+    const pulseMat = new THREE.MeshBasicMaterial({
+      color: GLOBE.colors.ring, side: THREE.DoubleSide, transparent: true, opacity: 0.4
+    });
+    const pulse = new THREE.Mesh(pulseGeo, pulseMat);
+    pulse.position.copy(pos);
+    pulse.lookAt(n.clone().multiplyScalar(radius + 5).add(pos));
+    pulse.scale.setScalar(scl);
+    globe.add(pulse);
+    markers.push({ pulse, mat: pulseMat, baseScale: scl });
+  });
+
+  // ── Atmosphere glow — light mode: subtle blue haze ──
+  const atmoGeo = new THREE.SphereGeometry(radius * 1.06, 48, 48);
+  const atmoMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, side: THREE.BackSide,
+    uniforms: {
+      uColor: { value: new THREE.Color(GLOBE.colors.atmo) },
+      uGlow: { value: new THREE.Color(GLOBE.colors.atmoGlow) },
+    },
+    vertexShader: `
+      varying vec3 vNormal;
+      varying vec3 vWorldPos;
+      void main(){
+        vNormal = normalize(normalMatrix * normal);
+        vWorldPos = (modelMatrix * vec4(position,1.0)).xyz;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor;
+      uniform vec3 uGlow;
+      varying vec3 vNormal;
+      varying vec3 vWorldPos;
+      void main(){
+        vec3 viewDir = normalize(cameraPosition - vWorldPos);
+        float rim = 1.0 - max(0.0, dot(viewDir, vNormal));
+        float glow = pow(rim, 2.5);
+        vec3 col = mix(uColor, uGlow, glow * 0.3);
+        gl_FragColor = vec4(col, glow * 0.08);
+      }
+    `,
+  });
+  globe.add(new THREE.Mesh(atmoGeo, atmoMat));
+
+  // ── Orbit ring ──
+  const orbitGeo = new THREE.RingGeometry(radius * 1.25, radius * 1.25 + 0.004, 128);
+  const orbit = new THREE.Mesh(orbitGeo, new THREE.MeshBasicMaterial({
+    color: 0x1B4B8F, side: THREE.DoubleSide, transparent: true, opacity: 0.06
+  }));
+  orbit.rotation.x = Math.PI / 2.2;
+  globe.add(orbit);
+
+  // Second orbit
+  const orbit2 = new THREE.Mesh(
+    new THREE.RingGeometry(radius * 1.12, radius * 1.12 + 0.003, 128),
+    new THREE.MeshBasicMaterial({
+      color: 0x04E586, side: THREE.DoubleSide, transparent: true, opacity: 0.04
+    })
+  );
+  orbit2.rotation.x = Math.PI / 1.8;
+  orbit2.rotation.z = 0.3;
+  globe.add(orbit2);
+
+  // ── Graticule (subtle lat/lng lines) ──
+  const gratMat = new THREE.LineBasicMaterial({ color: 0xB0B7C3, transparent: true, opacity: 0.05 });
+  // Lat lines
+  for (let lat = -60; lat <= 60; lat += 30) {
+    const pts = [];
+    for (let lng = -180; lng <= 180; lng += 3) {
+      pts.push(latLngToVec3(lat, lng, radius + 0.003));
+    }
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    globe.add(new THREE.Line(geo, gratMat));
+  }
+  // Lng lines
+  for (let lng = -180; lng < 180; lng += 30) {
+    const pts = [];
+    for (let lat = -85; lat <= 85; lat += 3) {
+      pts.push(latLngToVec3(lat, lng, radius + 0.003));
+    }
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    globe.add(new THREE.Line(geo, gratMat));
+  }
+
+  // Initial rotation to show India/Europe/Middle East
+  globe.rotation.y = -0.8;
+
+  // ── Mouse interaction ──
+  let mouseX = 0, mouseY = 0;
+  let targetRotX = 0, targetRotY = 0;
+  let baseRotY = globe.rotation.y;
+
+  // Use section for mouse tracking (wider area)
+  const section = document.getElementById('s6');
+
+  section.addEventListener('mousemove', e => {
+    const r = el.getBoundingClientRect();
+    mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    mouseY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+  });
+  section.addEventListener('mouseleave', () => { mouseX = 0; mouseY = 0; });
+  section.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    const r = el.getBoundingClientRect();
+    mouseX = ((t.clientX - r.left) / r.width - 0.5) * 2;
+    mouseY = ((t.clientY - r.top) / r.height - 0.5) * 2;
+  }, { passive: true });
+  section.addEventListener('touchend', () => { mouseX = 0; mouseY = 0; });
+
+  // ── Visibility ──
+  let visible = true;
+  const visObs = new IntersectionObserver(entries => {
+    entries.forEach(e => visible = e.isIntersecting);
+  }, { threshold: 0.05 });
+  visObs.observe(el);
+
+  // ── Resize ──
+  const ro = new ResizeObserver(() => {
+    const nw = el.clientWidth, nh = el.clientHeight;
+    if (!nw || !nh) return;
+    camera.aspect = nw / nh;
+    camera.updateProjectionMatrix();
+    renderer.setSize(nw, nh);
+  });
+  ro.observe(el);
+
+  // ── Animate ──
+  let lastTime = performance.now();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!visible) return;
+
+    const now = performance.now();
+    const dt = (now - lastTime) / 1000;
+    lastTime = now;
+
+    baseRotY += GLOBE.autoRotate * dt;
+
+    targetRotY = mouseX * GLOBE.mouseFactor;
+    targetRotX = mouseY * GLOBE.mouseFactor * 0.4;
+
+    globe.rotation.y += (baseRotY + targetRotY - globe.rotation.y) * GLOBE.damping;
+    globe.rotation.x += (targetRotX - globe.rotation.x) * GLOBE.damping;
+
+    const t = now * 0.001;
+    markers.forEach((m, i) => {
+      const s = m.baseScale * (1 + Math.sin(t * 2 + i) * 0.3);
+      m.pulse.scale.setScalar(s);
+      m.mat.opacity = 0.25 + Math.sin(t * 2 + i) * 0.2;
+    });
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>

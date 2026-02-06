@@ -1,0 +1,429 @@
+/* ══════════════════════════════════════════════════════════════════
+   TRUST BAND STYLES
+   Ported from sample/trust-band-v2.html
+   Layer stack: navy base → industrial photo → color overlay → grid → glow → content
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ═══ Main Section ═══ */
+.trust {
+    position: relative;
+    background: linear-gradient(180deg, var(--navy, #0B1D34) 0%, #091929 100%);
+    overflow: hidden;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Layer 1: Background image — subtle, desaturated, blended into navy */
+.trust-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80&fit=crop') center center / cover no-repeat;
+    filter: saturate(0) brightness(0.3) contrast(1.2);
+    opacity: 0.12;
+}
+
+/* Layer 2: Color overlay on top of image to maintain navy tone */
+.trust-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg,
+            rgba(11, 29, 52, 0.85) 0%,
+            rgba(11, 29, 52, 0.7) 40%,
+            rgba(9, 25, 41, 0.8) 70%,
+            rgba(9, 25, 41, 0.92) 100%),
+        linear-gradient(90deg,
+            rgba(11, 29, 52, 0.9) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(11, 29, 52, 0.9) 100%);
+}
+
+/* Layer 3: Grid texture — on top of image + overlay */
+.trust-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+
+/* Layer 4: Ambient glow behind stats */
+.trust-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 400px;
+    transform: translate(-50%, -55%);
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(ellipse, rgba(4, 229, 134, 0.03) 0%, transparent 65%);
+}
+
+.trust-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 3;
+}
+
+/* ═══ Stats Row ═══ */
+.trust-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 72px 0 56px;
+}
+
+.trust-stat {
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.8s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)), transform 0.8s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.trust-stat.vis {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Dividers between stats */
+.trust-stat+.trust-stat::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    bottom: 15%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+/* Number row */
+.stat-num-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.stat-count {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.03em;
+    display: inline-block;
+}
+
+.stat-suffix {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--green, #04E586);
+    line-height: 1;
+    margin-left: 1px;
+}
+
+.stat-unit {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-left: 4px;
+}
+
+/* Green underline bar — grows on reveal */
+.stat-bar {
+    width: 32px;
+    height: 2px;
+    margin: 0 auto 14px;
+    background: var(--green, #04E586);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transition: transform 0.6s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.trust-stat.vis .stat-bar {
+    transform: scaleX(1);
+    transition-delay: 0.4s;
+}
+
+/* Label */
+.stat-label {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.3s;
+}
+
+/* Descriptor */
+.stat-desc {
+    font-family: var(--font-sans, 'Inter', -apple-system, sans-serif);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.14);
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+/* Hover states */
+.trust-stat:hover .stat-label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.trust-stat:hover .stat-desc {
+    color: rgba(255, 255, 255, 0.22);
+}
+
+/* ═══ Divider ═══ */
+.trust-divider {
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 5%,
+            rgba(255, 255, 255, 0.04) 25%,
+            rgba(4, 229, 134, 0.08) 50%,
+            rgba(255, 255, 255, 0.04) 75%,
+            transparent 95%);
+}
+
+/* ═══ Certifications Row ═══ */
+.trust-certs-wrap {
+    padding: 36px 0 48px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.7s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) 0.45s, transform 0.7s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) 0.45s;
+}
+
+.trust-certs-wrap.vis {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cert-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.cert-header-text {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.cert-header-text::before,
+.cert-header-text::after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.cert-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Cert badge */
+.cert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.35s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover glow */
+.cert::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(ellipse at 50% 100%, rgba(4, 229, 134, 0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+.cert:hover {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(4, 229, 134, 0.12);
+    color: rgba(255, 255, 255, 0.65);
+    transform: translateY(-2px);
+}
+
+.cert:hover::before {
+    opacity: 1;
+}
+
+.cert.wide {
+    width: 120px;
+}
+
+/* ═══ Gradient Transition to Light ═══ */
+.trust-fade {
+    height: 120px;
+    background: linear-gradient(to bottom,
+            #091929 0%,
+            #0c2238 15%,
+            #1a3a54 30%,
+            #3b5a78 45%,
+            #6a8099 55%,
+            #9eadb8 65%,
+            #c5cdd4 75%,
+            #e4e9ed 85%,
+            #f5f7f9 93%,
+            #fff 100%);
+    position: relative;
+}
+
+.trust-fade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(27, 75, 143, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27, 75, 143, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, black 100%);
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1024px) {
+    .trust-inner {
+        padding: 0 32px;
+    }
+
+    .stat-count {
+        font-size: 44px;
+    }
+
+    .stat-suffix {
+        font-size: 24px;
+    }
+
+    .trust-stats {
+        padding: 48px 0 44px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trust-inner {
+        padding: 0 20px;
+    }
+
+    .trust-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px 0;
+        padding: 48px 0 40px;
+    }
+
+    .stat-count {
+        font-size: 36px;
+    }
+
+    .stat-suffix {
+        font-size: 20px;
+    }
+
+    .trust-stat {
+        padding: 16px 12px;
+    }
+
+    .trust-stat+.trust-stat::before {
+        display: none;
+    }
+
+    .cert-row {
+        gap: 8px;
+    }
+
+    .cert {
+        width: 82px;
+        height: 44px;
+        font-size: 10px;
+    }
+
+    .cert.wide {
+        width: 100px;
+    }
+
+    .trust-fade {
+        height: 80px;
+    }
+
+    .trust {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-count {
+        font-size: 30px;
+    }
+
+    .stat-suffix {
+        font-size: 18px;
+    }
+
+    .stat-label {
+        font-size: 9px;
+        letter-spacing: 0.08em;
+    }
+
+    .stat-desc {
+        font-size: 11px;
+    }
+
+    .cert {
+        width: 72px;
+        height: 40px;
+        font-size: 9px;
+        border-radius: 8px;
+    }
+
+    .cert.wide {
+        width: 88px;
+    }
+}
