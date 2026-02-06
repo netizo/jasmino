@@ -1,41 +1,14 @@
 import { Link } from 'react-router-dom';
-import { divisions, industries, certifications, facilities, companyStats } from '../data/divisions';
+import { industries, certifications, facilities, companyStats } from '../data/divisions';
 import ScrollReveal from '../components/ScrollReveal';
 import CountUp from '../components/CountUp';
-import HeroScene from '../components/HeroScene';
+import Hero from '../components/Hero';
+import Divisions from '../components/Divisions';
 
 export default function Home() {
   return (
     <main>
-      <section className="dark-section eng-grid-dark" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <div className="resp-hero" style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', padding: '120px 56px 40px', maxWidth: 1400, margin: '0 auto', width: '100%', gap: 40 }}>
-          <div>
-            <div className="hero-badge">
-              <span className="hero-dot" />
-              <span className="mono" style={{ fontSize: 11, letterSpacing: '0.06em' }}>Engineering Excellence Since 1984</span>
-            </div>
-            <h1 style={{ marginTop: 24, marginBottom: 20 }}>
-              We <span className="italic-accent">design</span> it.<br />
-              We build it.<br />
-              We <span className="italic-accent">protect</span> it.
-            </h1>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', maxWidth: 480, lineHeight: 1.7, marginBottom: 32 }}>
-              The only company that designs, manufactures, and protects industrial process equipment under one roof.
-            </p>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link to="/what-we-do" className="btn btn-primary">What We Do</Link>
-              <Link to="/contact" className="btn btn-secondary">Contact Us</Link>
-            </div>
-          </div>
-          <div style={{ height: '100%', minHeight: 500 }}>
-            <HeroScene />
-          </div>
-        </div>
-        <div className="scroll-indicator">
-          <div className="scroll-line" />
-          <span className="mono" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase' }}>Scroll</span>
-        </div>
-      </section>
+      <Hero />
 
       <section className="white-section" style={{ padding: '20px 56px', borderBottom: '1px solid var(--g150)' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
@@ -56,49 +29,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cream-section eng-grid section-pad">
-        <div className="container">
-          <ScrollReveal>
-            <div style={{ textAlign: 'center', marginBottom: 56 }}>
-              <span className="overline overline-with-line" style={{ justifyContent: 'center' }}>What We Do</span>
-              <h2 style={{ marginTop: 12 }}>Four divisions, one <span className="italic-accent">integrated</span> model</h2>
-            </div>
-          </ScrollReveal>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-            {divisions.map((div, i) => (
-              <ScrollReveal key={div.id} delay={i * 80}>
-                <div className={`division-card ${i % 2 !== 0 ? 'reverse' : ''} corner-brackets`}>
-                  <div className="division-card-visual">
-                    <div className="bg-number">{div.num}</div>
-                    <DivisionSVG division={div.id} />
-                  </div>
-                  <div className="division-card-content">
-                    <span className="division-num">Division {div.num}</span>
-                    <h3>{div.name}</h3>
-                    <p>{div.description}</p>
-                    <div className="stat-inline">
-                      {div.stats.map(s => (
-                        <div className="stat-inline-item" key={s.label}>
-                          <span className="num">{s.num}</span>
-                          <span className="label">{s.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="pills-wrap">
-                      {div.services.map(svc => (
-                        <Link key={svc.slug} to={`/what-we-do/${div.slug}/${svc.slug}`} className="pill">{svc.name}</Link>
-                      ))}
-                    </div>
-                    <Link to={`/what-we-do/${div.slug}`} className="btn-ghost" style={{ fontSize: 13, marginTop: 8 }}>
-                      Explore {div.shortName}
-                    </Link>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Divisions />
 
       <section className="dark-section eng-grid-dark section-pad">
         <div className="container">
@@ -275,80 +206,7 @@ export default function Home() {
   );
 }
 
-function DivisionSVG({ division }) {
-  const svgStyle = {
-    width: '60%',
-    height: 'auto',
-    opacity: 0.7,
-  };
 
-  if (division === 'engineering-design') {
-    return (
-      <svg viewBox="0 0 200 200" style={svgStyle} fill="none">
-        <rect x="60" y="40" width="80" height="120" rx="4" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
-        <circle cx="100" cy="80" r="25" stroke="rgba(4,229,134,0.25)" strokeWidth="1" />
-        <line x1="100" y1="55" x2="100" y2="40" stroke="rgba(4,229,134,0.35)" strokeWidth="1.5" />
-        <line x1="60" y1="100" x2="40" y2="100" stroke="rgba(4,229,134,0.35)" strokeWidth="1.5" />
-        <line x1="140" y1="100" x2="160" y2="100" stroke="rgba(4,229,134,0.35)" strokeWidth="1.5" />
-        <rect x="20" y="90" width="20" height="20" rx="2" stroke="rgba(4,229,134,0.2)" strokeWidth="1" />
-        <rect x="160" y="90" width="20" height="20" rx="2" stroke="rgba(4,229,134,0.2)" strokeWidth="1" />
-        <path d="M75 130 L100 160 L125 130" stroke="rgba(4,229,134,0.25)" strokeWidth="1" fill="none" />
-        <circle cx="100" cy="80" r="3" fill="rgba(4,229,134,0.4)" />
-      </svg>
-    );
-  }
-  if (division === 'equipment-manufacturing') {
-    return (
-      <svg viewBox="0 0 200 200" style={svgStyle} fill="none">
-        <ellipse cx="100" cy="50" rx="50" ry="15" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-        <line x1="50" y1="50" x2="50" y2="150" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-        <line x1="150" y1="50" x2="150" y2="150" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-        <ellipse cx="100" cy="150" rx="50" ry="15" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-        <line x1="100" y1="35" x2="100" y2="20" stroke="rgba(4,229,134,0.4)" strokeWidth="2" />
-        <circle cx="100" cy="18" r="6" stroke="rgba(4,229,134,0.3)" strokeWidth="1" />
-        <line x1="50" y1="100" x2="30" y2="100" stroke="rgba(4,229,134,0.35)" strokeWidth="1.5" />
-        <line x1="150" y1="120" x2="170" y2="120" stroke="rgba(4,229,134,0.35)" strokeWidth="1.5" />
-        <line x1="70" y1="165" x2="70" y2="185" stroke="rgba(4,229,134,0.2)" strokeWidth="1.5" />
-        <line x1="130" y1="165" x2="130" y2="185" stroke="rgba(4,229,134,0.2)" strokeWidth="1.5" />
-        <line x1="60" y1="185" x2="80" y2="185" stroke="rgba(4,229,134,0.2)" strokeWidth="1" />
-        <line x1="120" y1="185" x2="140" y2="185" stroke="rgba(4,229,134,0.2)" strokeWidth="1" />
-      </svg>
-    );
-  }
-  if (division === 'corrosion-protection') {
-    return (
-      <svg viewBox="0 0 200 200" style={svgStyle} fill="none">
-        <rect x="40" y="40" width="120" height="120" rx="4" stroke="rgba(4,229,134,0.15)" strokeWidth="1" />
-        <rect x="48" y="48" width="104" height="104" rx="3" stroke="rgba(4,229,134,0.25)" strokeWidth="1.5" strokeDasharray="4 2" />
-        <rect x="56" y="56" width="88" height="88" rx="2" stroke="rgba(4,229,134,0.35)" strokeWidth="1.5" />
-        <rect x="64" y="64" width="72" height="72" rx="2" fill="rgba(4,229,134,0.06)" stroke="rgba(4,229,134,0.4)" strokeWidth="2" />
-        <text x="100" y="96" textAnchor="middle" fill="rgba(4,229,134,0.5)" fontSize="8" fontFamily="monospace">STEEL</text>
-        <text x="100" y="108" textAnchor="middle" fill="rgba(4,229,134,0.4)" fontSize="7" fontFamily="monospace">PRIMER</text>
-        <text x="100" y="120" textAnchor="middle" fill="rgba(4,229,134,0.3)" fontSize="7" fontFamily="monospace">ADHESIVE</text>
-        <text x="100" y="132" textAnchor="middle" fill="rgba(4,229,134,0.5)" fontSize="8" fontFamily="monospace">LINING</text>
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 200 200" style={svgStyle} fill="none">
-      <circle cx="100" cy="100" r="20" stroke="rgba(4,229,134,0.4)" strokeWidth="2" />
-      <circle cx="60" cy="60" r="12" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-      <circle cx="140" cy="60" r="12" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-      <circle cx="60" cy="140" r="12" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-      <circle cx="140" cy="140" r="12" stroke="rgba(4,229,134,0.3)" strokeWidth="1.5" />
-      <line x1="72" y1="72" x2="88" y2="88" stroke="rgba(4,229,134,0.25)" strokeWidth="1" />
-      <line x1="128" y1="72" x2="112" y2="88" stroke="rgba(4,229,134,0.25)" strokeWidth="1" />
-      <line x1="72" y1="128" x2="88" y2="112" stroke="rgba(4,229,134,0.25)" strokeWidth="1" />
-      <line x1="128" y1="128" x2="112" y2="112" stroke="rgba(4,229,134,0.25)" strokeWidth="1" />
-      <circle cx="100" cy="100" r="5" fill="rgba(4,229,134,0.3)" />
-      <circle cx="60" cy="60" r="4" fill="rgba(4,229,134,0.2)" />
-      <circle cx="140" cy="60" r="4" fill="rgba(4,229,134,0.2)" />
-      <circle cx="60" cy="140" r="4" fill="rgba(4,229,134,0.2)" />
-      <circle cx="140" cy="140" r="4" fill="rgba(4,229,134,0.2)" />
-      <circle cx="100" cy="100" r="50" stroke="rgba(4,229,134,0.1)" strokeWidth="0.5" strokeDasharray="3 3" />
-    </svg>
-  );
-}
 
 function GlobeSVG() {
   return (

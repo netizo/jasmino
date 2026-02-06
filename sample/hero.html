@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmino — Design. Build. Protect.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #1B4B8F;
+            --dark-blue: #0D2847;
+            --green: #04E586;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Barlow', sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 48px;
+            background: transparent;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--gray-200);
+        }
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 22px;
+            color: var(--blue);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex; gap: 32px; align-items: center;
+        }
+        .nav-links a {
+            font-size: 14px; font-weight: 500;
+            color: var(--gray-600); text-decoration: none;
+            letter-spacing: 0.3px; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--blue); }
+        .nav-cta {
+            font-size: 13px; font-weight: 600;
+            color: var(--white) !important;
+            background: var(--blue);
+            padding: 10px 24px; border-radius: 4px;
+            text-decoration: none !important; transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--dark-blue); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            width: 100%; height: 100vh; min-height: 700px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            overflow: hidden; background: var(--white);
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(27,75,143,0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(4,229,134,0.02) 0%, transparent 50%);
+            pointer-events: none; z-index: 1;
+        }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0 48px 0 80px;
+        }
+        .hero-eyebrow {
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: var(--blue); margin-bottom: 32px;
+            opacity: 0; transform: translateY(16px);
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+        .hero-headline {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(48px, 5.5vw, 72px);
+            line-height: 1.05; color: var(--gray-900);
+            margin-bottom: 32px;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp 0.8s ease 0.5s forwards;
+        }
+        .hero-headline .word {
+            display: inline-block;
+            transition: color 0.6s ease, opacity 0.6s ease;
+        }
+        .hero-headline .word.active { color: var(--blue); }
+        .hero-headline .word.protect-active { color: var(--green); }
+        .hero-headline .word.dimmed { opacity: 0.2; }
+        .hero-headline .dot {
+            display: inline-block;
+            transition: color 0.6s ease, opacity 0.6s ease;
+        }
+        .hero-headline .dot.dimmed { opacity: 0.2; }
+        .hero-headline .dot.active { color: var(--blue); }
+        .hero-headline .dot.protect-active { color: var(--green); }
+
+        .hero-sub {
+            font-size: 17px; line-height: 1.7;
+            color: var(--gray-600); max-width: 480px; margin-bottom: 40px;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp 0.8s ease 0.7s forwards;
+        }
+        .hero-cta-row {
+            display: flex; align-items: center; gap: 24px;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeUp 0.8s ease 0.9s forwards;
+        }
+        .hero-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 14px; font-weight: 600;
+            color: var(--white); background: var(--blue);
+            padding: 14px 32px; border-radius: 4px;
+            text-decoration: none; transition: background 0.2s, transform 0.2s;
+        }
+        .hero-btn:hover { background: var(--dark-blue); transform: translateY(-1px); }
+        .hero-btn svg { width: 16px; height: 16px; transition: transform 0.2s; }
+        .hero-btn:hover svg { transform: translateX(3px); }
+        .hero-btn-secondary {
+            font-size: 14px; font-weight: 500;
+            color: var(--gray-600); text-decoration: none; transition: color 0.2s;
+        }
+        .hero-btn-secondary:hover { color: var(--blue); }
+
+        /* ─── PHASE INDICATOR ─── */
+        .phase-indicator {
+            position: absolute; bottom: 48px; left: 80px; z-index: 10;
+            display: flex; gap: 40px;
+            opacity: 0; animation: fadeUp 0.8s ease 1.1s forwards;
+        }
+        .phase-step {
+            display: flex; align-items: center; gap: 10px;
+            cursor: pointer; transition: opacity 0.4s;
+        }
+        .phase-step.dimmed { opacity: 0.3; }
+        .phase-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--gray-400);
+            transition: background 0.4s, transform 0.4s;
+        }
+        .phase-step.active .phase-dot { background: var(--blue); transform: scale(1.3); }
+        .phase-step.protect-active .phase-dot { background: var(--green); transform: scale(1.3); }
+        .phase-label {
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gray-600); transition: color 0.4s;
+        }
+        .phase-step.active .phase-label { color: var(--blue); }
+        .phase-step.protect-active .phase-label { color: var(--green); }
+
+        /* Progress bar under active phase */
+        .phase-progress {
+            position: absolute; bottom: -6px; left: 0;
+            height: 2px; width: 0; background: var(--blue);
+            transition: width 0.1s linear;
+        }
+        .phase-step.protect-active .phase-progress { background: var(--green); }
+        .phase-step { position: relative; }
+
+        /* ─── CANVAS ─── */
+        .hero-canvas-wrap {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #hero-canvas { width: 100%; height: 100%; display: block; }
+
+        /* ─── STATS ─── */
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(4,1fr);
+            border-top: 1px solid var(--gray-200); background: var(--white);
+        }
+        .stat {
+            padding: 40px 48px;
+            border-right: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        .stat:last-child { border-right: none; }
+        .stat-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 36px;
+            color: var(--blue); line-height: 1; margin-bottom: 6px;
+        }
+        .stat-label {
+            font-size: 13px; color: var(--gray-400);
+            font-weight: 500; letter-spacing: 0.3px;
+        }
+
+        /* ─── SCROLL HINT ─── */
+        .scroll-hint {
+            position: absolute; bottom: 48px; right: 48px; z-index: 10;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            opacity: 0; animation: fadeUp 0.8s ease 1.3s forwards;
+        }
+        .scroll-hint span {
+            font-size: 10px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase; color: var(--gray-400);
+        }
+        .scroll-line {
+            width: 1px; height: 40px;
+            background: var(--gray-200); position: relative; overflow: hidden;
+        }
+        .scroll-line::after {
+            content: ''; position: absolute;
+            top: -100%; left: 0; width: 100%; height: 50%;
+            background: var(--blue); animation: scrollPulse 2s ease infinite;
+        }
+        @keyframes scrollPulse { 0%{top:-50%} 100%{top:150%} }
+        @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width:1024px) {
+            .hero { grid-template-columns:1fr; grid-template-rows:1fr 1fr; }
+            .hero-content { padding:120px 40px 0; justify-content:flex-start; }
+            .hero-canvas-wrap { order:-1; }
+            .phase-indicator { left:40px; }
+            nav { padding:16px 24px; }
+        }
+        @media (max-width:640px) {
+            .hero-content { padding:100px 24px 0; }
+            .phase-indicator { left:24px; bottom:24px; gap:24px; }
+            .stats-bar { grid-template-columns:repeat(2,1fr); }
+            .stat { padding:24px; }
+            .scroll-hint { display:none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="nav">
+        <div class="nav-logo">Jasmino</div>
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">What We Do</a>
+            <a href="#">Industries</a>
+            <a href="#">Infrastructure</a>
+            <a href="#">News</a>
+            <a href="#" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Integrated Engineering & Corrosion Protection</div>
+            <h1 class="hero-headline">
+                <span class="word" data-phase="0">Design</span><span class="dot" data-phase="0">.</span>
+                <span class="word" data-phase="1">Build</span><span class="dot" data-phase="1">.</span>
+                <span class="word" data-phase="2">Protect</span><span class="dot" data-phase="2">.</span>
+            </h1>
+            <p class="hero-sub">For 40 years, Jasmino has done what no other company does — engineer, manufacture, and protect industrial process equipment under one roof.</p>
+            <div class="hero-cta-row">
+                <a href="#" class="hero-btn">
+                    See How We Work
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </a>
+                <a href="#" class="hero-btn-secondary">View Industries →</a>
+            </div>
+        </div>
+        <div class="hero-canvas-wrap">
+            <canvas id="hero-canvas"></canvas>
+        </div>
+        <div class="phase-indicator">
+            <div class="phase-step active" data-phase="0">
+                <div class="phase-dot"></div>
+                <div class="phase-label">Design</div>
+                <div class="phase-progress"></div>
+            </div>
+            <div class="phase-step" data-phase="1">
+                <div class="phase-dot"></div>
+                <div class="phase-label">Build</div>
+                <div class="phase-progress"></div>
+            </div>
+            <div class="phase-step" data-phase="2">
+                <div class="phase-dot"></div>
+                <div class="phase-label">Protect</div>
+                <div class="phase-progress"></div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat"><div class="stat-number">40+</div><div class="stat-label">Years of Engineering</div></div>
+        <div class="stat"><div class="stat-number">15</div><div class="stat-label">Countries</div></div>
+        <div class="stat"><div class="stat-number">97%</div><div class="stat-label">Reorder Rate</div></div>
+        <div class="stat"><div class="stat-number">3rd</div><div class="stat-label">Largest Globally</div></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // ═══════════════════════════════════════════
+        // RENDERER SETUP — optimized for quality + perf
+        // ═══════════════════════════════════════════
+        const canvas = document.getElementById('hero-canvas');
+        const renderer = new THREE.WebGLRenderer({
+            canvas,
+            antialias: true,
+            alpha: true,
+            powerPreference: 'high-performance'
+        });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 0);
+        renderer.shadowMap.enabled = false;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.15;
+
+        const scene = new THREE.Scene();
+
+        // Subtle fog for depth
+        scene.fog = new THREE.FogExp2(0xf9fafb, 0.04);
+
+        const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+        camera.position.set(0, 0.8, 7);
+        camera.lookAt(0, 0, 0);
+
+        function resize() {
+            const w = canvas.parentElement.clientWidth;
+            const h = canvas.parentElement.clientHeight;
+            renderer.setSize(w, h);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // ═══════════════════════════════════════════
+        // ENVIRONMENT MAP — rich studio HDRI simulation
+        // ═══════════════════════════════════════════
+        const cubeRT = new THREE.WebGLCubeRenderTarget(512);
+        const cubeCamera = new THREE.CubeCamera(0.1, 100, cubeRT);
+
+        // Create a rich studio-style environment scene with bright panels
+        const envScene = new THREE.Scene();
+        const envGeo = new THREE.SphereGeometry(50, 64, 64);
+        const envMat = new THREE.ShaderMaterial({
+            side: THREE.BackSide,
+            uniforms: {
+                topColor: { value: new THREE.Color(0xf0f4fa) },
+                midColor: { value: new THREE.Color(0xdce2ea) },
+                bottomColor: { value: new THREE.Color(0xb8bec8) }
+            },
+            vertexShader: `
+                varying vec3 vWorldPos;
+                void main() {
+                    vec4 worldPos = modelMatrix * vec4(position, 1.0);
+                    vWorldPos = worldPos.xyz;
+                    gl_Position = projectionMatrix * viewMatrix * worldPos;
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 topColor;
+                uniform vec3 midColor;
+                uniform vec3 bottomColor;
+                varying vec3 vWorldPos;
+                void main() {
+                    float y = normalize(vWorldPos).y;
+                    vec3 col = y > 0.0 ? mix(midColor, topColor, pow(y, 0.6)) : mix(midColor, bottomColor, pow(-y, 0.8) * 0.6);
+                    gl_FragColor = vec4(col, 1.0);
+                }
+            `
+        });
+        envScene.add(new THREE.Mesh(envGeo, envMat));
+
+        // Studio softbox panels (bright rectangular areas for realistic reflections)
+        function addSoftbox(scene, pos, w, h, intensity, color) {
+            const g = new THREE.PlaneGeometry(w, h);
+            const m = new THREE.MeshBasicMaterial({ color: color, side: THREE.DoubleSide });
+            const mesh = new THREE.Mesh(g, m);
+            mesh.position.set(pos.x, pos.y, pos.z);
+            mesh.lookAt(0, 0, 0);
+            scene.add(mesh);
+            const pl = new THREE.PointLight(color, intensity, 60);
+            pl.position.set(pos.x, pos.y, pos.z);
+            scene.add(pl);
+        }
+
+        // Key softbox — large, warm, upper right
+        addSoftbox(envScene, {x: 10, y: 14, z: 8}, 12, 8, 500, 0xfff8f0);
+        // Fill softbox — cooler, upper left
+        addSoftbox(envScene, {x: -12, y: 10, z: -4}, 10, 6, 300, 0xd8e4ff);
+        // Rim softbox — behind, creates edge highlight
+        addSoftbox(envScene, {x: -3, y: 5, z: -15}, 14, 6, 250, 0xf5f0ff);
+        // Floor bounce — subtle warm from below
+        addSoftbox(envScene, {x: 0, y: -8, z: 8}, 16, 10, 120, 0xffe8d8);
+        // Small accent highlight
+        addSoftbox(envScene, {x: 6, y: 2, z: 12}, 4, 3, 180, 0xffffff);
+
+        cubeCamera.update(renderer, envScene);
+
+        // ═══════════════════════════════════════════
+        // LIGHTING — cinematic 3-point + accent
+        // ═══════════════════════════════════════════
+        // Key light — warm, directional, casts shadows
+        const keyLight = new THREE.DirectionalLight(0xfff5e8, 1.2);
+        keyLight.position.set(5, 8, 5);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.set(2048, 2048);
+        keyLight.shadow.camera.near = 0.1;
+        keyLight.shadow.camera.far = 30;
+        keyLight.shadow.bias = -0.001;
+        keyLight.shadow.radius = 4;
+        scene.add(keyLight);
+
+        // Fill light — cool, softer
+        const fillLight = new THREE.DirectionalLight(0xc8d8f0, 0.55);
+        fillLight.position.set(-4, 3, -3);
+        scene.add(fillLight);
+
+        // Rim/back light — for edge separation
+        const rimLight = new THREE.DirectionalLight(0xffffff, 0.7);
+        rimLight.position.set(-1, -2, -5);
+        scene.add(rimLight);
+
+        // Green accent lights — activate during Protect phase
+        const greenAccent = new THREE.PointLight(0x04E586, 0, 10);
+        greenAccent.position.set(2, 1, 3);
+        scene.add(greenAccent);
+
+        const greenAccent2 = new THREE.PointLight(0x04E586, 0, 10);
+        greenAccent2.position.set(-2, -0.5, 2);
+        scene.add(greenAccent2);
+
+        // Ambient — very low, let directional lights do the work
+        const ambient = new THREE.HemisphereLight(0xdde4f0, 0xe0d8d0, 0.35);
+        scene.add(ambient);
+
+        // ═══════════════════════════════════════════
+        // CUSTOM SHADERS
+        // ═══════════════════════════════════════════
+
+        // --- Wireframe shader with flowing energy pulse and enhanced glow ---
+        const wireframeShader = {
+            uniforms: {
+                uTime: { value: 0 },
+                uOpacity: { value: 1.0 },
+                uColor: { value: new THREE.Color(0x1B4B8F) },
+                uGlowColor: { value: new THREE.Color(0x5a9eff) },
+                uScanLine: { value: 0.0 }
+            },
+            vertexShader: `
+                varying vec3 vPosition;
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                varying vec3 vViewDir;
+                void main() {
+                    vPosition = position;
+                    vNormal = normalize(normalMatrix * normal);
+                    vec4 wp = modelMatrix * vec4(position, 1.0);
+                    vWorldPos = wp.xyz;
+                    vViewDir = normalize(cameraPosition - wp.xyz);
+                    gl_Position = projectionMatrix * viewMatrix * wp;
+                }
+            `,
+            fragmentShader: `
+                uniform float uTime;
+                uniform float uOpacity;
+                uniform vec3 uColor;
+                uniform vec3 uGlowColor;
+                uniform float uScanLine;
+                varying vec3 vPosition;
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                varying vec3 vViewDir;
+                void main() {
+                    vec3 V = normalize(vViewDir);
+                    vec3 N = normalize(vNormal);
+
+                    // Enhanced Fresnel edge glow
+                    float fresnel = 1.0 - abs(dot(V, N));
+                    fresnel = pow(fresnel, 2.0) * 1.2;
+
+                    // Animated scan line with soft falloff
+                    float scanWidth = 0.6;
+                    float scan = exp(-(vWorldPos.y - uScanLine) * (vWorldPos.y - uScanLine) / (scanWidth * scanWidth * 0.08));
+
+                    // Secondary travelling pulse
+                    float pulse2 = exp(-(vWorldPos.y - uScanLine * 0.7 + 0.5) * (vWorldPos.y - uScanLine * 0.7 + 0.5) / 0.12) * 0.4;
+
+                    // Subtle flowing energy along edges
+                    float flow = sin(vWorldPos.y * 8.0 + uTime * 2.0) * 0.5 + 0.5;
+                    flow *= 0.15;
+
+                    vec3 col = mix(uColor, uGlowColor, fresnel * 0.5 + scan * 0.7 + pulse2 * 0.5 + flow);
+
+                    // Brighter at scan position
+                    col += uGlowColor * scan * 0.4;
+                    col += vec3(0.6, 0.85, 1.0) * pulse2;
+
+                    float alpha = (0.5 + fresnel * 0.5 + scan * 0.6 + pulse2 * 0.3 + flow * 0.2) * uOpacity;
+
+                    gl_FragColor = vec4(col, alpha);
+                }
+            `
+        };
+
+        // --- Metal shader — PBR brushed stainless steel ---
+        const metalShader = {
+            uniforms: {
+                uOpacity: { value: 0.0 },
+                uEnvMap: { value: cubeRT.texture },
+                uColor: { value: new THREE.Color(0xd4dae0) },
+                uTime: { value: 0 }
+            },
+            vertexShader: `
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                varying vec3 vReflect;
+                varying vec3 vLocalPos;
+                varying vec3 vViewDir;
+                varying vec3 vTangent;
+                void main() {
+                    vLocalPos = position;
+                    vNormal = normalize(normalMatrix * normal);
+                    vec4 wp = modelMatrix * vec4(position, 1.0);
+                    vWorldPos = wp.xyz;
+                    vViewDir = normalize(cameraPosition - wp.xyz);
+                    vec3 worldNormal = normalize((modelMatrix * vec4(normal, 0.0)).xyz);
+                    vReflect = reflect(-vViewDir, worldNormal);
+                    // Generate tangent from object-space Y for anisotropic brush direction
+                    vec3 up = abs(normal.y) > 0.99 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);
+                    vTangent = normalize(cross(normal, up));
+                    vTangent = normalize((modelMatrix * vec4(vTangent, 0.0)).xyz);
+                    gl_Position = projectionMatrix * viewMatrix * wp;
+                }
+            `,
+            fragmentShader: `
+                uniform float uOpacity;
+                uniform samplerCube uEnvMap;
+                uniform vec3 uColor;
+                uniform float uTime;
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                varying vec3 vReflect;
+                varying vec3 vLocalPos;
+                varying vec3 vViewDir;
+                varying vec3 vTangent;
+
+                // ── GGX Distribution ──
+                float D_GGX(float NdotH, float roughness) {
+                    float a2 = roughness * roughness;
+                    float denom = NdotH * NdotH * (a2 - 1.0) + 1.0;
+                    return a2 / (3.14159 * denom * denom + 0.0001);
+                }
+
+                // ── Schlick Fresnel ──
+                vec3 F_Schlick(float VdotH, vec3 F0) {
+                    return F0 + (1.0 - F0) * pow(1.0 - VdotH, 5.0);
+                }
+
+                // ── Smith GGX Geometry ──
+                float G_SmithGGX(float NdotV, float NdotL, float roughness) {
+                    float k = (roughness + 1.0);
+                    k = k * k / 8.0;
+                    float ggx1 = NdotV / (NdotV * (1.0 - k) + k);
+                    float ggx2 = NdotL / (NdotL * (1.0 - k) + k);
+                    return ggx1 * ggx2;
+                }
+
+                // ── Anisotropic ward specular ──
+                float wardAniso(vec3 L, vec3 V, vec3 N, vec3 T, float ax, float ay) {
+                    vec3 H = normalize(L + V);
+                    vec3 B = cross(N, T);
+                    float NdotH = max(dot(N, H), 0.0);
+                    float TdotH = dot(T, H);
+                    float BdotH = dot(B, H);
+                    float exponent = -((TdotH * TdotH) / (ax * ax) + (BdotH * BdotH) / (ay * ay)) / (NdotH * NdotH + 0.001);
+                    return exp(exponent) / (4.0 * 3.14159 * ax * ay + 0.001);
+                }
+
+                // ── Procedural noise ──
+                float hash(vec2 p) {
+                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+                }
+                float noise2D(vec2 p) {
+                    vec2 i = floor(p);
+                    vec2 f = fract(p);
+                    f = f * f * (3.0 - 2.0 * f);
+                    float a = hash(i);
+                    float b = hash(i + vec2(1.0, 0.0));
+                    float c = hash(i + vec2(0.0, 1.0));
+                    float d = hash(i + vec2(1.0, 1.0));
+                    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+                }
+
+                void main() {
+                    vec3 N = normalize(vNormal);
+                    vec3 V = normalize(vViewDir);
+                    vec3 T = normalize(vTangent);
+
+                    // === METALLIC F0 — stainless steel ===
+                    vec3 F0 = vec3(0.56, 0.57, 0.58); // Stainless steel reflectance
+
+                    // === MULTI-LIGHT PBR ===
+                    struct Light {
+                        vec3 pos;
+                        vec3 color;
+                        float intensity;
+                    };
+
+                    // Define lights
+                    vec3 L1pos = vec3(5.0, 8.0, 5.0);
+                    vec3 L2pos = vec3(-4.0, 3.0, -3.0);
+                    vec3 L3pos = vec3(-1.0, -2.0, -5.0);
+
+                    vec3 totalDiffuse = vec3(0.0);
+                    vec3 totalSpecular = vec3(0.0);
+
+                    // Key light (warm)
+                    {
+                        vec3 L = normalize(L1pos - vWorldPos);
+                        vec3 H = normalize(L + V);
+                        float NdotL = max(dot(N, L), 0.0);
+                        float NdotH = max(dot(N, H), 0.0);
+                        float NdotV = max(dot(N, V), 0.001);
+                        float VdotH = max(dot(V, H), 0.0);
+
+                        // Cook-Torrance BRDF
+                        float D = D_GGX(NdotH, 0.35);
+                        vec3 F = F_Schlick(VdotH, F0);
+                        float G = G_SmithGGX(NdotV, NdotL, 0.35);
+                        vec3 spec = (D * F * G) / (4.0 * NdotV * NdotL + 0.001);
+
+                        // Anisotropic highlight (brushed metal elongated along cylinder axis)
+                        float aniso = wardAniso(L, V, N, T, 0.15, 0.55) * 0.35;
+
+                        vec3 lightCol = vec3(1.0, 0.96, 0.90) * 1.3;
+                        totalDiffuse += lightCol * NdotL * (1.0 - F) * 0.04; // Metals have very low diffuse
+                        totalSpecular += lightCol * (spec + aniso) * NdotL;
+                    }
+
+                    // Fill light (cool)
+                    {
+                        vec3 L = normalize(L2pos - vWorldPos);
+                        vec3 H = normalize(L + V);
+                        float NdotL = max(dot(N, L), 0.0);
+                        float NdotH = max(dot(N, H), 0.0);
+                        float NdotV = max(dot(N, V), 0.001);
+                        float VdotH = max(dot(V, H), 0.0);
+
+                        float D = D_GGX(NdotH, 0.38);
+                        vec3 F = F_Schlick(VdotH, F0);
+                        float G = G_SmithGGX(NdotV, NdotL, 0.38);
+                        vec3 spec = (D * F * G) / (4.0 * NdotV * NdotL + 0.001);
+                        float aniso = wardAniso(L, V, N, T, 0.15, 0.55) * 0.2;
+
+                        vec3 lightCol = vec3(0.82, 0.88, 1.0) * 0.6;
+                        totalDiffuse += lightCol * NdotL * (1.0 - F) * 0.04;
+                        totalSpecular += lightCol * (spec + aniso) * NdotL;
+                    }
+
+                    // Rim light
+                    {
+                        vec3 L = normalize(L3pos - vWorldPos);
+                        vec3 H = normalize(L + V);
+                        float NdotL = max(dot(N, L), 0.0);
+                        float NdotH = max(dot(N, H), 0.0);
+                        float NdotV = max(dot(N, V), 0.001);
+                        float VdotH = max(dot(V, H), 0.0);
+
+                        float D = D_GGX(NdotH, 0.32);
+                        vec3 F = F_Schlick(VdotH, F0);
+                        float G = G_SmithGGX(NdotV, NdotL, 0.32);
+                        vec3 spec = (D * F * G) / (4.0 * NdotV * NdotL + 0.001);
+
+                        vec3 lightCol = vec3(0.9, 0.92, 0.95) * 0.75;
+                        totalSpecular += lightCol * spec * NdotL;
+                    }
+
+                    // === BASE COLOR with subtle warmth ===
+                    vec3 base = uColor * 0.42 + totalDiffuse;
+
+                    // === BRUSHED METAL TEXTURE — procedural ===
+                    float brushAngle = atan(vLocalPos.z, vLocalPos.x);
+                    float brushCoord = brushAngle * 10.0 + vLocalPos.y * 80.0;
+                    float brush1 = sin(brushCoord * 8.0) * 0.012;
+                    float brush2 = sin(brushCoord * 22.0 + 1.3) * 0.006;
+                    float brush3 = noise2D(vec2(brushCoord * 2.0, vLocalPos.y * 60.0)) * 0.018 - 0.009;
+                    base += (brush1 + brush2 + brush3);
+
+                    // === ENVIRONMENT REFLECTIONS — PBR ===
+                    vec3 envCol = textureCube(uEnvMap, vReflect).rgb;
+                    // Mip-style blur for rough reflections (fake by blending with avg)
+                    vec3 envAvg = (envCol + textureCube(uEnvMap, vReflect + vec3(0.08)).rgb + textureCube(uEnvMap, vReflect - vec3(0.08)).rgb) / 3.0;
+                    float NdotV = max(dot(N, V), 0.0);
+                    vec3 fresnelReflect = F_Schlick(NdotV, F0);
+                    base = mix(base, envAvg * 1.15, fresnelReflect * 0.65);
+
+                    // === SPECULAR ACCUMULATION ===
+                    base += totalSpecular;
+
+                    // === AMBIENT OCCLUSION — fake in concavities ===
+                    float ao = smoothstep(0.0, 0.15, abs(vLocalPos.y));
+                    ao *= smoothstep(-1.2, -0.8, vLocalPos.y) * 0.3 + 0.7;
+                    base *= mix(0.75, 1.0, ao);
+
+                    // === SUBTLE WARM-COOL SHIFT ===
+                    base += vec3(0.012, 0.008, 0.002) * max(dot(N, vec3(0.0, 1.0, 0.0)), 0.0);
+                    base += vec3(-0.005, 0.0, 0.01) * max(dot(N, vec3(0.0, -1.0, 0.0)), 0.0);
+
+                    // === MICRO-GRAIN (subtle noise) ===
+                    float grain = noise2D(vLocalPos.xz * 400.0) * 0.02 - 0.01;
+                    base += grain;
+
+                    gl_FragColor = vec4(base, uOpacity);
+                }
+            `
+        };
+
+        // --- Protective coating shader — PBR rubber lining with shield FX ---
+        const coatingShader = {
+            uniforms: {
+                uOpacity: { value: 0.0 },
+                uTime: { value: 0 },
+                uColor: { value: new THREE.Color(0x04E586) },
+                uGlowIntensity: { value: 0.0 },
+                uCoatingProgress: { value: 0.0 },
+                uEnvMap: { value: cubeRT.texture }
+            },
+            vertexShader: `
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                varying vec3 vPosition;
+                varying vec3 vReflect;
+                varying vec3 vViewDir;
+                varying vec2 vUv;
+                void main() {
+                    vPosition = position;
+                    vUv = uv;
+                    vNormal = normalize(normalMatrix * normal);
+                    vec4 wp = modelMatrix * vec4(position, 1.0);
+                    vWorldPos = wp.xyz;
+                    vViewDir = normalize(cameraPosition - wp.xyz);
+                    vec3 worldNormal = normalize((modelMatrix * vec4(normal, 0.0)).xyz);
+                    vReflect = reflect(-vViewDir, worldNormal);
+                    gl_Position = projectionMatrix * viewMatrix * wp;
+                }
+            `,
+            fragmentShader: `
+                uniform float uOpacity;
+                uniform float uTime;
+                uniform vec3 uColor;
+                uniform float uGlowIntensity;
+                uniform float uCoatingProgress;
+                uniform samplerCube uEnvMap;
+                varying vec3 vNormal;
+                varying vec3 vWorldPos;
+                varying vec3 vPosition;
+                varying vec3 vReflect;
+                varying vec3 vViewDir;
+                varying vec2 vUv;
+
+                // ── GGX ──
+                float D_GGX(float NdotH, float roughness) {
+                    float a2 = roughness * roughness;
+                    float denom = NdotH * NdotH * (a2 - 1.0) + 1.0;
+                    return a2 / (3.14159 * denom * denom + 0.0001);
+                }
+                vec3 F_Schlick(float VdotH, vec3 F0) {
+                    return F0 + (1.0 - F0) * pow(1.0 - VdotH, 5.0);
+                }
+
+                // ── Noise ──
+                float hash(vec2 p) {
+                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+                }
+                float noise2D(vec2 p) {
+                    vec2 i = floor(p);
+                    vec2 f = fract(p);
+                    f = f * f * (3.0 - 2.0 * f);
+                    return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+                }
+
+                // ── Hexagonal grid ──
+                vec4 hexGrid(vec2 p) {
+                    vec2 q = vec2(p.x * 2.0 / sqrt(3.0), p.y + p.x / sqrt(3.0));
+                    vec2 pi = floor(q);
+                    vec2 pf = fract(q);
+
+                    float v = mod(pi.x + pi.y, 3.0);
+                    float ca = step(1.0, v);
+                    float cb = step(2.0, v);
+                    vec2 ma = step(pf.xy, pf.yx);
+
+                    float e = dot(ma, 1.0 - pf.yx + ca * (pf.x + pf.y - 1.0) + cb * (pf.yx - 2.0 * pf.xy));
+                    p = vec2(dot(ma, pf.yx + ca * (1.0 - pf.x - pf.y) + cb * (2.0 * pf.xy - pf.yx)));
+
+                    float d = 1.0 - smoothstep(0.0, 0.06, abs(e - 0.5));
+                    vec2 id = pi + vec2(ca, cb);
+                    return vec4(d, id, e);
+                }
+
+                void main() {
+                    vec3 N = normalize(vNormal);
+                    vec3 V = normalize(vViewDir);
+
+                    // === COATING WIPE ===
+                    float wipePos = vWorldPos.y + 2.0;
+                    float coatMask = smoothstep(uCoatingProgress - 0.5, uCoatingProgress, wipePos);
+
+                    // Leading edge glow — brighter, wider
+                    float edgeDist = abs(wipePos - uCoatingProgress);
+                    float edgeLine = exp(-edgeDist * edgeDist * 60.0) * step(wipePos, uCoatingProgress + 0.15);
+
+                    // === RUBBER F0 ===
+                    vec3 F0 = vec3(0.04);
+
+                    // === RUBBER BASE ===
+                    vec3 deepGreen = uColor * 0.35;
+                    vec3 midGreen = uColor * 0.65;
+                    vec3 brightGreen = uColor * 1.05;
+
+                    // Multi-light PBR
+                    vec3 totalDiffuse = vec3(0.0);
+                    vec3 totalSpecular = vec3(0.0);
+                    float rubberRoughness = 0.42;
+
+                    // Key light
+                    {
+                        vec3 L = normalize(vec3(5.0, 8.0, 5.0) - vWorldPos);
+                        vec3 H = normalize(L + V);
+                        float NdotL = max(dot(N, L), 0.0);
+                        float NdotH = max(dot(N, H), 0.0);
+                        float NdotV = max(dot(N, V), 0.001);
+                        float VdotH = max(dot(V, H), 0.0);
+                        float D = D_GGX(NdotH, rubberRoughness);
+                        vec3 F = F_Schlick(VdotH, F0);
+                        vec3 kD = (1.0 - F);
+                        vec3 spec = D * F / (4.0 * NdotV * NdotL + 0.001);
+                        vec3 lightCol = vec3(1.0, 0.97, 0.92) * 1.2;
+                        totalDiffuse += kD * lightCol * NdotL;
+                        totalSpecular += lightCol * spec * NdotL;
+                    }
+                    // Fill light
+                    {
+                        vec3 L = normalize(vec3(-4.0, 3.0, -3.0) - vWorldPos);
+                        vec3 H = normalize(L + V);
+                        float NdotL = max(dot(N, L), 0.0);
+                        float NdotH = max(dot(N, H), 0.0);
+                        float NdotV = max(dot(N, V), 0.001);
+                        float VdotH = max(dot(V, H), 0.0);
+                        float D = D_GGX(NdotH, rubberRoughness);
+                        vec3 F = F_Schlick(VdotH, F0);
+                        vec3 kD = (1.0 - F);
+                        vec3 spec = D * F / (4.0 * NdotV * NdotL + 0.001);
+                        vec3 lightCol = vec3(0.85, 0.90, 1.0) * 0.5;
+                        totalDiffuse += kD * lightCol * NdotL;
+                        totalSpecular += lightCol * spec * NdotL;
+                    }
+                    // Rim
+                    {
+                        vec3 L = normalize(vec3(-1.0, -2.0, -5.0) - vWorldPos);
+                        vec3 H = normalize(L + V);
+                        float NdotL = max(dot(N, L), 0.0);
+                        float NdotH = max(dot(N, H), 0.0);
+                        float NdotV = max(dot(N, V), 0.001);
+                        float VdotH = max(dot(V, H), 0.0);
+                        float D = D_GGX(NdotH, rubberRoughness);
+                        vec3 F = F_Schlick(VdotH, F0);
+                        vec3 spec = D * F / (4.0 * NdotV * NdotL + 0.001);
+                        vec3 lightCol = vec3(0.88, 0.92, 0.95) * 0.6;
+                        totalSpecular += lightCol * spec * NdotL;
+                    }
+
+                    // Compose
+                    vec3 base = mix(deepGreen, brightGreen, 0.35 + totalDiffuse.r * 0.65);
+                    base *= (0.55 + totalDiffuse * 0.8);
+
+                    // === ENV REFLECTIONS ===
+                    vec3 envCol = textureCube(uEnvMap, vReflect).rgb;
+                    float NdotV = max(dot(N, V), 0.0);
+                    vec3 fresnelReflect = F_Schlick(NdotV, F0);
+                    vec3 tintedEnv = envCol * mix(vec3(1.0), uColor * 0.4 + vec3(0.6), 0.35);
+                    base = mix(base, tintedEnv * 1.1, fresnelReflect * 0.55);
+
+                    // Specular
+                    base += totalSpecular * 0.7;
+
+                    // === SUBSURFACE SCATTERING ===
+                    vec3 L1 = normalize(vec3(5.0, 8.0, 5.0) - vWorldPos);
+                    float sss = pow(max(dot(V, -L1), 0.0), 6.0) * 0.15;
+                    base += uColor * sss * 1.5;
+
+                    // === FRESNEL RIM ===
+                    float fresnelRim = pow(1.0 - NdotV, 4.0);
+                    base += uColor * fresnelRim * (0.35 + uGlowIntensity * 0.4);
+
+                    // === LEADING EDGE GLOW ===
+                    vec3 edgeColor = uColor * 2.5 + vec3(0.2, 0.8, 0.4);
+                    base += edgeColor * edgeLine * 0.7;
+
+                    // ═══════════════════════════════════
+                    // PROTECT PHASE — ENHANCED EFFECTS
+                    // ═══════════════════════════════════
+
+                    // === HEXAGONAL SHIELD PATTERN ===
+                    // Map onto cylinder surface using angle + height
+                    float angle = atan(vPosition.z, vPosition.x);
+                    vec2 hexUV = vec2(angle * 3.0, vPosition.y * 5.5);
+                    vec4 hex = hexGrid(hexUV);
+                    float hexEdge = hex.x;
+
+                    // Animate hex cells — wave of activation rolling up the vessel
+                    float hexId = hash(hex.yz);
+                    float hexWave = sin(vPosition.y * 3.0 - uTime * 1.8 + hexId * 6.28) * 0.5 + 0.5;
+                    float hexPulse = smoothstep(0.3, 0.7, hexWave);
+
+                    // Hex grid lines glow green — subtle when coating arrives, stronger with glow
+                    float hexLineGlow = hexEdge * uGlowIntensity * 0.25;
+                    base += uColor * hexLineGlow * (0.5 + hexPulse * 0.5);
+
+                    // Individual hex cells shimmer
+                    float cellShimmer = hexPulse * uGlowIntensity * 0.06;
+                    base += uColor * cellShimmer * (1.0 - hexEdge);
+
+                    // === ENERGY FIELD LINES — flowing along surface ===
+                    float flowLine1 = sin(angle * 12.0 + vPosition.y * 20.0 - uTime * 3.0);
+                    flowLine1 = pow(max(flowLine1, 0.0), 12.0);
+                    float flowLine2 = sin(angle * 8.0 - vPosition.y * 15.0 + uTime * 2.2);
+                    flowLine2 = pow(max(flowLine2, 0.0), 14.0);
+                    float flowLine3 = sin(angle * 20.0 + vPosition.y * 8.0 - uTime * 4.5);
+                    flowLine3 = pow(max(flowLine3, 0.0), 18.0) * 0.6;
+
+                    float energyLines = (flowLine1 + flowLine2 + flowLine3) * uGlowIntensity;
+                    vec3 energyColor = uColor * 1.8 + vec3(0.1, 0.5, 0.3);
+                    base += energyColor * energyLines * 0.15;
+
+                    // === PROTECTIVE AURA — pulsing radiance along edges ===
+                    float auraPulse = sin(uTime * 2.0) * 0.3 + 0.7;
+                    float auraPulse2 = sin(uTime * 3.1 + 1.5) * 0.2 + 0.8;
+                    float auraStrength = fresnelRim * uGlowIntensity;
+                    vec3 auraColor = mix(uColor, vec3(0.3, 1.0, 0.7), 0.3);
+                    base += auraColor * auraStrength * auraPulse * 0.3;
+
+                    // Secondary aura — inner glow
+                    float innerGlow = pow(1.0 - NdotV, 2.0) * uGlowIntensity * 0.12;
+                    base += uColor * innerGlow * auraPulse2;
+
+                    // === SURFACE DETAILS ===
+                    float texScale = 120.0;
+                    float microTex = noise2D(vPosition.xy * texScale) * noise2D(vPosition.yz * texScale);
+                    base += microTex * 0.025 - 0.0125;
+
+                    float grain = noise2D(vPosition.xz * 300.0) * 0.012 - 0.006;
+                    base += grain;
+
+                    // === AO ===
+                    float ao = smoothstep(0.0, 0.12, abs(vPosition.y));
+                    base *= mix(0.8, 1.0, ao);
+
+                    // === PULSING GLOBAL GLOW ===
+                    float pulse = sin(uTime * 1.5) * 0.5 + 0.5;
+                    base += uColor * uGlowIntensity * pulse * 0.04;
+
+                    float alpha = uOpacity * coatMask;
+                    gl_FragColor = vec4(base, alpha);
+                }
+            `
+        };
+
+        // ═══════════════════════════════════════════
+        // VESSEL GEOMETRY — detailed industrial
+        // ═══════════════════════════════════════════
+        const mainGroup = new THREE.Group();
+
+        function createVesselGeometry() {
+            const parts = [];
+
+            // Main body — high segment count for buttery smooth shading
+            const body = new THREE.CylinderGeometry(0.85, 0.85, 2.8, 64, 16);
+            parts.push({ geo: body, pos: [0, 0, 0], rot: [Math.PI / 2, 0, 0] });
+
+            // Torispherical heads (approximated with squashed spheres)
+            const headGeo = new THREE.SphereGeometry(0.85, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2);
+            parts.push({ geo: headGeo, pos: [0, 0, 1.4], rot: [-Math.PI / 2, 0, 0] });
+            parts.push({ geo: headGeo, pos: [0, 0, -1.4], rot: [Math.PI / 2, 0, 0] });
+
+            // Weld line rings — thin torus rings at seams
+            const weldGeo = new THREE.TorusGeometry(0.86, 0.012, 12, 64);
+            const weldPositions = [-0.93, -0.47, 0, 0.47, 0.93];
+            weldPositions.forEach(z => {
+                parts.push({ geo: weldGeo, pos: [0, 0, z], rot: [Math.PI / 2, 0, 0] });
+            });
+
+            // Head-to-shell weld lines
+            parts.push({ geo: new THREE.TorusGeometry(0.86, 0.015, 8, 48), pos: [0, 0, 1.4], rot: [Math.PI / 2, 0, 0] });
+            parts.push({ geo: new THREE.TorusGeometry(0.86, 0.015, 8, 48), pos: [0, 0, -1.4], rot: [Math.PI / 2, 0, 0] });
+
+            // Top nozzle — full assembly
+            const nozzleNeck = new THREE.CylinderGeometry(0.14, 0.14, 0.55, 24);
+            parts.push({ geo: nozzleNeck, pos: [0, 1.12, 0], rot: [0, 0, 0] });
+
+            // Reinforcement pad around nozzle
+            const repadGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.04, 24);
+            parts.push({ geo: repadGeo, pos: [0, 0.87, 0], rot: [0, 0, 0] });
+
+            // Flange — multi-part
+            const flangeBase = new THREE.CylinderGeometry(0.26, 0.26, 0.05, 24);
+            parts.push({ geo: flangeBase, pos: [0, 1.42, 0], rot: [0, 0, 0] });
+            const flangeRaise = new THREE.CylinderGeometry(0.24, 0.24, 0.03, 24);
+            parts.push({ geo: flangeRaise, pos: [0, 1.46, 0], rot: [0, 0, 0] });
+
+            // Flange bolt holes
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const bx = Math.cos(angle) * 0.21;
+                const bz = Math.sin(angle) * 0.21;
+                const boltGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.08, 8);
+                parts.push({ geo: boltGeo, pos: [bx, 1.42, bz], rot: [0, 0, 0] });
+            }
+
+            // Side nozzle
+            parts.push({ geo: new THREE.CylinderGeometry(0.12, 0.12, 0.5, 20), pos: [1.12, 0.15, 0.4], rot: [0, 0, -Math.PI / 2] });
+            parts.push({ geo: new THREE.CylinderGeometry(0.24, 0.24, 0.04, 20), pos: [0.88, 0.15, 0.4], rot: [0, 0, -Math.PI / 2] });
+            parts.push({ geo: new THREE.CylinderGeometry(0.22, 0.22, 0.05, 20), pos: [1.39, 0.15, 0.4], rot: [0, 0, -Math.PI / 2] });
+
+            // Side nozzle bolts
+            for (let i = 0; i < 6; i++) {
+                const angle = (i / 6) * Math.PI * 2;
+                const by = 0.15 + Math.cos(angle) * 0.18;
+                const bz = 0.4 + Math.sin(angle) * 0.18;
+                parts.push({ geo: new THREE.CylinderGeometry(0.015, 0.015, 0.07, 8), pos: [1.39, by, bz], rot: [0, 0, -Math.PI / 2] });
+            }
+
+            // Bottom drain nozzle
+            parts.push({ geo: new THREE.CylinderGeometry(0.1, 0.1, 0.45, 16), pos: [0, -1.07, -0.5], rot: [0, 0, 0] });
+            parts.push({ geo: new THREE.CylinderGeometry(0.19, 0.19, 0.04, 16), pos: [0, -1.32, -0.5], rot: [0, 0, 0] });
+
+            // Saddle supports — more detailed
+            const saddleBodyGeo = new THREE.TorusGeometry(0.90, 0.045, 12, 48, Math.PI);
+            parts.push({ geo: saddleBodyGeo, pos: [0, -0.85, 0.85], rot: [0, Math.PI, 0] });
+            parts.push({ geo: saddleBodyGeo, pos: [0, -0.85, -0.85], rot: [0, Math.PI, 0] });
+
+            // Saddle base plates
+            const basePlateGeo = new THREE.BoxGeometry(0.08, 0.3, 1.0);
+            parts.push({ geo: basePlateGeo, pos: [-0.88, -1.0, 0.85], rot: [0, 0, 0] });
+            parts.push({ geo: basePlateGeo, pos: [0.88, -1.0, 0.85], rot: [0, 0, 0] });
+            parts.push({ geo: basePlateGeo, pos: [-0.88, -1.0, -0.85], rot: [0, 0, 0] });
+            parts.push({ geo: basePlateGeo, pos: [0.88, -1.0, -0.85], rot: [0, 0, 0] });
+
+            // Baseplate
+            const footGeo = new THREE.BoxGeometry(2.2, 0.04, 0.5);
+            parts.push({ geo: footGeo, pos: [0, -1.16, 0.85], rot: [0, 0, 0] });
+            parts.push({ geo: footGeo, pos: [0, -1.16, -0.85], rot: [0, 0, 0] });
+
+            // Lifting lugs — welded to vessel top surface
+            // Lug tab (plate welded to shell)
+            const lugTabGeo = new THREE.BoxGeometry(0.04, 0.18, 0.02);
+            parts.push({ geo: lugTabGeo, pos: [0, 0.86, 0.5], rot: [0, 0, 0] });
+            parts.push({ geo: lugTabGeo, pos: [0, 0.86, -0.5], rot: [0, 0, 0] });
+            // Lug ring on top of tab
+            const lugGeo = new THREE.TorusGeometry(0.06, 0.015, 8, 16, Math.PI);
+            parts.push({ geo: lugGeo, pos: [0, 0.95, 0.5], rot: [Math.PI / 2, 0, 0] });
+            parts.push({ geo: lugGeo, pos: [0, 0.95, -0.5], rot: [Math.PI / 2, 0, 0] });
+
+            // Level gauge nozzle pair
+            parts.push({ geo: new THREE.CylinderGeometry(0.04, 0.04, 0.2, 8), pos: [-1.0, 0.4, 0.2], rot: [0, 0, Math.PI / 2] });
+            parts.push({ geo: new THREE.CylinderGeometry(0.04, 0.04, 0.2, 8), pos: [-1.0, -0.3, 0.2], rot: [0, 0, Math.PI / 2] });
+
+            return parts;
+        }
+
+        const vesselParts = createVesselGeometry();
+
+        // Create three material layers
+        function buildLayer(shaderDef) {
+            const mat = new THREE.ShaderMaterial({
+                uniforms: THREE.UniformsUtils.clone(shaderDef.uniforms),
+                vertexShader: shaderDef.vertexShader,
+                fragmentShader: shaderDef.fragmentShader,
+                transparent: true,
+                depthWrite: false,
+                side: THREE.DoubleSide
+            });
+
+            const layerGroup = new THREE.Group();
+            vesselParts.forEach(part => {
+                const mesh = new THREE.Mesh(part.geo, mat);
+                mesh.position.set(...part.pos);
+                mesh.rotation.set(...part.rot);
+                layerGroup.add(mesh);
+            });
+
+            return { group: layerGroup, material: mat };
+        }
+
+        // Wireframe layer — uses wireframe rendering
+        const wireLayer = buildLayer(wireframeShader);
+        wireLayer.group.children.forEach(m => { m.material.wireframe = true; });
+
+        // Solid metal layer
+        const solidLayer = buildLayer(metalShader);
+
+        // Protective coating layer — scaled up to show lining thickness
+        const coatLayer = buildLayer(coatingShader);
+        coatLayer.group.scale.set(1.04, 1.04, 1.04);
+
+        mainGroup.add(wireLayer.group);
+        mainGroup.add(solidLayer.group);
+        mainGroup.add(coatLayer.group);
+
+        // Viewing angle
+        mainGroup.rotation.x = -0.12;
+        mainGroup.rotation.y = 0.45;
+
+        scene.add(mainGroup);
+
+        // Enable shadow casting ONLY on solid metal layer (not transparent wireframe/coating)
+        solidLayer.group.children.forEach(m => { m.castShadow = true; });
+
+        // ═══════════════════════════════════════════
+        // TRANSITION PARTICLES — emit during phase changes
+        // ═══════════════════════════════════════════
+        const PARTICLE_COUNT = 200;
+        const tParticleGeo = new THREE.BufferGeometry();
+        const tPositions = new Float32Array(PARTICLE_COUNT * 3);
+        const tVelocities = new Float32Array(PARTICLE_COUNT * 3);
+        const tLifetimes = new Float32Array(PARTICLE_COUNT);
+        const tSizes = new Float32Array(PARTICLE_COUNT);
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            tPositions[i * 3] = 0;
+            tPositions[i * 3 + 1] = 0;
+            tPositions[i * 3 + 2] = 0;
+            tLifetimes[i] = -1;
+            tSizes[i] = 0.02 + Math.random() * 0.03;
+        }
+
+        tParticleGeo.setAttribute('position', new THREE.BufferAttribute(tPositions, 3));
+        tParticleGeo.setAttribute('size', new THREE.BufferAttribute(tSizes, 1));
+
+        const tParticleMat = new THREE.ShaderMaterial({
+            uniforms: {
+                uColor: { value: new THREE.Color(0x1B4B8F) },
+                uTime: { value: 0 }
+            },
+            vertexShader: `
+                attribute float size;
+                varying float vAlpha;
+                void main() {
+                    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                    gl_PointSize = size * (300.0 / -mvPosition.z);
+                    gl_Position = projectionMatrix * mvPosition;
+                    vAlpha = 1.0;
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 uColor;
+                varying float vAlpha;
+                void main() {
+                    float d = length(gl_PointCoord - vec2(0.5));
+                    if (d > 0.5) discard;
+                    float alpha = smoothstep(0.5, 0.1, d) * vAlpha;
+                    gl_FragColor = vec4(uColor, alpha * 0.6);
+                }
+            `,
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+        });
+
+        const transitionParticles = new THREE.Points(tParticleGeo, tParticleMat);
+        scene.add(transitionParticles);
+
+        let particleIndex = 0;
+
+        function emitParticles(count, color) {
+            tParticleMat.uniforms.uColor.value.copy(color);
+            for (let i = 0; i < count; i++) {
+                const idx = (particleIndex + i) % PARTICLE_COUNT;
+                // Spawn on vessel surface
+                const theta = Math.random() * Math.PI * 2;
+                const y = (Math.random() - 0.5) * 3;
+                const r = 0.85 + Math.random() * 0.2;
+                tPositions[idx * 3] = Math.cos(theta) * r;
+                tPositions[idx * 3 + 1] = y;
+                tPositions[idx * 3 + 2] = Math.sin(theta) * r;
+
+                tVelocities[idx * 3] = (Math.random() - 0.5) * 0.03;
+                tVelocities[idx * 3 + 1] = 0.01 + Math.random() * 0.02;
+                tVelocities[idx * 3 + 2] = (Math.random() - 0.5) * 0.03;
+
+                tLifetimes[idx] = 1.0;
+            }
+            particleIndex = (particleIndex + count) % PARTICLE_COUNT;
+        }
+
+        // ═══════════════════════════════════════════
+        // AMBIENT PARTICLES — floating dust/atmosphere
+        // ═══════════════════════════════════════════
+        const ambientParticleCount = 80;
+        const apGeo = new THREE.BufferGeometry();
+        const apPositions = new Float32Array(ambientParticleCount * 3);
+        const apSpeeds = [];
+
+        for (let i = 0; i < ambientParticleCount; i++) {
+            apPositions[i * 3] = (Math.random() - 0.5) * 10;
+            apPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
+            apPositions[i * 3 + 2] = (Math.random() - 0.5) * 6;
+            apSpeeds.push({ y: 0.001 + Math.random() * 0.003, x: (Math.random() - 0.5) * 0.001 });
+        }
+        apGeo.setAttribute('position', new THREE.BufferAttribute(apPositions, 3));
+
+        const apMat = new THREE.PointsMaterial({
+            color: 0x1B4B8F,
+            size: 0.025,
+            transparent: true,
+            opacity: 0.15,
+            blending: THREE.NormalBlending
+        });
+
+        const ambientPts = new THREE.Points(apGeo, apMat);
+        scene.add(ambientPts);
+
+        // ═══════════════════════════════════════════
+        // PHASE CONTROL
+        // ═══════════════════════════════════════════
+        let currentPhase = 0;
+        let targetPhase = 0;
+        const PHASE_DURATION = 3500;
+        const TRANSITION_DURATION = 1200;
+        let lastPhaseChange = Date.now();
+        let autoPlay = true;
+        let transitioning = false;
+        let transitionStart = 0;
+
+        const phaseSteps = document.querySelectorAll('.phase-step');
+        const headlineWords = document.querySelectorAll('.hero-headline .word');
+        const headlineDots = document.querySelectorAll('.hero-headline .dot');
+        const phaseProgressBars = document.querySelectorAll('.phase-progress');
+
+        function setPhase(phase) {
+            if (phase === currentPhase && !transitioning) {
+                // Already there, just reset timer
+                lastPhaseChange = Date.now();
+                return;
+            }
+            targetPhase = phase;
+            transitioning = true;
+            transitionStart = Date.now();
+            lastPhaseChange = Date.now();
+
+            // Emit particles on transition
+            const colors = [new THREE.Color(0x1B4B8F), new THREE.Color(0xc0c8d0), new THREE.Color(0x04E586)];
+            emitParticles(40, colors[phase]);
+
+            updatePhaseUI(phase);
+        }
+
+        function updatePhaseUI(phase) {
+            phaseSteps.forEach((step, i) => {
+                step.classList.remove('active', 'dimmed', 'protect-active');
+                if (i === phase) {
+                    step.classList.add('active');
+                    if (phase === 2) step.classList.add('protect-active');
+                } else {
+                    step.classList.add('dimmed');
+                }
+            });
+
+            headlineWords.forEach((word, i) => {
+                word.classList.remove('active', 'dimmed', 'protect-active');
+                if (i === phase) {
+                    word.classList.add('active');
+                    if (phase === 2) word.classList.add('protect-active');
+                } else {
+                    word.classList.add('dimmed');
+                }
+            });
+
+            headlineDots.forEach((dot, i) => {
+                dot.classList.remove('dimmed', 'active', 'protect-active');
+                if (i === phase) {
+                    dot.classList.add('active');
+                    if (phase === 2) dot.classList.add('protect-active');
+                } else {
+                    dot.classList.add('dimmed');
+                }
+            });
+        }
+
+        phaseSteps.forEach((step, i) => {
+            step.addEventListener('click', () => {
+                autoPlay = false;
+                setPhase(i);
+                setTimeout(() => { autoPlay = true; }, 10000);
+            });
+        });
+
+        // ═══════════════════════════════════════════
+        // MOUSE PARALLAX — smooth damped
+        // ═══════════════════════════════════════════
+        let mouseX = 0, mouseY = 0;
+        let smoothMouseX = 0, smoothMouseY = 0;
+
+        document.addEventListener('mousemove', e => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        });
+
+        // Nav scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ═══════════════════════════════════════════
+        // EASING FUNCTIONS
+        // ═══════════════════════════════════════════
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+        function damp(a, b, lambda, dt) { return lerp(a, b, 1 - Math.exp(-lambda * dt)); }
+
+        // ═══════════════════════════════════════════
+        // RENDER LOOP
+        // ═══════════════════════════════════════════
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const dt = Math.min(clock.getDelta(), 0.05);
+            const elapsed = clock.getElapsedTime();
+            const now = Date.now();
+            const phaseDt = now - lastPhaseChange;
+
+            // ── Auto-advance ──
+            if (autoPlay && !transitioning && phaseDt > PHASE_DURATION) {
+                setPhase((currentPhase + 1) % 3);
+            }
+
+            // ── Phase progress bar ──
+            phaseProgressBars.forEach((bar, i) => {
+                if (i === targetPhase && !transitioning) {
+                    bar.style.width = Math.min(phaseDt / PHASE_DURATION * 100, 100) + '%';
+                } else if (i === targetPhase && transitioning) {
+                    bar.style.width = '100%';
+                } else {
+                    bar.style.width = '0%';
+                }
+            });
+
+            // ── Transition progress ──
+            if (transitioning) {
+                const tp = Math.min((now - transitionStart) / TRANSITION_DURATION, 1);
+                if (tp >= 1) {
+                    transitioning = false;
+                    currentPhase = targetPhase;
+                    lastPhaseChange = now;
+                }
+            }
+
+            // ── Material uniforms ──
+            const wU = wireLayer.material.uniforms;
+            const sU = solidLayer.material.uniforms;
+            const cU = coatLayer.material.uniforms;
+
+            wU.uTime.value = elapsed;
+            sU.uTime.value = elapsed;
+            cU.uTime.value = elapsed;
+
+            // Smooth transitions based on target phase
+            const dampSpeed = 3.0;
+
+            if (targetPhase === 0) {
+                // DESIGN — wireframe bright, others gone
+                wU.uOpacity.value = damp(wU.uOpacity.value, 1.0, dampSpeed, dt);
+                wU.uScanLine.value = damp(wU.uScanLine.value, Math.sin(elapsed * 0.8) * 2 + 1, 2, dt);
+                sU.uOpacity.value = damp(sU.uOpacity.value, 0.0, dampSpeed, dt);
+                cU.uOpacity.value = damp(cU.uOpacity.value, 0.0, dampSpeed * 1.5, dt);
+                cU.uCoatingProgress.value = damp(cU.uCoatingProgress.value, 0.0, dampSpeed, dt);
+                cU.uGlowIntensity.value = damp(cU.uGlowIntensity.value, 0.0, dampSpeed, dt);
+                greenAccent.intensity = damp(greenAccent.intensity, 0, dampSpeed, dt);
+                greenAccent2.intensity = damp(greenAccent2.intensity, 0, dampSpeed, dt);
+                apMat.color.lerp(new THREE.Color(0x1B4B8F), dt * 2);
+                apMat.opacity = damp(apMat.opacity, 0.15, dampSpeed, dt);
+                keyLight.color.lerp(new THREE.Color(0xfff5e8), dt * 3);
+                fillLight.color.lerp(new THREE.Color(0xc8d8f0), dt * 3);
+            } else if (targetPhase === 1) {
+                // BUILD — solid metal, wireframe as ghost
+                wU.uOpacity.value = damp(wU.uOpacity.value, 0.06, dampSpeed, dt);
+                sU.uOpacity.value = damp(sU.uOpacity.value, 1.0, dampSpeed * 0.8, dt);
+                cU.uOpacity.value = damp(cU.uOpacity.value, 0.0, dampSpeed, dt);
+                cU.uCoatingProgress.value = damp(cU.uCoatingProgress.value, 0.0, dampSpeed, dt);
+                cU.uGlowIntensity.value = damp(cU.uGlowIntensity.value, 0.0, dampSpeed, dt);
+                greenAccent.intensity = damp(greenAccent.intensity, 0, dampSpeed, dt);
+                greenAccent2.intensity = damp(greenAccent2.intensity, 0, dampSpeed, dt);
+                apMat.color.lerp(new THREE.Color(0xb0b8c0), dt * 2);
+                apMat.opacity = damp(apMat.opacity, 0.15, dampSpeed, dt);
+                keyLight.color.lerp(new THREE.Color(0xfff5e8), dt * 3);
+                fillLight.color.lerp(new THREE.Color(0xc8d8f0), dt * 3);
+            } else {
+                // PROTECT — full rubber lining transformation
+                wU.uOpacity.value = damp(wU.uOpacity.value, 0.0, dampSpeed * 2, dt);
+                sU.uOpacity.value = damp(sU.uOpacity.value, 0.35, dampSpeed, dt);
+                cU.uOpacity.value = damp(cU.uOpacity.value, 1.0, dampSpeed * 0.6, dt);
+                cU.uCoatingProgress.value = damp(cU.uCoatingProgress.value, 5.5, dampSpeed * 0.4, dt);
+                cU.uGlowIntensity.value = damp(cU.uGlowIntensity.value, 1.0, dampSpeed * 0.5, dt);
+                greenAccent.intensity = damp(greenAccent.intensity, 5.0, dampSpeed * 0.5, dt);
+                greenAccent2.intensity = damp(greenAccent2.intensity, 3.0, dampSpeed * 0.5, dt);
+                apMat.color.lerp(new THREE.Color(0x04E586), dt * 3);
+                apMat.opacity = damp(apMat.opacity, 0.3, dampSpeed, dt);
+
+                // Shift key light to have slight green tint during protect
+                keyLight.color.lerp(new THREE.Color(0xf0ffe8), dt * 2);
+                fillLight.color.lerp(new THREE.Color(0xd0f0e0), dt * 2);
+            }
+
+            // ── Mouse parallax — critically damped ──
+            smoothMouseX = damp(smoothMouseX, mouseX, 2.5, dt);
+            smoothMouseY = damp(smoothMouseY, mouseY, 2.5, dt);
+
+            const baseRotY = 0.45 + smoothMouseX * 0.2;
+            const baseRotX = -0.12 + smoothMouseY * 0.1;
+
+            mainGroup.rotation.y += (baseRotY - mainGroup.rotation.y) * dt * 3;
+            mainGroup.rotation.x += (baseRotX - mainGroup.rotation.x) * dt * 3;
+
+            // Subtle idle float
+            mainGroup.rotation.y += 0.0005;
+            mainGroup.position.y = Math.sin(elapsed * 0.5) * 0.03;
+
+            // ── Transition particles ──
+            const tpArr = tParticleGeo.attributes.position.array;
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                if (tLifetimes[i] > 0) {
+                    tpArr[i * 3] += tVelocities[i * 3];
+                    tpArr[i * 3 + 1] += tVelocities[i * 3 + 1];
+                    tpArr[i * 3 + 2] += tVelocities[i * 3 + 2];
+
+                    // Slow down
+                    tVelocities[i * 3] *= 0.97;
+                    tVelocities[i * 3 + 1] *= 0.97;
+                    tVelocities[i * 3 + 2] *= 0.97;
+
+                    tLifetimes[i] -= dt * 0.8;
+                    if (tLifetimes[i] <= 0) {
+                        tpArr[i * 3] = 0;
+                        tpArr[i * 3 + 1] = -10;
+                        tpArr[i * 3 + 2] = 0;
+                    }
+                }
+            }
+            tParticleGeo.attributes.position.needsUpdate = true;
+
+            // ── Ambient particles drift ──
+            const apArr = apGeo.attributes.position.array;
+            for (let i = 0; i < ambientParticleCount; i++) {
+                apArr[i * 3] += apSpeeds[i].x;
+                apArr[i * 3 + 1] += apSpeeds[i].y;
+                if (apArr[i * 3 + 1] > 4) apArr[i * 3 + 1] = -4;
+            }
+            apGeo.attributes.position.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+        updatePhaseUI(0);
+
+    })();
+    </script>
+</body>
+</html>

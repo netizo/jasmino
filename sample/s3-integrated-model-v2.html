@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasmino — S3 Integrated Model v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root {
+  --navy: #0B1D34;
+  --navy-deep: #040A14;
+  --dark: #0D2847;
+  --blue: #1B4B8F;
+  --blue-bright: #3B7BDB;
+  --green: #04E586;
+  --green-dim: rgba(4,229,134,0.06);
+  --green-glow: rgba(4,229,134,0.35);
+  --serif: 'Fraunces', serif;
+  --sans: 'Sora', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--navy-deep);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   S3 WRAPPER
+   ══════════════════════════════════════════ */
+.s3 {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Shader background (full fragment shader, no particles) */
+.s3-shader {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.s3-shader canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Mouse hover spotlight — tracks cursor via CSS custom props */
+.s3-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 400px at var(--mx, 50%) var(--my, 50%),
+    rgba(4,229,134,0.035) 0%,
+    rgba(27,75,143,0.02) 30%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.s3:hover .s3-spotlight {
+  opacity: 1;
+}
+
+/* Noise grain overlay for texture */
+.s3::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.5;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.s3-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 130px 48px 150px;
+}
+
+/* ══════════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════════ */
+.s3-header {
+  text-align: center;
+  margin-bottom: 88px;
+}
+
+.s3-header > * {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.s3-header.vis > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.s3-header.vis > :nth-child(1) { transition-delay: 0.1s; }
+.s3-header.vis > :nth-child(2) { transition-delay: 0.2s; }
+.s3-header.vis > :nth-child(3) { transition-delay: 0.35s; }
+
+.s3-overline {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.s3-overline::before, .s3-overline::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--green);
+  opacity: 0.35;
+}
+
+.s3-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 58px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.s3-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--green);
+}
+
+.s3-subtitle {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.38);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════
+   PIPELINE
+   ══════════════════════════════════════════ */
+.pipeline-wrap {
+  margin-bottom: 88px;
+}
+
+.pipeline-wrap > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.pipeline-wrap.vis > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.pipeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  padding: 0 10px;
+}
+
+/* ── Continuous animated beam ── */
+.pipeline-beam {
+  position: absolute;
+  top: 39px;
+  left: 80px;
+  right: 80px;
+  height: 2px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pipeline-beam-track {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.04);
+  border-radius: 1px;
+}
+
+/* Animated energy pulse */
+.pipeline-beam-energy {
+  position: absolute;
+  top: -1px;
+  height: 4px;
+  width: 120px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(4,229,134,0.15) 20%,
+    var(--green) 50%,
+    rgba(4,229,134,0.15) 80%,
+    transparent
+  );
+  filter: blur(0.5px);
+  animation: beamFlow 4s linear infinite;
+  opacity: 0;
+}
+
+.pipeline-wrap.vis .pipeline-beam-energy {
+  opacity: 1;
+  transition: opacity 0.5s 1.5s;
+}
+
+@keyframes beamFlow {
+  0% { left: -120px; }
+  100% { left: calc(100% + 120px); }
+}
+
+/* Secondary slower pulse */
+.pipeline-beam-energy-2 {
+  position: absolute;
+  top: 0;
+  height: 2px;
+  width: 200px;
+  border-radius: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(4,229,134,0.06),
+    transparent
+  );
+  animation: beamFlow 7s linear 2s infinite;
+  opacity: 0;
+}
+
+.pipeline-wrap.vis .pipeline-beam-energy-2 {
+  opacity: 1;
+  transition: opacity 0.5s 2s;
+}
+
+/* ── Step ── */
+.pipeline-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  cursor: default;
+}
+
+/* Stagger entrance */
+.pipeline-wrap.vis .pipeline-step:nth-child(2) { transition-delay: 0.15s; }
+.pipeline-wrap.vis .pipeline-step:nth-child(3) { transition-delay: 0.3s; }
+.pipeline-wrap.vis .pipeline-step:nth-child(4) { transition-delay: 0.45s; }
+.pipeline-wrap.vis .pipeline-step:nth-child(5) { transition-delay: 0.6s; }
+.pipeline-wrap.vis .pipeline-step:nth-child(6) { transition-delay: 0.75s; }
+
+/* Node */
+.step-node {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+/* Outer ring — double stroke */
+.step-ring-outer {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: all 0.6s var(--ease);
+}
+
+.pipeline-step:hover .step-ring-outer {
+  border-color: rgba(4,229,134,0.1);
+  transform: scale(1.06);
+}
+
+.step-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  transition: all 0.5s var(--ease);
+}
+
+.pipeline-step:hover .step-ring {
+  border-color: rgba(4,229,134,0.35);
+  box-shadow:
+    0 0 20px rgba(4,229,134,0.06),
+    inset 0 0 20px rgba(4,229,134,0.03);
+}
+
+/* Inner fill */
+.step-inner {
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.015) 50%,
+    rgba(255,255,255,0.005) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s var(--ease);
+}
+
+.pipeline-step:hover .step-inner {
+  background: radial-gradient(circle at 40% 35%,
+    rgba(4,229,134,0.1) 0%,
+    rgba(4,229,134,0.03) 50%,
+    rgba(4,229,134,0.005) 100%
+  );
+}
+
+.step-num {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  transition: all 0.5s var(--ease);
+  line-height: 1;
+}
+
+.pipeline-step:hover .step-num {
+  color: var(--green);
+  text-shadow: 0 0 20px rgba(4,229,134,0.3);
+}
+
+/* Subtle bottom indicator */
+.step-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0;
+  transition: all 0.4s var(--ease);
+}
+
+.pipeline-step:hover .step-indicator {
+  opacity: 1;
+  box-shadow: 0 0 8px var(--green-glow);
+}
+
+/* Labels */
+.step-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 3px;
+  transition: color 0.4s;
+}
+
+.pipeline-step:hover .step-name { color: #fff; }
+
+.step-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  transition: color 0.4s;
+}
+
+.pipeline-step:hover .step-sub { color: rgba(4,229,134,0.45); }
+
+/* Hover spotlight — dim siblings */
+.pipeline:hover .pipeline-step { opacity: 0.35; transition: opacity 0.4s; }
+.pipeline:hover .pipeline-step:hover { opacity: 1; }
+.pipeline .pipeline-step { transition: opacity 0.4s; }
+
+/* ══════════════════════════════════════════
+   COMPARISON CARDS
+   ══════════════════════════════════════════ */
+.comparison-wrap {
+  position: relative;
+}
+.comparison-wrap > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.comparison-wrap.vis > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.comparison-wrap.vis > :nth-child(1) { transition-delay: 0.1s; }
+.comparison-wrap.vis > :nth-child(2) { transition-delay: 0.25s; }
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  position: relative;
+}
+
+/* ── VS badge ── */
+.comp-vs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  border: 1.5px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.2);
+  box-shadow: 0 0 40px 10px rgba(4,10,20,0.8);
+}
+
+/* ── Card base ── */
+.comp-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 44px 40px;
+  overflow: hidden;
+  transition: transform 0.6s var(--ease), border-color 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+
+.comp-card:hover { transform: translateY(-3px); }
+
+/* Problem */
+.comp-card.problem {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.008) 100%);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.comp-card.problem:hover {
+  border-color: rgba(255,255,255,0.09);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+}
+
+/* Solution */
+.comp-card.solution {
+  background:
+    linear-gradient(145deg, rgba(4,229,134,0.04) 0%, rgba(4,229,134,0.008) 100%);
+  border: 1px solid rgba(4,229,134,0.1);
+}
+.comp-card.solution:hover {
+  border-color: rgba(4,229,134,0.22);
+  box-shadow:
+    0 24px 64px rgba(0,0,0,0.3),
+    0 0 100px rgba(4,229,134,0.03);
+}
+
+/* Solution inner radial glow */
+.comp-card.solution::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(4,229,134,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Card content ── */
+.comp-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.comp-card.problem .comp-tag { color: rgba(255,255,255,0.25); }
+.comp-card.problem .tag-dot { background: rgba(255,255,255,0.12); }
+
+.comp-card.solution .comp-tag { color: var(--green); }
+.comp-card.solution .tag-dot {
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(4,229,134,0.4);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.comp-heading {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.comp-card.problem .comp-heading { color: rgba(255,255,255,0.55); }
+.comp-card.solution .comp-heading { color: rgba(255,255,255,0.85); }
+
+.comp-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.comp-card.problem .comp-desc { color: rgba(255,255,255,0.25); }
+.comp-card.solution .comp-desc { color: rgba(255,255,255,0.38); }
+
+/* ── Points list ── */
+.comp-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comp-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.comp-card.problem .comp-point { color: rgba(255,255,255,0.28); }
+.comp-card.solution .comp-point { color: rgba(255,255,255,0.48); }
+
+.point-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.comp-card.problem .point-icon {
+  background: rgba(255,90,90,0.06);
+  border: 1px solid rgba(255,90,90,0.08);
+  color: rgba(255,90,90,0.4);
+}
+
+.comp-card.solution .point-icon {
+  background: rgba(4,229,134,0.06);
+  border: 1px solid rgba(4,229,134,0.12);
+  color: var(--green);
+}
+
+/* ── Bottom stat ── */
+.comp-stat {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.comp-card.solution .comp-stat { border-top-color: rgba(4,229,134,0.08); }
+
+.comp-stat-num {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.comp-card.problem .comp-stat-num { color: rgba(255,255,255,0.12); }
+.comp-card.solution .comp-stat-num { color: var(--green); }
+
+.comp-stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.comp-card.problem .comp-stat-label { color: rgba(255,255,255,0.12); }
+.comp-card.solution .comp-stat-label { color: rgba(255,255,255,0.22); }
+
+/* ── Bottom accent line ── */
+.s3-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(4,229,134,0.12) 30%,
+    rgba(4,229,134,0.25) 50%,
+    rgba(4,229,134,0.12) 70%,
+    transparent 100%
+  );
+  z-index: 3;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .s3-content { padding: 90px 32px 110px; }
+  .s3-title { font-size: 44px; }
+  .comp-card { padding: 34px 30px; }
+}
+
+@media (max-width: 768px) {
+  .s3-content { padding: 70px 20px 90px; }
+  .s3-title { font-size: 34px; }
+  .s3-subtitle { font-size: 14.5px; }
+
+  .pipeline {
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+  }
+  .pipeline-beam { display: none; }
+  .pipeline-step { flex: 0 0 calc(33.33% - 8px); margin-bottom: 16px; }
+  .step-node { width: 60px; height: 60px; }
+  .step-num { font-size: 16px; }
+  .step-name { font-size: 12px; }
+  .step-ring-outer { inset: -4px; }
+
+  .comparison { grid-template-columns: 1fr; gap: 14px; }
+  .comp-vs { display: none; }
+  .comp-card { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<section class="s3">
+  <div class="s3-shader" id="s3-shader"></div>
+  <div class="s3-spotlight" id="s3-spotlight"></div>
+
+  <div class="s3-content">
+    <!-- Header -->
+    <div class="s3-header" data-reveal>
+      <div class="s3-overline">Our Difference</div>
+      <h2 class="s3-title">One company. Zero <em>handoffs.</em></h2>
+      <p class="s3-subtitle">Most projects require 3–4 vendors — designer, fabricator, lining applicator, inspector. Each handoff introduces delays, finger-pointing, and rework. We eliminated the handoffs.</p>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="pipeline-wrap" data-reveal>
+      <div class="pipeline">
+        <div class="pipeline-beam">
+          <div class="pipeline-beam-track"></div>
+          <div class="pipeline-beam-energy"></div>
+          <div class="pipeline-beam-energy-2"></div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-node">
+            <div class="step-ring-outer"></div>
+            <div class="step-ring"></div>
+            <div class="step-inner"><span class="step-num">01</span></div>
+            <div class="step-indicator"></div>
+          </div>
+          <div class="step-name">Design</div>
+          <div class="step-sub">Engineering</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-node">
+            <div class="step-ring-outer"></div>
+            <div class="step-ring"></div>
+            <div class="step-inner"><span class="step-num">02</span></div>
+            <div class="step-indicator"></div>
+          </div>
+          <div class="step-name">Fabricate</div>
+          <div class="step-sub">Manufacturing</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-node">
+            <div class="step-ring-outer"></div>
+            <div class="step-ring"></div>
+            <div class="step-inner"><span class="step-num">03</span></div>
+            <div class="step-indicator"></div>
+          </div>
+          <div class="step-name">Protect</div>
+          <div class="step-sub">Linings</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-node">
+            <div class="step-ring-outer"></div>
+            <div class="step-ring"></div>
+            <div class="step-inner"><span class="step-num">04</span></div>
+            <div class="step-indicator"></div>
+          </div>
+          <div class="step-name">Inspect</div>
+          <div class="step-sub">Quality</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-node">
+            <div class="step-ring-outer"></div>
+            <div class="step-ring"></div>
+            <div class="step-inner"><span class="step-num">05</span></div>
+            <div class="step-indicator"></div>
+          </div>
+          <div class="step-name">Deliver</div>
+          <div class="step-sub">Logistics</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-wrap" data-reveal>
+      <div class="comparison">
+        <div class="comp-vs">VS</div>
+
+        <div class="comp-card problem">
+          <div class="comp-tag"><span class="tag-dot"></span>The Industry Problem</div>
+          <h3 class="comp-heading">Multiple vendors, multiple contracts</h3>
+          <p class="comp-desc">3–4 separate companies. 3–4 contracts. 3–4 schedules. When something goes wrong, everyone points to someone else.</p>
+          <ul class="comp-points">
+            <li class="comp-point">
+              <span class="point-icon">✕</span>
+              <span>Design decisions made without manufacturing context</span>
+            </li>
+            <li class="comp-point">
+              <span class="point-icon">✕</span>
+              <span>Fabrication specs that ignore lining requirements</span>
+            </li>
+            <li class="comp-point">
+              <span class="point-icon">✕</span>
+              <span>Quality gaps between contractor handoffs</span>
+            </li>
+          </ul>
+          <div class="comp-stat">
+            <span class="comp-stat-num">3–4×</span>
+            <span class="comp-stat-label">points of failure</span>
+          </div>
+        </div>
+
+        <div class="comp-card solution">
+          <div class="comp-tag"><span class="tag-dot"></span>The Jasmino Model</div>
+          <h3 class="comp-heading">One company, one accountability</h3>
+          <p class="comp-desc">One company. One contract. One point of accountability. The engineer who designed it walks the shop floor where it's built.</p>
+          <ul class="comp-points">
+            <li class="comp-point">
+              <span class="point-icon">✓</span>
+              <span>Design accounts for manufacturing tolerances from day one</span>
+            </li>
+            <li class="comp-point">
+              <span class="point-icon">✓</span>
+              <span>Fabrication built with lining requirements already embedded</span>
+            </li>
+            <li class="comp-point">
+              <span class="point-icon">✓</span>
+              <span>Seamless quality control from concept through delivery</span>
+            </li>
+          </ul>
+          <div class="comp-stat">
+            <span class="comp-stat-num">1</span>
+            <span class="comp-stat-label">single point of accountability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="s3-bottom"></div>
+</section>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   FULL-SCREEN FRAGMENT SHADER — Volumetric atmospheric noise
+   
+   No particles. No dots and lines. Pure shader art.
+   Layered FBM noise creating deep volumetric fog with
+   subtle color shifts in the Jasmino palette. Feels like
+   looking through deep industrial atmosphere — molten,
+   alive, atmospheric. Mouse-reactive light source.
+   ══════════════════════════════════════════════════════════════ */
+(function() {
+  const container = document.getElementById('s3-shader');
+  if (!container) return;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+  camera.position.z = 1;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  const mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+
+  document.addEventListener('mousemove', (e) => {
+    mouse.tx = e.clientX / window.innerWidth;
+    mouse.ty = 1.0 - e.clientY / window.innerHeight;
+  });
+
+  // Full-screen quad with the volumetric shader
+  const geo = new THREE.PlaneGeometry(2, 2);
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      precision highp float;
+      
+      uniform float uTime;
+      uniform vec2 uResolution;
+      uniform vec2 uMouse;
+      varying vec2 vUv;
+
+      // ── Noise functions ──
+      // Simplex-style hash
+      vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
+
+      float snoise(vec2 v) {
+        const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                           -0.577350269189626, 0.024390243902439);
+        vec2 i  = floor(v + dot(v, C.yy));
+        vec2 x0 = v - i + dot(i, C.xx);
+        vec2 i1;
+        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec4 x12 = x0.xyxy + C.xxzz;
+        x12.xy -= i1;
+        i = mod289(i);
+        vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0))
+                                      + i.x + vec3(0.0, i1.x, 1.0));
+        vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy),
+                                 dot(x12.zw, x12.zw)), 0.0);
+        m = m * m;
+        m = m * m;
+        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+        vec3 h = abs(x) - 0.5;
+        vec3 ox = floor(x + 0.5);
+        vec3 a0 = x - ox;
+        m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
+        vec3 g;
+        g.x = a0.x * x0.x + h.x * x0.y;
+        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+        return 130.0 * dot(m, g);
+      }
+
+      // FBM (fractal Brownian motion) — layered noise
+      float fbm(vec2 p) {
+        float f = 0.0;
+        float w = 0.5;
+        float s = 2.0;
+        for (int i = 0; i < 6; i++) {
+          f += w * snoise(p);
+          p *= s;
+          w *= 0.5;
+          s *= 1.02;
+        }
+        return f;
+      }
+
+      // Domain-warped FBM for organic flow
+      float warpedFbm(vec2 p, float t) {
+        vec2 q = vec2(
+          fbm(p + vec2(1.7, 9.2) + 0.08 * t),
+          fbm(p + vec2(8.3, 2.8) + 0.06 * t)
+        );
+        vec2 r = vec2(
+          fbm(p + 4.0 * q + vec2(1.0, 6.0) + 0.05 * t),
+          fbm(p + 4.0 * q + vec2(5.0, 3.0) + 0.04 * t)
+        );
+        return fbm(p + 3.5 * r);
+      }
+
+      void main() {
+        vec2 uv = vUv;
+        float aspect = uResolution.x / uResolution.y;
+        vec2 p = vec2(uv.x * aspect, uv.y);
+
+        float t = uTime * 0.15;
+
+        // ── Base volumetric layers ──
+        // Layer 1: Large-scale atmospheric flow
+        float n1 = warpedFbm(p * 0.8 + vec2(t * 0.3, 0.0), t);
+
+        // Layer 2: Medium detail
+        float n2 = fbm(p * 1.6 + vec2(-t * 0.2, t * 0.15) + n1 * 0.5);
+
+        // Layer 3: Fine detail
+        float n3 = snoise(p * 3.5 + vec2(t * 0.4, -t * 0.3)) * 0.5 + 0.5;
+
+        // ── Mouse-reactive light ──
+        vec2 mouseP = vec2(uMouse.x * aspect, uMouse.y);
+        float mouseDist = distance(p, mouseP);
+        // Soft wide spotlight
+        float mouseInfluence = 1.0 - smoothstep(0.0, 0.9, mouseDist);
+        mouseInfluence *= mouseInfluence;
+        // Tighter bright core
+        float mouseCore = 1.0 - smoothstep(0.0, 0.35, mouseDist);
+        mouseCore *= mouseCore * mouseCore;
+
+        // ── Color palette ──
+        // Deep navy base
+        vec3 colBase = vec3(0.016, 0.04, 0.08);
+        // Dark blue mid
+        vec3 colMid = vec3(0.04, 0.11, 0.22);
+        // Jasmino blue accent
+        vec3 colBlue = vec3(0.106, 0.294, 0.561);
+        // Jasmino green accent
+        vec3 colGreen = vec3(0.016, 0.9, 0.525);
+
+        // ── Compose ──
+        // Base atmosphere
+        float atmosphere = smoothstep(-0.3, 0.7, n1) * 0.8;
+        vec3 col = mix(colBase, colMid, atmosphere);
+
+        // Blue volumetric wisps
+        float blueWisp = smoothstep(0.1, 0.55, n2) * smoothstep(0.8, 0.4, n2);
+        col += colBlue * blueWisp * 0.18;
+
+        // Green caustic highlights — very subtle, like refracted light
+        float greenCaustic = smoothstep(0.45, 0.55, n1 * n2) * n3;
+        col += colGreen * greenCaustic * 0.04;
+
+        // Mouse spotlight — wide ambient + bright core
+        vec3 mouseAmbient = mix(colBlue, colGreen, 0.25) * 0.15;
+        col += mouseAmbient * mouseInfluence;
+        // Bright core adds green-tinted highlight
+        col += colGreen * mouseCore * 0.025;
+        // Slightly lighten the noise near the mouse for a "reveal" feel
+        col += vec3(0.01, 0.02, 0.03) * mouseInfluence * atmosphere;
+
+        // Subtle green rim along top
+        float topGlow = smoothstep(0.6, 1.0, uv.y) * 0.03;
+        col += colGreen * topGlow * (0.5 + 0.5 * sin(uv.x * 3.0 + t * 2.0));
+
+        // ── Vignette ──
+        float vig = 1.0 - smoothstep(0.4, 1.4, distance(uv, vec2(0.5)) * 1.5);
+        col *= vig;
+
+        // ── Subtle scanlines for industrial feel ──
+        float scanline = 0.98 + 0.02 * sin(uv.y * uResolution.y * 0.5);
+        col *= scanline;
+
+        // ── Final color grading ──
+        // Slight S-curve contrast
+        col = col * col * (3.0 - 2.0 * col);
+        // Tiny warm shift in highlights
+        col.r += 0.005;
+
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `,
+  });
+
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+
+  function resize() {
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h);
+    mat.uniforms.uResolution.value.set(w * Math.min(window.devicePixelRatio, 2), h * Math.min(window.devicePixelRatio, 2));
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let time = 0;
+  let visible = false;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => visible = e.isIntersecting);
+  }, { threshold: 0.01 });
+  obs.observe(container);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!visible) return;
+
+    time += 0.016;
+    mat.uniforms.uTime.value = time;
+
+    // Smooth mouse
+    mouse.x += (mouse.tx - mouse.x) * 0.03;
+    mouse.y += (mouse.ty - mouse.y) * 0.03;
+    mat.uniforms.uMouse.value.set(mouse.x, mouse.y);
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+})();
+
+
+/* ══════════════════════════════════════════════════════════════
+   SPOTLIGHT — CSS custom property mouse tracking
+   ══════════════════════════════════════════════════════════════ */
+(function() {
+  const section = document.querySelector('.s3');
+  const spotlight = document.getElementById('s3-spotlight');
+  if (!section || !spotlight) return;
+
+  section.addEventListener('mousemove', (e) => {
+    const rect = section.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    spotlight.style.setProperty('--mx', x + 'px');
+    spotlight.style.setProperty('--my', y + 'px');
+  });
+})();
+
+
+/* ══════════════════════════════════════════════════════════════
+   SCROLL REVEAL — Intersection Observer triggers
+   ══════════════════════════════════════════════════════════════ */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('vis');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>
