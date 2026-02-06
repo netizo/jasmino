@@ -4,6 +4,8 @@ import ScrollReveal from '../components/ScrollReveal';
 import CountUp from '../components/CountUp';
 import Hero from '../components/Hero';
 import Divisions from '../components/Divisions';
+import IntegratedModel from '../components/IntegratedModel';
+import Industries from '../components/Industries';
 
 export default function Home() {
   return (
@@ -31,82 +33,9 @@ export default function Home() {
 
       <Divisions />
 
-      <section className="dark-section eng-grid-dark section-pad">
-        <div className="container">
-          <ScrollReveal>
-            <div style={{ textAlign: 'center', marginBottom: 48 }}>
-              <span className="overline overline-with-line" style={{ justifyContent: 'center' }}>Our Difference</span>
-              <h2 style={{ marginTop: 12 }}>One company. Zero <span className="italic-accent">handoffs.</span></h2>
-              <p style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 600, margin: '16px auto 0', fontSize: 15 }}>
-                Most projects require 3–4 vendors — designer, fabricator, lining applicator, inspector. Each handoff introduces delays, finger-pointing, and rework. We eliminated the handoffs.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <div className="process-flow-wrap">
-              {[
-                { num: '01', name: 'Design', label: 'Engineering' },
-                { num: '02', name: 'Fabricate', label: 'Manufacturing' },
-                { num: '03', name: 'Protect', label: 'Linings' },
-                { num: '04', name: 'Inspect', label: 'Quality' },
-                { num: '05', name: 'Deliver', label: 'Logistics' }
-              ].map((step, i, arr) => (
-                <div key={step.num} style={{ display: 'contents' }}>
-                  <div className="process-step">
-                    <div className="step-circle"><span className="step-num">{step.num}</span></div>
-                    <span className="step-name">{step.name}</span>
-                    <span className="step-label">{step.label}</span>
-                  </div>
-                  {i < arr.length - 1 && <div className="process-connector" />}
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={400}>
-            <div className="resp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginTop: 48 }}>
-              <div className="glass-card">
-                <span className="overline" style={{ color: 'var(--g400)' }}>The Industry Problem</span>
-                <h4 style={{ color: 'var(--white)', marginTop: 12, marginBottom: 12 }}>Multiple vendors, multiple contracts</h4>
-                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>
-                  3–4 separate companies. 3–4 contracts. 3–4 schedules. When something goes wrong, everyone points to someone else. Quality gaps live in the handoffs between vendors.
-                </p>
-              </div>
-              <div className="glass-card" style={{ borderColor: 'var(--green-line)' }}>
-                <span className="overline">The Jasmino Model</span>
-                <h4 style={{ color: 'var(--white)', marginTop: 12, marginBottom: 12 }}>One company, one accountability</h4>
-                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>
-                  One company. One contract. One point of accountability. The engineer who designed it walks the shop floor where it's built. The lining team knows the vessel specs before the steel is cut.
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <IntegratedModel />
 
-      <section className="white-section section-pad">
-        <div className="container">
-          <ScrollReveal>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
-              <div>
-                <span className="overline overline-with-line">Industries</span>
-                <h2 style={{ marginTop: 12 }}>Built for the <span className="italic-accent">harshest</span> environments</h2>
-              </div>
-              <Link to="/industries" className="btn-ghost">View All Industries</Link>
-            </div>
-          </ScrollReveal>
-          <div className="resp-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-            {industries.map((ind, i) => (
-              <ScrollReveal key={ind.name} delay={i * 60}>
-                <Link to="/industries" className="industry-card" style={{ textDecoration: 'none', display: 'block' }}>
-                  <div className="icon">{ind.icon}</div>
-                  <h4>{ind.name}</h4>
-                  <p>{ind.subtitle}</p>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Industries />
 
       <section className="dark-section" style={{ padding: '48px 56px' }}>
         <div className="container">

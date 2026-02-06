@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasmino — S4 Industries v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1D34;--dark:#0D2847;--blue:#1B4B8F;--blue-bright:#3B7BDB;
+  --green:#04E586;
+  --g50:#FAFBFC;--g100:#F0F2F5;--g150:#E4E7EC;--g200:#D5D9E0;
+  --g300:#B0B7C3;--g400:#8892A2;--g500:#6B7280;--g600:#4B5563;
+  --g700:#374151;--g800:#1F2937;--g900:#0C1220;
+  --r:12px;--r-lg:18px;--r-xl:24px;
+  --serif:'Fraunces',serif;--sans:'Sora',sans-serif;--mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--g50);color:var(--g900);-webkit-font-smoothing:antialiased;line-height:1.6}
+
+/* ═══ Engineering grid ═══ */
+.eng-grid{
+  background-image:
+    linear-gradient(rgba(27,75,143,0.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.035) 1px,transparent 1px),
+    linear-gradient(rgba(27,75,143,0.065) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.065) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+}
+
+/* ═══ S4 ═══ */
+.s4{position:relative;background:#fff;overflow:hidden}
+
+/* Soft mouse spotlight over whole section */
+.s4-spot{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(circle 500px at var(--mx,50%) var(--my,50%),
+    rgba(27,75,143,0.03) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.5s;
+}
+.s4:hover .s4-spot{opacity:1}
+
+.s4-inner{max-width:1320px;margin:0 auto;padding:110px 48px 130px;position:relative;z-index:2}
+
+/* ═══ Header ═══ */
+.s4-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px}
+.s4-head-l{max-width:600px}
+.s4-over{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--green);margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.s4-over::before{content:'';width:24px;height:1px;background:var(--green);opacity:0.4}
+.s4-h2{font-family:var(--serif);font-weight:400;font-size:46px;line-height:1.1;letter-spacing:-0.025em;color:var(--g900)}
+.s4-h2 em{font-style:italic;font-weight:300;color:var(--green)}
+
+.s4-link{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+  color:var(--blue);text-decoration:none;position:relative;padding-bottom:4px;
+  transition:gap 0.3s var(--ease);flex-shrink:0;
+}
+.s4-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--blue);transition:width 0.3s var(--ease)}
+.s4-link:hover{gap:12px}
+.s4-link:hover::after{width:100%}
+.s4-link svg{width:14px;height:14px;transition:transform 0.3s var(--ease)}
+.s4-link:hover svg{transform:translateX(2px)}
+
+/* ═══ Grid ═══ */
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+/* ═══ Card ═══ */
+.ind-card{
+  position:relative;background:#fff;border:1px solid var(--g150);border-radius:var(--r-lg);
+  padding:36px 24px 30px;text-align:center;cursor:pointer;overflow:hidden;
+  text-decoration:none;color:inherit;display:block;
+  transition:border-color 0.45s var(--ease),box-shadow 0.45s var(--ease),transform 0.45s var(--ease);
+}
+/* Entrance */
+.ind-card{opacity:0;transform:translateY(24px)}
+.ind-card.vis{opacity:1;transform:translateY(0);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease),border-color 0.45s var(--ease),box-shadow 0.45s var(--ease)}
+
+.ind-card:hover{
+  border-color:rgba(27,75,143,0.22);
+  box-shadow:0 2px 8px rgba(0,0,0,0.02),0 12px 40px rgba(27,75,143,0.08);
+  transform:translateY(-5px);
+}
+
+/* Top accent bar on hover */
+.ind-card::before{
+  content:'';position:absolute;top:0;left:20%;right:20%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--blue),var(--green),var(--blue),transparent);
+  transform:scaleX(0);transition:transform 0.5s var(--ease);border-radius:0 0 2px 2px;
+}
+.ind-card:hover::before{transform:scaleX(1)}
+
+/* Ambient glow reveal */
+.ind-card::after{
+  content:'';position:absolute;top:-40%;left:-20%;width:140%;height:100%;
+  background:radial-gradient(ellipse at 50% 0%,rgba(27,75,143,0.04) 0%,transparent 65%);
+  opacity:0;transition:opacity 0.5s;pointer-events:none;
+}
+.ind-card:hover::after{opacity:1}
+
+/* ═══ Icon wrapper ═══ */
+.ind-ico{
+  width:56px;height:56px;border-radius:14px;margin:0 auto 20px;
+  background:var(--g50);border:1px solid var(--g100);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+  transition:all 0.5s var(--ease);
+}
+.ind-ico svg{width:26px;height:26px;stroke-width:1.4;color:var(--navy);transition:color 0.45s var(--ease)}
+/* Green accent elements inside icons */
+.ind-ico .accent-s{stroke:var(--green);color:var(--green)}
+.ind-ico .accent-f{fill:var(--green);stroke:none}
+/* Dimmed accent at rest */
+.ind-ico .accent-s,.ind-ico .accent-f{opacity:0.45;transition:opacity 0.45s var(--ease)}
+.ind-card:hover .ind-ico .accent-s,.ind-card:hover .ind-ico .accent-f{opacity:0.85}
+
+.ind-card:hover .ind-ico{
+  background:linear-gradient(145deg,rgba(27,75,143,0.05),rgba(4,229,134,0.03));
+  border-color:rgba(27,75,143,0.1);
+  transform:scale(1.06);box-shadow:0 4px 16px rgba(27,75,143,0.06);
+}
+.ind-card:hover .ind-ico svg{color:var(--dark)}
+
+/* ═══ Text ═══ */
+.ind-name{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--g800);margin-bottom:5px;position:relative;z-index:1;transition:color 0.3s}
+.ind-card:hover .ind-name{color:var(--g900)}
+.ind-desc{font-family:var(--mono);font-size:11px;color:var(--g400);position:relative;z-index:1;transition:color 0.3s}
+.ind-card:hover .ind-desc{color:var(--g500)}
+
+/* ═══ Hover arrow ═══ */
+.ind-arr{
+  position:absolute;bottom:12px;right:14px;width:22px;height:22px;border-radius:50%;
+  background:var(--g100);display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translate(-4px,4px);transition:all 0.4s var(--ease);z-index:1;
+}
+.ind-arr svg{width:10px;height:10px;color:var(--blue);stroke-width:2.5}
+.ind-card:hover .ind-arr{opacity:1;transform:translate(0,0)}
+
+/* ══════════════════════════════════════
+   SVG ICON ANIMATIONS
+   Each icon has a subtle idle state and
+   a more expressive hover animation.
+   ══════════════════════════════════════ */
+
+/* === Chemical — Flask bubbles rise === */
+.ico-chem .bubble1,.ico-chem .bubble2,.ico-chem .bubble3{
+  transform-origin:center;opacity:0;
+}
+.ind-card:hover .ico-chem .bubble1{animation:bubbleUp 1.8s var(--ease) infinite 0s}
+.ind-card:hover .ico-chem .bubble2{animation:bubbleUp 2.2s var(--ease) infinite 0.4s}
+.ind-card:hover .ico-chem .bubble3{animation:bubbleUp 2.6s var(--ease) infinite 0.8s}
+@keyframes bubbleUp{
+  0%{opacity:0;transform:translateY(0) scale(0.5)}
+  30%{opacity:0.7}
+  100%{opacity:0;transform:translateY(-10px) scale(0.3)}
+}
+/* Idle: liquid sways */
+.ico-chem .liquid{transform-origin:center bottom;animation:liquidSway 4s ease-in-out infinite}
+@keyframes liquidSway{0%,100%{transform:skewX(0deg)}25%{transform:skewX(1.5deg)}75%{transform:skewX(-1.5deg)}}
+
+/* === Petrochemical — Smoke rises === */
+.ico-petro .smoke1,.ico-petro .smoke2{opacity:0}
+.ind-card:hover .ico-petro .smoke1{animation:smokeRise 2.5s ease-out infinite 0s}
+.ind-card:hover .ico-petro .smoke2{animation:smokeRise 3s ease-out infinite 0.6s}
+@keyframes smokeRise{
+  0%{opacity:0;transform:translateY(0) scaleX(1)}
+  25%{opacity:0.5}
+  100%{opacity:0;transform:translateY(-8px) scaleX(1.8)}
+}
+/* Idle: subtle pulse on towers */
+.ico-petro .tower{animation:towerPulse 3s ease-in-out infinite}
+.ico-petro .tower2{animation:towerPulse 3s ease-in-out infinite 0.5s}
+@keyframes towerPulse{0%,100%{opacity:1}50%{opacity:0.7}}
+
+/* === Power — Bolt flashes === */
+.ico-power .bolt{transition:all 0.3s;transform-origin:center}
+.ind-card:hover .ico-power .bolt{animation:boltFlash 2s ease-in-out infinite}
+@keyframes boltFlash{
+  0%,100%{opacity:1;filter:drop-shadow(0 0 0px transparent)}
+  15%{opacity:0.3}
+  30%{opacity:1;filter:drop-shadow(0 0 4px rgba(27,75,143,0.3))}
+  45%{opacity:0.5}
+  60%{opacity:1;filter:drop-shadow(0 0 6px rgba(27,75,143,0.4))}
+}
+/* Idle: gentle glow */
+.ico-power .bolt{animation:boltIdle 3s ease-in-out infinite}
+@keyframes boltIdle{0%,100%{opacity:1}50%{opacity:0.7}}
+
+/* === Water — Drop ripples === */
+.ico-water .ripple1,.ico-water .ripple2{transform-origin:center;opacity:0}
+.ind-card:hover .ico-water .ripple1{animation:ripple 2s ease-out infinite}
+.ind-card:hover .ico-water .ripple2{animation:ripple 2s ease-out infinite 0.7s}
+@keyframes ripple{
+  0%{opacity:0.6;transform:scale(0.6)}
+  100%{opacity:0;transform:scale(1.6)}
+}
+/* Idle: drop wobble */
+.ico-water .drop{transform-origin:center top;animation:dropWobble 3.5s ease-in-out infinite}
+@keyframes dropWobble{0%,100%{transform:scaleX(1)}30%{transform:scaleX(0.97)}60%{transform:scaleX(1.02)}}
+
+/* === Fertilizer — Leaf sways === */
+.ico-fert .leaf-l{transform-origin:12px 14px;animation:leafSway 4s ease-in-out infinite}
+.ico-fert .leaf-r{transform-origin:12px 14px;animation:leafSway 4s ease-in-out infinite 0.5s}
+@keyframes leafSway{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+/* Hover: growth pulse */
+.ind-card:hover .ico-fert .sprout{animation:grow 0.6s var(--ease) forwards}
+@keyframes grow{0%{transform:scaleY(1)}50%{transform:scaleY(1.06)}100%{transform:scaleY(1)}}
+
+/* === Mining — Pickaxe swings === */
+.ico-mine .pick{transform-origin:8px 8px;transition:transform 0.4s var(--ease)}
+.ind-card:hover .ico-mine .pick{animation:pickSwing 1.2s var(--ease) infinite}
+@keyframes pickSwing{0%,100%{transform:rotate(0deg)}35%{transform:rotate(-18deg)}55%{transform:rotate(4deg)}}
+/* Idle: subtle rock shimmer */
+.ico-mine .rock{animation:rockShimmer 4s ease-in-out infinite}
+@keyframes rockShimmer{0%,100%{opacity:1}50%{opacity:0.6}}
+
+/* === Pharma — Capsule pulse === */
+.ico-pharma .capsule{transform-origin:center;transition:all 0.4s var(--ease)}
+.ind-card:hover .ico-pharma .capsule{animation:capsulePulse 1.5s ease-in-out infinite}
+@keyframes capsulePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+/* Idle: subtle cross pulse */
+.ico-pharma .cross-h,.ico-pharma .cross-v{animation:crossPulse 3s ease-in-out infinite}
+.ico-pharma .cross-v{animation-delay:0.3s}
+@keyframes crossPulse{0%,100%{opacity:0.5}50%{opacity:0.25}}
+
+/* === Food — Steam rises === */
+.ico-food .steam1,.ico-food .steam2,.ico-food .steam3{opacity:0}
+.ind-card:hover .ico-food .steam1{animation:steamUp 2s ease-out infinite}
+.ind-card:hover .ico-food .steam2{animation:steamUp 2.3s ease-out infinite 0.3s}
+.ind-card:hover .ico-food .steam3{animation:steamUp 2.6s ease-out infinite 0.6s}
+@keyframes steamUp{
+  0%{opacity:0;transform:translateY(0) scaleX(1)}
+  20%{opacity:0.4}
+  100%{opacity:0;transform:translateY(-8px) scaleX(0.5)}
+}
+/* Idle: gentle cup rock */
+.ico-food .cup{transform-origin:center bottom;animation:cupRock 5s ease-in-out infinite}
+@keyframes cupRock{0%,100%{transform:rotate(0deg)}30%{transform:rotate(0.8deg)}70%{transform:rotate(-0.8deg)}}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+@media(max-width:1024px){
+  .s4-inner{padding:80px 32px 100px}
+  .s4-h2{font-size:38px}
+  .ind-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .s4-inner{padding:64px 20px 80px}
+  .s4-h2{font-size:32px}
+  .s4-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .ind-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .ind-card{padding:28px 20px 24px}
+  .ind-ico{width:48px;height:48px;margin-bottom:14px;border-radius:12px}
+  .ind-ico svg{width:22px;height:22px}
+}
+</style>
+</head>
+<body>
+
+<section class="s4 eng-grid">
+  <div class="s4-spot" id="s4spot"></div>
+  <div class="s4-inner">
+
+    <div class="s4-head" data-reveal>
+      <div class="s4-head-l">
+        <div class="s4-over">Industries</div>
+        <h2 class="s4-h2">Built for the <em>harshest</em> environments</h2>
+      </div>
+      <a class="s4-link" href="#">View All Industries <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="ind-grid" id="indGrid">
+
+      <!-- ═══ Chemical ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-chem" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <!-- Flask body -->
+            <path d="M9 3h6M10 3v5.5L5.5 17.5a2 2 0 001.7 3h9.6a2 2 0 001.7-3L14 8.5V3" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Liquid fill (green accent) -->
+            <path class="liquid accent-f" d="M6.8 16h10.4L14 8.5H10L6.8 16z" fill="var(--green)" opacity="0.1" stroke="none"/>
+            <!-- Bubbles (green accent) -->
+            <circle class="bubble1 accent-f" cx="10" cy="14" r="0.8" fill="var(--green)" opacity="0"/>
+            <circle class="bubble2 accent-f" cx="12.5" cy="13" r="0.6" fill="var(--green)" opacity="0"/>
+            <circle class="bubble3 accent-f" cx="11" cy="15" r="0.5" fill="var(--green)" opacity="0"/>
+          </svg>
+        </div>
+        <div class="ind-name">Chemical</div>
+        <div class="ind-desc">Reactors, tanks, piping</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Petrochemical ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-petro" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <!-- Distillation towers -->
+            <rect class="tower" x="5" y="10" width="4.5" height="10" rx="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect class="tower2" x="14.5" y="6" width="4.5" height="14" rx="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Connector pipe (green accent) -->
+            <path class="accent-s" d="M9.5 14h5" stroke-linecap="round" stroke="var(--green)"/>
+            <!-- Stack tops -->
+            <path d="M7.25 10V7.5" stroke-linecap="round"/>
+            <path d="M16.75 6V3.5" stroke-linecap="round"/>
+            <!-- Smoke (green accent, hidden until hover) -->
+            <circle class="smoke1 accent-f" cx="16.75" cy="3" r="1" fill="var(--green)" opacity="0" stroke="none"/>
+            <circle class="smoke2 accent-f" cx="7.25" cy="7" r="0.8" fill="var(--green)" opacity="0" stroke="none"/>
+          </svg>
+        </div>
+        <div class="ind-name">Petrochemical</div>
+        <div class="ind-desc">Refining & processing</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Power ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-power" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path class="bolt" d="M13 2L4.5 13h6L9 22l9.5-13h-6L13 2z" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Inner energy fill (green accent) -->
+            <path class="accent-f" d="M13 4L6.5 13h5L10 20l7.5-11h-5L13 4z" fill="var(--green)" opacity="0.08" stroke="none"/>
+          </svg>
+        </div>
+        <div class="ind-name">Power</div>
+        <div class="ind-desc">Boilers, FGD, cooling</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Water Treatment ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-water" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <!-- Drop -->
+            <path class="drop" d="M12 3c-3.5 4.5-7 8-7 11.5a7 7 0 0014 0c0-3.5-3.5-7-7-11.5z" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Inner fill (green accent) -->
+            <path class="accent-f" d="M12 7c-2.5 3.5-5 6-5 8.5a5 5 0 0010 0c0-2.5-2.5-5-5-8.5z" fill="var(--green)" opacity="0.07" stroke="none"/>
+            <!-- Highlight (green accent) -->
+            <path class="accent-s" d="M9 16.5a3.5 3.5 0 003.5 3.5" stroke-linecap="round" stroke="var(--green)"/>
+            <!-- Ripples (green accent, hidden until hover) -->
+            <ellipse class="ripple1 accent-s" cx="12" cy="20.5" rx="3" ry="0.8" stroke="var(--green)" stroke-width="0.8" fill="none" opacity="0"/>
+            <ellipse class="ripple2 accent-s" cx="12" cy="20.5" rx="3" ry="0.8" stroke="var(--green)" stroke-width="0.8" fill="none" opacity="0"/>
+          </svg>
+        </div>
+        <div class="ind-name">Water Treatment</div>
+        <div class="ind-desc">Filtration & purification</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Fertilizer ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-fert" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <g class="sprout">
+              <!-- Stem -->
+              <path d="M12 21V11" stroke-linecap="round"/>
+              <!-- Left leaf (green accent) -->
+              <path class="leaf-l accent-s" d="M12 14c-4-1.5-6-4-5.5-6.5C8 8 10.5 10 12 14z" stroke="var(--green)" stroke-linejoin="round" fill="var(--green)" fill-opacity="0.06"/>
+              <!-- Right leaf (green accent) -->
+              <path class="leaf-r accent-s" d="M12 11c4-1.5 6-4 5.5-6.5C16 5 13.5 7 12 11z" stroke="var(--green)" stroke-linejoin="round" fill="var(--green)" fill-opacity="0.06"/>
+              <!-- Small bud -->
+              <path d="M12 14c-2.5-1-3.5-3-3-4.5" stroke-linecap="round" opacity="0.3"/>
+            </g>
+            <path d="M9 21h6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ind-name">Fertilizer</div>
+        <div class="ind-desc">Acid plants, storage</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Mining ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-mine" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <!-- Mountain / rock -->
+            <path class="rock" d="M4 20l6-10 3 4 3-6 4 12H4z" stroke-linejoin="round" opacity="0.8"/>
+            <!-- Pickaxe (green accent head) -->
+            <g class="pick">
+              <path d="M4 4l4 4" stroke-linecap="round" stroke-width="1.6"/>
+              <path class="accent-s" d="M3 7.5L6.5 4" stroke-linecap="round" stroke="var(--green)" stroke-width="1.6"/>
+              <path class="accent-s" d="M3.5 5l2-0.5" stroke-linecap="round" stroke="var(--green)"/>
+            </g>
+            <!-- Green ore flecks in mountain -->
+            <circle class="accent-f" cx="10" cy="17" r="0.7" fill="var(--green)" opacity="0.25" stroke="none"/>
+            <circle class="accent-f" cx="14" cy="16" r="0.5" fill="var(--green)" opacity="0.18" stroke="none"/>
+          </svg>
+        </div>
+        <div class="ind-name">Mining</div>
+        <div class="ind-desc">Leaching, flotation</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Pharmaceutical ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-pharma" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <!-- Capsule -->
+            <rect class="capsule" x="4" y="9" width="16" height="10" rx="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Divider -->
+            <path d="M12 9v10" stroke-linecap="round" opacity="0.15"/>
+            <!-- Cross / medical plus (green accent) -->
+            <line class="cross-h accent-s" x1="9.5" y1="14" x2="14.5" y2="14" stroke-linecap="round" stroke="var(--green)"/>
+            <line class="cross-v accent-s" x1="12" y1="11.5" x2="12" y2="16.5" stroke-linecap="round" stroke="var(--green)"/>
+            <!-- Top tubes -->
+            <path d="M8.5 9V6.5a1 1 0 011-1h5a1 1 0 011 1V9" stroke-linecap="round" opacity="0.45"/>
+          </svg>
+        </div>
+        <div class="ind-name">Pharmaceutical</div>
+        <div class="ind-desc">Clean rooms, vessels</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+      <!-- ═══ Food & Beverage ═══ -->
+      <a class="ind-card" href="#">
+        <div class="ind-ico">
+          <svg class="ico-food" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <g class="cup">
+              <!-- Vessel -->
+              <path d="M6 8h12l-1.5 10a2 2 0 01-2 1.8h-5A2 2 0 017.5 18L6 8z" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Liquid line (green accent) -->
+              <path class="accent-s" d="M7 11h10" stroke-linecap="round" stroke="var(--green)"/>
+            </g>
+            <!-- Stem + base -->
+            <path d="M12 19.8V21" stroke-linecap="round" opacity="0.5"/>
+            <path d="M9 21h6" stroke-linecap="round" opacity="0.5"/>
+            <!-- Steam (green accent, hidden until hover) -->
+            <path class="steam1 accent-s" d="M9 6c0-1.5 1-2.5 0-3.5" stroke-linecap="round" stroke="var(--green)" opacity="0" stroke-width="1.2"/>
+            <path class="steam2 accent-s" d="M12 5.5c0-1.5 1-2.5 0-3.5" stroke-linecap="round" stroke="var(--green)" opacity="0" stroke-width="1.2"/>
+            <path class="steam3 accent-s" d="M15 6c0-1.5 1-2.5 0-3.5" stroke-linecap="round" stroke="var(--green)" opacity="0" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="ind-name">Food & Beverage</div>
+        <div class="ind-desc">Sanitary processing</div>
+        <div class="ind-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* ═══ Mouse spotlight ═══ */
+(function(){
+  const s = document.querySelector('.s4');
+  const spot = document.getElementById('s4spot');
+  if(!s||!spot) return;
+  s.addEventListener('mousemove',e=>{
+    const r=s.getBoundingClientRect();
+    spot.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    spot.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+})();
+
+/* ═══ Scroll reveal ═══ */
+const revObs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){
+    x.target.classList.add('vis');
+    // Also reveal children with stagger
+    const kids=x.target.querySelectorAll('[data-reveal-child]');
+    kids.forEach((k,i)=>setTimeout(()=>k.classList.add('vis'),i*80));
+  }});
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el=>revObs.observe(el));
+
+/* Card grid stagger */
+const gridObs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){
+    const cards=x.target.querySelectorAll('.ind-card');
+    cards.forEach((c,i)=>setTimeout(()=>c.classList.add('vis'),i*70));
+    gridObs.unobserve(x.target);
+  }});
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('#indGrid').forEach(el=>gridObs.observe(el));
+</script>
+</body>
+</html>
