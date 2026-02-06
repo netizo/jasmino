@@ -120,22 +120,28 @@ const IndustryCard = ({ icon: Icon, name, desc, delay }) => (
 );
 
 /* Main Industries Section */
-const Industries = () => {
+const Industries = React.memo(() => {
     const sectionRef = useRef(null);
     const spotRef = useRef(null);
     const gridRef = useRef(null);
 
     useEffect(() => {
-        // Mouse spotlight
+        // Mouse spotlight (rAF-throttled)
         const section = sectionRef.current;
         const spot = spotRef.current;
         if (section && spot) {
+            let raf = false;
             const handleMove = (e) => {
-                const r = section.getBoundingClientRect();
-                spot.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-                spot.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                if (raf) return;
+                raf = true;
+                requestAnimationFrame(() => {
+                    const r = section.getBoundingClientRect();
+                    spot.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    spot.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                    raf = false;
+                });
             };
-            section.addEventListener('mousemove', handleMove);
+            section.addEventListener('mousemove', handleMove, { passive: true });
             return () => section.removeEventListener('mousemove', handleMove);
         }
     }, []);
@@ -197,6 +203,7 @@ const Industries = () => {
             </div>
         </section>
     );
-};
+});
 
+Industries.displayName = 'Industries';
 export default Industries;
