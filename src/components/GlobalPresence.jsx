@@ -3,8 +3,7 @@ import * as THREE from 'three';
 import '../styles/global-presence.css';
 
 /* ══════════════════════════════════════════════════════════════════
-   GLOBAL PRESENCE SECTION — Using Jasmino Dotted Globe
-   Ported from user's standalone globe script
+   GLOBAL PRESENCE SECTION — Jasmino Dotted Globe
    ══════════════════════════════════════════════════════════════════ */
 
 const GLOBE = {
@@ -49,7 +48,6 @@ const LOCATIONS = [
     { lat: -33.4, lng: 151.2, type: 'service' },
 ];
 
-/* ── Helpers ── */
 function latLngToVec3(lat, lng, r) {
     const phi = (90 - lat) * Math.PI / 180;
     const theta = (lng + 180) * Math.PI / 180;
@@ -137,22 +135,42 @@ function isLandCheck(lng, lat, polys) {
 const Globe = () => {
     const containerRef = useRef(null);
     const [loading, setLoading] = useState(true);
-    const initRef = useRef(false);
+    const globeRef = useRef({
+        initialized: false,
+        renderer: null,
+        animationId: null,
+        cleanup: null
+    });
 
     useEffect(() => {
         const el = containerRef.current;
-        if (!el || initRef.current) return;
-        initRef.current = true;
+        if (!el) return;
 
+        // Prevent double initialization in React Strict Mode
+        if (globeRef.current.initialized) return;
+        globeRef.current.initialized = true;
+
+        // Ensure container has dimensions
         const w = el.clientWidth || 640;
         const h = el.clientHeight || 540;
+
+        console.log('Globe init: container dimensions', w, h);
 
         // Scene setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(30, w / h, 0.1, 100);
         camera.position.set(0, 0.2, 9.5);
 
-        const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        } catch (e) {
+            console.error('WebGL not available:', e);
+            setLoading(false);
+            return;
+        }
+
+        globeRef.current.renderer = renderer;
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(w, h);
         renderer.setClearColor(0x000000, 0);
@@ -162,25 +180,26 @@ const Globe = () => {
         scene.add(globe);
         scene.add(new THREE.AmbientLight(0xffffff, 0.4));
 
-        let animationId;
         let visible = true;
-        let visObs;
-        let ro;
+        const markers = [];
 
-        // Fetch land data & build
-        (async () => {
+        // Async initialization
+        const initGlobe = async () => {
             let landPolys = [];
             try {
                 const resp = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json');
                 const topo = await resp.json();
                 landPolys = decodeTopojson(topo, 'land');
+                console.log('Land data loaded, polygons:', landPolys.length);
             } catch (e) {
                 console.warn('Failed to load land data:', e);
             }
 
+            // Check if we were unmounted while fetching
+            if (!globeRef.current.initialized) return;
+
             setLoading(false);
 
-            // Generate dots
             const { radius, rows, dotSize } = GLOBE;
             const landDarkPts = [], landLightPts = [], oceanPts = [], presPts = [];
 
@@ -208,7 +227,8 @@ const Globe = () => {
                 }
             }
 
-            // Instanced dot meshes
+            console.log('Dots generated:', { ocean: oceanPts.length, landDark: landDarkPts.length, landLight: landLightPts.length, presence: presPts.length });
+
             const dotGeo = new THREE.CircleGeometry(dotSize, 6);
             const dummy = new THREE.Object3D();
             const nrm = new THREE.Vector3();
@@ -241,10 +261,9 @@ const Globe = () => {
             if (landLightMesh) globe.add(landLightMesh);
             if (presMesh) globe.add(presMesh);
 
-            // Presence markers (pulsing rings on HQ + facilities)
+            // Presence markers
             const ringGeo = new THREE.RingGeometry(0.04, 0.065, 24);
             const pulseGeo = new THREE.RingGeometry(0.065, 0.11, 24);
-            const markers = [];
 
             LOCATIONS.filter(l => l.type === 'hq' || l.type === 'facility').forEach(loc => {
                 const pos = latLngToVec3(loc.lat, loc.lng, radius + 0.015);
@@ -271,7 +290,7 @@ const Globe = () => {
                 markers.push({ pulse, mat: pulseMat, baseScale: scl });
             });
 
-            // Atmosphere (Fresnel rim shader)
+            // Atmosphere
             const atmoGeo = new THREE.SphereGeometry(radius * 1.06, 48, 48);
             const atmoMat = new THREE.ShaderMaterial({
                 transparent: true, depthWrite: false, side: THREE.BackSide,
@@ -324,7 +343,7 @@ const Globe = () => {
             orbit2.rotation.z = 0.3;
             globe.add(orbit2);
 
-            // Graticule (subtle lat/lng grid)
+            // Graticule
             const gratMat = new THREE.LineBasicMaterial({ color: 0xB0B7C3, transparent: true, opacity: 0.05 });
             for (let lat = -60; lat <= 60; lat += 30) {
                 const pts = [];
@@ -337,51 +356,33 @@ const Globe = () => {
                 globe.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), gratMat));
             }
 
-            // Initial rotation (shows India/Europe/Middle East)
+            // Initial rotation
             globe.rotation.y = -0.8;
+
+            console.log('Globe built, starting animation');
 
             // Mouse interaction
             let mouseX = 0, mouseY = 0;
             let baseRotY = globe.rotation.y;
 
-            let mouseRaf = false;
             const handleMouseMove = (e) => {
-                if (mouseRaf) return;
-                mouseRaf = true;
-                requestAnimationFrame(() => {
-                    const r = el.getBoundingClientRect();
-                    mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
-                    mouseY = ((e.clientY - r.top) / r.height - 0.5) * 2;
-                    mouseRaf = false;
-                });
+                const r = el.getBoundingClientRect();
+                mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                mouseY = ((e.clientY - r.top) / r.height - 0.5) * 2;
             };
             const handleMouseLeave = () => { mouseX = 0; mouseY = 0; };
-            const handleTouchMove = (e) => {
-                if (mouseRaf) return;
-                mouseRaf = true;
-                requestAnimationFrame(() => {
-                    const t = e.touches[0];
-                    const r = el.getBoundingClientRect();
-                    mouseX = ((t.clientX - r.left) / r.width - 0.5) * 2;
-                    mouseY = ((t.clientY - r.top) / r.height - 0.5) * 2;
-                    mouseRaf = false;
-                });
-            };
-            const handleTouchEnd = () => { mouseX = 0; mouseY = 0; };
 
-            el.addEventListener('mousemove', handleMouseMove, { passive: true });
+            el.addEventListener('mousemove', handleMouseMove);
             el.addEventListener('mouseleave', handleMouseLeave);
-            el.addEventListener('touchmove', handleTouchMove, { passive: true });
-            el.addEventListener('touchend', handleTouchEnd);
 
-            // Visibility (pauses when off-screen)
-            visObs = new IntersectionObserver(entries => {
+            // Visibility
+            const visObs = new IntersectionObserver(entries => {
                 entries.forEach(e => { visible = e.isIntersecting; });
             }, { threshold: 0.05 });
             visObs.observe(el);
 
             // Resize
-            ro = new ResizeObserver(() => {
+            const ro = new ResizeObserver(() => {
                 const nw = el.clientWidth, nh = el.clientHeight;
                 if (!nw || !nh) return;
                 camera.aspect = nw / nh;
@@ -394,7 +395,9 @@ const Globe = () => {
             let lastTime = performance.now();
 
             function animate() {
-                animationId = requestAnimationFrame(animate);
+                if (!globeRef.current.initialized) return;
+
+                globeRef.current.animationId = requestAnimationFrame(animate);
                 if (!visible) return;
 
                 const now = performance.now();
@@ -419,17 +422,32 @@ const Globe = () => {
                 renderer.render(scene, camera);
             }
             animate();
-        })();
+
+            // Store cleanup function
+            globeRef.current.cleanup = () => {
+                el.removeEventListener('mousemove', handleMouseMove);
+                el.removeEventListener('mouseleave', handleMouseLeave);
+                visObs.disconnect();
+                ro.disconnect();
+            };
+        };
+
+        initGlobe();
 
         // Cleanup
         return () => {
-            if (animationId) cancelAnimationFrame(animationId);
-            if (visObs) visObs.disconnect();
-            if (ro) ro.disconnect();
-            if (renderer.domElement && el.contains(renderer.domElement)) {
+            console.log('Globe cleanup');
+            globeRef.current.initialized = false;
+            if (globeRef.current.animationId) {
+                cancelAnimationFrame(globeRef.current.animationId);
+            }
+            if (globeRef.current.cleanup) {
+                globeRef.current.cleanup();
+            }
+            if (renderer && renderer.domElement && el.contains(renderer.domElement)) {
                 el.removeChild(renderer.domElement);
             }
-            renderer.dispose();
+            if (renderer) renderer.dispose();
         };
     }, []);
 
@@ -468,7 +486,7 @@ const FacilityCard = ({ flag, name, country, area, detail }) => (
 );
 
 /* ── Main Component ── */
-const GlobalPresence = React.memo(() => {
+const GlobalPresence = () => {
     const facilities = [
         { flag: '🇮🇳', name: 'Jasmino HQ', country: 'India', area: '80,000', detail: 'Engineering, Manufacturing, Rubber Products' },
         { flag: '🇩🇪', name: 'HAW Linings', country: 'Germany', area: '30,000', detail: 'Rubber & Plastic Linings' },
@@ -479,7 +497,6 @@ const GlobalPresence = React.memo(() => {
         <section className="s6">
             <div className="s6-grid"></div>
             <div className="s6-inner">
-                {/* Header */}
                 <div className="s6-header">
                     <div className="s6-over">Global Presence</div>
                     <h2 className="s6-h2">Three continents, one<br /><em>standard</em></h2>
@@ -488,10 +505,8 @@ const GlobalPresence = React.memo(() => {
                     </p>
                 </div>
 
-                {/* Globe */}
                 <Globe />
 
-                {/* Facility Cards */}
                 <div className="fac-row">
                     {facilities.map(f => (
                         <FacilityCard key={f.name} {...f} />
@@ -500,7 +515,6 @@ const GlobalPresence = React.memo(() => {
             </div>
         </section>
     );
-});
+};
 
-GlobalPresence.displayName = 'GlobalPresence';
 export default GlobalPresence;
