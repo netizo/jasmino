@@ -148,9 +148,17 @@ const BlueprintCanvas = ({ sceneId }) => {
         else if (sceneId === 'cor') updateFn = setupCorScene(group, scene, ctx);
         else if (sceneId === 'rub') updateFn = setupRubScene(group, scene, ctx);
 
+        // Visibility-based pausing — stop rendering when off-screen
+        let visible = false;
+        const visObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { visible = e.isIntersecting; });
+        }, { threshold: 0.01 });
+        visObs.observe(el);
+
         let frameId;
         const animate = () => {
             frameId = requestAnimationFrame(animate);
+            if (!visible) return;
             time += 0.016;
             const targetHover = ctx.hovered ? 1 : 0;
             ctx.hoverIntensity += (targetHover - ctx.hoverIntensity) * 0.04;
@@ -175,6 +183,7 @@ const BlueprintCanvas = ({ sceneId }) => {
 
         return () => {
             cancelAnimationFrame(frameId);
+            visObs.disconnect();
             resizeObserver.disconnect();
             if (card) {
                 card.removeEventListener('mouseenter', onEnter);
@@ -671,7 +680,7 @@ function setupRubScene(group, scene, ctx) {
 /* ══════════════════════════════════════════════════════════════════
    DIVISIONS COMPONENT — Main Export
    ══════════════════════════════════════════════════════════════════ */
-const Divisions = () => {
+const Divisions = React.memo(() => {
     return (
         <section className="eng-grid">
             <div className="s2">
@@ -752,6 +761,7 @@ const Divisions = () => {
             </div>
         </section>
     );
-};
+});
 
+Divisions.displayName = 'Divisions';
 export default Divisions;

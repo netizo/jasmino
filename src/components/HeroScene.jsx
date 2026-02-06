@@ -25,7 +25,6 @@ export default function HeroScene({ phase }) {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setClearColor(0x000000, 0);
         renderer.shadowMap.enabled = false;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.outputEncoding = THREE.sRGBEncoding;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.15;
@@ -46,11 +45,11 @@ export default function HeroScene({ phase }) {
         // ═══════════════════════════════════════════
         // ENVIRONMENT MAP
         // ═══════════════════════════════════════════
-        const cubeRT = new THREE.WebGLCubeRenderTarget(512);
+        const cubeRT = new THREE.WebGLCubeRenderTarget(256);
         const cubeCamera = new THREE.CubeCamera(0.1, 100, cubeRT);
         const envScene = new THREE.Scene();
 
-        const envGeo = new THREE.SphereGeometry(50, 64, 64);
+        const envGeo = new THREE.SphereGeometry(50, 32, 32);
         const envMat = new THREE.ShaderMaterial({
             side: THREE.BackSide,
             uniforms: {
@@ -105,12 +104,6 @@ export default function HeroScene({ phase }) {
         // ═══════════════════════════════════════════
         const keyLight = new THREE.DirectionalLight(0xfff5e8, 1.2);
         keyLight.position.set(5, 8, 5);
-        keyLight.castShadow = true;
-        keyLight.shadow.mapSize.set(2048, 2048);
-        keyLight.shadow.camera.near = 0.1;
-        keyLight.shadow.camera.far = 30;
-        keyLight.shadow.bias = -0.001;
-        keyLight.shadow.radius = 4;
         scene.add(keyLight);
 
         const fillLight = new THREE.DirectionalLight(0xc8d8f0, 0.55);
@@ -545,10 +538,10 @@ export default function HeroScene({ phase }) {
 
         function createVesselGeometry() {
             const parts = [];
-            const body = new THREE.CylinderGeometry(0.85, 0.85, 2.8, 64, 16);
+            const body = new THREE.CylinderGeometry(0.85, 0.85, 2.8, 36, 8);
             parts.push({ geo: body, pos: [0, 0, 0], rot: [Math.PI / 2, 0, 0] });
 
-            const headGeo = new THREE.SphereGeometry(0.85, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2);
+            const headGeo = new THREE.SphereGeometry(0.85, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
             parts.push({ geo: headGeo, pos: [0, 0, 1.4], rot: [-Math.PI / 2, 0, 0] });
             parts.push({ geo: headGeo, pos: [0, 0, -1.4], rot: [Math.PI / 2, 0, 0] });
 
@@ -629,12 +622,11 @@ export default function HeroScene({ phase }) {
         mainGroup.rotation.x = -0.12;
         mainGroup.rotation.y = 0.45;
         scene.add(mainGroup);
-        solidLayer.group.children.forEach(m => { m.castShadow = true; });
 
         // ═══════════════════════════════════════════
         // PARTICLES
         // ═══════════════════════════════════════════
-        const PARTICLE_COUNT = 200;
+        const PARTICLE_COUNT = 80;
         const tParticleGeo = new THREE.BufferGeometry();
         const tPositions = new Float32Array(PARTICLE_COUNT * 3);
         const tVelocities = new Float32Array(PARTICLE_COUNT * 3);
@@ -701,9 +693,9 @@ export default function HeroScene({ phase }) {
         }
 
         const apGeo = new THREE.BufferGeometry();
-        const apPositions = new Float32Array(80 * 3);
+        const apPositions = new Float32Array(40 * 3);
         const apSpeeds = [];
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 40; i++) {
             apPositions[i * 3] = (Math.random() - 0.5) * 10;
             apPositions[i * 3 + 1] = (Math.random() - 0.5) * 8;
             apPositions[i * 3 + 2] = (Math.random() - 0.5) * 6;
@@ -737,10 +729,18 @@ export default function HeroScene({ phase }) {
         // Watch for phase changes to trigger particles
         let lastPhaseVal = phase;
 
+        // Visibility-based pausing — stop rendering when off-screen
+        let visible = true;
+        const visObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { visible = e.isIntersecting; });
+        }, { threshold: 0.01 });
+        visObs.observe(container);
+
         // Animation Loop
         let animId;
         const animate = () => {
             animId = requestAnimationFrame(animate);
+            if (!visible) { clock.getDelta(); return; }
             const dt = Math.min(clock.getDelta(), 0.05);
             const elapsed = clock.getElapsedTime();
 
@@ -834,7 +834,7 @@ export default function HeroScene({ phase }) {
             tParticleGeo.attributes.position.needsUpdate = true;
 
             const apArr = apGeo.attributes.position.array;
-            for (let i = 0; i < 80; i++) {
+            for (let i = 0; i < 40; i++) {
                 apArr[i * 3] += apSpeeds[i].x;
                 apArr[i * 3 + 1] += apSpeeds[i].y;
                 if (apArr[i * 3 + 1] > 4) apArr[i * 3 + 1] = -4;
@@ -858,10 +858,10 @@ export default function HeroScene({ phase }) {
 
         return () => {
             cancelAnimationFrame(animId);
+            visObs.disconnect();
             container.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('resize', onResize);
             renderer.dispose();
-            // geometries/materials dispose?
             if (container.contains(renderer.domElement)) {
                 container.removeChild(renderer.domElement);
             }

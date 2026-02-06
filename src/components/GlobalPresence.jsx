@@ -152,7 +152,7 @@ const Globe = () => {
         const camera = new THREE.PerspectiveCamera(30, w / h, 0.1, 100);
         camera.position.set(0, 0.2, 9.5);
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(w, h);
         renderer.setClearColor(0x000000, 0);
@@ -344,21 +344,32 @@ const Globe = () => {
             let mouseX = 0, mouseY = 0;
             let baseRotY = globe.rotation.y;
 
+            let mouseRaf = false;
             const handleMouseMove = (e) => {
-                const r = el.getBoundingClientRect();
-                mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
-                mouseY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                if (mouseRaf) return;
+                mouseRaf = true;
+                requestAnimationFrame(() => {
+                    const r = el.getBoundingClientRect();
+                    mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                    mouseY = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                    mouseRaf = false;
+                });
             };
             const handleMouseLeave = () => { mouseX = 0; mouseY = 0; };
             const handleTouchMove = (e) => {
-                const t = e.touches[0];
-                const r = el.getBoundingClientRect();
-                mouseX = ((t.clientX - r.left) / r.width - 0.5) * 2;
-                mouseY = ((t.clientY - r.top) / r.height - 0.5) * 2;
+                if (mouseRaf) return;
+                mouseRaf = true;
+                requestAnimationFrame(() => {
+                    const t = e.touches[0];
+                    const r = el.getBoundingClientRect();
+                    mouseX = ((t.clientX - r.left) / r.width - 0.5) * 2;
+                    mouseY = ((t.clientY - r.top) / r.height - 0.5) * 2;
+                    mouseRaf = false;
+                });
             };
             const handleTouchEnd = () => { mouseX = 0; mouseY = 0; };
 
-            el.addEventListener('mousemove', handleMouseMove);
+            el.addEventListener('mousemove', handleMouseMove, { passive: true });
             el.addEventListener('mouseleave', handleMouseLeave);
             el.addEventListener('touchmove', handleTouchMove, { passive: true });
             el.addEventListener('touchend', handleTouchEnd);
@@ -457,7 +468,7 @@ const FacilityCard = ({ flag, name, country, area, detail }) => (
 );
 
 /* ── Main Component ── */
-const GlobalPresence = () => {
+const GlobalPresence = React.memo(() => {
     const facilities = [
         { flag: '🇮🇳', name: 'Jasmino HQ', country: 'India', area: '80,000', detail: 'Engineering, Manufacturing, Rubber Products' },
         { flag: '🇩🇪', name: 'HAW Linings', country: 'Germany', area: '30,000', detail: 'Rubber & Plastic Linings' },
@@ -489,6 +500,7 @@ const GlobalPresence = () => {
             </div>
         </section>
     );
-};
+});
 
+GlobalPresence.displayName = 'GlobalPresence';
 export default GlobalPresence;

@@ -17,16 +17,22 @@ const ShaderBackground = () => {
         camera.position.z = 1;
 
         const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         container.appendChild(renderer.domElement);
 
         const mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
 
+        let rafPending = false;
         const handleMouseMove = (e) => {
-            mouse.tx = e.clientX / window.innerWidth;
-            mouse.ty = 1.0 - e.clientY / window.innerHeight;
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(() => {
+                mouse.tx = e.clientX / window.innerWidth;
+                mouse.ty = 1.0 - e.clientY / window.innerHeight;
+                rafPending = false;
+            });
         };
-        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
 
         const geo = new THREE.PlaneGeometry(2, 2);
         const mat = new THREE.ShaderMaterial({
@@ -85,7 +91,7 @@ const ShaderBackground = () => {
           float f = 0.0;
           float w = 0.5;
           float s = 2.0;
-          for (int i = 0; i < 6; i++) {
+          for (int i = 0; i < 4; i++) {
             f += w * snoise(p);
             p *= s;
             w *= 0.5;
@@ -168,7 +174,7 @@ const ShaderBackground = () => {
             const h = container.clientHeight;
             if (!w || !h) return;
             renderer.setSize(w, h);
-            mat.uniforms.uResolution.value.set(w * Math.min(window.devicePixelRatio, 2), h * Math.min(window.devicePixelRatio, 2));
+            mat.uniforms.uResolution.value.set(w * Math.min(window.devicePixelRatio, 1.5), h * Math.min(window.devicePixelRatio, 1.5));
         };
         resize();
         window.addEventListener('resize', resize);
@@ -257,7 +263,7 @@ const ComparisonCard = ({ type, tag, heading, desc, points, statNum, statLabel }
 /* ══════════════════════════════════════════════════════════════════
    INTEGRATED MODEL SECTION
    ══════════════════════════════════════════════════════════════════ */
-const IntegratedModel = () => {
+const IntegratedModel = React.memo(() => {
     const sectionRef = useRef(null);
     const spotlightRef = useRef(null);
     const headerRef = useRef(null);
@@ -265,18 +271,24 @@ const IntegratedModel = () => {
     const comparisonRef = useRef(null);
 
     useEffect(() => {
-        // Spotlight mouse tracking
+        // Spotlight mouse tracking (rAF-throttled)
         const section = sectionRef.current;
         const spotlight = spotlightRef.current;
         if (section && spotlight) {
+            let spotRaf = false;
             const handleMove = (e) => {
-                const rect = section.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                spotlight.style.setProperty('--mx', x + 'px');
-                spotlight.style.setProperty('--my', y + 'px');
+                if (spotRaf) return;
+                spotRaf = true;
+                requestAnimationFrame(() => {
+                    const rect = section.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    spotlight.style.setProperty('--mx', x + 'px');
+                    spotlight.style.setProperty('--my', y + 'px');
+                    spotRaf = false;
+                });
             };
-            section.addEventListener('mousemove', handleMove);
+            section.addEventListener('mousemove', handleMove, { passive: true });
             return () => section.removeEventListener('mousemove', handleMove);
         }
     }, []);
@@ -372,6 +384,7 @@ const IntegratedModel = () => {
             <div className="s3-bottom"></div>
         </section>
     );
-};
+});
 
+IntegratedModel.displayName = 'IntegratedModel';
 export default IntegratedModel;

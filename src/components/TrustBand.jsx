@@ -69,7 +69,7 @@ const CertBadge = ({ name, wide }) => (
     <div className={`cert ${wide ? 'wide' : ''}`}>{name}</div>
 );
 
-const TrustBand = () => {
+const TrustBand = React.memo(() => {
     const sectionRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -146,6 +146,7 @@ const TrustBand = () => {
             <div className="trust-fade"></div>
         </>
     );
-};
+});
 
+TrustBand.displayName = 'TrustBand';
 export default TrustBand;
