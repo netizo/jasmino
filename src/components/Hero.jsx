@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import HeroScene from './HeroScene';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import CountUp from './CountUp';
+
+const HeroScene = lazy(() => import('./HeroScene'));
 
 const PHASES = ['Design', 'Build', 'Protect'];
 
@@ -212,7 +213,9 @@ export default function Hero() {
                             position: 'relative', zIndex: 2,
                             display: 'flex', alignItems: 'center', justifyContent: 'center'
                         }}>
-                            <HeroScene phase={phase} />
+                            <Suspense fallback={<div style={{ width: '100%', height: '100%', minHeight: 600 }} />}>
+                                <HeroScene phase={phase} />
+                            </Suspense>
                         </div>
                     </div>
                 </div>

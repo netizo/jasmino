@@ -1,13 +1,15 @@
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { industries, certifications, facilities, companyStats } from '../data/divisions';
 import ScrollReveal from '../components/ScrollReveal';
 import CountUp from '../components/CountUp';
 import Hero from '../components/Hero';
-import Divisions from '../components/Divisions';
-import IntegratedModel from '../components/IntegratedModel';
-import Industries from '../components/Industries';
 import TrustBand from '../components/TrustBand';
-import GlobalPresence from '../components/GlobalPresence';
+import Industries from '../components/Industries';
+
+const Divisions = lazy(() => import('../components/Divisions'));
+const IntegratedModel = lazy(() => import('../components/IntegratedModel'));
+const GlobalPresence = lazy(() => import('../components/GlobalPresence'));
 
 export default function Home() {
   return (
@@ -16,13 +18,19 @@ export default function Home() {
 
       <TrustBand />
 
-      <Divisions />
+      <Suspense fallback={<div style={{ minHeight: 600 }} />}>
+        <Divisions />
+      </Suspense>
 
-      <IntegratedModel />
+      <Suspense fallback={<div style={{ minHeight: 400 }} />}>
+        <IntegratedModel />
+      </Suspense>
 
       <Industries />
 
-      <GlobalPresence />
+      <Suspense fallback={<div style={{ minHeight: 500 }} />}>
+        <GlobalPresence />
+      </Suspense>
 
       <section className="cream-section eng-grid section-pad">
         <div className="container">

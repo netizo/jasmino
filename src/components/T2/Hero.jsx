@@ -35,7 +35,7 @@ export default function T2Hero({ data }) {
     // We can interpret `data.color` or just use a default dark blue theme for now to keep it premium.
 
     const bgStyle = {
-        background: 'linear-gradient(168deg, #070f1e 0%, #0c2240 35%, #143760 70%, #091520 100%)'
+        background: data.heroGradient || 'linear-gradient(168deg, #070f1e 0%, #0c2240 35%, #143760 70%, #091520 100%)'
     };
 
     return (
@@ -55,7 +55,7 @@ export default function T2Hero({ data }) {
 
                     <div className="hbadge">
                         <div className="hbadge-dot"></div>
-                        Division {data.num} — 4 Specialist Services
+                        Division {data.num} — {data.serviceCount || data.services.items.length} Specialist Services
                     </div>
 
                     <h1 className="htitle">

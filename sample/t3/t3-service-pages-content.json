@@ -1,0 +1,4318 @@
+{
+  "_meta": {
+    "template_file": "rubber-linings-v2.html",
+    "notes": [
+      "Use rubber-linings-v2.html as the HTML/CSS template. Replace content per page.",
+      "<em> tags render as italic green text in the template.",
+      "hero_photo: Unsplash w=1800&h=1200. evidence_strip: w=1800&h=800. gallery: w=1200&h=900 first, w=1000&h=900 rest.",
+      "Specs table ratings: rating_a=Excellent(green), rating_b=Good(blue), rating_c=Limited(orange), rating_x=N/A(gray).",
+      "Rubber Linings page is the BUILT template reference \u2014 NOT included here.",
+      "hero_num = position within parent division (01, 02, etc).",
+      "Process & Plant Design was previously built but should be rebuilt using this template for consistency."
+    ],
+    "template_sections": [
+      "S0: Hero \u2014 full viewport, canvas particles, bg photo, breadcrumb, badge, title, lead, 4-stat strip",
+      "Sibling Nav \u2014 division label + horizontal links, active state on current page",
+      "S1: Intro \u2014 editorial offset: prose left (overline, h2, paragraphs, pull quote), meta panel right (tag groups)",
+      "Evidence Strip \u2014 full-bleed photo with overlay text",
+      "S2: Materials/Capabilities \u2014 overline, h2, description, 2x2 card grid (symbol, title, subtitle, desc, tags, specs)",
+      "S3: Gallery \u2014 horizontal scroll, 5 slides with desaturated photos and captions",
+      "S4: Process Timeline \u2014 dark section, vertical numbered steps with spec pills",
+      "S5: Specs Table \u2014 data table with color-coded ratings",
+      "Integration Band \u2014 links to related services within Jasmino",
+      "S6: Case Study \u2014 full-bleed bg, title, description, 3 stat cards",
+      "S7: CTA \u2014 gradient band with headline + two buttons",
+      "Sticky Bar \u2014 service name + contact + buttons (fixed bottom)"
+    ],
+    "all_pages": [
+      "process-plant-design (Engineering Design \u2192 01)",
+      "equipment-design (Engineering Design \u2192 02)",
+      "piping-design (Engineering Design \u2192 03)",
+      "water-treatment (Engineering Design \u2192 04)",
+      "steel-equipment (Equipment Manufacturing \u2192 01)",
+      "plastic-frp-equipment (Equipment Manufacturing \u2192 02)",
+      "plastic-linings (Corrosion Protection \u2192 02)",
+      "coatings-resin-systems (Corrosion Protection \u2192 03)",
+      "inspection-repair (Corrosion Protection \u2192 04)",
+      "custom-compounds (Rubber Products \u2192 01)",
+      "engineered-products (Rubber Products \u2192 02)"
+    ]
+  },
+  "pages": [
+    {
+      "id": "process-plant-design",
+      "filename": "process-plant-design.html",
+      "page_title": "Process & Plant Design \u2014 Jasmino Engineering Design",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Engineering Design",
+          "Process & Plant Design"
+        ],
+        "badge_text": "EPCM Capability \u00b7 SP3D + ANSYS",
+        "title_html": "Process & Plant<br><em>Design</em>",
+        "lead": "Complete plant engineering from feasibility studies through detailed 3D modelling \u2014 with fabrication constraints built into every design decision from day one.",
+        "hero_num": "01",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "SP3D",
+            "label": "Primary Platform"
+          },
+          {
+            "num": "500+",
+            "label": "Projects Delivered"
+          },
+          {
+            "num": "5",
+            "label": "Design Codes"
+          },
+          {
+            "num": "100%",
+            "label": "In-House"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Engineering Design",
+        "links": [
+          {
+            "text": "Process & Plant",
+            "active": true
+          },
+          {
+            "text": "Equipment Design",
+            "active": false
+          },
+          {
+            "text": "Piping Design",
+            "active": false
+          },
+          {
+            "text": "Water Treatment",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Engineering plants that are designed to be <em>built</em>",
+        "paragraphs": [
+          "Jasmino's engineering team handles complete plant design from feasibility through detailed engineering. We work as EPCM contractors for small and medium-scale industrial plants across <strong>chemical, pharmaceutical, fertilizer, water treatment, and power</strong> sectors.",
+          "What separates our process engineering from a standalone consultancy: <strong>every design decision accounts for our own fabrication capabilities</strong>. Vessel nozzle orientations, piping routing, equipment spacing \u2014 all designed with manufacturing tolerances and lining access requirements in mind.",
+          "Our SP3D-based 3D modelling environment means the engineering deliverables go directly to our fabrication floor. No re-interpretation, no translation errors, no lost design intent."
+        ],
+        "pull_quote": {
+          "text": "Design for manufacturing \u2014 not just for approval. Every P&ID we issue can be built on our shop floor.",
+          "cite": "The Jasmino Engineering Principle"
+        },
+        "meta_panel": [
+          {
+            "label": "Key Deliverables",
+            "tags": [
+              "PFDs & P&IDs",
+              "3D Plant Models",
+              "Equipment Sizing",
+              "HAZOP Studies",
+              "Mass & Energy Balance",
+              "Plot Plans"
+            ]
+          },
+          {
+            "label": "Software Platforms",
+            "tags": [
+              "SP3D",
+              "ANSYS",
+              "CAESAR II",
+              "HTRI",
+              "PV Elite",
+              "AutoCAD"
+            ]
+          },
+          {
+            "label": "Design Codes",
+            "tags": [
+              "ASME",
+              "API",
+              "PED",
+              "IS",
+              "BS"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Engineering Office",
+        "title_html": "Where designs become <em>reality</em>",
+        "caption": "Jasmino Engineering \u00b7 India \u00b7 3D Modelling Centre"
+      },
+      "materials_section": {
+        "overline": "Core Capabilities",
+        "title_html": "From concept to <em>construction-ready</em> detail",
+        "description": "Our process engineering scope covers every phase of plant design \u2014 each delivered with fabrication awareness.",
+        "cards": [
+          {
+            "symbol": "PFD",
+            "title": "Process Design",
+            "subtitle": "Feasibility \u00b7 Simulation \u00b7 Optimisation",
+            "description": "Process flow development, mass and energy balance, simulation, and technology selection. We define the process before designing the plant around it.",
+            "tags": [
+              "Process Simulation",
+              "Mass Balance",
+              "Heat Integration"
+            ],
+            "specs": [
+              {
+                "label": "Deliverable",
+                "value": "PFDs"
+              },
+              {
+                "label": "Tools",
+                "value": "DWSIM"
+              }
+            ]
+          },
+          {
+            "symbol": "P&ID",
+            "title": "Detailed Engineering",
+            "subtitle": "P&IDs \u00b7 Specs \u00b7 Datasheets",
+            "description": "Piping and instrumentation diagrams, equipment datasheets, line lists, instrument lists, and control narratives. Every document production-ready.",
+            "tags": [
+              "P&IDs",
+              "Datasheets",
+              "Line Lists",
+              "Control"
+            ],
+            "specs": [
+              {
+                "label": "Platform",
+                "value": "SP3D"
+              },
+              {
+                "label": "Output",
+                "value": "IFC Docs"
+              }
+            ]
+          },
+          {
+            "symbol": "3D",
+            "title": "3D Plant Modelling",
+            "subtitle": "SP3D \u00b7 Clash Detection \u00b7 Walkthrough",
+            "description": "Full 3D intelligent plant models with automated clash detection, isometric extraction, and virtual walkthroughs for client review before fabrication begins.",
+            "tags": [
+              "SP3D",
+              "Clash Detection",
+              "Isometrics",
+              "MTO"
+            ],
+            "specs": [
+              {
+                "label": "Platform",
+                "value": "SP3D"
+              },
+              {
+                "label": "Extraction",
+                "value": "Auto ISO"
+              }
+            ]
+          },
+          {
+            "symbol": "HAZ",
+            "title": "Safety & Risk Studies",
+            "subtitle": "HAZOP \u00b7 HAZID \u00b7 SIL",
+            "description": "Hazard and operability studies, hazard identification, SIL classification, and relief valve sizing. Integrated into the design process \u2014 not bolted on after.",
+            "tags": [
+              "HAZOP",
+              "HAZID",
+              "SIL",
+              "Relief Sizing"
+            ],
+            "specs": [
+              {
+                "label": "Standard",
+                "value": "IEC 61511"
+              },
+              {
+                "label": "Scope",
+                "value": "Full HAZOP"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Engineering in <em>action</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1200&h=900&fit=crop",
+            "tag": "3D Model",
+            "text": "Complete Plant Model \u2014 SP3D",
+            "sub": "Chemical Plant \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "Fabrication",
+            "text": "Design-to-Shop Floor Transfer",
+            "sub": "Zero Re-interpretation"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Review",
+            "text": "Client Design Review Session",
+            "sub": "Virtual Walkthrough \u00b7 Pre-Build"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "P&ID",
+            "text": "Piping & Instrumentation Development",
+            "sub": "Detailed Engineering Phase"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "tag": "Delivery",
+            "text": "Commissioned Plant \u2014 Operational",
+            "sub": "Fertilizer Complex \u00b7 SE Asia"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Our Process",
+        "title_html": "Six phases from concept to <em>construction</em>",
+        "description": "A structured engineering workflow that accounts for fabrication and protection requirements from the earliest phase.",
+        "stat_big": "100%",
+        "stat_label": "In-house engineering",
+        "steps": [
+          {
+            "num": "Phase 01",
+            "title": "Feasibility & Concept",
+            "description": "Technology selection, preliminary mass balance, block flow diagrams, and project economics.",
+            "specs": []
+          },
+          {
+            "num": "Phase 02",
+            "title": "Basic Engineering",
+            "description": "PFDs, preliminary P&IDs, equipment sizing, plot plan development, and utility requirements.",
+            "specs": [
+              "PFDs",
+              "Equipment Sizing",
+              "Plot Plan"
+            ]
+          },
+          {
+            "num": "Phase 03",
+            "title": "Detailed Engineering",
+            "description": "Final P&IDs, equipment datasheets, 3D modelling, piping stress analysis, and instrumentation design. Full IFC documentation package.",
+            "specs": [
+              "SP3D",
+              "CAESAR II",
+              "IFC Package"
+            ]
+          },
+          {
+            "num": "Phase 04",
+            "title": "Procurement Support",
+            "description": "Technical bid evaluation, vendor drawing review, material requisitions. In-house fabrication items go directly to our shop floor.",
+            "specs": [
+              "MTO",
+              "Vendor Review"
+            ]
+          },
+          {
+            "num": "Phase 05",
+            "title": "Construction Support",
+            "description": "Site supervision, installation verification, pre-commissioning procedures, and as-built documentation.",
+            "specs": []
+          },
+          {
+            "num": "Phase 06",
+            "title": "Commissioning & Handover",
+            "description": "Operational testing, performance verification, training, and complete project documentation handover.",
+            "specs": [
+              "Performance Test",
+              "O&M Manuals"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Capabilities Matrix",
+        "title_html": "What we deliver at <em>each</em> phase",
+        "description": "Engineering deliverables mapped to project phases.",
+        "columns": [
+          "Deliverable",
+          "Basic Eng.",
+          "Detailed Eng.",
+          "Procurement",
+          "Construction"
+        ],
+        "rows": [
+          [
+            "Process Flow Diagrams",
+            "rating_a",
+            "rating_a",
+            "rating_x",
+            "rating_x"
+          ],
+          [
+            "P&IDs",
+            "rating_c",
+            "rating_a",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "3D Plant Model",
+            "rating_x",
+            "rating_a",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "Equipment Datasheets",
+            "rating_b",
+            "rating_a",
+            "rating_a",
+            "rating_x"
+          ],
+          [
+            "Piping Isometrics",
+            "rating_x",
+            "rating_a",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "Stress Analysis",
+            "rating_x",
+            "rating_a",
+            "rating_x",
+            "rating_x"
+          ],
+          [
+            "Material Take-Off",
+            "rating_c",
+            "rating_a",
+            "rating_a",
+            "rating_b"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Primary",
+          "rating_b": "Updated",
+          "rating_c": "Preliminary",
+          "rating_x": "\u2014"
+        }
+      },
+      "integration": {
+        "links": [
+          "Equipment Design",
+          "Piping Design",
+          "Equipment Manufacturing"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "Complete EPCM for 50 TPD<br>Sulphuric Acid <em>Plant</em>",
+        "description": "Full engineering package from process simulation through 3D modelling and construction support. 14-month delivery, on budget, zero design rework during fabrication.",
+        "stats": [
+          {
+            "num": "50",
+            "unit": "TPD",
+            "label": "Plant Capacity"
+          },
+          {
+            "num": "14",
+            "unit": "mo",
+            "label": "Project Duration"
+          },
+          {
+            "num": "0",
+            "unit": "",
+            "label": "Design Rework"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Have a plant <em>project?</em>",
+        "description": "Share your process requirements and we'll scope the engineering."
+      },
+      "sticky_bar": {
+        "name": "Process & Plant Design",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "equipment-design",
+      "filename": "equipment-design.html",
+      "page_title": "Equipment Design \u2014 Jasmino Engineering Design",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Engineering Design",
+          "Equipment Design"
+        ],
+        "badge_text": "ASME \u00b7 API \u00b7 PED Certified Design",
+        "title_html": "Equipment<br><em>Design</em>",
+        "lead": "Pressure vessels, heat exchangers, reactors, columns, and storage tanks \u2014 engineered to international codes with fabrication and lining requirements designed in from the start.",
+        "hero_num": "02",
+        "hero_photo_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "ASME",
+            "label": "U & R Stamps"
+          },
+          {
+            "num": "1000+",
+            "label": "Vessels Designed"
+          },
+          {
+            "num": "PV Elite",
+            "label": "Primary Platform"
+          },
+          {
+            "num": "3",
+            "label": "Code Systems"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Engineering Design",
+        "links": [
+          {
+            "text": "Process & Plant",
+            "active": false
+          },
+          {
+            "text": "Equipment Design",
+            "active": true
+          },
+          {
+            "text": "Piping Design",
+            "active": false
+          },
+          {
+            "text": "Water Treatment",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Designed for the code. Designed for the <em>shop floor.</em>",
+        "paragraphs": [
+          "Jasmino's equipment design team engineers pressure vessels, heat exchangers, reactors, columns, and storage tanks to <strong>ASME Section VIII, API 650/620, PED, IS 2825, and BS 5500</strong> standards.",
+          "Because our designers sit in the same office as our fabricators, <strong>every design decision accounts for manufacturing reality</strong> \u2014 weld access, rolling capacity, head forming limits, and lining geometry requirements.",
+          "For equipment requiring rubber or plastic lining, our design engineers coordinate with the corrosion protection team from day one \u2014 ensuring nozzle projections, internal access, and surface geometry support flawless lining application."
+        ],
+        "pull_quote": {
+          "text": "We don't design equipment that someone else has to figure out how to build. We design it \u2014 then we build it ourselves.",
+          "cite": "Integrated Design-to-Fabrication"
+        },
+        "meta_panel": [
+          {
+            "label": "Equipment Types",
+            "tags": [
+              "Pressure Vessels",
+              "Heat Exchangers",
+              "Reactors",
+              "Columns",
+              "Storage Tanks",
+              "Agitators"
+            ]
+          },
+          {
+            "label": "Design Codes",
+            "tags": [
+              "ASME VIII Div 1&2",
+              "API 650/620",
+              "PED 2014/68/EU",
+              "IS 2825",
+              "BS 5500"
+            ]
+          },
+          {
+            "label": "Software",
+            "tags": [
+              "PV Elite",
+              "HTRI",
+              "ANSYS",
+              "Compress",
+              "AutoCAD"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Design Office",
+        "title_html": "Where code meets <em>craft</em>",
+        "caption": "Jasmino Engineering \u00b7 Equipment Design Team"
+      },
+      "materials_section": {
+        "overline": "Equipment Categories",
+        "title_html": "Engineered to code, designed for <em>manufacturing</em>",
+        "description": "Each equipment type follows specific design codes and manufacturing constraints.",
+        "cards": [
+          {
+            "symbol": "PV",
+            "title": "Pressure Vessels",
+            "subtitle": "ASME VIII Div 1 & 2",
+            "description": "Vertical and horizontal vessels, columns, and reactors. Design pressures up to 350 bar, temperatures to 550\u00b0C. FEA for complex geometries.",
+            "tags": [
+              "ASME VIII",
+              "FEA",
+              "Cyclic Analysis"
+            ],
+            "specs": [
+              {
+                "label": "Max Pressure",
+                "value": "350 bar"
+              },
+              {
+                "label": "Max Temp",
+                "value": "550\u00b0C"
+              }
+            ]
+          },
+          {
+            "symbol": "HX",
+            "title": "Heat Exchangers",
+            "subtitle": "TEMA \u00b7 HTRI Rated",
+            "description": "Shell-and-tube, plate, air-cooled, and jacketed designs. Thermal rating, mechanical design, and vibration analysis under one roof.",
+            "tags": [
+              "TEMA",
+              "HTRI",
+              "Vibration Analysis"
+            ],
+            "specs": [
+              {
+                "label": "Software",
+                "value": "HTRI"
+              },
+              {
+                "label": "Types",
+                "value": "S&T, Plate"
+              }
+            ]
+          },
+          {
+            "symbol": "TK",
+            "title": "Storage Tanks",
+            "subtitle": "API 650 \u00b7 API 620",
+            "description": "Atmospheric and low-pressure storage tanks. Fixed roof, floating roof, and cone roof configurations with seismic and wind analysis.",
+            "tags": [
+              "API 650",
+              "API 620",
+              "Seismic"
+            ],
+            "specs": [
+              {
+                "label": "Standard",
+                "value": "API 650"
+              },
+              {
+                "label": "Analysis",
+                "value": "Seismic"
+              }
+            ]
+          },
+          {
+            "symbol": "RX",
+            "title": "Reactors & Columns",
+            "subtitle": "Custom Internals \u00b7 Lining-Ready",
+            "description": "Chemical reactors, distillation columns, absorption towers with internal distribution systems. Designed with lining access geometry.",
+            "tags": [
+              "Internals",
+              "Distribution",
+              "Lining-Ready"
+            ],
+            "specs": [
+              {
+                "label": "Feature",
+                "value": "Lining-Ready"
+              },
+              {
+                "label": "Internals",
+                "value": "Custom"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Designed & <em>delivered</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=900&fit=crop",
+            "tag": "Vessel",
+            "text": "Large Pressure Vessel \u2014 ASME VIII",
+            "sub": "Chemical Plant \u00b7 Middle East"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Heat Exchanger",
+            "text": "Shell & Tube Bundle \u2014 TEMA C",
+            "sub": "Petrochemical \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Reactor",
+            "text": "Agitated Reactor \u2014 Rubber Lined",
+            "sub": "Fertilizer Plant \u00b7 Africa"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "tag": "Column",
+            "text": "Absorption Column \u2014 FRP Internals",
+            "sub": "Water Treatment \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "tag": "Tank",
+            "text": "API 650 Storage Tank \u2014 5000m\u00b3",
+            "sub": "Chemical Storage \u00b7 SE Asia"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Design Process",
+        "title_html": "From datasheet to <em>shop-ready</em> drawings",
+        "description": "A structured design workflow with built-in manufacturing coordination.",
+        "stat_big": "0",
+        "stat_label": "Design rework on shop floor",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Design Basis & Data Review",
+            "description": "Process datasheet review, material selection, code determination. Design basis document issued for alignment.",
+            "specs": []
+          },
+          {
+            "num": "Step 02",
+            "title": "Mechanical Design Calculations",
+            "description": "Shell, head, nozzle, flange, and support calculations per applicable code. Wind, seismic, and operational load cases.",
+            "specs": [
+              "PV Elite",
+              "Compress",
+              "FEA"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Thermal Rating",
+            "description": "HTRI thermal rating for heat exchangers. Optimised for process duty while maintaining mechanical feasibility.",
+            "specs": [
+              "HTRI",
+              "TEMA"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "General Arrangement Drawings",
+            "description": "GA drawings with nozzle orientation, internals, supports, and lifting. Reviewed against fabrication and lining constraints.",
+            "specs": [
+              "AutoCAD",
+              "3D Model"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Detail & Shop Drawings",
+            "description": "Fabrication drawings with weld details, bill of materials, and cutting plans. Issued directly to Jasmino's manufacturing division.",
+            "specs": [
+              "BOM",
+              "Weld Map"
+            ]
+          },
+          {
+            "num": "Step 06",
+            "title": "Third-Party Approval",
+            "description": "Submission to T\u00dcV, BV, Lloyd's, or client-nominated TPI. Drawings revised and stamped for production.",
+            "specs": [
+              "T\u00dcV",
+              "BV",
+              "Lloyd's"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Design Capabilities",
+        "title_html": "Code coverage at a <em>glance</em>",
+        "description": "Equipment types and applicable design codes handled in-house.",
+        "columns": [
+          "Equipment Type",
+          "ASME VIII",
+          "API 650/620",
+          "PED",
+          "IS 2825"
+        ],
+        "rows": [
+          [
+            "Pressure Vessels",
+            "rating_a",
+            "rating_x",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Heat Exchangers",
+            "rating_a",
+            "rating_x",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "Storage Tanks",
+            "rating_b",
+            "rating_a",
+            "rating_b",
+            "rating_b"
+          ],
+          [
+            "Reactors",
+            "rating_a",
+            "rating_x",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Columns & Towers",
+            "rating_a",
+            "rating_x",
+            "rating_a",
+            "rating_b"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Full Capability",
+          "rating_b": "Supported",
+          "rating_c": "Limited",
+          "rating_x": "N/A"
+        }
+      },
+      "integration": {
+        "links": [
+          "Process & Plant Design",
+          "Piping Design",
+          "Equipment Manufacturing"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "316L Reactor Cluster \u2014<br>Design Through <em>Lining</em>",
+        "description": "Four agitated reactors designed, fabricated, and rubber-lined for a phosphoric acid plant. Lining access geometry designed into the vessel from the first GA drawing.",
+        "stats": [
+          {
+            "num": "4",
+            "unit": "nos",
+            "label": "Reactors Delivered"
+          },
+          {
+            "num": "316L",
+            "unit": "",
+            "label": "Material Grade"
+          },
+          {
+            "num": "0",
+            "unit": "",
+            "label": "Shop Floor Queries"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need equipment <em>designed?</em>",
+        "description": "Share your process datasheet and we'll provide a design proposal."
+      },
+      "sticky_bar": {
+        "name": "Equipment Design",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "piping-design",
+      "filename": "piping-design.html",
+      "page_title": "Piping Design \u2014 Jasmino Engineering Design",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Engineering Design",
+          "Piping Design"
+        ],
+        "badge_text": "SP3D + CAESAR II \u00b7 Full Stress Analysis",
+        "title_html": "Piping<br><em>Design</em>",
+        "lead": "3D piping layout, stress analysis, and isometric extraction \u2014 all from the same SP3D model that drives our fabrication. Zero translation between design and shop floor.",
+        "hero_num": "03",
+        "hero_photo_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "SP3D",
+            "label": "3D Platform"
+          },
+          {
+            "num": "CAESAR",
+            "label": "Stress Analysis"
+          },
+          {
+            "num": "Auto",
+            "label": "ISO Extraction"
+          },
+          {
+            "num": "MTO",
+            "label": "Auto-Generated"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Engineering Design",
+        "links": [
+          {
+            "text": "Process & Plant",
+            "active": false
+          },
+          {
+            "text": "Equipment Design",
+            "active": false
+          },
+          {
+            "text": "Piping Design",
+            "active": true
+          },
+          {
+            "text": "Water Treatment",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Every pipe knows where it's <em>going</em>",
+        "paragraphs": [
+          "Piping design at Jasmino starts in the same 3D model as the process and equipment design \u2014 <strong>SP3D</strong>. Piping routes are designed with full awareness of equipment nozzle locations, structural steel, cable trays, and access requirements.",
+          "Our piping stress engineers use <strong>CAESAR II</strong> for static and dynamic analysis, ensuring every line meets code requirements for thermal expansion, weight, wind, and seismic loading.",
+          "Because we fabricate our own pipe spools, <strong>the isometrics extracted from our 3D model go directly to our shop floor</strong>. Material take-offs are auto-generated \u2014 no spreadsheet errors, no manual re-entry."
+        ],
+        "pull_quote": {
+          "text": "The same model that generates the isometric also generates the shop cutting list. That's integration.",
+          "cite": "SP3D to Shop Floor"
+        },
+        "meta_panel": [
+          {
+            "label": "Deliverables",
+            "tags": [
+              "3D Piping Model",
+              "Isometrics",
+              "Stress Analysis",
+              "Support Design",
+              "MTO",
+              "Line Lists"
+            ]
+          },
+          {
+            "label": "Software",
+            "tags": [
+              "SP3D",
+              "CAESAR II",
+              "Navisworks",
+              "AutoCAD"
+            ]
+          },
+          {
+            "label": "Codes",
+            "tags": [
+              "ASME B31.1",
+              "ASME B31.3",
+              "EN 13480",
+              "IBR"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1800&h=800&fit=crop&crop=center",
+        "tag": "3D Model",
+        "title_html": "Intelligent piping in <em>three dimensions</em>",
+        "caption": "SP3D Model \u00b7 Clash-Free \u00b7 Auto ISO Extraction"
+      },
+      "materials_section": {
+        "overline": "Service Scope",
+        "title_html": "Complete piping engineering <em>in-house</em>",
+        "description": "From routing through stress analysis to fabrication support.",
+        "cards": [
+          {
+            "symbol": "3D",
+            "title": "3D Piping Layout",
+            "subtitle": "SP3D \u00b7 Clash Detection",
+            "description": "Intelligent 3D piping routing with automatic clash detection against equipment, structural, electrical, and instrumentation models.",
+            "tags": [
+              "SP3D",
+              "Clash Free",
+              "Navisworks"
+            ],
+            "specs": [
+              {
+                "label": "Platform",
+                "value": "SP3D"
+              },
+              {
+                "label": "Clash",
+                "value": "Auto"
+              }
+            ]
+          },
+          {
+            "symbol": "\u03c3",
+            "title": "Stress Analysis",
+            "subtitle": "CAESAR II \u00b7 Static & Dynamic",
+            "description": "Thermal expansion, sustained loads, occasional loads (wind/seismic), and dynamic analysis for vibration-sensitive lines.",
+            "tags": [
+              "CAESAR II",
+              "Thermal",
+              "Seismic",
+              "Dynamic"
+            ],
+            "specs": [
+              {
+                "label": "Software",
+                "value": "CAESAR II"
+              },
+              {
+                "label": "Code",
+                "value": "B31.3"
+              }
+            ]
+          },
+          {
+            "symbol": "ISO",
+            "title": "Isometric Extraction",
+            "subtitle": "Auto-Generated \u00b7 Shop-Ready",
+            "description": "Isometric drawings auto-extracted from the 3D model with complete BOM, weld counts, and fabrication notes. Direct to shop floor.",
+            "tags": [
+              "Auto ISO",
+              "BOM",
+              "Weld Count"
+            ],
+            "specs": [
+              {
+                "label": "Output",
+                "value": "Auto ISO"
+              },
+              {
+                "label": "Includes",
+                "value": "Full BOM"
+              }
+            ]
+          },
+          {
+            "symbol": "SUP",
+            "title": "Support Design",
+            "subtitle": "Spring Hangers \u00b7 Guides \u00b7 Anchors",
+            "description": "Pipe support design coordinated with stress analysis results. Spring selection, guide spacing, and anchor load calculations.",
+            "tags": [
+              "Springs",
+              "Guides",
+              "Anchors",
+              "Shoes"
+            ],
+            "specs": [
+              {
+                "label": "Types",
+                "value": "All"
+              },
+              {
+                "label": "Selection",
+                "value": "Per Stress"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Piping <em>delivered</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=900&fit=crop",
+            "tag": "3D Model",
+            "text": "Full Plant Piping Model \u2014 SP3D",
+            "sub": "Chemical Complex \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "Fabrication",
+            "text": "Pipe Spool Fabrication from 3D",
+            "sub": "In-House \u00b7 Jasmino India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Stress",
+            "text": "CAESAR II Stress Model",
+            "sub": "High-Temperature Steam Line"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Site",
+            "text": "Installed Piping \u2014 Commissioning",
+            "sub": "Power Plant \u00b7 SE Asia"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "tag": "ISO",
+            "text": "Auto-Extracted Isometrics",
+            "sub": "SP3D \u2192 Shop Floor"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Workflow",
+        "title_html": "From P&ID to <em>installed</em> piping",
+        "description": "Structured piping design workflow with built-in fabrication coordination.",
+        "stat_big": "Auto",
+        "stat_label": "ISO extraction from 3D model",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Line List & Spec Development",
+            "description": "Line list from P&IDs, piping class and material specification development, valve and fitting selection.",
+            "specs": [
+              "Line List",
+              "Pipe Specs"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "3D Routing & Layout",
+            "description": "Pipe routing in SP3D with clash detection against all disciplines. Equipment nozzle connections verified in 3D.",
+            "specs": [
+              "SP3D",
+              "Clash Check"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Stress Analysis",
+            "description": "CAESAR II stress analysis for all critical lines. Support locations and types defined from stress output.",
+            "specs": [
+              "CAESAR II",
+              "B31.3/B31.1"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Isometric & MTO Extraction",
+            "description": "Auto-extraction of fabrication isometrics and material take-off from the 3D model.",
+            "specs": [
+              "Auto ISO",
+              "Auto MTO"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Fabrication & Installation Support",
+            "description": "Shop queries resolved from the 3D model. Site supervision for installation verification.",
+            "specs": []
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Piping Codes",
+        "title_html": "Code coverage by <em>service</em>",
+        "description": "Piping design and stress analysis capabilities across applicable codes.",
+        "columns": [
+          "Service",
+          "ASME B31.3",
+          "ASME B31.1",
+          "EN 13480",
+          "IBR"
+        ],
+        "rows": [
+          [
+            "Process Piping",
+            "rating_a",
+            "rating_x",
+            "rating_a",
+            "rating_x"
+          ],
+          [
+            "Power Piping",
+            "rating_x",
+            "rating_a",
+            "rating_b",
+            "rating_a"
+          ],
+          [
+            "Utility Piping",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "FRP/Plastic Piping",
+            "rating_a",
+            "rating_x",
+            "rating_b",
+            "rating_x"
+          ],
+          [
+            "Underground Piping",
+            "rating_a",
+            "rating_x",
+            "rating_b",
+            "rating_x"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Full Capability",
+          "rating_b": "Supported",
+          "rating_c": "Limited",
+          "rating_x": "N/A"
+        }
+      },
+      "integration": {
+        "links": [
+          "Process & Plant Design",
+          "Equipment Design",
+          "Equipment Manufacturing"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "Complete Piping Package \u2014<br>Phosphoric Acid <em>Complex</em>",
+        "description": "Full 3D piping design for a greenfield phosphoric acid plant. 2,400+ isometrics auto-extracted from SP3D model. Zero rework during construction.",
+        "stats": [
+          {
+            "num": "2,400",
+            "unit": "+",
+            "label": "Isometrics Extracted"
+          },
+          {
+            "num": "SP3D",
+            "unit": "",
+            "label": "Platform"
+          },
+          {
+            "num": "0",
+            "unit": "",
+            "label": "Construction Rework"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need piping <em>designed?</em>",
+        "description": "Share your P&IDs and we'll scope the piping engineering."
+      },
+      "sticky_bar": {
+        "name": "Piping Design",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "water-treatment",
+      "filename": "water-treatment.html",
+      "page_title": "Water Treatment \u2014 Jasmino Engineering Design",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Engineering Design",
+          "Water Treatment"
+        ],
+        "badge_text": "ETP \u00b7 STP \u00b7 DM \u00b7 RO \u00b7 UF \u00b7 ZLD",
+        "title_html": "Water<br><em>Treatment</em>",
+        "lead": "Complete water and wastewater treatment plant engineering \u2014 from process design through equipment supply. ETP, STP, DM, RO, UF, and zero liquid discharge systems.",
+        "hero_num": "04",
+        "hero_photo_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "ETP/STP",
+            "label": "Specialisation"
+          },
+          {
+            "num": "ZLD",
+            "label": "Zero Liquid Discharge"
+          },
+          {
+            "num": "100+",
+            "label": "Plants Delivered"
+          },
+          {
+            "num": "FRP",
+            "label": "In-House Fabrication"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Engineering Design",
+        "links": [
+          {
+            "text": "Process & Plant",
+            "active": false
+          },
+          {
+            "text": "Equipment Design",
+            "active": false
+          },
+          {
+            "text": "Piping Design",
+            "active": false
+          },
+          {
+            "text": "Water Treatment",
+            "active": true
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Treating water with <em>process intelligence</em>",
+        "paragraphs": [
+          "Water treatment at Jasmino isn't a standalone business \u2014 it's an extension of our process engineering capability. We design and supply complete <strong>ETP, STP, DM, RO, UF, and ZLD systems</strong> for industrial clients.",
+          "The advantage: the treatment equipment \u2014 <strong>FRP tanks, PP vessels, rubber-lined steel tanks</strong> \u2014 is all fabricated in-house. No sourcing delays, no third-party quality risks.",
+          "We handle everything from <strong>treatability studies and process simulation through detailed engineering, equipment supply, and commissioning support</strong>. One contract, one point of accountability."
+        ],
+        "pull_quote": {
+          "text": "The treatment tanks, the FRP vessels, the rubber-lined equipment \u2014 we design and manufacture all of it in-house.",
+          "cite": "Integrated Water Treatment"
+        },
+        "meta_panel": [
+          {
+            "label": "System Types",
+            "tags": [
+              "ETP",
+              "STP",
+              "DM Plant",
+              "RO",
+              "UF",
+              "ZLD",
+              "Softening",
+              "Deaeration"
+            ]
+          },
+          {
+            "label": "In-House Equipment",
+            "tags": [
+              "FRP Tanks",
+              "PP Vessels",
+              "Rubber-Lined Tanks",
+              "Piping",
+              "Structural"
+            ]
+          },
+          {
+            "label": "Industries",
+            "tags": [
+              "Chemical",
+              "Pharma",
+              "Power",
+              "Textile",
+              "Food & Beverage"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Delivered Project",
+        "title_html": "Clean water, <em>engineered</em> right",
+        "caption": "ZLD System \u00b7 Chemical Plant \u00b7 India"
+      },
+      "materials_section": {
+        "overline": "Treatment Systems",
+        "title_html": "Every stage of water <em>treatment</em>",
+        "description": "From primary treatment through polishing and zero liquid discharge.",
+        "cards": [
+          {
+            "symbol": "ETP",
+            "title": "Effluent Treatment",
+            "subtitle": "Industrial Wastewater",
+            "description": "Complete ETP design for chemical, pharmaceutical, and industrial effluents. Physical, chemical, and biological treatment stages sized for compliance.",
+            "tags": [
+              "Neutralisation",
+              "Clarification",
+              "Biological",
+              "Filtration"
+            ],
+            "specs": [
+              {
+                "label": "Compliance",
+                "value": "PCB/CPCB"
+              },
+              {
+                "label": "Scope",
+                "value": "Turnkey"
+              }
+            ]
+          },
+          {
+            "symbol": "RO",
+            "title": "Membrane Systems",
+            "subtitle": "RO \u00b7 UF \u00b7 NF",
+            "description": "Reverse osmosis, ultrafiltration, and nanofiltration systems. Process design, membrane selection, and skid fabrication.",
+            "tags": [
+              "RO",
+              "UF",
+              "NF",
+              "Membrane Selection"
+            ],
+            "specs": [
+              {
+                "label": "Recovery",
+                "value": "85\u201395%"
+              },
+              {
+                "label": "Equipment",
+                "value": "In-House"
+              }
+            ]
+          },
+          {
+            "symbol": "DM",
+            "title": "Demineralisation",
+            "subtitle": "Ion Exchange \u00b7 EDI",
+            "description": "Conventional DM plants with cation, anion, and mixed-bed exchangers. EDI for high-purity applications. In-house FRP/rubber-lined vessels.",
+            "tags": [
+              "Ion Exchange",
+              "EDI",
+              "Mixed Bed"
+            ],
+            "specs": [
+              {
+                "label": "Purity",
+                "value": "<0.1 \u00b5S"
+              },
+              {
+                "label": "Vessels",
+                "value": "In-House"
+              }
+            ]
+          },
+          {
+            "symbol": "ZLD",
+            "title": "Zero Liquid Discharge",
+            "subtitle": "Evaporation \u00b7 Crystallisation",
+            "description": "ZLD systems combining membrane concentration, evaporation, and crystallisation. Designed to meet zero effluent discharge requirements.",
+            "tags": [
+              "MEE",
+              "MVR",
+              "Crystalliser",
+              "ATFD"
+            ],
+            "specs": [
+              {
+                "label": "Recovery",
+                "value": "99%+"
+              },
+              {
+                "label": "Output",
+                "value": "Dry Salt"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Water treatment <em>delivered</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=900&fit=crop",
+            "tag": "ETP",
+            "text": "Effluent Treatment Plant",
+            "sub": "200 m\u00b3/day \u00b7 Chemical"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "RO",
+            "text": "RO Plant \u2014 Brackish Water",
+            "sub": "50 m\u00b3/hr \u00b7 Pharma"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "ZLD",
+            "text": "Zero Liquid Discharge System",
+            "sub": "Textile \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "FRP",
+            "text": "FRP Vessels \u2014 In-House",
+            "sub": "DM Plant Equipment"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "tag": "Commission",
+            "text": "Commissioning & Performance Test",
+            "sub": "STP \u00b7 Food & Beverage"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Project Lifecycle",
+        "title_html": "From raw effluent data to <em>compliant</em> discharge",
+        "description": "A structured approach to water treatment project delivery.",
+        "stat_big": "100+",
+        "stat_label": "Systems delivered",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Treatability Study",
+            "description": "Effluent characterisation, jar testing, pilot trials where required.",
+            "specs": [
+              "Jar Test",
+              "Pilot Trial"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Process Design",
+            "description": "Treatment scheme development, mass balance, equipment sizing, and hydraulic profile.",
+            "specs": [
+              "Mass Balance",
+              "Hydraulics"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Detailed Engineering",
+            "description": "Equipment datasheets, GA drawings, P&IDs, instrumentation, and control philosophy.",
+            "specs": [
+              "P&IDs",
+              "GAs",
+              "Control"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Equipment Supply",
+            "description": "FRP tanks, PP vessels, rubber-lined tanks, piping \u2014 all fabricated in-house.",
+            "specs": [
+              "FRP",
+              "PP",
+              "Rubber-Lined"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Erection & Commissioning",
+            "description": "Site supervision, wet testing, biological seeding, and performance testing.",
+            "specs": [
+              "Performance Test"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Treatment Capabilities",
+        "title_html": "System types by <em>application</em>",
+        "description": "Treatment technologies matched to application requirements.",
+        "columns": [
+          "Parameter",
+          "ETP",
+          "RO/UF",
+          "DM",
+          "ZLD"
+        ],
+        "rows": [
+          [
+            "Process Design",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Equipment Supply",
+            "rating_a",
+            "rating_b",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "In-House Fabrication",
+            "rating_a",
+            "rating_c",
+            "rating_a",
+            "rating_c"
+          ],
+          [
+            "Commissioning",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "O&M Support",
+            "rating_b",
+            "rating_b",
+            "rating_b",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Full Scope",
+          "rating_b": "Supported",
+          "rating_c": "Partial",
+          "rating_x": "\u2014"
+        }
+      },
+      "integration": {
+        "links": [
+          "Process & Plant Design",
+          "Plastic & FRP Equipment",
+          "Steel Equipment"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "Zero Liquid Discharge \u2014<br>Chemical <em>Complex</em>",
+        "description": "Complete ZLD system for a dye intermediate manufacturer. 150 m\u00b3/day effluent treated to zero discharge with salt recovery.",
+        "stats": [
+          {
+            "num": "150",
+            "unit": "m\u00b3/day",
+            "label": "Treatment Capacity"
+          },
+          {
+            "num": "0",
+            "unit": "",
+            "label": "Liquid Discharge"
+          },
+          {
+            "num": "In-House",
+            "unit": "",
+            "label": "All Equipment"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need water treatment <em>solutions?</em>",
+        "description": "Share your effluent data and we'll design the treatment system."
+      },
+      "sticky_bar": {
+        "name": "Water Treatment",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "steel-equipment",
+      "filename": "steel-equipment.html",
+      "page_title": "Steel Equipment \u2014 Jasmino Equipment Manufacturing",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Equipment Manufacturing",
+          "Steel Equipment"
+        ],
+        "badge_text": "ASME U & R Stamps \u00b7 80,000+ m\u00b2 Facility",
+        "title_html": "Steel<br><em>Equipment</em>",
+        "lead": "Pressure vessels, heat exchangers, reactors, columns, and storage tanks fabricated to ASME, API, and PED standards \u2014 on one of the largest integrated shop floors in the sector.",
+        "hero_num": "01",
+        "hero_photo_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "80K+",
+            "label": "m\u00b2 Shop Floor"
+          },
+          {
+            "num": "ASME",
+            "label": "U & R Stamps"
+          },
+          {
+            "num": "60T",
+            "label": "Max Lift Capacity"
+          },
+          {
+            "num": "100+",
+            "label": "Welders"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Equipment Manufacturing",
+        "links": [
+          {
+            "text": "Steel Equipment",
+            "active": true
+          },
+          {
+            "text": "Plastic & FRP",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "From raw plate to <em>tested</em> equipment",
+        "paragraphs": [
+          "Jasmino's steel fabrication facility handles the complete cycle \u2014 <strong>cutting, rolling, forming, welding, machining, heat treatment, and testing</strong> \u2014 all under one roof.",
+          "With <strong>ASME U and R stamps, PED certification, and T\u00dcV/BV approved procedures</strong>, we fabricate to international standards at competitive lead times.",
+          "Our facility: 60-tonne cranes, 4m rolling capacity, in-house stress relieving furnace, and radiography facilities."
+        ],
+        "pull_quote": {
+          "text": "The same company that designed your vessel fabricates it. The same company that fabricates it lines it. One roof.",
+          "cite": "The Jasmino Advantage"
+        },
+        "meta_panel": [
+          {
+            "label": "Equipment Types",
+            "tags": [
+              "Pressure Vessels",
+              "Heat Exchangers",
+              "Reactors",
+              "Columns",
+              "Storage Tanks",
+              "Pipe Spools"
+            ]
+          },
+          {
+            "label": "Certifications",
+            "tags": [
+              "ASME U Stamp",
+              "ASME R Stamp",
+              "PED 2014/68/EU",
+              "ISO 9001",
+              "ISO 3834-2"
+            ]
+          },
+          {
+            "label": "Materials",
+            "tags": [
+              "Carbon Steel",
+              "SS 304/316",
+              "Duplex",
+              "Hastelloy",
+              "Inconel",
+              "Titanium"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Shop Floor",
+        "title_html": "Heavy fabrication, <em>precision</em> standards",
+        "caption": "Jasmino India \u00b7 80,000+ m\u00b2 \u00b7 ASME U & R Stamped"
+      },
+      "materials_section": {
+        "overline": "Fabrication Capabilities",
+        "title_html": "What we build on the <em>shop floor</em>",
+        "description": "Heavy and medium fabrication across all major equipment types.",
+        "cards": [
+          {
+            "symbol": "PV",
+            "title": "Pressure Vessels",
+            "subtitle": "ASME VIII \u00b7 Up to 350 bar",
+            "description": "Carbon steel, stainless, duplex, and exotic alloys. In-house PWHT and radiography.",
+            "tags": [
+              "ASME VIII",
+              "PWHT",
+              "RT/UT"
+            ],
+            "specs": [
+              {
+                "label": "Max Pressure",
+                "value": "350 bar"
+              },
+              {
+                "label": "Max Dia",
+                "value": "5m"
+              }
+            ]
+          },
+          {
+            "symbol": "HX",
+            "title": "Heat Exchangers",
+            "subtitle": "TEMA \u00b7 Fixed & Floating",
+            "description": "Fixed tubesheet, floating head, U-tube, and kettle reboilers. Helium leak tested.",
+            "tags": [
+              "TEMA",
+              "Floating Head",
+              "He Leak"
+            ],
+            "specs": [
+              {
+                "label": "Tube Count",
+                "value": "2000+"
+              },
+              {
+                "label": "Testing",
+                "value": "He Leak"
+              }
+            ]
+          },
+          {
+            "symbol": "TK",
+            "title": "Storage Tanks",
+            "subtitle": "API 650 \u00b7 Field Erected",
+            "description": "Shop-built and field-erected tanks to API 650. Jacking erection for large diameters.",
+            "tags": [
+              "API 650",
+              "Field Erect",
+              "Jacking"
+            ],
+            "specs": [
+              {
+                "label": "Max Volume",
+                "value": "10,000 m\u00b3"
+              },
+              {
+                "label": "Erection",
+                "value": "Jacking"
+              }
+            ]
+          },
+          {
+            "symbol": "SP",
+            "title": "Pipe Spools & Structures",
+            "subtitle": "ISO 3834-2 \u00b7 Auto Welding",
+            "description": "Pipe spool fabrication from isometrics. Structural steel with hot-dip galvanising.",
+            "tags": [
+              "ISO 3834-2",
+              "Auto Weld",
+              "HDG"
+            ],
+            "specs": [
+              {
+                "label": "Welding",
+                "value": "SAW/GMAW"
+              },
+              {
+                "label": "Coating",
+                "value": "HDG"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Built to <em>code</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=900&fit=crop",
+            "tag": "Vessel",
+            "text": "Pressure Vessel \u2014 Hydrotest",
+            "sub": "ASME VIII \u00b7 80 bar \u00b7 SS316"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Rolling",
+            "text": "4m Plate Rolling",
+            "sub": "50mm Plate \u00b7 Carbon Steel"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Welding",
+            "text": "SAW Longitudinal Weld",
+            "sub": "Auto Welding \u00b7 RT Inspected"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "tag": "PWHT",
+            "text": "In-House Stress Relieving",
+            "sub": "Post-Weld Heat Treatment"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "tag": "Dispatch",
+            "text": "Equipment for Dispatch",
+            "sub": "Heavy Transport \u00b7 Export"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Manufacturing Process",
+        "title_html": "From raw material to <em>tested</em> equipment",
+        "description": "Controlled fabrication with in-house capabilities at every stage.",
+        "stat_big": "100%",
+        "stat_label": "In-house fabrication",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Material Procurement & ID",
+            "description": "Plate, forgings, and fittings procured to approved MTCs. PMI on all alloy materials.",
+            "specs": [
+              "PMI",
+              "MTC Verified"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Cutting, Rolling & Forming",
+            "description": "CNC plasma/oxy-fuel cutting, plate rolling up to 4m diameter, head forming.",
+            "specs": [
+              "CNC Cut",
+              "4m Rolling"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Fit-Up & Welding",
+            "description": "SAW, GMAW, GTAW, SMAW per approved WPS/PQR. Qualified welders per ASME IX.",
+            "specs": [
+              "ASME IX",
+              "SAW",
+              "GTAW"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "NDE & Heat Treatment",
+            "description": "RT, UT, MT, PT, hardness. In-house PWHT furnace. ASNT Level II/III certified.",
+            "specs": [
+              "RT",
+              "UT",
+              "PWHT"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Hydrostatic Testing",
+            "description": "Pressure testing per code. Test packs witnessed by TPI.",
+            "specs": [
+              "Witnessed",
+              "Documented"
+            ]
+          },
+          {
+            "num": "Step 06",
+            "title": "Surface Prep & Lining Handover",
+            "description": "Equipment requiring lining blast-cleaned and handed to corrosion protection \u2014 same facility.",
+            "specs": [
+              "Sa 2\u00bd",
+              "Direct Handover"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Shop Capabilities",
+        "title_html": "What our facility can <em>handle</em>",
+        "description": "Key manufacturing capabilities.",
+        "columns": [
+          "Capability",
+          "Specification",
+          "Capacity",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Plate Rolling",
+            "Up to 4m dia",
+            "50mm thick",
+            "rating_a"
+          ],
+          [
+            "Head Forming",
+            "Dished/Ellipsoidal",
+            "Up to 5m",
+            "rating_a"
+          ],
+          [
+            "SAW Welding",
+            "Long. & Circ.",
+            "Auto",
+            "rating_a"
+          ],
+          [
+            "PWHT Furnace",
+            "In-house",
+            "6m\u00d74m\u00d74m",
+            "rating_a"
+          ],
+          [
+            "Radiography",
+            "Ir & Co",
+            "In-house",
+            "rating_a"
+          ],
+          [
+            "Cranes",
+            "Multiple bays",
+            "60 tonne",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "In-House",
+          "rating_b": "Supported",
+          "rating_c": "Outsourced",
+          "rating_x": "N/A"
+        }
+      },
+      "integration": {
+        "links": [
+          "Equipment Design",
+          "Rubber Linings",
+          "Plastic Linings"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "12 Pressure Vessels \u2014<br>Phosphoric Acid <em>Plant</em>",
+        "description": "12 vessels in SS316L, all rubber-lined in-house. Design, fabrication, and lining under one contract.",
+        "stats": [
+          {
+            "num": "12",
+            "unit": "nos",
+            "label": "Vessels Fabricated"
+          },
+          {
+            "num": "316L",
+            "unit": "",
+            "label": "Material Grade"
+          },
+          {
+            "num": "100%",
+            "unit": "",
+            "label": "Lined In-House"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need steel equipment <em>fabricated?</em>",
+        "description": "Share your datasheets and we'll provide a manufacturing proposal."
+      },
+      "sticky_bar": {
+        "name": "Steel Equipment",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "plastic-frp-equipment",
+      "filename": "plastic-frp-equipment.html",
+      "page_title": "Plastic & FRP Equipment \u2014 Jasmino Equipment Manufacturing",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Equipment Manufacturing",
+          "Plastic & FRP Equipment"
+        ],
+        "badge_text": "FRP \u00b7 PP \u00b7 PVDF \u00b7 HDPE \u00b7 PVC",
+        "title_html": "Plastic & FRP<br><em>Equipment</em>",
+        "lead": "Corrosion-resistant equipment in fibre-reinforced plastic, polypropylene, PVDF, HDPE, and PVC \u2014 for environments where metal won't survive.",
+        "hero_num": "02",
+        "hero_photo_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "FRP",
+            "label": "Primary Material"
+          },
+          {
+            "num": "6m",
+            "label": "Max Diameter"
+          },
+          {
+            "num": "50K+",
+            "label": "m\u00b2 Facility"
+          },
+          {
+            "num": "BS 4994",
+            "label": "Standard"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Equipment Manufacturing",
+        "links": [
+          {
+            "text": "Steel Equipment",
+            "active": false
+          },
+          {
+            "text": "Plastic & FRP",
+            "active": true
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "When steel can't handle the <em>chemistry</em>",
+        "paragraphs": [
+          "For highly aggressive environments \u2014 <strong>plastic and FRP offers superior corrosion resistance</strong> at a fraction of exotic alloy weight.",
+          "We manufacture <strong>FRP vessels, tanks, ducts, scrubbers, and piping</strong> to BS 4994 and ASME RTP-1.",
+          "Because we also line steel equipment, <strong>we recommend the right material</strong> \u2014 FRP, lined steel, or plastic \u2014 based on your conditions."
+        ],
+        "pull_quote": {
+          "text": "We don't default to one material. We recommend the right solution based on your process conditions.",
+          "cite": "Material-Agnostic Engineering"
+        },
+        "meta_panel": [
+          {
+            "label": "Materials",
+            "tags": [
+              "FRP/GRP",
+              "PP",
+              "PVDF",
+              "HDPE",
+              "PVC",
+              "ECTFE"
+            ]
+          },
+          {
+            "label": "Equipment Types",
+            "tags": [
+              "Tanks & Vessels",
+              "Scrubbers",
+              "Ducts & Hoods",
+              "Piping",
+              "Stacks",
+              "Launders"
+            ]
+          },
+          {
+            "label": "Standards",
+            "tags": [
+              "BS 4994",
+              "ASME RTP-1",
+              "DVS 2205",
+              "EN 13121"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1800&h=800&fit=crop&crop=center",
+        "tag": "FRP Workshop",
+        "title_html": "Composite fabrication at <em>scale</em>",
+        "caption": "Jasmino India \u00b7 FRP Division \u00b7 50,000+ m\u00b2"
+      },
+      "materials_section": {
+        "overline": "Material Systems",
+        "title_html": "Right material for the <em>right</em> environment",
+        "description": "Each polymer system offers specific advantages.",
+        "cards": [
+          {
+            "symbol": "FRP",
+            "title": "Fibre-Reinforced Plastic",
+            "subtitle": "Vinyl Ester \u00b7 Polyester \u00b7 Epoxy",
+            "description": "Hand layup, filament winding. Vinyl ester and polyester resin with E/C/ECR glass.",
+            "tags": [
+              "Vinyl Ester",
+              "Hand Layup",
+              "Filament Wound"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "120\u00b0C"
+              },
+              {
+                "label": "Max Dia",
+                "value": "6m"
+              }
+            ]
+          },
+          {
+            "symbol": "PP",
+            "title": "Polypropylene",
+            "subtitle": "Welded \u00b7 Thermoformed",
+            "description": "Hot-gas and extrusion welded PP tanks, vessels, and piping for acid environments.",
+            "tags": [
+              "Hot-Gas Weld",
+              "Extrusion Weld",
+              "Plating"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "100\u00b0C"
+              },
+              {
+                "label": "Welding",
+                "value": "DVS"
+              }
+            ]
+          },
+          {
+            "symbol": "PVDF",
+            "title": "PVDF",
+            "subtitle": "High-Purity \u00b7 Ultra-Clean",
+            "description": "PVDF piping and vessels for semiconductor, pharmaceutical, and high-purity applications.",
+            "tags": [
+              "High-Purity",
+              "Pharma",
+              "Semiconductor"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "140\u00b0C"
+              },
+              {
+                "label": "Purity",
+                "value": "Ultra"
+              }
+            ]
+          },
+          {
+            "symbol": "DL",
+            "title": "Dual Laminate",
+            "subtitle": "Thermoplastic + FRP Structural",
+            "description": "Thermoplastic liner backed with FRP structural shell. Chemical resistance plus strength.",
+            "tags": [
+              "PP/FRP",
+              "PVDF/FRP",
+              "ECTFE/FRP"
+            ],
+            "specs": [
+              {
+                "label": "Liner",
+                "value": "Thermo"
+              },
+              {
+                "label": "Shell",
+                "value": "FRP"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Composite equipment <em>in production</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1200&h=900&fit=crop",
+            "tag": "FRP Vessel",
+            "text": "Large FRP Tank \u2014 Filament Wound",
+            "sub": "6m Dia \u00b7 Chemical Storage"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "PP Tank",
+            "text": "PP Welded Tank \u2014 Plating Line",
+            "sub": "DVS Certified"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Scrubber",
+            "text": "FRP Scrubber \u2014 Fume Extraction",
+            "sub": "Chemical \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "tag": "Duct",
+            "text": "FRP Ducting \u2014 FGD",
+            "sub": "Power Plant \u00b7 Africa"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "tag": "Dual Lam",
+            "text": "PVDF/FRP Dual Laminate",
+            "sub": "Pharma \u00b7 Europe"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Fabrication Process",
+        "title_html": "From resin to <em>tested</em> equipment",
+        "description": "Quality-controlled composite fabrication.",
+        "stat_big": "BS 4994",
+        "stat_label": "Primary standard",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Design & Laminate Schedule",
+            "description": "Structural design per BS 4994 or ASME RTP-1.",
+            "specs": [
+              "BS 4994",
+              "ASME RTP-1"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Mould Preparation",
+            "description": "Release agent and corrosion barrier layup (C-veil + vinyl ester).",
+            "specs": [
+              "C-Veil",
+              "Corrosion Barrier"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Structural Layup / Winding",
+            "description": "Hand layup or filament winding. Resin content controlled.",
+            "specs": [
+              "Hand Layup",
+              "Filament Wind"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Cure & Post-Cure",
+            "description": "Ambient cure then elevated temp post-cure. Barcol verified.",
+            "specs": [
+              "Barcol Test",
+              "Post-Cure"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Testing & Inspection",
+            "description": "Hydrostatic, spark test, Barcol, acetone sensitivity, visual per BS 4994.",
+            "specs": [
+              "Hydro Test",
+              "Spark Test"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Material Comparison",
+        "title_html": "Choosing the right <em>material</em>",
+        "description": "Chemical and temperature resistance comparison.",
+        "columns": [
+          "Property",
+          "FRP (VE)",
+          "PP",
+          "PVDF",
+          "Dual Laminate"
+        ],
+        "rows": [
+          [
+            "Mineral Acids",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Oxidising Acids",
+            "rating_c",
+            "rating_c",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Solvents",
+            "rating_c",
+            "rating_x",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Chlorine Service",
+            "rating_a",
+            "rating_b",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Max Temperature",
+            "rating_c",
+            "rating_b",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "Structural Strength",
+            "rating_a",
+            "rating_c",
+            "rating_c",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Excellent",
+          "rating_b": "Good",
+          "rating_c": "Limited",
+          "rating_x": "Not Suitable"
+        }
+      },
+      "integration": {
+        "links": [
+          "Equipment Design",
+          "Water Treatment",
+          "Plastic Linings"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "FRP Scrubber System \u2014<br>Chlor-Alkali <em>Plant</em>",
+        "description": "Complete FRP scrubber and ducting. Vinyl ester with C-glass barrier. 15-year design life.",
+        "stats": [
+          {
+            "num": "4.5",
+            "unit": "m",
+            "label": "Scrubber Diameter"
+          },
+          {
+            "num": "15",
+            "unit": "yr",
+            "label": "Design Life"
+          },
+          {
+            "num": "VE",
+            "unit": "",
+            "label": "Resin System"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need plastic or FRP <em>equipment?</em>",
+        "description": "Share your chemical environment and we'll recommend the right material."
+      },
+      "sticky_bar": {
+        "name": "Plastic & FRP Equipment",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "plastic-linings",
+      "filename": "plastic-linings.html",
+      "page_title": "Plastic Linings \u2014 Jasmino Corrosion Protection",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Corrosion Protection",
+          "Plastic Linings"
+        ],
+        "badge_text": "PFA \u00b7 PTFE \u00b7 PVDF \u00b7 PP \u00b7 PE \u00b7 Rotolining",
+        "title_html": "Plastic<br><em>Linings</em>",
+        "lead": "Fluoropolymer and thermoplastic barriers for extreme environments \u2014 where rubber can't go. PFA, PTFE, PVDF, PP, and PE by rotolining, loose lining, and welded sheet.",
+        "hero_num": "02",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "260\u00b0C",
+            "label": "Max Temp (PFA)"
+          },
+          {
+            "num": "6",
+            "label": "Lining Systems"
+          },
+          {
+            "num": "3",
+            "label": "Continents"
+          },
+          {
+            "num": "HAW",
+            "label": "Heritage"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Corrosion Protection",
+        "links": [
+          {
+            "text": "Rubber Linings",
+            "active": false
+          },
+          {
+            "text": "Plastic Linings",
+            "active": true
+          },
+          {
+            "text": "Coatings & Resin",
+            "active": false
+          },
+          {
+            "text": "Inspection & Repair",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "When the chemistry goes beyond <em>rubber</em>",
+        "paragraphs": [
+          "Plastic linings protect where rubber can't \u2014 <strong>concentrated acids, solvents, fluorine compounds, and ultra-high temperatures</strong>. Fluoropolymers handle virtually the entire chemical spectrum up to 260\u00b0C.",
+          "We offer: <strong>rotolining (seamless PFA/ETFE)</strong>, <strong>loose-lined PTFE</strong>, and <strong>welded thermoplastic sheet (PP, PE, PVDF)</strong>.",
+          "Applied to <strong>equipment we've designed and fabricated in-house</strong> \u2014 vessel geometry optimised for liner installation."
+        ],
+        "pull_quote": {
+          "text": "Rotolining creates a seamless, stress-free fluoropolymer barrier \u2014 no welds, no joints, no weak points.",
+          "cite": "Seamless Protection"
+        },
+        "meta_panel": [
+          {
+            "label": "Lining Materials",
+            "tags": [
+              "PFA",
+              "PTFE",
+              "ECTFE",
+              "ETFE",
+              "PVDF",
+              "PP",
+              "PE"
+            ]
+          },
+          {
+            "label": "Application Methods",
+            "tags": [
+              "Rotolining",
+              "Loose Lining",
+              "Welded Sheet",
+              "Spray Applied"
+            ]
+          },
+          {
+            "label": "Equipment Types",
+            "tags": [
+              "Vessels",
+              "Columns",
+              "Piping",
+              "Valves",
+              "Fittings",
+              "Heat Exchangers"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Application",
+        "title_html": "Fluoropolymer <em>precision</em>",
+        "caption": "HAW Linings \u00b7 Germany \u00b7 PFA Rotolining Facility"
+      },
+      "materials_section": {
+        "overline": "Lining Systems",
+        "title_html": "Six systems for the <em>full</em> chemical spectrum",
+        "description": "Each system serves specific equipment types and environments.",
+        "cards": [
+          {
+            "symbol": "PFA",
+            "title": "PFA Rotolining",
+            "subtitle": "Seamless \u00b7 Up to 260\u00b0C",
+            "description": "Seamless fluoropolymer by rotational moulding. One continuous barrier \u2014 handles virtually all chemicals.",
+            "tags": [
+              "Seamless",
+              "Universal",
+              "260\u00b0C"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "260\u00b0C"
+              },
+              {
+                "label": "Thickness",
+                "value": "2\u20135mm"
+              }
+            ]
+          },
+          {
+            "symbol": "PTFE",
+            "title": "PTFE Loose Lining",
+            "subtitle": "Sheet \u00b7 Mechanically Anchored",
+            "description": "PTFE sheet fastened to steel. For large vessels and columns where rotolining isn't practical.",
+            "tags": [
+              "Sheet Lined",
+              "Large Vessels",
+              "Universal"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "230\u00b0C"
+              },
+              {
+                "label": "Thickness",
+                "value": "2\u20134mm"
+              }
+            ]
+          },
+          {
+            "symbol": "PP",
+            "title": "PP/PE Welded Sheet",
+            "subtitle": "Hot-Gas & Extrusion Welded",
+            "description": "Cost-effective for mineral acid environments where fluoropolymers aren't required.",
+            "tags": [
+              "PP",
+              "PE",
+              "Acid Tanks",
+              "Cost-Effective"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "100\u00b0C"
+              },
+              {
+                "label": "Thickness",
+                "value": "3\u20138mm"
+              }
+            ]
+          },
+          {
+            "symbol": "ECTFE",
+            "title": "ECTFE/ETFE Lining",
+            "subtitle": "Spray Applied \u00b7 Rotomoulded",
+            "description": "ECTFE (Halar) and ETFE for combined chemical and temperature resistance.",
+            "tags": [
+              "Halar",
+              "Spray",
+              "Rotomoulded"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "150\u00b0C"
+              },
+              {
+                "label": "Methods",
+                "value": "2"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Plastic linings <em>in action</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=900&fit=crop",
+            "tag": "PFA",
+            "text": "PFA Rotolining \u2014 Reactor",
+            "sub": "Seamless \u00b7 HAW Germany"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "tag": "PTFE",
+            "text": "PTFE Loose Lining \u2014 Column",
+            "sub": "Chemical \u00b7 Middle East"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "PP",
+            "text": "PP Welded Lining \u2014 Tank",
+            "sub": "Acid Service \u00b7 India"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "QC",
+            "text": "Spark Testing \u2014 Holiday Detection",
+            "sub": "100% Coverage"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "ECTFE",
+            "text": "ECTFE Spray Application",
+            "sub": "Valve Internals \u00b7 Pharma"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Application Process",
+        "title_html": "Precision lining from prep to <em>test</em>",
+        "description": "Controlled application with full documentation.",
+        "stat_big": "100%",
+        "stat_label": "Spark test coverage",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Substrate Preparation",
+            "description": "Blast clean, edges removed, spatter ground. Surface profile verified.",
+            "specs": [
+              "Sa 2\u00bd",
+              "Profile Check"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Primer / Adhesive",
+            "description": "System-specific primer. For rotolining, vessel pre-heated and powder charged.",
+            "specs": [
+              "System-Specific"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Lining Application",
+            "description": "Rotomoulding, sheet welding, or spray depending on system.",
+            "specs": [
+              "Process Logged"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Weld / Seam Testing",
+            "description": "All welds spark tested. Pressure test on critical joints.",
+            "specs": [
+              "Spark Test",
+              "Pressure Test"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Final Inspection",
+            "description": "100% holiday detection, thickness verification, documentation package.",
+            "specs": [
+              "Holiday Test",
+              "Thickness"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Chemical Resistance",
+        "title_html": "Lining selection by <em>environment</em>",
+        "description": "Resistance comparison across plastic lining systems.",
+        "columns": [
+          "Environment",
+          "PFA",
+          "PTFE",
+          "PP/PE",
+          "ECTFE"
+        ],
+        "rows": [
+          [
+            "HCl (all conc.)",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "H\u2082SO\u2084 (>80%)",
+            "rating_a",
+            "rating_a",
+            "rating_c",
+            "rating_a"
+          ],
+          [
+            "HF Acid",
+            "rating_a",
+            "rating_a",
+            "rating_x",
+            "rating_b"
+          ],
+          [
+            "Organic Solvents",
+            "rating_a",
+            "rating_a",
+            "rating_x",
+            "rating_b"
+          ],
+          [
+            "Chlorine (wet/dry)",
+            "rating_a",
+            "rating_a",
+            "rating_b",
+            "rating_a"
+          ],
+          [
+            "Temp >150\u00b0C",
+            "rating_a",
+            "rating_a",
+            "rating_x",
+            "rating_b"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Excellent",
+          "rating_b": "Good",
+          "rating_c": "Limited",
+          "rating_x": "Not Recommended"
+        }
+      },
+      "integration": {
+        "links": [
+          "Rubber Linings",
+          "Steel Equipment",
+          "Inspection & Repair"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "PFA Rotolining \u2014<br>HF Acid <em>Service</em>",
+        "description": "Seamless PFA for HF acid reactors. HAW Germany. 20-year service life target.",
+        "stats": [
+          {
+            "num": "PFA",
+            "unit": "",
+            "label": "Lining Material"
+          },
+          {
+            "num": "260\u00b0C",
+            "unit": "",
+            "label": "Max Service Temp"
+          },
+          {
+            "num": "20",
+            "unit": "yr",
+            "label": "Target Life"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need plastic <em>linings?</em>",
+        "description": "Share your chemical environment and we'll recommend the right system."
+      },
+      "sticky_bar": {
+        "name": "Plastic Linings",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "coatings-resin-systems",
+      "filename": "coatings-resin-systems.html",
+      "page_title": "Coatings & Resin Systems \u2014 Jasmino Corrosion Protection",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Corrosion Protection",
+          "Coatings & Resin Systems"
+        ],
+        "badge_text": "Vinyl Ester \u00b7 Epoxy \u00b7 Polyurethane \u00b7 Ceramic",
+        "title_html": "Coatings & Resin<br><em>Systems</em>",
+        "lead": "Spray, brush, and trowel-applied protective coatings for tanks, floors, bunds, and secondary containment \u2014 from vinyl ester flake linings to high-build epoxy systems.",
+        "hero_num": "03",
+        "hero_photo_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "4",
+            "label": "Coating Families"
+          },
+          {
+            "num": "On-Site",
+            "label": "Application"
+          },
+          {
+            "num": "DFT",
+            "label": "Controlled"
+          },
+          {
+            "num": "NACE",
+            "label": "Inspected"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Corrosion Protection",
+        "links": [
+          {
+            "text": "Rubber Linings",
+            "active": false
+          },
+          {
+            "text": "Plastic Linings",
+            "active": false
+          },
+          {
+            "text": "Coatings & Resin",
+            "active": true
+          },
+          {
+            "text": "Inspection & Repair",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "The coating is only as good as the <em>application</em>",
+        "paragraphs": [
+          "Coatings and resin systems protect where sheet linings aren't practical \u2014 <strong>large field-erected tanks, concrete bunds, floors, trenches, and secondary containment</strong>.",
+          "We apply <strong>vinyl ester, epoxy, polyurethane, and ceramic coatings</strong> by spray, brush, and trowel. Each selected for the chemical, temperature, and substrate.",
+          "Our teams work on-site with <strong>NACE-certified inspectors</strong> supervising every stage \u2014 from surface prep through final DFT verification."
+        ],
+        "pull_quote": {
+          "text": "Surface preparation is 80% of coating performance. We never compromise on prep \u2014 and we inspect every square metre.",
+          "cite": "Zero-Shortcut Application"
+        },
+        "meta_panel": [
+          {
+            "label": "Coating Types",
+            "tags": [
+              "Vinyl Ester Flake",
+              "Epoxy Novolac",
+              "Polyurethane",
+              "Ceramic Filled",
+              "Zinc Silicate",
+              "Phenolic"
+            ]
+          },
+          {
+            "label": "Applications",
+            "tags": [
+              "Tanks",
+              "Floors & Bunds",
+              "Concrete",
+              "Pipe Externals",
+              "Secondary Containment"
+            ]
+          },
+          {
+            "label": "Standards",
+            "tags": [
+              "NACE",
+              "SSPC",
+              "ISO 8501",
+              "ISO 12944"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Field Application",
+        "title_html": "On-site protection, <em>shop-floor</em> standards",
+        "caption": "Coating Application \u00b7 Chemical Tank Farm \u00b7 India"
+      },
+      "materials_section": {
+        "overline": "Coating Families",
+        "title_html": "The right system for every <em>substrate</em>",
+        "description": "Four coating families covering steel, concrete, and composite substrates.",
+        "cards": [
+          {
+            "symbol": "VE",
+            "title": "Vinyl Ester Systems",
+            "subtitle": "Flake Lining \u00b7 Trowel Applied",
+            "description": "Glass flake-reinforced vinyl ester for chemical tank interiors and concrete bunds.",
+            "tags": [
+              "Glass Flake",
+              "Tank Interior",
+              "Bunds"
+            ],
+            "specs": [
+              {
+                "label": "Thickness",
+                "value": "2\u20136mm"
+              },
+              {
+                "label": "Method",
+                "value": "Trowel"
+              }
+            ]
+          },
+          {
+            "symbol": "EP",
+            "title": "Epoxy Systems",
+            "subtitle": "Novolac \u00b7 High-Build \u00b7 Primer",
+            "description": "Novolac for chemical resistance, high-build for immersion, primers for multi-coat systems.",
+            "tags": [
+              "Novolac",
+              "High-Build",
+              "Immersion"
+            ],
+            "specs": [
+              {
+                "label": "Thickness",
+                "value": "300\u20131000\u00b5m"
+              },
+              {
+                "label": "Method",
+                "value": "Spray/Brush"
+              }
+            ]
+          },
+          {
+            "symbol": "PU",
+            "title": "Polyurethane Systems",
+            "subtitle": "Topcoat \u00b7 Flexible \u00b7 UV Stable",
+            "description": "PU topcoats for UV resistance. Flexible PU for expansion joints and vibrating equipment.",
+            "tags": [
+              "UV Stable",
+              "Flexible",
+              "Topcoat"
+            ],
+            "specs": [
+              {
+                "label": "UV",
+                "value": "Stable"
+              },
+              {
+                "label": "Flexibility",
+                "value": "High"
+              }
+            ]
+          },
+          {
+            "symbol": "CER",
+            "title": "Ceramic & Speciality",
+            "subtitle": "Abrasion \u00b7 High Temperature",
+            "description": "Ceramic-filled for erosion in slurry systems. High-temperature for exhaust and flue gas.",
+            "tags": [
+              "Ceramic",
+              "Erosion",
+              "High Temp"
+            ],
+            "specs": [
+              {
+                "label": "Max Temp",
+                "value": "400\u00b0C"
+              },
+              {
+                "label": "Abrasion",
+                "value": "Excellent"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Coatings <em>applied</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1200&h=900&fit=crop",
+            "tag": "VE Flake",
+            "text": "Vinyl Ester Flake Lining \u2014 Tank",
+            "sub": "Chemical Storage \u00b7 6mm DFT"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "Epoxy",
+            "text": "Epoxy Novolac \u2014 Immersion",
+            "sub": "Acid Tank Interior"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Bund",
+            "text": "Bund Lining \u2014 Vinyl Ester",
+            "sub": "Secondary Containment"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Floor",
+            "text": "Chemical Resistant Flooring",
+            "sub": "Epoxy \u00b7 Warehouse"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "tag": "Inspection",
+            "text": "DFT Verification \u2014 NACE",
+            "sub": "100% Inspected"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Application Process",
+        "title_html": "From surface prep to <em>certified</em> coating",
+        "description": "NACE-supervised application with full documentation.",
+        "stat_big": "NACE",
+        "stat_label": "Certified inspection",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Surface Preparation",
+            "description": "Abrasive blast cleaning to Sa 2\u00bd or Sa 3. Profile measurement. Dust and salt contamination testing.",
+            "specs": [
+              "Sa 2\u00bd/Sa 3",
+              "Profile",
+              "Salt Test"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Environmental Monitoring",
+            "description": "Temperature, humidity, dew point monitoring throughout. Application halted if conditions outside spec.",
+            "specs": [
+              "Dew Point",
+              "RH",
+              "Temp"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Coating Application",
+            "description": "System-specific application by spray, brush, or trowel. Stripe coats on edges and welds.",
+            "specs": [
+              "Per Spec",
+              "Stripe Coat"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Inter-Coat Inspection",
+            "description": "DFT, adhesion, and visual inspection between coats. Defects repaired before next coat.",
+            "specs": [
+              "DFT Check",
+              "Adhesion"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Final Inspection & Documentation",
+            "description": "Final DFT, holiday detection, adhesion pull-off, and complete documentation package.",
+            "specs": [
+              "Holiday Test",
+              "Pull-Off",
+              "ITP"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "System Selection",
+        "title_html": "Coating system by <em>application</em>",
+        "description": "Recommended coating systems for common applications.",
+        "columns": [
+          "Application",
+          "Vinyl Ester",
+          "Epoxy",
+          "Polyurethane",
+          "Ceramic"
+        ],
+        "rows": [
+          [
+            "Chemical Tank Interior",
+            "rating_a",
+            "rating_b",
+            "rating_x",
+            "rating_x"
+          ],
+          [
+            "Concrete Bund",
+            "rating_a",
+            "rating_a",
+            "rating_b",
+            "rating_x"
+          ],
+          [
+            "Steel Externals",
+            "rating_x",
+            "rating_a",
+            "rating_a",
+            "rating_x"
+          ],
+          [
+            "Floors & Trenches",
+            "rating_b",
+            "rating_a",
+            "rating_b",
+            "rating_x"
+          ],
+          [
+            "Slurry Piping",
+            "rating_x",
+            "rating_c",
+            "rating_x",
+            "rating_a"
+          ],
+          [
+            "High Temp >200\u00b0C",
+            "rating_x",
+            "rating_c",
+            "rating_x",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Recommended",
+          "rating_b": "Suitable",
+          "rating_c": "Limited",
+          "rating_x": "Not Applicable"
+        }
+      },
+      "integration": {
+        "links": [
+          "Rubber Linings",
+          "Plastic Linings",
+          "Inspection & Repair"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "Tank Farm Coating \u2014<br>Chemical <em>Complex</em>",
+        "description": "Vinyl ester flake lining for 8 storage tanks and complete bund coating at a chlor-alkali facility. On-site application with NACE Level III supervision.",
+        "stats": [
+          {
+            "num": "8",
+            "unit": "tanks",
+            "label": "Tanks Coated"
+          },
+          {
+            "num": "6mm",
+            "unit": "DFT",
+            "label": "Flake Lining"
+          },
+          {
+            "num": "NACE III",
+            "unit": "",
+            "label": "Supervision"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need protective <em>coatings?</em>",
+        "description": "Share your application details and we'll recommend the right coating system."
+      },
+      "sticky_bar": {
+        "name": "Coatings & Resin Systems",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "inspection-repair",
+      "filename": "inspection-repair.html",
+      "page_title": "Inspection & Repair \u2014 Jasmino Corrosion Protection",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Corrosion Protection",
+          "Inspection & Repair"
+        ],
+        "badge_text": "Holiday Detection \u00b7 Thickness \u00b7 On-Site Repair",
+        "title_html": "Inspection<br>& <em>Repair</em>",
+        "lead": "Lining condition assessment, holiday detection, thickness measurement, and on-site repair \u2014 extending the service life of rubber, plastic, and coating systems across operating plants.",
+        "hero_num": "04",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "24/7",
+            "label": "Emergency Response"
+          },
+          {
+            "num": "On-Site",
+            "label": "Global Teams"
+          },
+          {
+            "num": "All",
+            "label": "Lining Types"
+          },
+          {
+            "num": "40+",
+            "label": "Years Experience"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Corrosion Protection",
+        "links": [
+          {
+            "text": "Rubber Linings",
+            "active": false
+          },
+          {
+            "text": "Plastic Linings",
+            "active": false
+          },
+          {
+            "text": "Coatings & Resin",
+            "active": false
+          },
+          {
+            "text": "Inspection & Repair",
+            "active": true
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Protecting the <em>protection</em>",
+        "paragraphs": [
+          "Even the best lining systems require periodic inspection and eventual repair. <strong>Planned maintenance extends service life by decades</strong> \u2014 unplanned failure causes plant shutdowns costing millions.",
+          "Our inspection teams assess <strong>rubber linings, plastic linings, and coating systems</strong> using holiday detection, thickness measurement, hardness testing, and visual assessment.",
+          "When repair is needed, we deploy <strong>the same application teams who installed the original lining</strong>. Same procedures, same materials, same quality \u2014 whether the equipment is in our shop or at your plant."
+        ],
+        "pull_quote": {
+          "text": "A scheduled inspection costs a fraction of an unplanned failure. We help you plan maintenance before the lining tells you it's too late.",
+          "cite": "Preventive Protection"
+        },
+        "meta_panel": [
+          {
+            "label": "Inspection Methods",
+            "tags": [
+              "Holiday Detection",
+              "Thickness Gauge",
+              "Hardness Test",
+              "Visual Assessment",
+              "Adhesion Test",
+              "Cut Test"
+            ]
+          },
+          {
+            "label": "Repair Capabilities",
+            "tags": [
+              "Rubber Patch Repair",
+              "Plastic Weld Repair",
+              "Coating Touch-Up",
+              "Full Re-Lining",
+              "Emergency Repair"
+            ]
+          },
+          {
+            "label": "Coverage",
+            "tags": [
+              "Rubber Linings",
+              "Plastic Linings",
+              "Coatings",
+              "FRP",
+              "Dual Laminate"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1800&h=800&fit=crop&crop=center",
+        "tag": "On-Site Inspection",
+        "title_html": "Finding problems <em>before</em> they find you",
+        "caption": "Lining Inspection \u00b7 Holiday Detection \u00b7 Operating Plant"
+      },
+      "materials_section": {
+        "overline": "Service Categories",
+        "title_html": "Inspection and repair across <em>all</em> lining types",
+        "description": "Four service categories covering the full lifecycle of corrosion protection systems.",
+        "cards": [
+          {
+            "symbol": "\u26a1",
+            "title": "Holiday Detection",
+            "subtitle": "Spark Test \u00b7 Low & High Voltage",
+            "description": "100% surface scanning for pinholes, pores, and discontinuities. Low-voltage wet sponge and high-voltage spark methods.",
+            "tags": [
+              "Spark Test",
+              "Wet Sponge",
+              "100% Coverage"
+            ],
+            "specs": [
+              {
+                "label": "Method",
+                "value": "LV/HV"
+              },
+              {
+                "label": "Coverage",
+                "value": "100%"
+              }
+            ]
+          },
+          {
+            "symbol": "\ud83d\udccf",
+            "title": "Condition Assessment",
+            "subtitle": "Thickness \u00b7 Hardness \u00b7 Adhesion",
+            "description": "Non-destructive thickness measurement, Shore A hardness, adhesion pull-off testing. Detailed condition report with recommendations.",
+            "tags": [
+              "DFT",
+              "Shore A",
+              "Pull-Off",
+              "Report"
+            ],
+            "specs": [
+              {
+                "label": "Output",
+                "value": "Report"
+              },
+              {
+                "label": "Frequency",
+                "value": "Annual"
+              }
+            ]
+          },
+          {
+            "symbol": "\ud83d\udd27",
+            "title": "On-Site Repair",
+            "subtitle": "Patch \u00b7 Weld \u00b7 Re-Coat",
+            "description": "Rubber patch vulcanisation, plastic weld repair, coating touch-up \u2014 on-site at your plant during planned shutdowns.",
+            "tags": [
+              "Rubber Patch",
+              "Plastic Weld",
+              "Shutdown"
+            ],
+            "specs": [
+              {
+                "label": "Response",
+                "value": "Planned"
+              },
+              {
+                "label": "Location",
+                "value": "On-Site"
+              }
+            ]
+          },
+          {
+            "symbol": "\ud83d\udea8",
+            "title": "Emergency Response",
+            "subtitle": "24/7 \u00b7 Global \u00b7 All Lining Types",
+            "description": "Emergency repair teams for unplanned failures. Temporary and permanent repair solutions to minimise downtime.",
+            "tags": [
+              "24/7",
+              "Emergency",
+              "Temporary Fix"
+            ],
+            "specs": [
+              {
+                "label": "Availability",
+                "value": "24/7"
+              },
+              {
+                "label": "Scope",
+                "value": "Global"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Inspection & repair <em>in the field</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&h=900&fit=crop",
+            "tag": "Holiday Test",
+            "text": "High-Voltage Holiday Detection",
+            "sub": "Rubber Lining \u00b7 FGD Absorber"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "tag": "Thickness",
+            "text": "Ultrasonic Thickness Measurement",
+            "sub": "Coating System \u00b7 Tank Farm"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "Repair",
+            "text": "Rubber Patch Repair \u2014 On-Site",
+            "sub": "Chemical Reactor \u00b7 Shutdown"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Report",
+            "text": "Condition Assessment Report",
+            "sub": "Annual Inspection Program"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "tag": "Emergency",
+            "text": "Emergency Lining Repair",
+            "sub": "24/7 Response \u00b7 Minimise Downtime"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Inspection Workflow",
+        "title_html": "Systematic assessment to <em>actionable</em> plan",
+        "description": "A structured inspection and repair workflow.",
+        "stat_big": "24/7",
+        "stat_label": "Emergency availability",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Scope & Access Planning",
+            "description": "Review equipment history, define inspection scope, coordinate plant access and safety requirements.",
+            "specs": [
+              "Pre-Planning",
+              "Safety"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Visual Assessment",
+            "description": "Systematic visual inspection documenting blisters, cracks, delamination, wear, and mechanical damage.",
+            "specs": [
+              "Photographic",
+              "Mapped"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Non-Destructive Testing",
+            "description": "Holiday detection, thickness measurement, hardness testing, and adhesion assessment.",
+            "specs": [
+              "Holiday",
+              "DFT",
+              "Shore A"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Condition Report",
+            "description": "Detailed report with findings, photos, condition ratings, and repair/replacement recommendations with timeline.",
+            "specs": [
+              "Report",
+              "Timeline"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Repair Execution",
+            "description": "Scheduled repairs during planned shutdown. Same materials and procedures as original installation.",
+            "specs": [
+              "Planned",
+              "Same Spec"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Inspection Methods",
+        "title_html": "Testing methods by <em>lining</em> type",
+        "description": "Applicable inspection and test methods for each lining system.",
+        "columns": [
+          "Method",
+          "Rubber",
+          "Plastic",
+          "Coatings",
+          "FRP"
+        ],
+        "rows": [
+          [
+            "Holiday Detection (HV)",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_b"
+          ],
+          [
+            "Holiday Detection (LV)",
+            "rating_b",
+            "rating_b",
+            "rating_a",
+            "rating_x"
+          ],
+          [
+            "Thickness Gauge",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_a"
+          ],
+          [
+            "Shore Hardness",
+            "rating_a",
+            "rating_x",
+            "rating_x",
+            "rating_x"
+          ],
+          [
+            "Adhesion Pull-Off",
+            "rating_b",
+            "rating_b",
+            "rating_a",
+            "rating_x"
+          ],
+          [
+            "Barcol Hardness",
+            "rating_x",
+            "rating_x",
+            "rating_x",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Primary Method",
+          "rating_b": "Supplementary",
+          "rating_c": "Limited",
+          "rating_x": "Not Applicable"
+        }
+      },
+      "integration": {
+        "links": [
+          "Rubber Linings",
+          "Plastic Linings",
+          "Coatings & Resin Systems"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "Annual Inspection Program \u2014<br>FGD <em>Absorber</em>",
+        "description": "5-year inspection and maintenance contract for FGD absorber rubber lining at a 600MW power plant. Planned patch repairs during annual shutdowns extended lining life by 8+ years.",
+        "stats": [
+          {
+            "num": "5",
+            "unit": "yr",
+            "label": "Contract Duration"
+          },
+          {
+            "num": "8+",
+            "unit": "yr",
+            "label": "Life Extension"
+          },
+          {
+            "num": "600",
+            "unit": "MW",
+            "label": "Plant Capacity"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need lining <em>inspection?</em>",
+        "description": "Schedule an inspection or request emergency repair support."
+      },
+      "sticky_bar": {
+        "name": "Inspection & Repair",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "custom-compounds",
+      "filename": "custom-compounds.html",
+      "page_title": "Custom Compounds \u2014 Jasmino Rubber Products",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Rubber Products",
+          "Custom Compounds"
+        ],
+        "badge_text": "2,000+ Proven Formulations \u00b7 R&D Lab",
+        "title_html": "Custom<br><em>Compounds</em>",
+        "lead": "Engineered rubber compounds developed in our R&D laboratory \u2014 from natural rubber to advanced fluoroelastomers. 2,000+ proven formulations across four decades of compounding expertise.",
+        "hero_num": "01",
+        "hero_photo_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "2,000+",
+            "label": "Formulations"
+          },
+          {
+            "num": "R&D",
+            "label": "In-House Lab"
+          },
+          {
+            "num": "40+",
+            "label": "Years Expertise"
+          },
+          {
+            "num": "NR\u2192FKM",
+            "label": "Full Spectrum"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Rubber Products",
+        "links": [
+          {
+            "text": "Custom Compounds",
+            "active": true
+          },
+          {
+            "text": "Engineered Products",
+            "active": false
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Chemistry that becomes <em>performance</em>",
+        "paragraphs": [
+          "Jasmino's compounding laboratory develops <strong>custom rubber formulations</strong> engineered to specific performance requirements \u2014 chemical resistance, temperature range, abrasion resistance, hardness, and compression set.",
+          "Our library of <strong>2,000+ proven formulations</strong> spans the full elastomer spectrum: natural rubber, butyl, EPDM, neoprene, nitrile, CSM (Hypalon), silicone, and fluoroelastomers (FKM/Viton).",
+          "Every compound is <strong>tested in our in-house laboratory</strong> before production \u2014 tensile, elongation, hardness, ageing, and chemical immersion testing to verify performance against your specific service conditions."
+        ],
+        "pull_quote": {
+          "text": "We don't sell off-the-shelf compounds. We develop formulations for your specific chemical, temperature, and mechanical requirements.",
+          "cite": "Application-Specific Compounding"
+        },
+        "meta_panel": [
+          {
+            "label": "Elastomer Types",
+            "tags": [
+              "Natural Rubber",
+              "Butyl (IIR)",
+              "EPDM",
+              "Neoprene (CR)",
+              "Nitrile (NBR)",
+              "CSM (Hypalon)",
+              "Silicone",
+              "FKM (Viton)"
+            ]
+          },
+          {
+            "label": "Testing Capabilities",
+            "tags": [
+              "Tensile",
+              "Elongation",
+              "Hardness",
+              "Ageing",
+              "Chemical Immersion",
+              "Compression Set"
+            ]
+          },
+          {
+            "label": "Applications",
+            "tags": [
+              "Lining Compounds",
+              "Moulded Parts",
+              "Extruded Profiles",
+              "Sheet & Rolls",
+              "Adhesives"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&h=800&fit=crop&crop=center",
+        "tag": "R&D Laboratory",
+        "title_html": "Where formulations are <em>proven</em>",
+        "caption": "Jasmino R&D Lab \u00b7 Compound Testing \u00b7 India"
+      },
+      "materials_section": {
+        "overline": "Elastomer Families",
+        "title_html": "The full spectrum of <em>rubber</em> chemistry",
+        "description": "Each elastomer family offers distinct advantages for specific environments.",
+        "cards": [
+          {
+            "symbol": "NR",
+            "title": "Natural Rubber",
+            "subtitle": "Abrasion \u00b7 Resilience \u00b7 Tear",
+            "description": "Highest abrasion resistance and resilience. Ideal for mining, mineral processing, and mechanical applications.",
+            "tags": [
+              "Abrasion",
+              "Mining",
+              "Mechanical"
+            ],
+            "specs": [
+              {
+                "label": "Temp Range",
+                "value": "-40 to 80\u00b0C"
+              },
+              {
+                "label": "Hardness",
+                "value": "30\u201390 ShA"
+              }
+            ]
+          },
+          {
+            "symbol": "IIR",
+            "title": "Butyl & Chlorobutyl",
+            "subtitle": "Chemical \u00b7 Gas Impermeability",
+            "description": "Outstanding resistance to mineral acids and gas permeation. The primary elastomer for chemical lining applications.",
+            "tags": [
+              "Acid Resistance",
+              "Gas Barrier",
+              "Linings"
+            ],
+            "specs": [
+              {
+                "label": "Temp Range",
+                "value": "-30 to 120\u00b0C"
+              },
+              {
+                "label": "Chemical",
+                "value": "Excellent"
+              }
+            ]
+          },
+          {
+            "symbol": "EPDM",
+            "title": "EPDM",
+            "subtitle": "Ozone \u00b7 Weather \u00b7 Steam",
+            "description": "Excellent ozone, weathering, and steam resistance. Used for outdoor exposure, hot water, and polar chemical service.",
+            "tags": [
+              "Ozone",
+              "Steam",
+              "Weathering"
+            ],
+            "specs": [
+              {
+                "label": "Temp Range",
+                "value": "-40 to 150\u00b0C"
+              },
+              {
+                "label": "Steam",
+                "value": "Excellent"
+              }
+            ]
+          },
+          {
+            "symbol": "FKM",
+            "title": "Fluoroelastomers",
+            "subtitle": "Universal Chemical \u00b7 High Temp",
+            "description": "Near-universal chemical resistance at temperatures up to 250\u00b0C. For the most demanding sealing and protection applications.",
+            "tags": [
+              "Universal",
+              "High Temp",
+              "Sealing"
+            ],
+            "specs": [
+              {
+                "label": "Temp Range",
+                "value": "-20 to 250\u00b0C"
+              },
+              {
+                "label": "Chemical",
+                "value": "Universal"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Compounding <em>in action</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&h=900&fit=crop",
+            "tag": "Lab",
+            "text": "R&D Laboratory \u2014 Formulation",
+            "sub": "Compound Development"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Mixing",
+            "text": "Banbury Mixer \u2014 Production",
+            "sub": "Batch Compounding"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "Testing",
+            "text": "Tensile Testing \u2014 QC Lab",
+            "sub": "Every Batch Tested"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "tag": "Sheet",
+            "text": "Calendered Rubber Sheet",
+            "sub": "Lining Compound \u00b7 Ready"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Ageing",
+            "text": "Accelerated Ageing Test",
+            "sub": "Chemical Immersion \u00b7 1000hr"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Development Process",
+        "title_html": "From requirement to <em>proven</em> compound",
+        "description": "Structured compound development with laboratory validation.",
+        "stat_big": "2,000+",
+        "stat_label": "Proven formulations",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Requirement Analysis",
+            "description": "Chemical environment, temperature range, mechanical requirements, and regulatory needs defined.",
+            "specs": [
+              "Chemical Data",
+              "Temp Range"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Formulation Selection",
+            "description": "Elastomer type, filler system, cure system, and protective agents selected from our 2,000+ formulation library.",
+            "specs": [
+              "Library Match",
+              "Custom Dev"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Laboratory Compounding",
+            "description": "Lab-scale batches mixed and test specimens prepared for physical and chemical testing.",
+            "specs": [
+              "Lab Batch",
+              "Specimens"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Testing & Validation",
+            "description": "Tensile, elongation, hardness, ageing, and chemical immersion testing against specification requirements.",
+            "specs": [
+              "Tensile",
+              "Immersion",
+              "Ageing"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Production Scale-Up",
+            "description": "Validated formulation scaled to production batch size. Process parameters documented for consistency.",
+            "specs": [
+              "Scale-Up",
+              "SOP"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Elastomer Comparison",
+        "title_html": "Resistance by elastomer <em>type</em>",
+        "description": "Chemical and physical property comparison across elastomer families.",
+        "columns": [
+          "Property",
+          "NR",
+          "Butyl",
+          "EPDM",
+          "Neoprene",
+          "Nitrile",
+          "FKM"
+        ],
+        "rows": [
+          [
+            "Mineral Acids",
+            "rating_b",
+            "rating_a",
+            "rating_b",
+            "rating_b",
+            "rating_c",
+            "rating_a"
+          ],
+          [
+            "Oxidising Acids",
+            "rating_x",
+            "rating_c",
+            "rating_b",
+            "rating_c",
+            "rating_x",
+            "rating_a"
+          ],
+          [
+            "Alkalis",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_b",
+            "rating_b",
+            "rating_a"
+          ],
+          [
+            "Abrasion",
+            "rating_a",
+            "rating_c",
+            "rating_b",
+            "rating_b",
+            "rating_b",
+            "rating_b"
+          ],
+          [
+            "Temperature",
+            "rating_c",
+            "rating_b",
+            "rating_a",
+            "rating_b",
+            "rating_b",
+            "rating_a"
+          ],
+          [
+            "Ozone/Weather",
+            "rating_x",
+            "rating_a",
+            "rating_a",
+            "rating_a",
+            "rating_x",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Excellent",
+          "rating_b": "Good",
+          "rating_c": "Limited",
+          "rating_x": "Not Recommended"
+        }
+      },
+      "integration": {
+        "links": [
+          "Rubber Linings",
+          "Engineered Products"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "Custom Butyl Compound \u2014<br>FGD <em>Service</em>",
+        "description": "Application-specific butyl compound developed for FGD absorber lining. 1,000-hour immersion test in simulated flue gas condensate. 15-year field performance validated.",
+        "stats": [
+          {
+            "num": "1,000",
+            "unit": "hr",
+            "label": "Immersion Test"
+          },
+          {
+            "num": "15",
+            "unit": "yr",
+            "label": "Field Proven"
+          },
+          {
+            "num": "FGD",
+            "unit": "",
+            "label": "Application"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need a custom <em>compound?</em>",
+        "description": "Share your service conditions and we'll develop the right formulation."
+      },
+      "sticky_bar": {
+        "name": "Custom Compounds",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
+      "id": "engineered-products",
+      "filename": "engineered-products.html",
+      "page_title": "Engineered Products \u2014 Jasmino Rubber Products",
+      "hero": {
+        "breadcrumb": [
+          "What We Do",
+          "Rubber Products",
+          "Engineered Products"
+        ],
+        "badge_text": "Moulded \u00b7 Extruded \u00b7 Fabricated \u00b7 Custom",
+        "title_html": "Engineered<br><em>Products</em>",
+        "lead": "Custom moulded, extruded, and fabricated rubber products \u2014 from expansion joints and gaskets to wear-resistant liners and vibration mounts. Engineered for your specific application.",
+        "hero_num": "02",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=1200&fit=crop&crop=center",
+        "stats": [
+          {
+            "num": "Custom",
+            "label": "Every Product"
+          },
+          {
+            "num": "Mould",
+            "label": "In-House Tooling"
+          },
+          {
+            "num": "ISO",
+            "label": "9001 Certified"
+          },
+          {
+            "num": "Global",
+            "label": "Supply"
+          }
+        ]
+      },
+      "sibling_nav": {
+        "division_label": "Rubber Products",
+        "links": [
+          {
+            "text": "Custom Compounds",
+            "active": false
+          },
+          {
+            "text": "Engineered Products",
+            "active": true
+          }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Rubber shaped into <em>solutions</em>",
+        "paragraphs": [
+          "Jasmino's rubber products division manufactures <strong>custom moulded, extruded, and fabricated rubber components</strong> for industrial applications \u2014 using compounds developed in our own R&D laboratory.",
+          "From <strong>expansion joints and gaskets</strong> to <strong>wear-resistant liners, vibration mounts, and conveyor components</strong> \u2014 every product is engineered for the specific application using the right compound from our 2,000+ formulation library.",
+          "Because we compound our own rubber, <strong>we control the entire value chain</strong> \u2014 from raw polymer to finished product. No dependence on third-party compound suppliers."
+        ],
+        "pull_quote": {
+          "text": "We compound the rubber, we mould the product, we test the result. The entire chain under one roof.",
+          "cite": "Vertical Integration in Rubber"
+        },
+        "meta_panel": [
+          {
+            "label": "Product Types",
+            "tags": [
+              "Expansion Joints",
+              "Gaskets & Seals",
+              "Wear Liners",
+              "Vibration Mounts",
+              "Bellows",
+              "Rollers",
+              "Diaphragms"
+            ]
+          },
+          {
+            "label": "Processes",
+            "tags": [
+              "Compression Moulding",
+              "Injection Moulding",
+              "Extrusion",
+              "Calendering",
+              "Hand Building",
+              "Autoclave Cure"
+            ]
+          },
+          {
+            "label": "Industries",
+            "tags": [
+              "Chemical",
+              "Mining",
+              "Power",
+              "Water",
+              "Marine",
+              "Infrastructure"
+            ]
+          }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=800&fit=crop&crop=center",
+        "tag": "Production",
+        "title_html": "Custom rubber products at <em>scale</em>",
+        "caption": "Jasmino India \u00b7 Moulding & Extrusion Facility"
+      },
+      "materials_section": {
+        "overline": "Product Categories",
+        "title_html": "Engineered for your <em>application</em>",
+        "description": "Four product categories covering industrial rubber component needs.",
+        "cards": [
+          {
+            "symbol": "EJ",
+            "title": "Expansion Joints",
+            "subtitle": "Fabric \u00b7 Rubber \u00b7 Metal Insert",
+            "description": "Single arch, multi-arch, and filled-arch expansion joints for piping, ducts, and FGD systems. Custom flanged connections.",
+            "tags": [
+              "Single Arch",
+              "Multi-Arch",
+              "FGD",
+              "Ducting"
+            ],
+            "specs": [
+              {
+                "label": "Max Size",
+                "value": "3m dia"
+              },
+              {
+                "label": "Pressure",
+                "value": "10 bar"
+              }
+            ]
+          },
+          {
+            "symbol": "GS",
+            "title": "Gaskets & Seals",
+            "subtitle": "Die-Cut \u00b7 Moulded \u00b7 Extruded",
+            "description": "Flange gaskets, manhole seals, door gaskets, and custom sealing solutions. Full-face, ring, and profiled designs.",
+            "tags": [
+              "Die-Cut",
+              "Moulded",
+              "Full-Face",
+              "Custom"
+            ],
+            "specs": [
+              {
+                "label": "Materials",
+                "value": "All"
+              },
+              {
+                "label": "Tolerance",
+                "value": "\u00b10.1mm"
+              }
+            ]
+          },
+          {
+            "symbol": "WL",
+            "title": "Wear & Abrasion Liners",
+            "subtitle": "Mining \u00b7 Mineral Processing",
+            "description": "Chute liners, mill liners, screen decks, and pipe liners for mining and mineral processing. Natural rubber for maximum abrasion life.",
+            "tags": [
+              "Chute",
+              "Mill",
+              "Screen",
+              "Pipe"
+            ],
+            "specs": [
+              {
+                "label": "Compound",
+                "value": "NR"
+              },
+              {
+                "label": "Hardness",
+                "value": "40\u201370 ShA"
+              }
+            ]
+          },
+          {
+            "symbol": "VM",
+            "title": "Vibration & Structural",
+            "subtitle": "Mounts \u00b7 Bearings \u00b7 Pads",
+            "description": "Vibration isolation mounts, bridge bearings, rail pads, and structural rubber components. Engineered for load and frequency.",
+            "tags": [
+              "Mounts",
+              "Bearings",
+              "Rail Pads",
+              "Structural"
+            ],
+            "specs": [
+              {
+                "label": "Design",
+                "value": "FEA"
+              },
+              {
+                "label": "Testing",
+                "value": "Dynamic"
+              }
+            ]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Products <em>delivered</em>",
+        "slides": [
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=900&fit=crop",
+            "tag": "Expansion Joint",
+            "text": "Rubber Expansion Joint \u2014 FGD",
+            "sub": "3m Diameter \u00b7 Butyl"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "tag": "Moulding",
+            "text": "Compression Moulding \u2014 Gaskets",
+            "sub": "Custom Tooling \u00b7 In-House"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "tag": "Wear Liner",
+            "text": "Chute Liners \u2014 Natural Rubber",
+            "sub": "Mining \u00b7 Abrasion Resistant"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "tag": "Extrusion",
+            "text": "Extruded Profiles \u2014 Sealing",
+            "sub": "Continuous \u00b7 Custom Profile"
+          },
+          {
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "tag": "Bridge Bearing",
+            "text": "Structural Bearings \u2014 Bridge",
+            "sub": "Infrastructure \u00b7 Neoprene"
+          }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Manufacturing Process",
+        "title_html": "From design to <em>delivered</em> product",
+        "description": "Complete in-house manufacturing with compound control.",
+        "stat_big": "100%",
+        "stat_label": "In-house compound & production",
+        "steps": [
+          {
+            "num": "Step 01",
+            "title": "Application Engineering",
+            "description": "Understand the application \u2014 loads, chemicals, temperatures, movement, and life requirement. Select compound family.",
+            "specs": [
+              "Application Data",
+              "Compound"
+            ]
+          },
+          {
+            "num": "Step 02",
+            "title": "Product Design",
+            "description": "Dimensional design, compound specification, tooling design. FEA for structural products.",
+            "specs": [
+              "Design",
+              "FEA",
+              "Tooling"
+            ]
+          },
+          {
+            "num": "Step 03",
+            "title": "Tooling & Mould Manufacture",
+            "description": "In-house mould and die manufacture. CNC machined moulds for precision parts.",
+            "specs": [
+              "CNC",
+              "In-House"
+            ]
+          },
+          {
+            "num": "Step 04",
+            "title": "Compounding & Production",
+            "description": "Compound mixed per validated formulation. Moulding, extrusion, or fabrication per production SOP.",
+            "specs": [
+              "Validated",
+              "SOP"
+            ]
+          },
+          {
+            "num": "Step 05",
+            "title": "Testing & Dispatch",
+            "description": "Dimensional check, hardness, physical property verification. Every batch tested before dispatch.",
+            "specs": [
+              "Batch Tested",
+              "CoC"
+            ]
+          }
+        ]
+      },
+      "specs_table": {
+        "overline": "Capability Matrix",
+        "title_html": "Products by <em>manufacturing</em> process",
+        "description": "Product types and applicable manufacturing methods.",
+        "columns": [
+          "Product",
+          "Compression",
+          "Injection",
+          "Extrusion",
+          "Hand Build"
+        ],
+        "rows": [
+          [
+            "Expansion Joints",
+            "rating_b",
+            "rating_x",
+            "rating_x",
+            "rating_a"
+          ],
+          [
+            "Gaskets & Seals",
+            "rating_a",
+            "rating_a",
+            "rating_b",
+            "rating_b"
+          ],
+          [
+            "Wear Liners",
+            "rating_a",
+            "rating_x",
+            "rating_x",
+            "rating_a"
+          ],
+          [
+            "Vibration Mounts",
+            "rating_a",
+            "rating_a",
+            "rating_x",
+            "rating_x"
+          ],
+          [
+            "Bellows",
+            "rating_a",
+            "rating_x",
+            "rating_x",
+            "rating_a"
+          ],
+          [
+            "Rollers & Sleeves",
+            "rating_x",
+            "rating_x",
+            "rating_x",
+            "rating_a"
+          ]
+        ],
+        "rating_labels": {
+          "rating_a": "Primary",
+          "rating_b": "Alternative",
+          "rating_c": "Limited",
+          "rating_x": "Not Used"
+        }
+      },
+      "integration": {
+        "links": [
+          "Custom Compounds",
+          "Rubber Linings"
+        ]
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "FGD Expansion Joints \u2014<br>600MW Power <em>Plant</em>",
+        "description": "Custom butyl expansion joints for FGD ductwork at a 600MW coal-fired power plant. 3m diameter, designed for SO\u2082-laden flue gas at 180\u00b0C. 10-year service life target.",
+        "stats": [
+          {
+            "num": "3",
+            "unit": "m",
+            "label": "Joint Diameter"
+          },
+          {
+            "num": "600",
+            "unit": "MW",
+            "label": "Plant Capacity"
+          },
+          {
+            "num": "10",
+            "unit": "yr",
+            "label": "Design Life"
+          }
+        ]
+      },
+      "cta": {
+        "title_html": "Need engineered rubber <em>products?</em>",
+        "description": "Share your application requirements and we'll design the right product."
+      },
+      "sticky_bar": {
+        "name": "Engineered Products",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    }
+  ]
+}

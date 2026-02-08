@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
   background: var(--navy);
   padding: 0 56px;
   height: 72px;
@@ -102,7 +102,7 @@
   background: var(--navy);
   border-top: 1px solid rgba(255,255,255,0.06);
   padding: 36px 56px;
-  z-index: 99;
+  z-index: 199;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -207,7 +207,7 @@
   bottom: 0;
   background: var(--navy);
   padding: 24px;
-  z-index: 98;
+  z-index: 198;
   overflow-y: auto;
 }
 

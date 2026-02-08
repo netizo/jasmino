@@ -16,6 +16,9 @@ export default function Navbar() {
   const megaRef = useRef();
   const aboutRef = useRef();
 
+  // T2 division pages always use the white logo (dark navbar on dark content)
+  const isDivisionPage = /^\/what-we-do\/(engineering-design|equipment-manufacturing|corrosion-protection|rubber-products)\/?$/.test(location.pathname);
+
   useEffect(() => {
     setMegaOpen(false);
     setAboutOpen(false);
@@ -55,7 +58,7 @@ export default function Navbar() {
       <nav className="navbar" style={scrolled ? { boxShadow: '0 4px 24px rgba(0,0,0,0.3)' } : {}}>
         <Link to="/" className="navbar-logo">
           <img
-            src={scrolled ? logo : logoWhite}
+            src={isDivisionPage ? logoWhite : (scrolled ? logo : logoWhite)}
             alt="Jasmino"
             style={{ height: '40px', width: 'auto' }}
           />

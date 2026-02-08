@@ -7,6 +7,7 @@ import WhatWeDoOverview from './pages/WhatWeDoOverview';
 import DivisionLanding from './pages/DivisionLanding';
 import ServicePage from './pages/ServicePage';
 import InnerPage from './pages/InnerPage';
+import DesignSystem from './pages/DesignSystem';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/infrastructure" element={<InnerPage page="infrastructure" />} />
         <Route path="/news" element={<InnerPage page="news" />} />
         <Route path="/contact" element={<InnerPage page="contact" />} />
+        <Route path="/design-system" element={<DesignSystem />} />
       </Routes>
       <Footer />
     </>

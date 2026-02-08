@@ -4,7 +4,10 @@
       "WebSearch",
       "Bash(claude update:*)",
       "Bash(claude:*)",
-      "Bash(npm update:*)"
+      "Bash(npm update:*)",
+      "Bash(npx vite build)",
+      "Bash(cd:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

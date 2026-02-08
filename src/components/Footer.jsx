@@ -28,6 +28,7 @@ export default function Footer() {
           <Link to="/industries">Industries</Link>
           <Link to="/infrastructure">Infrastructure</Link>
           <Link to="/news">News</Link>
+          <Link to="/design-system">Design System</Link>
         </div>
         <div className="footer-col">
           <h5>Contact</h5>

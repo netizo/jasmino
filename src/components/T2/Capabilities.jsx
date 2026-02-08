@@ -25,10 +25,10 @@ export default function T2Capabilities({ data }) {
             <div className="tsec-in">
                 <div className="overline rv">Capabilities</div>
                 <h2 className="sec-h rv rd1">
-                    {data.capabilities.title} <em>{data.capabilities.titleEm}</em>
+                    {data.capabilitiesHeader?.title} <em>{data.capabilitiesHeader?.titleEm}</em>
                 </h2>
                 <p className="sec-desc rv rd2">
-                    {data.capabilities.desc}
+                    {data.capabilitiesHeader?.desc}
                 </p>
 
                 <div className="tgrid rv rd3">

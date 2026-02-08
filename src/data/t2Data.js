@@ -1,6 +1,14 @@
 export const t2Data = {
     'engineering-design': {
         num: '01',
+        heroGradient: 'linear-gradient(168deg, #060e1a 0%, #0B1D34 35%, #112e55 70%, #0a1828 100%)',
+        serviceCount: 4,
+        advIcon: '<path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-4h6v4"/>',
+        capabilitiesHeader: {
+            title: 'Software &',
+            titleEm: 'standards',
+            desc: 'Industry-standard tools and design codes that ensure every deliverable meets international requirements.'
+        },
         hero: {
             title: 'Engineering',
             titleEm: 'Design',
@@ -65,7 +73,8 @@ export const t2Data = {
                 { tag: 'Engineering Office', title: '3D Plant Modelling', sub: 'SmartPlant 3D · AVEVA E3D', img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1200&h=800&fit=crop' },
                 { tag: 'Design Review', title: 'FEA Validation', sub: 'ANSYS · Stress Analysis', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&h=800&fit=crop' },
                 { tag: 'Shop Floor', title: 'Design to Production', sub: 'Seamless handoff', img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=800&fit=crop' },
-                { tag: 'Deliverables', title: 'Production Drawings', sub: 'GA · Fabrication · Isometric', img: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200&h=800&fit=crop' }
+                { tag: 'Deliverables', title: 'Production Drawings', sub: 'GA · Fabrication · Isometric', img: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200&h=800&fit=crop' },
+                { tag: 'Collaboration', title: 'Integrated Review', sub: 'Cross-discipline validation', img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1200&h=800&fit=crop' }
             ]
         },
         services: {
@@ -159,7 +168,8 @@ export const t2Data = {
                 { num: '02', name: 'Equipment', desc: 'Mechanical design, FEA, ASME calculations' },
                 { num: '03', name: 'Piping', desc: 'Stress analysis, isometrics, supports' },
                 { num: '04', name: 'Fabrication', desc: 'Shop drawings → manufacturing handoff' }
-            ]
+            ],
+            feedback: '← Continuous feedback loops between all disciplines →'
         },
         cta: {
             title: 'Ready to discuss your',
@@ -169,6 +179,14 @@ export const t2Data = {
     },
     'equipment-manufacturing': {
         num: '02',
+        heroGradient: 'linear-gradient(168deg, #050b14 0%, #091828 35%, #0f2844 70%, #080f1c 100%)',
+        serviceCount: 2,
+        advIcon: '<path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-4h6v4"/>',
+        capabilitiesHeader: {
+            title: 'Stamps &',
+            titleEm: 'capabilities',
+            desc: 'Industry certifications and in-house testing capabilities that back every piece of equipment we deliver.'
+        },
         hero: {
             title: 'Equipment',
             titleEm: 'Manufacturing',
@@ -297,7 +315,8 @@ export const t2Data = {
                 { num: '02', name: 'Fabrication', desc: 'Rolling, welding, forming, machining' },
                 { num: '03', name: 'Inspection', desc: 'NDT, hydro test, dimensional check' },
                 { num: '04', name: 'Dispatch', desc: 'Documentation, packing, shipping' }
-            ]
+            ],
+            feedback: '← Design feedback informs every fabrication decision →'
         },
         cta: {
             title: 'Need equipment',
@@ -307,6 +326,14 @@ export const t2Data = {
     },
     'corrosion-protection': {
         num: '03',
+        heroGradient: 'linear-gradient(168deg, #070f1e 0%, #0c2240 35%, #143760 70%, #091520 100%)',
+        serviceCount: 4,
+        advIcon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+        capabilitiesHeader: {
+            title: 'Materials &',
+            titleEm: 'standards',
+            desc: 'Lining materials and quality standards that ensure long-term corrosion protection in the most aggressive environments.'
+        },
         hero: {
             title: 'Corrosion',
             titleEm: 'Protection',
@@ -446,7 +473,8 @@ export const t2Data = {
                 { num: '02', name: 'Prime', desc: 'Adhesive system application' },
                 { num: '03', name: 'Apply', desc: 'Rubber/plastic lining installation' },
                 { num: '04', name: 'Cure & Test', desc: 'Autoclave cure, spark test, sign-off' }
-            ]
+            ],
+            feedback: '← Inspection data feeds back into material selection →'
         },
         cta: {
             title: 'Equipment needs',
@@ -456,6 +484,14 @@ export const t2Data = {
     },
     'rubber-products': {
         num: '04',
+        heroGradient: 'linear-gradient(168deg, #040810 0%, #081420 35%, #0d2040 70%, #060c18 100%)',
+        serviceCount: 2,
+        advIcon: '<circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v-2m-9-9h2m18 0h-2M5.636 5.636l1.414 1.414m9.9 9.9l1.414 1.414M5.636 18.364l1.414-1.414m9.9-9.9l1.414-1.414"/>',
+        capabilitiesHeader: {
+            title: 'Compounds &',
+            titleEm: 'testing',
+            desc: 'Compound families and testing capabilities that ensure every formulation meets your specific performance requirements.'
+        },
         hero: {
             title: 'Rubber',
             titleEm: 'Products',
@@ -580,7 +616,8 @@ export const t2Data = {
                 { num: '02', name: 'Formulate', desc: 'R&D develops candidate compounds' },
                 { num: '03', name: 'Test', desc: 'Lab validation against requirements' },
                 { num: '04', name: 'Deliver', desc: 'Production batch + quality certificate' }
-            ]
+            ],
+            feedback: '← Test results feed back into formulation refinement →'
         },
         cta: {
             title: 'Need a custom',

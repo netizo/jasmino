@@ -45,7 +45,7 @@ export default function HeroScene({ phase }) {
         // ═══════════════════════════════════════════
         // ENVIRONMENT MAP
         // ═══════════════════════════════════════════
-        const cubeRT = new THREE.WebGLCubeRenderTarget(256);
+        const cubeRT = new THREE.WebGLCubeRenderTarget(128);
         const cubeCamera = new THREE.CubeCamera(0.1, 100, cubeRT);
         const envScene = new THREE.Scene();
 

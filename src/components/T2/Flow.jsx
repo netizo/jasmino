@@ -40,7 +40,7 @@ export default function T2Flow({ data }) {
                                 <div className="fstep-ring">
                                     <span>0{i + 1}</span>
                                 </div>
-                                <div className="fstep-name">{step.title}</div>
+                                <div className="fstep-name">{step.name}</div>
                                 <div className="fstep-desc">{step.desc}</div>
                             </div>
 
@@ -56,7 +56,7 @@ export default function T2Flow({ data }) {
                 </div>
 
                 <div className="flow-fb rv rd4">
-                    <span>← Continuous feedback loops between all disciplines →</span>
+                    <span>{data.flow.feedback || '← Continuous feedback loops between all disciplines →'}</span>
                 </div>
             </div>
         </section>

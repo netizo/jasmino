@@ -1,6 +1,14 @@
 import { useEffect, useRef } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { divisions } from '../../data/divisions';
 
 export default function T2ServiceGrid({ data }) {
+    const { divisionSlug } = useParams();
+    const division = divisions.find(d => d.slug === divisionSlug);
+    const serviceSlugMap = {};
+    if (division) {
+        division.services.forEach(s => { serviceSlugMap[s.name] = s.slug; });
+    }
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -62,12 +70,12 @@ export default function T2ServiceGrid({ data }) {
                                     ))}
                                 </div>
 
-                                <a className="scard-link" href="#">
+                                <Link className="scard-link" to={serviceSlugMap[item.title] ? `/what-we-do/${divisionSlug}/${serviceSlugMap[item.title]}` : '#'}>
                                     Explore Service
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </article>
                     ))}
