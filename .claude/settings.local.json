@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "Bash(claude update:*)"
+      "Bash(claude update:*)",
+      "Bash(claude:*)",
+      "Bash(npm update:*)"
     ]
   }
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/logo.png';
+import logoWhite from '../assets/logo-white.png';
 import { divisions } from '../data/divisions';
 import { services } from '../data/services';
 
@@ -51,7 +53,13 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar" style={scrolled ? { boxShadow: '0 4px 24px rgba(0,0,0,0.3)' } : {}}>
-        <Link to="/" className="navbar-logo">Jasmino</Link>
+        <Link to="/" className="navbar-logo">
+          <img
+            src={scrolled ? logo : logoWhite}
+            alt="Jasmino"
+            style={{ height: '40px', width: 'auto' }}
+          />
+        </Link>
         <ul className="navbar-links">
           <li style={{ position: 'relative' }} ref={aboutRef}>
             <button
@@ -59,7 +67,7 @@ export default function Navbar() {
               onClick={() => { setAboutOpen(!aboutOpen); setMegaOpen(false); }}
             >
               About
-              <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
             <div className={`about-dropdown ${aboutOpen ? 'open' : ''}`}>
               <Link to="/about/our-story">Our Story</Link>
@@ -72,7 +80,7 @@ export default function Navbar() {
               onClick={() => { setMegaOpen(!megaOpen); setAboutOpen(false); }}
             >
               What We Do
-              <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           </li>
           <li><Link to="/industries">Industries</Link></li>
@@ -109,7 +117,7 @@ export default function Navbar() {
         <div className="mobile-menu-section">
           <button className={`mobile-menu-toggle ${mobileAbout ? 'open' : ''}`} onClick={() => setMobileAbout(!mobileAbout)}>
             About
-            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
           <div className={`mobile-submenu ${mobileAbout ? 'open' : ''}`}>
             <Link to="/about/our-story">Our Story</Link>
@@ -119,7 +127,7 @@ export default function Navbar() {
         <div className="mobile-menu-section">
           <button className={`mobile-menu-toggle ${mobileWWD ? 'open' : ''}`} onClick={() => setMobileWWD(!mobileWWD)}>
             What We Do
-            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
           <div className={`mobile-submenu ${mobileWWD ? 'open' : ''}`}>
             <Link to="/what-we-do" style={{ color: 'var(--green)', fontWeight: 600 }}>Overview</Link>

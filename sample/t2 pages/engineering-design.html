@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Design — Jasmino</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1D34;--dark:#0D2847;--blue:#1B4B8F;--bb:#3B7BDB;--green:#04E586;--gd:rgba(4,229,134,0.08);--g50:#FAFBFC;--g100:#F0F2F5;--g150:#E4E7EC;--g200:#D5D9E0;--g300:#B0B7C3;--g400:#8892A2;--g500:#6B7280;--g600:#4B5563;--g700:#374151;--g800:#1F2937;--g900:#0C1220;--wh:#fff;--surf:#F4F5F7;--r:12px;--rl:18px;--rx:24px;--r2:32px;--sf:'Fraunces',serif;--ss:'Sora',sans-serif;--sm:'JetBrains Mono',monospace;--e:cubic-bezier(.16,1,.3,1);--es:cubic-bezier(.22,1,.36,1)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--ss);background:var(--surf);color:var(--g900);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025}.grain canvas{width:100%;height:100%}
+
+/* NAV */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(8,16,28,0.88);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid rgba(255,255,255,0.05)}
+.topnav-in{max-width:1400px;margin:0 auto;padding:0 56px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none}.topnav-in::-webkit-scrollbar{display:none}
+.nav-tag{font-family:var(--sm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.18);padding-right:20px;border-right:1px solid rgba(255,255,255,0.06);margin-right:8px;white-space:nowrap;flex-shrink:0}
+.nl{font-size:13px;font-weight:500;color:rgba(255,255,255,0.3);text-decoration:none;padding:18px 24px;white-space:nowrap;position:relative;transition:color .3s var(--e)}.nl:hover{color:rgba(255,255,255,0.65)}.nl.active{color:var(--green)}.nl.active::after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:2px;background:var(--green);border-radius:1px 1px 0 0}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.hero-bg{position:absolute;inset:0;z-index:0}.hero-bg canvas{width:100%;height:100%}
+.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:20px 20px,20px 20px,100px 100px,100px 100px;pointer-events:none}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--surf),transparent);z-index:4;pointer-events:none}
+.hero-inner{max-width:1400px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center;position:relative;z-index:3;min-height:100vh}
+.hero-left{display:flex;flex-direction:column;gap:24px;padding:120px 0 100px}
+.crumb{display:flex;align-items:center;gap:8px;font-family:var(--sm);font-size:10px;letter-spacing:.04em}.crumb a{color:rgba(255,255,255,.25);text-decoration:none;transition:color .2s}.crumb a:hover{color:rgba(255,255,255,.55)}.crumb .sep{color:rgba(255,255,255,.1)}.crumb .cur{color:var(--green);font-weight:500}
+.hbadge{display:inline-flex;align-items:center;gap:10px;font-family:var(--sm);font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);padding:7px 16px;border-radius:24px;width:fit-content}
+.hbadge-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(4,229,134,.4);animation:gp 2.5s ease-in-out infinite}@keyframes gp{0%,100%{opacity:1;box-shadow:0 0 12px rgba(4,229,134,.4)}50%{opacity:.3;box-shadow:0 0 4px rgba(4,229,134,.1)}}
+.htitle{font-family:var(--sf);font-weight:500;font-size:clamp(42px,5.5vw,72px);line-height:.98;letter-spacing:-.035em;color:#fff}.htitle em{font-style:italic;color:var(--green);font-weight:400}
+.hdesc{font-size:16px;line-height:1.8;color:rgba(255,255,255,.38);max-width:460px}
+.hstats{display:flex;gap:40px;margin-top:12px}.hstat .hstat-num{font-family:var(--sm);font-weight:600;font-size:32px;color:var(--green);line-height:1}.hstat .hstat-label{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.22);margin-top:8px;letter-spacing:.02em}
+.hero-right{display:flex;align-items:center;justify-content:center;position:relative;padding:80px 0}
+.hero-vis{width:100%;max-width:440px;aspect-ratio:1;position:relative}
+.hero-vis-ring{position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(4,229,134,.04);animation:rr 20s linear infinite}@keyframes rr{to{transform:rotate(360deg)}}
+.hero-vis-ring2{position:absolute;inset:-50px;border-radius:50%;border:1px dashed rgba(255,255,255,.025);animation:rr 35s linear infinite reverse}
+.hero-schematic{position:absolute;inset:0;overflow:hidden}.hero-schematic svg{width:100%;height:100%}
+.draw-line{stroke-dasharray:600;stroke-dashoffset:600;animation:dl 2.5s ease-out forwards;animation-delay:calc(var(--d,0) * .35s)}@keyframes dl{to{stroke-dashoffset:0}}
+.hero-bgnum{position:absolute;top:50%;right:56px;transform:translateY(-50%);font-family:var(--sm);font-size:clamp(140px,18vw,280px);font-weight:700;color:rgba(255,255,255,.012);line-height:1;z-index:2;pointer-events:none;user-select:none}
+
+/* ADVANTAGE */
+.adv{background:var(--wh);border-bottom:1px solid var(--g150);position:relative;overflow:hidden}
+.adv::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,rgba(11,29,52,.02),rgba(27,75,143,.04));pointer-events:none}
+.adv-in{max-width:1400px;margin:0 auto;padding:100px 56px;display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center}
+.adv-icon{width:60px;height:60px;border-radius:16px;background:var(--gd);border:1px solid rgba(4,229,134,.12);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative}.adv-icon::after{content:'';position:absolute;inset:-4px;border-radius:20px;border:1px solid rgba(4,229,134,.05)}
+.adv-h{font-family:var(--sf);font-weight:500;font-size:36px;line-height:1.1;color:var(--g900);margin-bottom:16px;letter-spacing:-.015em}.adv-h em{font-style:italic;font-weight:300}
+.adv-desc{font-size:15px;line-height:1.8;color:var(--g500);margin-bottom:28px}
+.adv-list{list-style:none;display:flex;flex-direction:column;gap:14px}.adv-list li{font-size:13.5px;color:var(--g600);padding-left:28px;position:relative;line-height:1.7}.adv-list li::before{content:'';position:absolute;left:0;top:8px;width:12px;height:12px;border-radius:50%;border:2px solid var(--green);opacity:.35;transition:all .3s}.adv-list li:hover::before{opacity:1;background:rgba(4,229,134,.1);transform:scale(1.2)}
+.adv-visual{border-radius:var(--r2);overflow:hidden;background:linear-gradient(150deg,var(--navy),var(--dark),#0e2f55);aspect-ratio:1.15;position:relative;border:1px solid rgba(255,255,255,.04)}.adv-visual::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}.adv-diagram{position:relative;z-index:2;padding:40px;display:flex;align-items:center;justify-content:center;height:100%}.adv-diagram svg{width:100%;height:auto;max-height:100%;opacity:.85}
+
+/* GALLERY */
+.gallery{height:80vh;min-height:560px;max-height:900px;position:relative;overflow:hidden;background:var(--navy)}
+.gal-mosaic{display:grid;grid-template-columns:1.3fr .7fr 1fr;grid-template-rows:1fr 1fr;gap:4px;height:100%;padding:4px}.gal-item{position:relative;overflow:hidden;cursor:pointer}.gal-item:first-child{grid-row:1/3}
+.gal-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.12) brightness(.45) contrast(1.2);transition:all 1.2s var(--es);transform:scale(1.06)}.gal-item:hover img{filter:saturate(.55) brightness(.6) contrast(1.1);transform:scale(1)}
+.gal-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,16,28,.92) 0%,rgba(8,16,28,.2) 40%,transparent 70%);transition:opacity .6s;pointer-events:none}
+.gal-cap{position:absolute;bottom:0;left:0;right:0;padding:28px 32px;z-index:2;transform:translateY(12px);opacity:0;transition:all .6s var(--e)}.gal-item:hover .gal-cap{transform:translateY(0);opacity:1}
+.gal-tag{display:block;font-family:var(--sm);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.gal-title{display:block;font-family:var(--sf);font-size:22px;font-weight:500;color:#fff;line-height:1.15;margin-bottom:4px}
+.gal-sub{display:block;font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.35)}
+.gal-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;pointer-events:none}
+.gal-overlay-tag{font-family:var(--sm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:10px;opacity:.6}
+.gal-overlay-title{font-family:var(--sf);font-size:clamp(24px,3.5vw,40px);font-weight:500;color:#fff;line-height:1.08;text-shadow:0 4px 40px rgba(0,0,0,.6)}.gal-overlay-title em{font-style:italic;font-weight:300}
+.gal-frame{position:absolute;inset:28px;border:1px solid rgba(255,255,255,.04);border-radius:var(--rl);z-index:4;pointer-events:none}
+.gal-ct{position:absolute;bottom:40px;right:48px;z-index:6;font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.08em;pointer-events:none}
+
+/* SERVICES */
+.svcs{background:var(--g50);position:relative}
+.svcs::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(27,75,143,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(27,75,143,.03) 1px,transparent 1px),linear-gradient(rgba(27,75,143,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(27,75,143,.06) 1px,transparent 1px);background-size:20px 20px,20px 20px,100px 100px,100px 100px;pointer-events:none}
+.svcs-in{max-width:1400px;margin:0 auto;padding:100px 56px 120px;position:relative;z-index:1}
+.overline{font-family:var(--sm);font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:12px}.overline::before{content:'';width:18px;height:1.5px;background:var(--green)}
+.sec-h{font-family:var(--sf);font-weight:500;font-size:clamp(30px,3.5vw,44px);line-height:1.06;letter-spacing:-.02em;color:var(--g900);margin-bottom:16px}.sec-h em{font-style:italic;font-weight:300}
+.sec-desc{font-size:15px;line-height:1.75;color:var(--g500);max-width:540px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:52px}
+.scard{background:var(--wh);border:1px solid var(--g150);border-radius:var(--rx);overflow:hidden;transition:all .6s var(--e);display:flex;flex-direction:column;will-change:transform;opacity:0;transform:translateY(32px)}.scard.vis{opacity:1;transform:translateY(0)}.scard:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.04);border-color:var(--g200)}
+.scard-visual{height:240px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.scard-visual.v1{background:linear-gradient(140deg,#0c1f3a,#1a4580)}.scard-visual.v2{background:linear-gradient(140deg,#091624,#12305a)}.scard-visual.v3{background:linear-gradient(140deg,#0b2040,#1a4075)}.scard-visual.v4{background:linear-gradient(140deg,#070e1a,#0e2545)}
+.scard-visual::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 30% 40%,rgba(4,229,134,.06),transparent 50%),radial-gradient(circle at 80% 70%,rgba(27,75,143,.08),transparent 50%);pointer-events:none}
+.scard-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 50%);pointer-events:none}
+.scard-ix{position:absolute;top:18px;left:22px;z-index:3;font-family:var(--sm);font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--green);opacity:.55}
+.scard-stat{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;text-align:center;transition:all .5s var(--e)}.scard:hover .scard-stat{transform:translate(-50%,-50%) scale(1.05)}.scard-stat-num{display:block;font-family:var(--sm);font-weight:700;font-size:42px;color:rgba(255,255,255,.12);line-height:1;letter-spacing:-.02em;transition:color .5s}.scard:hover .scard-stat-num{color:rgba(4,229,134,.2)}.scard-stat-label{display:block;font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.15);margin-top:6px;letter-spacing:.04em}
+.scard-ev{position:absolute;bottom:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:8px;padding:14px 22px;font-family:var(--sm);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.04em}.ev-dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--green);opacity:.45;flex-shrink:0}
+.scard-body{padding:32px 30px 36px;flex:1;display:flex;flex-direction:column}
+.scard-title{font-family:var(--sf);font-weight:500;font-size:24px;line-height:1.12;color:var(--g900);margin-bottom:12px;letter-spacing:-.01em}
+.scard-desc{font-size:14px;line-height:1.8;color:var(--g500);margin-bottom:22px;flex:1}
+.scard-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.stag{font-family:var(--sm);font-size:10px;padding:6px 14px;border-radius:18px;background:var(--g100);color:var(--g600);border:1px solid var(--g150);transition:all .3s var(--e);cursor:pointer;position:relative;overflow:hidden}.stag::before{content:'';position:absolute;inset:0;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--e);border-radius:inherit}.stag:hover{color:#fff;border-color:var(--blue)}.stag:hover::before{transform:scaleX(1)}.stag span{position:relative;z-index:1}
+.scard-link{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:7px;position:relative;padding-bottom:2px;transition:gap .3s var(--e)}.scard-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--blue);transition:width .35s var(--e)}.scard-link:hover{gap:12px}.scard-link:hover::after{width:100%}.scard-link svg{width:14px;height:14px;transition:transform .3s var(--e)}.scard-link:hover svg{transform:translateX(3px)}
+
+/* TOOLS */
+.tsec{background:var(--wh);border-top:1px solid var(--g150)}.tsec-in{max-width:1400px;margin:0 auto;padding:100px 56px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px}
+.tcol-h{font-family:var(--sm);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--g150)}
+.trows{display:flex;flex-direction:column;gap:8px}
+.trow{display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:var(--r);background:var(--g50);border:1px solid transparent;transition:all .35s var(--e);position:relative;overflow:hidden}.trow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green);border-radius:0 2px 2px 0;transform:scaleY(0);transition:transform .35s var(--e)}.trow:hover{border-color:var(--g200);box-shadow:0 2px 16px rgba(0,0,0,.04);transform:translateX(8px)}.trow:hover::before{transform:scaleY(1)}
+.trow-abbr{width:46px;height:46px;border-radius:12px;background:var(--wh);border:1px solid var(--g150);display:flex;align-items:center;justify-content:center;font-family:var(--sm);font-size:10px;font-weight:600;color:var(--blue);flex-shrink:0;transition:all .3s var(--e)}.trow:hover .trow-abbr{background:var(--blue);color:#fff;border-color:var(--blue)}
+.trow-info{flex:1}.trow-info strong{display:block;font-size:13px;color:var(--g800)}.trow-info span{font-family:var(--sm);font-size:10px;color:var(--g400);margin-top:2px;display:block}
+
+/* FLOW */
+.flowsec{background:var(--dark);position:relative;overflow:hidden}.flowsec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:20px 20px,20px 20px,100px 100px,100px 100px;pointer-events:none}
+.flowsec-in{max-width:1400px;margin:0 auto;padding:100px 56px;position:relative;z-index:1}
+.frow{display:flex;align-items:flex-start;justify-content:center;gap:0;margin-top:56px}
+.fstep{display:flex;flex-direction:column;align-items:center;gap:16px;flex:1;text-align:center;max-width:220px;position:relative;z-index:2}
+.fstep-ring{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.025);border:1.5px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;transition:all .5s var(--e);position:relative}.fstep-ring::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(4,229,134,0);transition:all .5s var(--e)}.fstep-ring span{font-family:var(--sm);font-size:22px;font-weight:600;color:var(--green)}
+.fstep:hover .fstep-ring{background:rgba(4,229,134,.06);border-color:rgba(4,229,134,.18);transform:scale(1.12)}.fstep:hover .fstep-ring::after{border-color:rgba(4,229,134,.06)}
+.fstep-name{font-weight:600;font-size:14px;color:rgba(255,255,255,.7)}.fstep-desc{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.22);line-height:1.5;max-width:160px}
+.fconn{display:flex;align-items:center;margin-top:28px;flex-shrink:0;opacity:.4}
+.flow-fb{text-align:center;margin-top:44px;padding-top:28px;border-top:1px dashed rgba(255,255,255,.05)}.flow-fb span{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.15);letter-spacing:.06em}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--blue) 0%,#1A3F73 100%);position:relative;overflow:hidden}.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(4,229,134,.06),transparent 60%)}.cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:20px 20px}
+.cta-in{max-width:1400px;margin:0 auto;padding:64px 56px;display:flex;align-items:center;justify-content:space-between;gap:48px;position:relative;z-index:2}
+.cta-h{font-family:var(--sf);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;color:#fff;letter-spacing:-.015em}.cta-h em{font-style:italic;font-weight:300}.cta-desc{font-size:15px;color:rgba(255,255,255,.4);max-width:440px;margin-top:12px}
+.cta-btns{display:flex;gap:14px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--ss);font-weight:600;font-size:13px;padding:15px 30px;border-radius:var(--r);border:none;cursor:pointer;text-decoration:none;transition:all .35s var(--e);white-space:nowrap}.btn svg{width:14px;height:14px;flex-shrink:0}
+.btn-p{background:var(--green);color:var(--dark)}.btn-p:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(4,229,134,.3)}
+.btn-s{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.12)}.btn-s:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04)}
+
+/* FOOTER */
+.ft{background:var(--navy);padding:52px 0 36px}.ft-in{max-width:1400px;margin:0 auto;padding:0 56px}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}.ft-brand{font-family:var(--sf);font-weight:600;font-size:20px;color:rgba(255,255,255,.8);margin-bottom:12px}.ft-brand-desc{font-size:13px;color:rgba(255,255,255,.25);line-height:1.65;max-width:280px}.ft-col-h{font-family:var(--sm);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:18px}.ft-link{display:block;font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;padding:4px 0;transition:color .2s}.ft-link:hover{color:rgba(255,255,255,.65)}
+.ft-bar{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,.05)}.ft-legal{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,.15)}.ft-bar-links{display:flex;gap:18px}.ft-bar-links a{font-size:11px;color:rgba(255,255,255,.2);text-decoration:none;transition:color .2s}.ft-bar-links a:hover{color:rgba(255,255,255,.45)}
+
+/* REVEALS */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s var(--es),transform .8s var(--es)}.rv.vis{opacity:1;transform:translateY(0)}.rv-s{opacity:0;transform:scale(.96);transition:opacity 1s var(--es),transform 1s var(--es)}.rv-s.vis{opacity:1;transform:scale(1)}
+.rd1{transition-delay:80ms}.rd2{transition-delay:160ms}.rd3{transition-delay:240ms}.rd4{transition-delay:320ms}
+
+/* RESPONSIVE */
+@media(max-width:1080px){.hero-inner{grid-template-columns:1fr;gap:40px}.hero-right{display:none}.hero-left{padding:100px 0 80px}.adv-in{grid-template-columns:1fr}.adv-visual{display:none}.tgrid{gap:40px}.sgrid{grid-template-columns:1fr}}
+@media(max-width:768px){.hero-inner,.adv-in,.svcs-in,.tsec-in,.flowsec-in,.cta-in,.ft-in,.topnav-in{padding-left:24px;padding-right:24px}.htitle{font-size:38px}.hero-bgnum{font-size:100px;right:24px}.hstats{gap:24px}.hstat .hstat-num{font-size:24px}.tgrid{grid-template-columns:1fr}.frow{flex-direction:column;align-items:center;gap:28px}.fconn{transform:rotate(90deg);margin:0}.cta-in{flex-direction:column;text-align:center}.cta-btns{justify-content:center}.ft-grid{grid-template-columns:1fr 1fr}.gallery{height:auto;min-height:auto}.gal-mosaic{grid-template-columns:1fr;height:auto}.gal-item{height:240px}.gal-item:first-child{grid-row:auto}.gal-cap{opacity:1;transform:none}.gal-overlay,.gal-frame{display:none}}
+</style>
+</head>
+<body>
+<div class="grain"><canvas id="grainCanvas"></canvas></div>
+<nav class="topnav"><div class="topnav-in"><span class="nav-tag">What We Do</span><a class="nl active" href="engineering-design.html">Engineering Design</a><a class="nl" href="equipment-manufacturing.html">Equipment Manufacturing</a><a class="nl" href="corrosion-protection.html">Corrosion Protection</a><a class="nl" href="rubber-products.html">Rubber Products</a></div></nav>
+<section class="hero" style="background:linear-gradient(168deg, #060e1a 0%, #0B1D34 35%, #112e55 70%, #0a1828 100%)">
+  <div class="hero-bg"><canvas id="heroCanvas"></canvas></div>
+  <div class="hero-grid"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-bgnum">01</div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <nav class="crumb"><a href="#">Home</a><span class="sep">/</span><a href="#">What We Do</a><span class="sep">/</span><span class="cur">Engineering Design</span></nav>
+      <div class="hbadge"><div class="hbadge-dot"></div>Division 01 — 4 Specialist Services</div>
+      <h1 class="htitle">Engineering<br><em>Design</em></h1>
+      <p class="hdesc">From process simulation through detailed engineering — designs that account for fabrication, protection, and operational reality from day one.</p>
+      <div class="hstats"><div class="hstat"><div class="hstat-num" data-target="500" data-suffix="+">0</div><div class="hstat-label">Projects delivered</div></div><div class="hstat"><div class="hstat-num" data-target="45" data-suffix="+">0</div><div class="hstat-label">Engineers</div></div><div class="hstat"><div class="hstat-num" data-target="12" data-suffix="">0</div><div class="hstat-label">Software platforms</div></div></div>
+    </div>
+    <div class="hero-right"><div class="hero-vis"><div class="hero-vis-ring"></div><div class="hero-vis-ring2"></div><div class="hero-schematic"><svg viewBox="0 0 500 500" fill="none"><g opacity="0.55"><rect x="160" y="80" width="180" height="280" rx="90" stroke="rgba(4,229,134,0.2)" stroke-width="1" class="draw-line" style="--d:0"/><line x1="160" y1="150" x2="340" y2="150" stroke="rgba(4,229,134,0.08)" stroke-width="0.5"/><line x1="160" y1="280" x2="340" y2="280" stroke="rgba(4,229,134,0.08)" stroke-width="0.5"/><line x1="250" y1="80" x2="250" y2="35" stroke="rgba(4,229,134,0.15)" stroke-width="0.8" class="draw-line" style="--d:1"/><rect x="234" y="24" width="32" height="11" rx="3" stroke="rgba(4,229,134,0.15)" stroke-width="0.6"/><line x1="340" y1="200" x2="410" y2="200" stroke="rgba(4,229,134,0.15)" stroke-width="0.8" class="draw-line" style="--d:2"/><path d="M250 24 L250 10 L90 10 L90 200" stroke="rgba(4,229,134,0.1)" stroke-width="0.6" class="draw-line" style="--d:3"/><path d="M410 200 L450 200 L450 400 L250 400 L250 360" stroke="rgba(4,229,134,0.1)" stroke-width="0.6" class="draw-line" style="--d:4"/><circle cx="90" cy="218" r="24" stroke="rgba(4,229,134,0.15)" stroke-width="0.6" class="draw-line" style="--d:5"/><rect x="65" y="310" width="100" height="40" rx="20" stroke="rgba(4,229,134,0.12)" stroke-width="0.6" class="draw-line" style="--d:6"/></g></svg></div></div></div>
+  </div>
+</section>
+<section class="adv">
+  <div class="adv-in">
+    <div class="rv">
+      <div class="adv-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0-4h18"/></svg></div>
+      <h2 class="adv-h">Design with fabrication <em>built in</em></h2>
+      <p class="adv-desc">Most engineering firms design in isolation. Drawings arrive at the shop floor and don't account for manufacturing tolerances, lining requirements, or shipping constraints. We eliminated that gap.</p>
+      <ul class="adv-list"><li>Design decisions include manufacturing tolerances from day one</li><li>Protection requirements inform wall thickness, nozzle placement, and weld access</li><li>3D models validate against our actual fabrication capabilities</li><li>Single engineering team — no re-work between design and production</li></ul>
+    </div>
+    <div class="adv-visual rv rd2"><div class="adv-diagram"><svg viewBox="0 0 500 500" fill="none"><g opacity="0.55"><rect x="160" y="80" width="180" height="280" rx="90" stroke="rgba(4,229,134,0.2)" stroke-width="1" class="draw-line" style="--d:0"/><line x1="160" y1="150" x2="340" y2="150" stroke="rgba(4,229,134,0.08)" stroke-width="0.5"/><line x1="160" y1="280" x2="340" y2="280" stroke="rgba(4,229,134,0.08)" stroke-width="0.5"/><line x1="250" y1="80" x2="250" y2="35" stroke="rgba(4,229,134,0.15)" stroke-width="0.8" class="draw-line" style="--d:1"/><rect x="234" y="24" width="32" height="11" rx="3" stroke="rgba(4,229,134,0.15)" stroke-width="0.6"/><line x1="340" y1="200" x2="410" y2="200" stroke="rgba(4,229,134,0.15)" stroke-width="0.8" class="draw-line" style="--d:2"/><path d="M250 24 L250 10 L90 10 L90 200" stroke="rgba(4,229,134,0.1)" stroke-width="0.6" class="draw-line" style="--d:3"/><path d="M410 200 L450 200 L450 400 L250 400 L250 360" stroke="rgba(4,229,134,0.1)" stroke-width="0.6" class="draw-line" style="--d:4"/><circle cx="90" cy="218" r="24" stroke="rgba(4,229,134,0.15)" stroke-width="0.6" class="draw-line" style="--d:5"/><rect x="65" y="310" width="100" height="40" rx="20" stroke="rgba(4,229,134,0.12)" stroke-width="0.6" class="draw-line" style="--d:6"/></g></svg></div></div>
+  </div>
+</section>
+<section class="gallery rv-s">
+  <div class="gal-frame"></div>
+  <div class="gal-overlay"><div class="gal-overlay-tag">Engineering in Action</div><div class="gal-overlay-title">Where <em>precision</em> lives</div></div>
+  <div class="gal-ct">01 — 05</div>
+  <div class="gal-mosaic"><div class="gal-item"><img src="https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1200&h=800&fit=crop" alt="Engineering Office" loading="lazy"/><div class="gal-cap"><span class="gal-tag">Engineering Office</span><span class="gal-title">3D Plant Modelling</span><span class="gal-sub">SmartPlant 3D · AVEVA E3D</span></div></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&h=800&fit=crop" alt="Design Review" loading="lazy"/><div class="gal-cap"><span class="gal-tag">Design Review</span><span class="gal-title">FEA Validation</span><span class="gal-sub">ANSYS · Stress Analysis</span></div></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=800&fit=crop" alt="Shop Floor" loading="lazy"/><div class="gal-cap"><span class="gal-tag">Shop Floor</span><span class="gal-title">Design to Production</span><span class="gal-sub">Seamless handoff</span></div></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200&h=800&fit=crop" alt="Deliverables" loading="lazy"/><div class="gal-cap"><span class="gal-tag">Deliverables</span><span class="gal-title">Production Drawings</span><span class="gal-sub">GA · Fabrication · Isometric</span></div></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1565191999001-551c187427bb?w=1200&h=800&fit=crop" alt="Verification" loading="lazy"/><div class="gal-cap"><span class="gal-tag">Verification</span><span class="gal-title">Quality Assurance</span><span class="gal-sub">Code compliance review</span></div></div></div>
+</section>
+<section class="svcs">
+  <div class="svcs-in">
+    <div class="overline rv">Our Services</div>
+    <h2 class="sec-h rv rd1">Four disciplines, one <em>integrated team</em></h2>
+    <p class="sec-desc rv rd2">Each service feeds the next — process engineers brief equipment designers, equipment designers brief piping engineers, and every decision accounts for downstream fabrication.</p>
+    <div class="sgrid">
+      <article class="scard" style="--i:0">
+        <div class="scard-visual v1">
+          <span class="scard-ix">01</span>
+          <div class="scard-stat"><span class="scard-stat-num">120+</span><span class="scard-stat-label">plants designed</span></div>
+          <div class="scard-ev"><i class="ev-dot"></i><span>P&ID development</span><i class="ev-dot"></i><span>Process simulation</span></div>
+        </div>
+        <div class="scard-body">
+          <h3 class="scard-title">Process & Plant Design</h3>
+          <p class="scard-desc">P&IDs, heat & mass balance, process simulation, and complete plant layout. The blueprint that every other discipline builds from.</p>
+          <div class="scard-tags"><span class="stag"><span>P&ID</span></span><span class="stag"><span>HAZOP</span></span><span class="stag"><span>Plant Layout</span></span><span class="stag"><span>Simulation</span></span></div>
+          <a class="scard-link" href="#">Explore Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+      <article class="scard" style="--i:1">
+        <div class="scard-visual v2">
+          <span class="scard-ix">02</span>
+          <div class="scard-stat"><span class="scard-stat-num">2,500+</span><span class="scard-stat-label">vessels engineered</span></div>
+          <div class="scard-ev"><i class="ev-dot"></i><span>Mechanical design</span><i class="ev-dot"></i><span>FEA analysis</span></div>
+        </div>
+        <div class="scard-body">
+          <h3 class="scard-title">Equipment Design</h3>
+          <p class="scard-desc">Vessel engineering, mechanical design, FEA analysis, and structural calculations. Every vessel designed with our manufacturing shop in mind.</p>
+          <div class="scard-tags"><span class="stag"><span>ASME VIII</span></span><span class="stag"><span>FEA / ANSYS</span></span><span class="stag"><span>PV Elite</span></span><span class="stag"><span>Compress</span></span></div>
+          <a class="scard-link" href="#">Explore Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+      <article class="scard" style="--i:2">
+        <div class="scard-visual v3">
+          <span class="scard-ix">03</span>
+          <div class="scard-stat"><span class="scard-stat-num">800+</span><span class="scard-stat-label">km piping designed</span></div>
+          <div class="scard-ev"><i class="ev-dot"></i><span>Pipe stress analysis</span><i class="ev-dot"></i><span>Isometrics</span></div>
+        </div>
+        <div class="scard-body">
+          <h3 class="scard-title">Piping Design</h3>
+          <p class="scard-desc">Stress analysis, isometric generation, pipe rack design, and support engineering. Caesar II validated for every critical line.</p>
+          <div class="scard-tags"><span class="stag"><span>CAESAR II</span></span><span class="stag"><span>SP3D / E3D</span></span><span class="stag"><span>Isometrics</span></span><span class="stag"><span>Stress Analysis</span></span></div>
+          <a class="scard-link" href="#">Explore Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+      <article class="scard" style="--i:3">
+        <div class="scard-visual v4">
+          <span class="scard-ix">04</span>
+          <div class="scard-stat"><span class="scard-stat-num">60+</span><span class="scard-stat-label">treatment plants</span></div>
+          <div class="scard-ev"><i class="ev-dot"></i><span>ETP / STP design</span><i class="ev-dot"></i><span>Desalination</span></div>
+        </div>
+        <div class="scard-body">
+          <h3 class="scard-title">Water Treatment</h3>
+          <p class="scard-desc">Complete ETP/STP and desalination plant design. Process engineering through to installation support for water and wastewater systems.</p>
+          <div class="scard-tags"><span class="stag"><span>ETP / STP</span></span><span class="stag"><span>Desalination</span></span><span class="stag"><span>ZLD Systems</span></span></div>
+          <a class="scard-link" href="#">Explore Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article></div>
+  </div>
+</section>
+<section class="tsec">
+  <div class="tsec-in">
+    <div class="overline rv">Capabilities</div>
+    <h2 class="sec-h rv rd1">Software & <em>standards</em></h2>
+    <p class="sec-desc rv rd2">Industry-standard platforms and certifications. Every tool selected for interoperability across our integrated divisions.</p>
+    <div class="tgrid rv rd3">
+      <div><div class="tcol-h">Software Platforms</div><div class="trows"><div class="trow"><div class="trow-abbr">SP3D</div><div class="trow-info"><strong>SmartPlant 3D</strong><span>3D plant modelling & design</span></div></div><div class="trow"><div class="trow-abbr">ANS</div><div class="trow-info"><strong>ANSYS</strong><span>Finite element analysis</span></div></div><div class="trow"><div class="trow-abbr">C-II</div><div class="trow-info"><strong>CAESAR II</strong><span>Pipe stress analysis</span></div></div><div class="trow"><div class="trow-abbr">PVE</div><div class="trow-info"><strong>PV Elite</strong><span>Pressure vessel design</span></div></div><div class="trow"><div class="trow-abbr">E3D</div><div class="trow-info"><strong>AVEVA E3D</strong><span>3D design & project management</span></div></div></div></div>
+      <div><div class="tcol-h">Design Standards</div><div class="trows"><div class="trow"><div class="trow-abbr">ASME</div><div class="trow-info"><strong>ASME Section VIII</strong><span>Pressure vessel design code</span></div></div><div class="trow"><div class="trow-abbr">API</div><div class="trow-info"><strong>API 650 / 620</strong><span>Storage tank design</span></div></div><div class="trow"><div class="trow-abbr">PED</div><div class="trow-info"><strong>PED 2014/68/EU</strong><span>European pressure directive</span></div></div><div class="trow"><div class="trow-abbr">IS</div><div class="trow-info"><strong>IS 2825 / IS 803</strong><span>Indian standards</span></div></div><div class="trow"><div class="trow-abbr">EN</div><div class="trow-info"><strong>EN 13445 / EN 13480</strong><span>European vessel & piping</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+<section class="flowsec">
+  <div class="flowsec-in">
+    <div style="text-align:center">
+      <div class="overline rv" style="justify-content:center">Service Flow</div>
+      <h2 class="sec-h rv rd1" style="color:#fff;max-width:500px;margin:0 auto 8px">How our services <em>connect</em></h2>
+      <p class="sec-desc rv rd2" style="color:rgba(255,255,255,.35);margin:0 auto">Each output feeds the next. Continuous feedback loops ensure every decision is production-validated.</p>
+    </div>
+    <div class="frow rv rd3"><div class="fstep"><div class="fstep-ring"><span>01</span></div><div class="fstep-name">Process & Plant</div><div class="fstep-desc">P&IDs, simulation, heat & mass balance</div></div><div class="fconn"><svg width="40" height="12" viewBox="0 0 40 12"><path d="M0 6h36M32 1l6 5-6 5" stroke="rgba(4,229,134,0.25)" stroke-width="1.2" fill="none"/></svg></div><div class="fstep"><div class="fstep-ring"><span>02</span></div><div class="fstep-name">Equipment</div><div class="fstep-desc">Mechanical design, FEA, ASME calculations</div></div><div class="fconn"><svg width="40" height="12" viewBox="0 0 40 12"><path d="M0 6h36M32 1l6 5-6 5" stroke="rgba(4,229,134,0.25)" stroke-width="1.2" fill="none"/></svg></div><div class="fstep"><div class="fstep-ring"><span>03</span></div><div class="fstep-name">Piping</div><div class="fstep-desc">Stress analysis, isometrics, supports</div></div><div class="fconn"><svg width="40" height="12" viewBox="0 0 40 12"><path d="M0 6h36M32 1l6 5-6 5" stroke="rgba(4,229,134,0.25)" stroke-width="1.2" fill="none"/></svg></div><div class="fstep"><div class="fstep-ring"><span>04</span></div><div class="fstep-name">Fabrication</div><div class="fstep-desc">Shop drawings → manufacturing handoff</div></div></div>
+    <div class="flow-fb rv rd4"><span>← Continuous feedback loops between all disciplines →</span></div>
+  </div>
+</section>
+<section class="cta">
+  <div class="cta-in rv">
+    <div><h2 class="cta-h">Ready to discuss your <em>project?</em></h2><p class="cta-desc">Share your requirements. Our team will respond within 24 hours with a scope assessment.</p></div>
+    <div class="cta-btns"><a class="btn btn-p" href="#">Start a Conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a class="btn btn-s" href="#">Download Brochure</a></div>
+  </div>
+</section>
+<footer class="ft"><div class="ft-in"><div class="ft-grid"><div><div class="ft-brand">Jasmino</div><p class="ft-brand-desc">The only company that designs, manufactures, and protects industrial process equipment under one roof.</p></div><div><div class="ft-col-h">What We Do</div><a class="ft-link" href="#">Engineering Design</a><a class="ft-link" href="#">Manufacturing</a><a class="ft-link" href="#">Corrosion Protection</a><a class="ft-link" href="#">Rubber Products</a></div><div><div class="ft-col-h">Company</div><a class="ft-link" href="#">Our Story</a><a class="ft-link" href="#">Jasmino Group</a><a class="ft-link" href="#">Industries</a><a class="ft-link" href="#">Infrastructure</a><a class="ft-link" href="#">News</a></div><div><div class="ft-col-h">Contact</div><a class="ft-link" href="#">Get in Touch</a><a class="ft-link" href="#" style="font-family:var(--sm);font-size:12px">+91 XXX XXX XXXX</a><a class="ft-link" href="#" style="font-family:var(--sm);font-size:12px">info@jasmino.com</a></div></div><div class="ft-bar"><div class="ft-legal">&copy; 2026 Jasmino Corporation. All rights reserved.</div><div class="ft-bar-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div></div></div></footer>
+<script>
+!function(){const c=document.getElementById('grainCanvas'),x=c.getContext('2d');function r(){c.width=window.innerWidth;c.height=window.innerHeight}r();window.addEventListener('resize',r);let f=0;function d(){if(++f%3!==0){requestAnimationFrame(d);return}const w=c.width,h=c.height,id=x.createImageData(w,h),px=id.data;for(let i=0;i<px.length;i+=16){const v=Math.random()*255;for(let j=0;j<16&&i+j<px.length;j+=4){px[i+j]=px[i+j+1]=px[i+j+2]=v;px[i+j+3]=20}}x.putImageData(id,0,0);requestAnimationFrame(d)}d()}();
+!function(){const c=document.getElementById('heroCanvas'),x=c.getContext('2d');let w,h,pts=[],mouse={x:-999,y:-999};
+function resize(){w=c.width=c.parentElement.clientWidth;h=c.height=c.parentElement.clientHeight;pts=[];for(let i=0;i<90;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.4,a:Math.random()*.25+.08})}resize();window.addEventListener('resize',resize);
+document.querySelector('.hero').addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+document.querySelector('.hero').addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});
+function draw(){x.clearRect(0,0,w,h);
+for(let i=0;i<pts.length;i++){const p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);
+if(dist<180){const f=.012*(1-dist/180);p.vx+=dx*f;p.vy+=dy*f}
+x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle='rgba(4,229,134,'+p.a+')';x.fill();
+for(let j=i+1;j<pts.length;j++){const q=pts[j],ddx=p.x-q.x,ddy=p.y-q.y,dd=Math.sqrt(ddx*ddx+ddy*ddy);if(dd<130){x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.strokeStyle='rgba(4,229,134,'+(0.055*(1-dd/130))+')';x.lineWidth=.5;x.stroke()}}}
+requestAnimationFrame(draw)}draw()}();
+const robs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv,.rv-s,.scard').forEach(el=>robs.observe(el));
+const sobs=new IntersectionObserver(e=>{e.forEach(x=>{if(!x.isIntersecting)return;const el=x.target;if(el.dataset.done)return;el.dataset.done='1';const t=parseInt(el.dataset.target),s=el.dataset.suffix||'';let c=0;const step=Math.max(1,Math.floor(t/50)),iv=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(iv)}el.textContent=c.toLocaleString()+s},25)})},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el=>sobs.observe(el));
+const gal=document.querySelector('.gallery'),gImgs=document.querySelectorAll('.gal-item img');
+window.addEventListener('scroll',()=>{if(!gal)return;const r=gal.getBoundingClientRect(),ratio=r.top/window.innerHeight;if(ratio<1.2&&ratio>-1.2)gImgs.forEach((img,i)=>{img.style.transform='scale(1.06) translateY('+ratio*(12+i*4)+'px)'})},{passive:true});
+document.querySelectorAll('.scard').forEach((c,i)=>{c.style.transitionDelay=i*120+'ms'});
+</script>
+</body>
+</html>
