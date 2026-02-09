@@ -202,8 +202,11 @@ export default function Navbar() {
   /* ═══════════════════════════════════════════════════════
      RENDER
      ═══════════════════════════════════════════════════════ */
-  // Home and What We Do have white/light heroes; all other pages have dark heroes
-  const isDarkHero = !['/', '/what-we-do'].includes(location.pathname);
+  // Light-hero pages: Home, What We Do overview, and T2 division pages (/what-we-do/SLUG)
+  // Dark-hero pages: About, T3 service pages (/what-we-do/SLUG/SERVICE), etc.
+  const path = location.pathname;
+  const isDivisionPage = /^\/what-we-do\/[^/]+$/.test(path);
+  const isDarkHero = path !== '/' && path !== '/what-we-do' && !isDivisionPage;
 
   const navCls = ['nav'];
   if (scrolled) navCls.push('scrolled');

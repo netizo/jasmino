@@ -35,7 +35,7 @@
 /* Division Wrapper */
 .division-landing-t2 {
     font-family: var(--ss);
-    background: var(--surf);
+    background: var(--wh);
     color: var(--g900);
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
@@ -160,7 +160,7 @@
     left: 0;
     right: 0;
     height: 200px;
-    background: linear-gradient(to top, var(--surf), transparent);
+    background: linear-gradient(to top, #fff, transparent);
     z-index: 4;
     pointer-events: none
 }
