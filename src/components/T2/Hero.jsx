@@ -42,7 +42,6 @@ export default function T2Hero({ data }) {
         <section className="hero" style={bgStyle} ref={containerRef}>
             <HeroBackground />
             <div className="hero-grid"></div>
-            <div className="hero-fade"></div>
             <div className="hero-bgnum">{data.num}</div>
 
             <div className="hero-inner">

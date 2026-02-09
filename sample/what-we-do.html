@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What We Do &mdash; Jasmino Corporation</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1D34;--dark:#0D2847;--blue:#1B4B8F;--blue-br:#3B7BDB;
+  --green:#04E586;--green-dim:rgba(4,229,134,0.08);
+  --g50:#FAFBFC;--g100:#F0F2F5;--g150:#E4E7EC;--g200:#D5D9E0;
+  --g300:#B0B7C3;--g400:#8892A2;--g500:#6B7280;--g600:#4B5563;
+  --g700:#374151;--g800:#1F2937;--g900:#0C1220;
+  --r:12px;--r-lg:18px;--r-xl:24px;--r-2xl:32px;
+  --sf:'Fraunces',serif;--ss:'Sora',sans-serif;--sm:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--ss);background:var(--g50);color:var(--g900);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+
+/* ═══ FILM GRAIN ═══ */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.028}
+
+/* ═══ ENGINEERING GRID ═══ */
+.eng-grid{
+  background-image:
+    linear-gradient(rgba(27,75,143,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.04) 1px,transparent 1px),
+    linear-gradient(rgba(27,75,143,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.07) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+}
+.eng-grid-dark{
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+}
+
+/* ═══ REVEAL SYSTEM ═══ */
+.rv{opacity:0;transform:translateY(32px);transition:opacity 0.8s var(--spring),transform 0.8s var(--spring)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:80ms}.rv-d2{transition-delay:160ms}
+.rv-d3{transition-delay:240ms}.rv-d4{transition-delay:320ms}
+
+/* ═══ CONTAIN ═══ */
+.contain{max-width:1280px;margin:0 auto;padding:0 48px}
+
+/* ═══ OVERLINE ═══ */
+.overline{
+  font-family:var(--sm);font-size:10.5px;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--green);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.overline::before{content:'';width:20px;height:1.5px;background:var(--green);opacity:0.5}
+
+/* ═══ BUTTONS ═══ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--ss);font-weight:600;
+  font-size:13px;padding:14px 28px;border-radius:var(--r);border:none;cursor:pointer;
+  text-decoration:none;transition:all 0.3s var(--ease);white-space:nowrap;
+}
+.btn svg{width:14px;height:14px}
+.btn-green{background:var(--green);color:var(--dark)}
+.btn-green:hover{background:#06f59a;transform:translateY(-1px);box-shadow:0 8px 24px rgba(4,229,134,0.2)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.15)}
+.btn-outline:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
+.btn-outline-lt{background:transparent;color:var(--blue);border:1.5px solid var(--g200);padding:14px 28px;border-radius:var(--r);font-family:var(--ss);font-weight:600;font-size:13px;cursor:pointer;text-decoration:none;transition:all 0.3s var(--ease);display:inline-flex;align-items:center;gap:8px}
+.btn-outline-lt:hover{border-color:var(--blue);background:rgba(27,75,143,0.03)}
+.btn-ghost{background:none;border:none;color:var(--blue);padding:0;font-size:13px;font-weight:600}
+.btn-ghost:hover{color:var(--blue-br)}
+
+/* ════════════════════════════════════════════════════════
+   S1 — HERO
+   ════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:100vh;
+  background:var(--white);
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+  border-bottom:1px solid var(--g150);
+}
+.hero-canvas{position:absolute;inset:0;z-index:1}
+.hero-grid{position:absolute;inset:0;z-index:2}
+.hero-content{position:relative;z-index:3;padding:0 48px}
+.hero-inner{max-width:1280px;margin:0 auto;width:100%}
+
+.hero-breadcrumb{
+  display:flex;align-items:center;gap:8px;font-family:var(--sm);font-size:10px;
+  letter-spacing:0.06em;margin-bottom:40px;
+}
+.hero-breadcrumb a{color:var(--g400);text-decoration:none;transition:color 0.2s}
+.hero-breadcrumb a:hover{color:var(--g600)}
+.hero-breadcrumb .sep{color:var(--g300)}
+.hero-breadcrumb .cur{color:var(--g600)}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--sm);font-size:10px;
+  font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--g500);background:var(--g50);
+  border:1px solid var(--g200);padding:7px 16px;border-radius:20px;
+  margin-bottom:24px;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero-title{
+  font-family:var(--sf);font-weight:500;font-size:clamp(40px,5.5vw,64px);
+  line-height:1.04;letter-spacing:-0.025em;color:var(--navy);margin-bottom:24px;max-width:720px;
+}
+.hero-title em{font-style:italic;color:var(--blue);font-weight:400}
+
+.hero-desc{
+  font-size:16px;line-height:1.7;color:var(--g500);max-width:480px;margin-bottom:36px;
+}
+
+.hero-actions{display:flex;gap:12px;margin-bottom:56px}
+
+.hero-stats{
+  display:flex;gap:48px;padding-top:36px;border-top:1px solid var(--g150);
+}
+.hero-stat-num{
+  font-family:var(--sm);font-weight:600;font-size:32px;line-height:1;color:var(--blue);
+}
+.hero-stat-label{font-family:var(--sm);font-size:10px;color:var(--g400);margin-top:6px;letter-spacing:0.04em}
+
+/* Scroll indicator */
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:var(--g400);font-family:var(--sm);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+}
+.scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,var(--g300),transparent);animation:scrollPulse 1.5s ease-in-out infinite}
+@keyframes scrollPulse{0%{opacity:1;transform:scaleY(1)}50%{opacity:0.3;transform:scaleY(0.6)}100%{opacity:1;transform:scaleY(1)}}
+
+/* Corner marks */
+.corner-mark{position:absolute;z-index:3;pointer-events:none}
+.corner-mark svg{width:24px;height:24px}
+.cm-tl{top:24px;left:24px}.cm-tr{top:24px;right:24px}
+.cm-bl{bottom:24px;left:24px}.cm-br{bottom:24px;right:24px}
+
+/* ════════════════════════════════════════════════════════
+   S2 — INTEGRATION MODEL
+   ════════════════════════════════════════════════════════ */
+.integration{background:var(--white);position:relative;overflow:hidden}
+.integration-grid{position:absolute;inset:0}
+.integration-inner{position:relative;z-index:2;padding:100px 0 120px}
+
+.sec-title{
+  font-family:var(--sf);font-weight:400;font-size:clamp(28px,3.5vw,42px);
+  line-height:1.1;letter-spacing:-0.015em;margin-bottom:14px;
+}
+.sec-title em{font-style:italic;font-weight:300}
+.sec-desc{font-size:15px;line-height:1.7;color:var(--g500);max-width:500px}
+.dark-desc{color:rgba(255,255,255,0.35)}
+
+.model{
+  display:grid;grid-template-columns:280px 1fr;
+  border:1px solid var(--g150);border-radius:var(--r-xl);
+  overflow:hidden;margin-top:48px;min-height:480px;
+  background:var(--navy);
+}
+.model-nav{border-right:1px solid rgba(255,255,255,0.06)}
+.model-tab{
+  padding:24px 28px;border-bottom:1px solid rgba(255,255,255,0.04);
+  cursor:pointer;transition:all 0.3s var(--ease);position:relative;
+}
+.model-tab:last-child{border-bottom:none}
+.model-tab::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--green);transform:scaleY(0);transition:transform 0.3s var(--ease);
+}
+.model-tab:hover{background:rgba(255,255,255,0.02)}
+.model-tab.on{background:rgba(4,229,134,0.03)}
+.model-tab.on::before{transform:scaleY(1)}
+.model-tab-num{font-family:var(--sm);font-size:10px;color:var(--green);opacity:0.4;margin-bottom:4px;transition:opacity 0.3s}
+.model-tab.on .model-tab-num{opacity:1}
+.model-tab-title{font-weight:600;font-size:14px;color:rgba(255,255,255,0.4);transition:color 0.3s}
+.model-tab.on .model-tab-title{color:#fff}
+.model-tab-sub{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,0.15);margin-top:2px}
+
+.model-panel{padding:40px 44px;display:flex;flex-direction:column}
+.model-panels{position:relative}
+.model-pane{display:none;flex-direction:column;height:100%}
+.model-pane.on{display:flex}
+.model-pane-title{
+  font-family:var(--sf);font-weight:500;font-size:22px;color:#fff;
+  line-height:1.2;margin-bottom:16px;
+}
+.model-pane-desc{font-size:14px;line-height:1.75;color:rgba(255,255,255,0.4);margin-bottom:24px;max-width:520px}
+.model-pane-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.model-pane-pill{
+  font-family:var(--sm);font-size:10px;padding:7px 16px;border-radius:20px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.25s var(--ease);
+  text-decoration:none;position:relative;overflow:hidden;
+}
+.model-pane-pill::before{content:'';position:absolute;inset:0;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 0.3s var(--ease);border-radius:inherit}
+.model-pane-pill:hover{color:#fff;border-color:var(--blue)}
+.model-pane-pill:hover::before{transform:scaleX(1)}
+.model-pane-pill span{position:relative;z-index:1}
+
+.model-pane-handoff{
+  margin-top:auto;padding:20px 24px;
+  background:rgba(4,229,134,0.03);border:1px solid rgba(4,229,134,0.08);
+  border-radius:var(--r);
+}
+.model-pane-handoff-label{
+  font-family:var(--sm);font-size:9px;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--green);opacity:0.6;margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.model-pane-handoff-label::after{content:'→';font-size:12px}
+.model-pane-handoff-text{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6}
+.model-pane-handoff-text strong{color:rgba(255,255,255,0.8)}
+
+/* ════════════════════════════════════════════════════════
+   S3 — GALLERY + PROJECTS
+   ════════════════════════════════════════════════════════ */
+.evidence{background:#F6F7F9;position:relative;border-top:1px solid var(--g150)}
+.evidence-header{padding:100px 0 48px}
+.evidence-header-row{display:flex;justify-content:space-between;align-items:flex-end}
+.gallery-controls{display:flex;align-items:center;gap:12px}
+.gallery-counter{font-family:var(--sm);font-size:11px;color:var(--g400);letter-spacing:0.04em}
+.gallery-btn{
+  width:44px;height:44px;border-radius:50%;border:1.5px solid var(--g200);
+  background:var(--white);color:var(--g600);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all 0.25s var(--ease);
+}
+.gallery-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(27,75,143,0.03)}
+.gallery-btn:active{transform:scale(0.95)}
+.gallery-btn svg{width:18px;height:18px}
+
+.gallery-scroll{
+  display:flex;gap:16px;overflow-x:auto;padding:0 48px 48px;
+  cursor:grab;scroll-snap-type:x mandatory;
+  -ms-overflow-style:none;scrollbar-width:none;
+}
+.gallery-scroll::-webkit-scrollbar{display:none}
+.gallery-scroll:active{cursor:grabbing}
+
+.gallery-card{
+  flex:0 0 calc(50% - 8px);min-width:480px;
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  aspect-ratio:16/10;scroll-snap-align:start;
+}
+.gallery-card img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(0.12) brightness(0.5) contrast(1.15);
+  transition:filter 0.6s var(--ease),transform 0.6s var(--ease);
+}
+.gallery-card:hover img{
+  filter:saturate(0.25) brightness(0.55) contrast(1.1);
+  transform:scale(1.03);
+}
+.gallery-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 35%,transparent 60%);
+  pointer-events:none;
+}
+.gallery-card-tag{
+  position:absolute;top:20px;left:20px;
+  font-family:var(--sm);font-size:9px;font-weight:600;letter-spacing:0.08em;
+  padding:5px 12px;border-radius:6px;color:#fff;
+  backdrop-filter:blur(8px);
+}
+.gallery-card-caption{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;z-index:2}
+.gallery-card-caption-title{
+  font-family:var(--sf);font-weight:500;font-size:20px;color:#fff;margin-bottom:4px;
+}
+.gallery-card-caption-sub{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.04em}
+
+/* Gallery progress */
+.gallery-progress{
+  max-width:1280px;margin:0 auto;padding:0 48px;
+  display:flex;align-items:center;gap:6px;
+}
+.gallery-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--g200);transition:all 0.3s var(--ease);cursor:pointer;
+}
+.gallery-dot.on{background:var(--green);width:24px;border-radius:4px}
+
+/* Project cards */
+.projects{padding:64px 0 120px}
+.projects-label{
+  font-family:var(--sm);font-size:10px;font-weight:500;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--g400);margin-bottom:24px;
+}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+.proj-card{
+  background:var(--white);border:1px solid var(--g150);border-radius:var(--r-xl);
+  padding:32px;transition:all 0.4s var(--ease);position:relative;overflow:hidden;
+}
+.proj-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--green),var(--blue));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease);
+}
+.proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08);border-color:var(--g200)}
+.proj-card:hover::before{transform:scaleX(1)}
+
+.proj-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.proj-title{font-family:var(--sf);font-weight:500;font-size:22px;color:var(--g900);margin-bottom:4px}
+.proj-location{font-family:var(--sm);font-size:10px;color:var(--g400);letter-spacing:0.04em}
+.proj-divisions{display:flex;gap:5px;margin-top:6px}
+.proj-div{
+  width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--sm);font-size:7px;font-weight:700;color:#fff;letter-spacing:0.04em;
+}
+.proj-desc{font-size:13.5px;color:var(--g500);line-height:1.7;margin-bottom:24px}
+.proj-stats{display:flex;gap:0;border-top:1px solid var(--g100);padding-top:20px}
+.proj-stat{flex:1;text-align:center;position:relative}
+.proj-stat+.proj-stat::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:1px;background:var(--g100)}
+.proj-stat-num{font-family:var(--sm);font-weight:600;font-size:20px;color:var(--blue);line-height:1}
+.proj-stat-label{font-family:var(--sm);font-size:9px;color:var(--g400);margin-top:5px;letter-spacing:0.02em}
+
+/* ════════════════════════════════════════════════════════
+   S4 — CAPABILITY MATRIX
+   ════════════════════════════════════════════════════════ */
+.matrix{background:var(--white);position:relative;overflow:hidden;border-top:1px solid var(--g150)}
+.matrix-grid{position:absolute;inset:0}
+.matrix-inner{position:relative;z-index:2;padding:100px 0 120px}
+.matrix-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+
+.matrix-table{
+  width:100%;border-collapse:separate;border-spacing:0;
+  border:1px solid var(--g150);border-radius:var(--r-lg);overflow:hidden;
+}
+.matrix-table thead{background:var(--g50)}
+.matrix-table th{
+  font-family:var(--sm);font-size:10px;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--g400);
+  padding:18px 20px;text-align:left;border-bottom:1px solid var(--g150);
+}
+.matrix-table th:first-child{color:var(--g600);width:30%}
+.matrix-table td{
+  padding:16px 20px;border-bottom:1px solid var(--g100);
+  color:var(--g500);font-size:13.5px;
+}
+.matrix-table td:first-child{font-weight:500;color:var(--g800)}
+.matrix-table tbody tr{transition:background 0.2s}
+.matrix-table tbody tr:hover{background:var(--g50)}
+.matrix-table tbody tr:last-child td{border-bottom:none}
+
+.cap-y{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(4,229,134,0.1);
+}
+.cap-y svg{width:14px;height:14px;color:var(--green)}
+.cap-n{color:var(--g200);font-size:16px;text-align:center;display:inline-block;width:26px}
+
+/* ════════════════════════════════════════════════════════
+   S5 — CERTIFICATIONS
+   ════════════════════════════════════════════════════════ */
+.certs{background:var(--white);border-top:1px solid var(--g150);border-bottom:1px solid var(--g150)}
+.certs-inner{
+  padding:40px 0;display:flex;align-items:center;justify-content:space-between;
+}
+.certs-left{display:flex;align-items:center;gap:24px}
+.certs-title{font-family:var(--sf);font-weight:500;font-size:20px;color:var(--g900)}
+.certs-title em{font-style:italic;font-weight:400}
+.certs-list{font-family:var(--sm);font-size:11px;color:var(--g400);line-height:1.5;max-width:520px}
+.certs-link{
+  font-family:var(--ss);font-size:13px;font-weight:600;color:var(--blue);
+  text-decoration:none;display:flex;align-items:center;gap:6px;flex-shrink:0;
+  transition:gap 0.2s var(--ease);
+}
+.certs-link:hover{gap:10px}
+.certs-link svg{width:14px;height:14px}
+
+/* ════════════════════════════════════════════════════════
+   S6 — CTA
+   ════════════════════════════════════════════════════════ */
+.cta-sec{
+  background:var(--navy);
+  position:relative;overflow:hidden;
+}
+.cta-grid{position:absolute;inset:0}
+.cta-inner{
+  position:relative;z-index:2;padding:80px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+}
+.cta-title{font-family:var(--sf);font-weight:500;font-size:clamp(28px,3vw,38px);color:#fff;line-height:1.1;margin-bottom:10px}
+.cta-title em{font-style:italic;font-weight:400}
+.cta-desc{font-size:15px;color:rgba(255,255,255,0.4);max-width:400px}
+.cta-actions{display:flex;gap:12px;flex-shrink:0}
+
+/* ═══ FOOTER ═══ */
+.footer{background:var(--navy);padding:56px 0 36px}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.ft-brand{font-family:var(--sf);font-weight:600;font-size:22px;color:rgba(255,255,255,0.8);margin-bottom:12px}
+.ft-brand-desc{font-size:13px;color:rgba(255,255,255,0.25);line-height:1.6;max-width:280px}
+.ft-col-h{font-family:var(--sm);font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:16px}
+.ft-link{display:block;font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;padding:4px 0;transition:color 0.2s}
+.ft-link:hover{color:rgba(255,255,255,0.7)}
+.ft-bar{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.ft-legal{font-family:var(--sm);font-size:10px;color:rgba(255,255,255,0.15)}
+.ft-bar-links{display:flex;gap:16px}
+.ft-bar-links a{font-size:11px;color:rgba(255,255,255,0.2);text-decoration:none}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .contain{padding:0 32px}
+  .hero-content{padding:0 32px}
+  .hero-stats{gap:32px;flex-wrap:wrap}
+  .model{grid-template-columns:1fr}
+  .model-nav{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;overflow-x:auto}
+  .model-tab{border-bottom:none;border-right:1px solid rgba(255,255,255,0.04);white-space:nowrap;min-width:140px}
+  .model-tab::before{top:auto;bottom:0;left:0;right:0;width:auto;height:2px;transform:scaleX(0)}
+  .model-tab.on::before{transform:scaleX(1)}
+  .gallery-card{flex:0 0 70%;min-width:360px}
+  .projects-grid{grid-template-columns:1fr}
+  .matrix-header{flex-direction:column;align-items:flex-start;gap:16px}
+  .cta-inner{flex-direction:column;text-align:center;align-items:center}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .certs-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:640px){
+  .hero-title{font-size:36px}
+  .hero-stats{gap:24px}
+  .hero-stat-num{font-size:24px}
+  .gallery-scroll{padding:0 20px 40px}
+  .gallery-card{flex:0 0 85%;min-width:280px}
+  .contain{padding:0 20px}
+  .hero-content{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- FILM GRAIN -->
+<canvas class="grain" id="grainCanvas"></canvas>
+
+<!-- ════════════════════════════════════════════════════════
+     S1 — HERO
+     ════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-grid eng-grid"></div>
+
+  <!-- Corner marks -->
+  <div class="corner-mark cm-tl"><svg viewBox="0 0 24 24" fill="none"><path d="M2 8V2h6" stroke="rgba(27,75,143,0.12)" stroke-width="1"/></svg></div>
+  <div class="corner-mark cm-tr"><svg viewBox="0 0 24 24" fill="none"><path d="M22 8V2h-6" stroke="rgba(27,75,143,0.12)" stroke-width="1"/></svg></div>
+  <div class="corner-mark cm-bl"><svg viewBox="0 0 24 24" fill="none"><path d="M2 16v6h6" stroke="rgba(27,75,143,0.12)" stroke-width="1"/></svg></div>
+  <div class="corner-mark cm-br"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16v6h-6" stroke="rgba(27,75,143,0.12)" stroke-width="1"/></svg></div>
+
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-breadcrumb rv">
+        <a href="#">Home</a><span class="sep">/</span><span class="cur">What We Do</span>
+      </div>
+
+      <div class="hero-badge rv rv-d1">
+        <div class="hero-badge-dot"></div>
+        4 Divisions &middot; 12 Services &middot; 1 Company
+      </div>
+
+      <h1 class="hero-title rv rv-d2">
+        The only company that<br><em>designs, builds, &amp; protects</em><br>under one roof.
+      </h1>
+
+      <p class="hero-desc rv rv-d3">
+        Most projects need 3&ndash;4 vendors. Each handoff introduces delays, miscommunication, and finger-pointing. We eliminated the handoffs &mdash; and built four divisions that share data, tooling, and accountability.
+      </p>
+
+      <div class="hero-actions rv rv-d4">
+        <a class="btn btn-green" href="#integration">See How It Works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a class="btn btn-outline-lt" href="#">Contact Engineering</a>
+      </div>
+
+      <div class="hero-stats rv rv-d4">
+        <div><div class="hero-stat-num" data-target="4">4</div><div class="hero-stat-label">Divisions</div></div>
+        <div><div class="hero-stat-num" data-target="12">12</div><div class="hero-stat-label">Services</div></div>
+        <div><div class="hero-stat-num" data-target="1">1</div><div class="hero-stat-label">Contract</div></div>
+        <div><div class="hero-stat-num" data-target="0">0</div><div class="hero-stat-label">Handoffs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     S2 — INTERACTIVE INTEGRATION MODEL
+     ════════════════════════════════════════════════════════ -->
+<section class="integration" id="integration">
+  <div class="integration-grid eng-grid"></div>
+  <div class="integration-inner contain">
+    <div style="text-align:center;margin-bottom:8px">
+      <div class="overline rv" style="justify-content:center">How It Works</div>
+      <h2 class="sec-title rv rv-d1" style="color:var(--g900);max-width:540px;margin:0 auto 14px">Click each stage to see how <em>capabilities</em> connect</h2>
+      <p class="sec-desc rv rv-d2" style="margin:0 auto">Every stage feeds data, constraints, and context to the next. No re-interpretation. No translation loss.</p>
+    </div>
+
+    <div class="model rv rv-d3">
+      <div class="model-nav" id="modelNav">
+        <div class="model-tab on" data-idx="0">
+          <div class="model-tab-num">Stage 01</div>
+          <div class="model-tab-title">Design</div>
+          <div class="model-tab-sub">Engineering Division</div>
+        </div>
+        <div class="model-tab" data-idx="1">
+          <div class="model-tab-num">Stage 02</div>
+          <div class="model-tab-title">Fabricate</div>
+          <div class="model-tab-sub">Manufacturing Division</div>
+        </div>
+        <div class="model-tab" data-idx="2">
+          <div class="model-tab-num">Stage 03</div>
+          <div class="model-tab-title">Protect</div>
+          <div class="model-tab-sub">Corrosion Division</div>
+        </div>
+        <div class="model-tab" data-idx="3">
+          <div class="model-tab-num">Stage 04</div>
+          <div class="model-tab-title">Compound</div>
+          <div class="model-tab-sub">Rubber Division</div>
+        </div>
+        <div class="model-tab" data-idx="4">
+          <div class="model-tab-num">Stage 05</div>
+          <div class="model-tab-title">Deliver</div>
+          <div class="model-tab-sub">Quality + Logistics</div>
+        </div>
+      </div>
+
+      <div class="model-panel">
+        <!-- Pane 0: Design -->
+        <div class="model-pane on" data-idx="0">
+          <div class="overline" style="margin-bottom:8px">Stage 01 &mdash; Design</div>
+          <h3 class="model-pane-title">Engineering designs with fabrication and lining constraints baked in from day one</h3>
+          <p class="model-pane-desc">Our design engineers know the manufacturing tolerances, the lining thicknesses, the nozzle orientations that make autoclave access possible. These aren&rsquo;t afterthoughts &mdash; they&rsquo;re inputs to the first sketch.</p>
+          <div class="model-pane-pills">
+            <a class="model-pane-pill" href="#"><span>Process &amp; Plant Design</span></a>
+            <a class="model-pane-pill" href="#"><span>Equipment Design</span></a>
+            <a class="model-pane-pill" href="#"><span>Piping Design</span></a>
+            <a class="model-pane-pill" href="#"><span>Water Treatment</span></a>
+          </div>
+          <div class="model-pane-handoff">
+            <div class="model-pane-handoff-label">Feeds into next stage</div>
+            <div class="model-pane-handoff-text"><strong>3D model + fabrication drawings</strong> transfer directly to the shop floor. Manufacturing works from the same data &mdash; no re-drafting, no interpretation gaps.</div>
+          </div>
+        </div>
+
+        <!-- Pane 1: Fabricate -->
+        <div class="model-pane" data-idx="1">
+          <div class="overline" style="margin-bottom:8px">Stage 02 &mdash; Fabricate</div>
+          <h3 class="model-pane-title">Fabrication works from original design data &mdash; no re-interpretation</h3>
+          <p class="model-pane-desc">The shop floor receives the same 3D model that engineering created. Weld seam placement is coordinated with the lining team &mdash; positioned where rubber overlap is strongest, not where it&rsquo;s convenient for welding.</p>
+          <div class="model-pane-pills">
+            <a class="model-pane-pill" href="#"><span>Steel Equipment</span></a>
+            <a class="model-pane-pill" href="#"><span>Plastic &amp; FRP</span></a>
+          </div>
+          <div class="model-pane-handoff">
+            <div class="model-pane-handoff-label">Feeds into next stage</div>
+            <div class="model-pane-handoff-text"><strong>Fabricated vessel with coordinated weld seams</strong> moves directly to the lining bay. Surface prep specs are pre-agreed &mdash; no rework, no surprises.</div>
+          </div>
+        </div>
+
+        <!-- Pane 2: Protect -->
+        <div class="model-pane" data-idx="2">
+          <div class="overline" style="margin-bottom:8px">Stage 03 &mdash; Protect</div>
+          <h3 class="model-pane-title">Corrosion protection applied by a team that reviewed the engineering from Week 1</h3>
+          <p class="model-pane-desc">Our lining team doesn&rsquo;t receive a vessel cold. They&rsquo;ve been involved since design review &mdash; specifying surface prep requirements, lining thicknesses, and nozzle access clearances before fabrication begins.</p>
+          <div class="model-pane-pills">
+            <a class="model-pane-pill" href="#"><span>Rubber Linings</span></a>
+            <a class="model-pane-pill" href="#"><span>Plastic Linings</span></a>
+            <a class="model-pane-pill" href="#"><span>Coatings &amp; Resin</span></a>
+            <a class="model-pane-pill" href="#"><span>Inspection &amp; Repair</span></a>
+          </div>
+          <div class="model-pane-handoff">
+            <div class="model-pane-handoff-label">Feeds into next stage</div>
+            <div class="model-pane-handoff-text"><strong>Lined vessel with spark-tested surfaces</strong> proceeds to final QA. The compound used was developed in-house by the Rubber division specifically for this process environment.</div>
+          </div>
+        </div>
+
+        <!-- Pane 3: Compound -->
+        <div class="model-pane" data-idx="3">
+          <div class="overline" style="margin-bottom:8px">Stage 04 &mdash; Compound</div>
+          <h3 class="model-pane-title">Rubber compounds formulated for the exact process conditions</h3>
+          <p class="model-pane-desc">While fabrication runs, our rubber division develops or selects the compound &mdash; matched to the chemical environment, temperature range, and abrasion profile. Lab testing runs in parallel, not sequentially.</p>
+          <div class="model-pane-pills">
+            <a class="model-pane-pill" href="#"><span>Custom Compounds</span></a>
+            <a class="model-pane-pill" href="#"><span>Engineered Products</span></a>
+          </div>
+          <div class="model-pane-handoff">
+            <div class="model-pane-handoff-label">Feeds into next stage</div>
+            <div class="model-pane-handoff-text"><strong>Tested compound sheets</strong> delivered to the lining bay with full traceability &mdash; batch records, immersion test results, and cure parameters all documented.</div>
+          </div>
+        </div>
+
+        <!-- Pane 4: Deliver -->
+        <div class="model-pane" data-idx="4">
+          <div class="overline" style="margin-bottom:8px">Stage 05 &mdash; Deliver</div>
+          <h3 class="model-pane-title">Final inspection by the same team that designed, built, and lined the vessel</h3>
+          <p class="model-pane-desc">No third-party gaps. The QA team has access to every data point from every stage &mdash; design calculations, material certificates, weld maps, lining spark test records &mdash; in one documentation package.</p>
+          <div class="model-pane-pills">
+            <a class="model-pane-pill" href="#"><span>QA Documentation</span></a>
+            <a class="model-pane-pill" href="#"><span>Global Logistics</span></a>
+          </div>
+          <div class="model-pane-handoff">
+            <div class="model-pane-handoff-label">Result</div>
+            <div class="model-pane-handoff-text"><strong>One documentation set. One point of accountability.</strong> The client receives a complete package from a single company &mdash; not a patchwork of vendor certificates.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     S3 — GALLERY + PROJECTS
+     ════════════════════════════════════════════════════════ -->
+<section class="evidence eng-grid">
+  <div class="evidence-header contain">
+    <div class="evidence-header-row">
+      <div>
+        <div class="overline rv">Proof, Not Promises</div>
+        <h2 class="sec-title rv rv-d1">See what <em>integration</em> looks like</h2>
+        <p class="sec-desc rv rv-d2" style="margin-top:8px">Real projects, real photos. Every image shows a different division&rsquo;s contribution to the same delivery chain.</p>
+      </div>
+      <div class="gallery-controls rv rv-d3">
+        <span class="gallery-counter"><span id="galCur">1</span> / <span id="galTotal">6</span></span>
+        <button class="gallery-btn" id="galPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="gallery-btn" id="galNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-scroll" id="galleryScroll">
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1400&h=900&fit=crop" alt="Engineering" loading="lazy"/>
+      <div class="gallery-card-overlay"></div>
+      <div class="gallery-card-tag" style="background:rgba(27,75,143,0.8)">ENG</div>
+      <div class="gallery-card-caption">
+        <div class="gallery-card-caption-title">3D Plant Model &mdash; SP3D</div>
+        <div class="gallery-card-caption-sub">Chemical Complex &middot; Process Engineering</div>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1400&h=900&fit=crop" alt="Fabrication" loading="lazy"/>
+      <div class="gallery-card-overlay"></div>
+      <div class="gallery-card-tag" style="background:rgba(20,50,90,0.8)">MFG</div>
+      <div class="gallery-card-caption">
+        <div class="gallery-card-caption-title">Pressure Vessel Fabrication</div>
+        <div class="gallery-card-caption-sub">ASME U-Stamp &middot; 130,000 m&sup2; Shop Floor</div>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1400&h=900&fit=crop" alt="Lining" loading="lazy"/>
+      <div class="gallery-card-overlay"></div>
+      <div class="gallery-card-tag" style="background:rgba(26,63,115,0.8)">COR</div>
+      <div class="gallery-card-caption">
+        <div class="gallery-card-caption-title">Rubber Lining Application</div>
+        <div class="gallery-card-caption-sub">CSM Lining &middot; Autoclave Vulcanisation</div>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1400&h=900&fit=crop" alt="R&D Lab" loading="lazy"/>
+      <div class="gallery-card-overlay"></div>
+      <div class="gallery-card-tag" style="background:rgba(15,39,68,0.8)">RUB</div>
+      <div class="gallery-card-caption">
+        <div class="gallery-card-caption-title">Compound Development Lab</div>
+        <div class="gallery-card-caption-sub">2,000+ Proven Formulations</div>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1400&h=900&fit=crop" alt="Inspection" loading="lazy"/>
+      <div class="gallery-card-overlay"></div>
+      <div class="gallery-card-tag" style="background:rgba(4,229,134,0.7);color:var(--dark)">QA</div>
+      <div class="gallery-card-caption">
+        <div class="gallery-card-caption-title">Final Inspection &amp; Delivery</div>
+        <div class="gallery-card-caption-sub">Single Documentation Set &middot; One Accountability</div>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1400&h=900&fit=crop" alt="Delivered" loading="lazy"/>
+      <div class="gallery-card-overlay"></div>
+      <div class="gallery-card-tag" style="background:rgba(27,75,143,0.8)">ALL</div>
+      <div class="gallery-card-caption">
+        <div class="gallery-card-caption-title">Delivered &mdash; FGD Absorber</div>
+        <div class="gallery-card-caption-sub">4 Divisions &middot; 1 Project &middot; 0 Handoffs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress dots -->
+  <div class="gallery-progress" id="galDots" style="margin-top:24px">
+    <div class="gallery-dot on"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+    <div class="gallery-dot"></div>
+  </div>
+
+  <!-- Project cards -->
+  <div class="projects contain">
+    <div class="projects-label rv">Featured Projects &mdash; Multiple Divisions Involved</div>
+    <div class="projects-grid">
+      <div class="proj-card rv rv-d1">
+        <div class="proj-header">
+          <div>
+            <div class="proj-title">600MW FGD Absorber</div>
+            <div class="proj-location">Coal-Fired Power Plant &middot; Southeast Asia</div>
+          </div>
+          <div class="proj-divisions">
+            <div class="proj-div" style="background:var(--blue)" title="Engineering">E</div>
+            <div class="proj-div" style="background:#14325A" title="Manufacturing">M</div>
+            <div class="proj-div" style="background:#1A3F73" title="Corrosion">C</div>
+            <div class="proj-div" style="background:#0F2744" title="Rubber">R</div>
+          </div>
+        </div>
+        <p class="proj-desc">Complete design-to-delivery. Engineering designed with lining allowances. Fabrication coordinated weld seams with lining team. CSM compound developed in parallel. 2,400 m&sup2; lined with zero defects.</p>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-num">16m</div><div class="proj-stat-label">Diameter</div></div>
+          <div class="proj-stat"><div class="proj-stat-num">2,400</div><div class="proj-stat-label">m&sup2; Lined</div></div>
+          <div class="proj-stat"><div class="proj-stat-num">24</div><div class="proj-stat-label">Weeks</div></div>
+          <div class="proj-stat"><div class="proj-stat-num">0</div><div class="proj-stat-label">Defects</div></div>
+        </div>
+      </div>
+
+      <div class="proj-card rv rv-d2">
+        <div class="proj-header">
+          <div>
+            <div class="proj-title">Chlor-Alkali Brine System</div>
+            <div class="proj-location">Chemical Plant &middot; Middle East</div>
+          </div>
+          <div class="proj-divisions">
+            <div class="proj-div" style="background:var(--blue)" title="Engineering">E</div>
+            <div class="proj-div" style="background:#14325A" title="Manufacturing">M</div>
+            <div class="proj-div" style="background:#1A3F73" title="Corrosion">C</div>
+          </div>
+        </div>
+        <p class="proj-desc">Complete brine treatment package. Process design, FRP vessels, and PVDF-lined steel tanks. Engineering specified plastic lining from day one &mdash; no post-fabrication surprises.</p>
+        <div class="proj-stats">
+          <div class="proj-stat"><div class="proj-stat-num">12</div><div class="proj-stat-label">Vessels</div></div>
+          <div class="proj-stat"><div class="proj-stat-num">3</div><div class="proj-stat-label">Materials</div></div>
+          <div class="proj-stat"><div class="proj-stat-num">18</div><div class="proj-stat-label">Weeks</div></div>
+          <div class="proj-stat"><div class="proj-stat-num">97%</div><div class="proj-stat-label">On-Time</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     S4 — CAPABILITY MATRIX
+     ════════════════════════════════════════════════════════ -->
+<section class="matrix">
+  <div class="matrix-grid eng-grid"></div>
+  <div class="matrix-inner contain">
+    <div class="matrix-header">
+      <div>
+        <div class="overline rv">Capabilities</div>
+        <h2 class="sec-title rv rv-d1" style="color:var(--g900)">What each division <em>delivers</em></h2>
+      </div>
+      <p class="sec-desc rv rv-d2" style="text-align:right">Click any row to jump to the service page for full specifications.</p>
+    </div>
+
+    <div class="rv rv-d3" style="overflow-x:auto">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Engineering</th>
+            <th>Manufacturing</th>
+            <th>Corrosion</th>
+            <th>Rubber</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Process Design (P&amp;IDs, PFDs)</td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>3D Plant Modelling (SP3D)</td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>Pressure Vessel Fabrication</td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>FRP / Plastic Equipment</td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>Rubber Lining Application</td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td></tr>
+          <tr><td>Plastic Lining (PVC, PP, PVDF)</td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>Custom Compound Development</td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td></tr>
+          <tr><td>In-Service Inspection &amp; Repair</td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>Stress Analysis (CAESAR II, FEA)</td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td><td><span class="cap-n">&mdash;</span></td></tr>
+          <tr><td>Water Treatment Systems</td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></span></td><td><span class="cap-n">&mdash;</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     S5 — CERTIFICATIONS
+     ════════════════════════════════════════════════════════ -->
+<section class="certs">
+  <div class="certs-inner contain rv">
+    <div class="certs-left">
+      <div>
+        <div class="certs-title">International standards. <em>Every</em> facility.</div>
+        <div class="certs-list">ASME U/U2/S/R stamps &middot; ISO 9001/14001/45001 &middot; PED/CE marking &middot; API &middot; T&Uuml;V &middot; Bureau Veritas &middot; Lloyd&rsquo;s &middot; DNV</div>
+      </div>
+    </div>
+    <a class="certs-link" href="#">View All Certifications <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     S6 — CTA
+     ════════════════════════════════════════════════════════ -->
+<section class="cta-sec">
+  <div class="cta-grid eng-grid-dark"></div>
+  <div class="cta-inner contain">
+    <div>
+      <h2 class="cta-title rv">Ready to discuss your <em>project?</em></h2>
+      <p class="cta-desc rv rv-d1">Share your requirements. We&rsquo;ll show you how integration eliminates gaps.</p>
+    </div>
+    <div class="cta-actions rv rv-d2">
+      <a class="btn btn-green" href="#">Get in Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="btn btn-outline" href="#">Download Brochure</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="contain">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand">Jasmino</div>
+        <p class="ft-brand-desc">The only company that designs, manufactures, and protects industrial process equipment under one roof.</p>
+      </div>
+      <div>
+        <div class="ft-col-h">What We Do</div>
+        <a class="ft-link" href="#">Engineering Design</a>
+        <a class="ft-link" href="#">Manufacturing</a>
+        <a class="ft-link" href="#">Corrosion Protection</a>
+        <a class="ft-link" href="#">Rubber Products</a>
+      </div>
+      <div>
+        <div class="ft-col-h">Company</div>
+        <a class="ft-link" href="#">Our Story</a>
+        <a class="ft-link" href="#">Jasmino Group</a>
+        <a class="ft-link" href="#">Industries</a>
+        <a class="ft-link" href="#">Infrastructure</a>
+        <a class="ft-link" href="#">News</a>
+      </div>
+      <div>
+        <div class="ft-col-h">Contact</div>
+        <a class="ft-link" href="#">Get in Touch</a>
+        <a class="ft-link" href="#" style="font-family:var(--sm);font-size:12px">+91 XXX XXX XXXX</a>
+        <a class="ft-link" href="#" style="font-family:var(--sm);font-size:12px">info@jasmino.com</a>
+      </div>
+    </div>
+    <div class="ft-bar">
+      <div class="ft-legal">&copy; 2026 Jasmino Corporation. All rights reserved.</div>
+      <div class="ft-bar-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══ FILM GRAIN ═══ */
+!function(){
+  var c=document.getElementById('grainCanvas'),x=c.getContext('2d'),frame=0;
+  function r(){c.width=window.innerWidth;c.height=window.innerHeight}
+  r();window.addEventListener('resize',r);
+  function d(){
+    frame++;
+    if(frame%3!==0){requestAnimationFrame(d);return}
+    var w=c.width,h=c.height,id=x.createImageData(w,h),px=id.data;
+    for(var i=0;i<px.length;i+=4){var v=Math.random()*255;px[i]=px[i+1]=px[i+2]=v;px[i+3]=22}
+    x.putImageData(id,0,0);requestAnimationFrame(d);
+  }d();
+}();
+
+/* ═══ HERO PARTICLES ═══ */
+!function(){
+  var c=document.getElementById('heroCanvas'),x=c.getContext('2d');
+  var w,h,pts=[],mouse={x:-999,y:-999};
+  function resize(){
+    var dpr=Math.min(window.devicePixelRatio,2);
+    w=c.parentElement.clientWidth;h=c.parentElement.clientHeight;
+    c.width=w*dpr;c.height=h*dpr;
+    c.style.width=w+'px';c.style.height=h+'px';
+    x.setTransform(dpr,0,0,dpr,0,0);
+    pts=[];
+    var count=Math.min(Math.floor(w*h/8000),100);
+    for(var i=0;i<count;i++){
+      pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,a:Math.random()*.15+.03});
+    }
+  }
+  resize();window.addEventListener('resize',resize);
+  c.parentElement.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+  c.parentElement.addEventListener('mouseleave',function(){mouse.x=-999;mouse.y=-999});
+
+  function draw(){
+    x.clearRect(0,0,w,h);
+    var t=performance.now()*.001;
+    // connections
+    for(var i=0;i<pts.length;i++){
+      for(var j=i+1;j<pts.length;j++){
+        var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          x.strokeStyle='rgba(27,75,143,'+(1-dist/120)*.06+')';
+          x.lineWidth=.5;x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke();
+        }
+      }
+    }
+    for(var k=0;k<pts.length;k++){
+      var p=pts[k];
+      // mouse repel
+      var mdx=p.x-mouse.x,mdy=p.y-mouse.y,md=Math.sqrt(mdx*mdx+mdy*mdy);
+      if(md<150&&md>0){var force=(1-md/150)*.8;p.x+=mdx/md*force;p.y+=mdy/md*force}
+      p.x+=p.vx+Math.sin(t*.5+p.y*.01)*.15;
+      p.y+=p.vy+Math.cos(t*.3+p.x*.01)*.15;
+      if(p.x<-10)p.x=w+10;if(p.x>w+10)p.x=-10;
+      if(p.y<-10)p.y=h+10;if(p.y>h+10)p.y=-10;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+      x.fillStyle='rgba(27,75,143,'+p.a+')';x.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}();
+
+/* ═══ REVEAL OBSERVER ═══ */
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
+
+/* ═══ MODEL TABS ═══ */
+!function(){
+  var tabs=document.querySelectorAll('.model-tab');
+  var panes=document.querySelectorAll('.model-pane');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      var idx=this.getAttribute('data-idx');
+      tabs.forEach(function(t){t.classList.remove('on')});
+      panes.forEach(function(p){p.classList.remove('on')});
+      this.classList.add('on');
+      document.querySelector('.model-pane[data-idx="'+idx+'"]').classList.add('on');
+    });
+  });
+}();
+
+/* ═══ GALLERY DRAG SCROLL + CONTROLS ═══ */
+!function(){
+  var el=document.getElementById('galleryScroll');
+  if(!el)return;
+  var cards=el.querySelectorAll('.gallery-card');
+  var dots=document.querySelectorAll('.gallery-dot');
+  var curEl=document.getElementById('galCur');
+  var prev=document.getElementById('galPrev');
+  var next=document.getElementById('galNext');
+  var isDown=false,startX,scrollLeft;
+
+  function updateDots(){
+    if(!cards.length)return;
+    var cardW=cards[0].offsetWidth+16;
+    var idx=Math.round(el.scrollLeft/cardW);
+    idx=Math.max(0,Math.min(idx,cards.length-1));
+    curEl.textContent=idx+1;
+    dots.forEach(function(d,i){d.classList.toggle('on',i===idx)});
+  }
+
+  el.addEventListener('scroll',updateDots,{passive:true});
+
+  el.addEventListener('mousedown',function(e){
+    isDown=true;el.style.cursor='grabbing';startX=e.pageX-el.offsetLeft;scrollLeft=el.scrollLeft;
+  });
+  el.addEventListener('mouseleave',function(){isDown=false;el.style.cursor='grab'});
+  el.addEventListener('mouseup',function(){isDown=false;el.style.cursor='grab'});
+  el.addEventListener('mousemove',function(e){
+    if(!isDown)return;e.preventDefault();
+    var x=e.pageX-el.offsetLeft;el.scrollLeft=scrollLeft-(x-startX)*1.5;
+  });
+
+  prev.addEventListener('click',function(){
+    var cardW=cards[0].offsetWidth+16;
+    el.scrollBy({left:-cardW,behavior:'smooth'});
+  });
+  next.addEventListener('click',function(){
+    var cardW=cards[0].offsetWidth+16;
+    el.scrollBy({left:cardW,behavior:'smooth'});
+  });
+
+  dots.forEach(function(dot,i){
+    dot.addEventListener('click',function(){
+      var cardW=cards[0].offsetWidth+16;
+      el.scrollTo({left:i*cardW,behavior:'smooth'});
+    });
+  });
+
+  // Parallax on gallery images
+  window.addEventListener('scroll',function(){
+    cards.forEach(function(card){
+      var img=card.querySelector('img');
+      var r=card.getBoundingClientRect();
+      if(r.top<window.innerHeight&&r.bottom>0){
+        var p=(window.innerHeight-r.top)/(window.innerHeight+r.height);
+        img.style.transform='scale(1.06) translateY('+(p-.5)*-16+'px)';
+      }
+    });
+  },{passive:true});
+}();
+</script>
+</body>
+</html>

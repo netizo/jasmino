@@ -157,7 +157,6 @@ export default function ServicePage() {
       {/* ---- HERO ---- */}
       <section className="hero">
         <div className="hero-photo" style={{ backgroundImage: `url(${hero.hero_photo_url})` }} />
-        <div className="hero-fade" />
         <div className="hero-grid-overlay eng-grid-dark" />
         <div className="hero-corner tl" />
         <div className="hero-corner tr" />
@@ -291,7 +290,7 @@ export default function ServicePage() {
       {evidence_strip && (
         <div className="evidence-strip" ref={evidenceRef}>
           <img src={evidence_strip.image_url} alt={evidence_strip.tag} loading="lazy" />
-          <div className="evidence-strip-overlay" />
+
           <div className="evidence-strip-content">
             <div className="evidence-strip-tag">{evidence_strip.tag}</div>
             <div className="evidence-strip-title" dangerouslySetInnerHTML={{ __html: evidence_strip.title_html }} />
@@ -375,7 +374,7 @@ export default function ServicePage() {
             {gallery.slides.map((slide, i) => (
               <div key={i} className="gallery-slide">
                 <img src={slide.image_url} alt={slide.text} loading="lazy" />
-                <div className="gallery-slide-overlay" />
+
                 <div className="gallery-slide-caption">
                   <div className="gallery-slide-tag">{slide.tag}</div>
                   <div className="gallery-slide-text">{slide.text}</div>
@@ -533,7 +532,7 @@ export default function ServicePage() {
             ref={caseBgRef}
             style={{ backgroundImage: `url(${case_study.bg_image_url})` }}
           />
-          <div className="case-study-overlay" />
+
           <div className="case-study-grid eng-grid-dark" />
           <div className="case-study-content">
             <div>

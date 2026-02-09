@@ -187,8 +187,7 @@ const Globe = () => {
         const initGlobe = async () => {
             let landPolys = [];
             try {
-                const resp = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json');
-                const topo = await resp.json();
+                const { default: topo } = await import('../data/land-50m.json');
                 landPolys = decodeTopojson(topo, 'land');
                 console.log('Land data loaded, polygons:', landPolys.length);
             } catch (e) {

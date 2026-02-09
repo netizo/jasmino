@@ -627,6 +627,39 @@ export default function DesignSystem() {
             <button className="tab">Another</button>
           </div>
 
+          <SubLabel>Drag-to-Scroll Carousel</SubLabel>
+          <div style={{ marginBottom: 32 }}>
+            <div style={{ display: 'flex', gap: 16, overflow: 'hidden', padding: '8px 0' }}>
+              {['Card 1', 'Card 2', 'Card 3', 'Card 4'].map(c => (
+                <div key={c} style={{ flex: '0 0 200px', padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--g150)', borderRadius: 'var(--r-xl)', userSelect: 'none' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 8 }}>{c}</div>
+                  <div style={{ fontSize: 13, color: 'var(--g500)' }}>Drag to scroll. cursor: grab/grabbing.</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 12 }}>
+              <div style={{ width: 24, height: 8, borderRadius: 4, background: 'var(--blue)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--g200)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--g200)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--g200)' }} />
+            </div>
+            <MonoLabel>.timeline-scroll / .gallery-scroll · overflow-x: auto · scrollbar hidden · dot indicators + prev/next buttons</MonoLabel>
+          </div>
+
+          <SubLabel>Canvas Particles (HeroParticles)</SubLabel>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
+            <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', marginBottom: 4 }}>About Page Hero</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>Green particles · attract mode · 120 max</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 8 }}>rgba(4,229,134,*) · dark bg</div>
+            </div>
+            <div style={{ padding: 32, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--g150)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--blue)', marginBottom: 4 }}>What We Do Hero</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>Blue particles · repel mode · 100 max</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)', marginTop: 8 }}>rgba(27,75,143,*) · white bg</div>
+            </div>
+          </div>
+
           <SubLabel>Specs Table</SubLabel>
           <table className="specs-table" style={{ marginBottom: 32 }}>
             <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
@@ -762,9 +795,11 @@ export default function DesignSystem() {
           <table className="specs-table" style={{ marginBottom: 32 }}>
             <thead><tr><th>Breakpoint</th><th>Target</th><th>Key Changes</th></tr></thead>
             <tbody>
+              <tr><td className="mono-val">1100px</td><td>Navbar tablet</td><td>Navbar dropdown spacing tightens</td></tr>
               <tr><td className="mono-val">1080px</td><td>T2 pages</td><td>T2 hero grid stacks, advantage section stacks, service card grid shifts to 2-col</td></tr>
-              <tr><td className="mono-val">1024px</td><td>Tablet / landscape</td><td>Navbar → hamburger, footer 4-col → 2-col, resp-grid-3 → 2-col, division card stacks, section padding reduces</td></tr>
-              <tr><td className="mono-val">768px</td><td>Mobile</td><td>Footer → 1-col, resp-grids → 1-col, section padding tightens, bottom bar shrinks</td></tr>
+              <tr><td className="mono-val">1024px</td><td>Tablet / landscape</td><td>Footer 4-col → 2-col, resp-grid-3 → 2-col, division card stacks, About/WhatWeDo layout shifts, section padding reduces</td></tr>
+              <tr><td className="mono-val">900px</td><td>Mobile nav</td><td>Navbar → hamburger + full-screen mobile menu accordion</td></tr>
+              <tr><td className="mono-val">768px</td><td>Mobile</td><td>Footer → 1-col, resp-grids → 1-col, section padding tightens, About timeline cards shrink</td></tr>
               <tr><td className="mono-val">480px</td><td>Small phone</td><td>Trust badges wrap tighter, stat numbers reduce size</td></tr>
             </tbody>
           </table>
@@ -835,7 +870,7 @@ export default function DesignSystem() {
           <table className="specs-table">
             <thead><tr><th>Component</th><th>Desktop</th><th>Tablet (1024px)</th><th>Mobile (768px)</th></tr></thead>
             <tbody>
-              <tr><td>Navbar</td><td className="mono-val">Full links + mega menu</td><td className="mono-val">Hamburger + mobile menu</td><td className="mono-val">Hamburger + mobile menu</td></tr>
+              <tr><td>Navbar</td><td className="mono-val">Full links + mega menu</td><td className="mono-val">Full links (tight)</td><td className="mono-val">Hamburger @900px</td></tr>
               <tr><td>Footer grid</td><td className="mono-val">4-col (1.5fr 1fr 1fr 1fr)</td><td className="mono-val">2-col</td><td className="mono-val">1-col</td></tr>
               <tr><td>Division card</td><td className="mono-val">2-col grid</td><td className="mono-val">Stacked (1-col)</td><td className="mono-val">Stacked (1-col)</td></tr>
               <tr><td>.section-pad</td><td className="mono-val">80px 56px</td><td className="mono-val">64px 32px</td><td className="mono-val">48px 20px</td></tr>
@@ -955,12 +990,13 @@ export default function DesignSystem() {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
-              { z: 9999, label: 'Grain overlay', color: 'rgba(255,255,255,0.15)' },
-              { z: 200, label: 'Navbar (fixed)', color: 'var(--green)' },
-              { z: 199, label: 'Mega menu', color: 'rgba(4,229,134,0.6)' },
-              { z: 198, label: 'Mobile menu', color: 'rgba(4,229,134,0.5)' },
-              { z: 105, label: 'T2 SubNav (alternate)', color: 'rgba(4,229,134,0.4)' },
-              { z: 90, label: 'T2 SubNav / Sticky CTA bar', color: 'rgba(4,229,134,0.35)' },
+              { z: 1002, label: 'Navbar brand / burger', color: 'var(--green)' },
+              { z: 1001, label: 'Mobile nav overlay', color: 'rgba(4,229,134,0.6)' },
+              { z: 1000, label: 'Navbar (fixed)', color: 'rgba(4,229,134,0.55)' },
+              { z: 999, label: 'Mega menu wrapper', color: 'rgba(4,229,134,0.5)' },
+              { z: 998, label: 'Backdrop overlay', color: 'rgba(4,229,134,0.4)' },
+              { z: 105, label: 'T2 SubNav (alternate)', color: 'rgba(4,229,134,0.35)' },
+              { z: 90, label: 'T2 SubNav / Sticky CTA bar', color: 'rgba(4,229,134,0.3)' },
               { z: 7, label: 'Blueprint labels', color: 'rgba(255,255,255,0.12)' },
               { z: 5, label: 'Blueprint corners, status', color: 'rgba(255,255,255,0.10)' },
               { z: 3, label: 'Content layers', color: 'rgba(255,255,255,0.08)' },
@@ -1127,10 +1163,10 @@ export default function DesignSystem() {
             <thead><tr><th>Property</th><th>Value</th><th>Usage</th></tr></thead>
             <tbody>
               <tr><td className="mono-val">mix-blend-mode</td><td className="mono-val">overlay</td><td>Noise textures (blueprint, integrated model)</td></tr>
-              <tr><td className="mono-val">mask-image</td><td className="mono-val">linear-gradient(to bottom, transparent, black)</td><td>Trust-fade grid fade-out effect</td></tr>
-              <tr><td className="mono-val">pointer-events</td><td className="mono-val">none</td><td>All overlay layers (grain, grid, noise, glows)</td></tr>
-              <tr><td className="mono-val">user-select</td><td className="mono-val">none</td><td>Decorative background numbers</td></tr>
+              <tr><td className="mono-val">pointer-events</td><td className="mono-val">none</td><td>All overlay layers (grid, noise, glows)</td></tr>
+              <tr><td className="mono-val">user-select</td><td className="mono-val">none</td><td>Decorative background numbers, drag-scroll cards</td></tr>
               <tr><td className="mono-val">will-change</td><td className="mono-val">transform</td><td>Service cards (hover performance)</td></tr>
+              <tr><td className="mono-val">cursor</td><td className="mono-val">grab / grabbing</td><td>Drag-to-scroll galleries and timelines</td></tr>
             </tbody>
           </table>
         </div>
@@ -1196,7 +1232,13 @@ export default function DesignSystem() {
                 { name: 'globeSpin', dur: '1s', ease: 'linear', usage: 'Globe loading' },
                 { name: 'grow', dur: '0.6s', ease: 'var(--ease)', usage: 'Fertilizer icon hover' },
                 { name: 'pulse', dur: '2.5s', ease: 'ease-in-out', usage: 'Solution tag glow' },
-                { name: 'gp', dur: '2.5s', ease: 'ease-in-out', usage: 'T2 hero dot pulse' }
+                { name: 'gp', dur: '2.5s', ease: 'ease-in-out', usage: 'T2 hero dot pulse' },
+                { name: 'about-lu', dur: '1.1s', ease: 'var(--ease)', usage: 'About hero line reveal' },
+                { name: 'about-fi', dur: '0.8–1.2s', ease: 'default', usage: 'About hero fade-in' },
+                { name: 'about-fs', dur: '0.9s', ease: 'var(--ease)', usage: 'About hero fade+slide' },
+                { name: 'about-pulse', dur: '2s', ease: 'ease-in-out', usage: 'About badge dot' },
+                { name: 'about-spin', dur: '40s', ease: 'linear', usage: 'About stamp rotation' },
+                { name: 'about-scroll-pulse', dur: '2s', ease: 'ease-in-out', usage: 'About scroll indicator' }
               ].map(a => (
                 <tr key={a.name}>
                   <td className="mono-val" style={{ color: 'var(--green)' }}>{a.name}</td>
@@ -1251,7 +1293,7 @@ export default function DesignSystem() {
             ))}
           </div>
 
-          <SubLabel>Image Treatment: Object-Fit & Overlay</SubLabel>
+          <SubLabel>Image Treatment: Object-Fit</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
             <div>
               <div style={{ height: 160, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c)', position: 'relative', overflow: 'hidden' }}>
@@ -1262,14 +1304,12 @@ export default function DesignSystem() {
               <MonoLabel>Gallery images, background fills</MonoLabel>
             </div>
             <div>
-              <div style={{ height: 160, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c)', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,16,28,0.92) 0%, rgba(8,16,28,0.2) 40%, transparent 70%)' }} />
-                <div style={{ position: 'absolute', bottom: 16, left: 16, zIndex: 1 }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'block', marginBottom: 4 }}>Project</span>
-                  <span style={{ fontFamily: 'var(--font-serif)', fontSize: 16, color: 'var(--white)' }}>Gallery Overlay</span>
+              <div style={{ height: 160, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c)', position: 'relative', overflow: 'hidden', filter: 'saturate(0.15) brightness(0.6) contrast(1.15)' }}>
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--white)', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: 4 }}>desaturated treatment</span>
                 </div>
               </div>
-              <MonoLabel>Gallery caption overlay with gradient</MonoLabel>
+              <MonoLabel>About page images (desat + contrast)</MonoLabel>
             </div>
           </div>
 
@@ -1287,6 +1327,62 @@ export default function DesignSystem() {
             <div style={{ background: 'linear-gradient(135deg, var(--dark), var(--blue))', borderRadius: 'var(--r)' }} />
           </div>
           <MonoLabel>grid-template-columns: 1.3fr .7fr 1fr · first-child spans 2 rows</MonoLabel>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          20. PAGE PATTERNS (NEW)
+      ═══════════════════════════════════════════ */}
+      <section className="white-section section-pad">
+        <div className="container">
+          <SectionLabel>Page Patterns</SectionLabel>
+          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 700 }}>
+            Each page follows a scoped CSS pattern with a wrapper class (.about-page, .wwd-page, .t3-page). Components are isolated to avoid conflicts.
+          </p>
+
+          <SubLabel>Page Architecture</SubLabel>
+          <table className="specs-table" style={{ marginBottom: 32 }}>
+            <thead><tr><th>Page</th><th>Route</th><th>Scope Class</th><th>Hero Type</th><th>Key Components</th></tr></thead>
+            <tbody>
+              <tr><td>Home</td><td className="mono-val">/</td><td className="mono-val">—</td><td className="mono-val">Dark (3D)</td><td>HeroScene, IntegratedModel, GlobalPresence, Divisions</td></tr>
+              <tr><td>About</td><td className="mono-val">/about/our-story</td><td className="mono-val">.about-page</td><td className="mono-val">Dark (particles)</td><td>HeroParticles, drag-scroll timeline, image reveal, GlobalPresence, CountUp</td></tr>
+              <tr><td>What We Do</td><td className="mono-val">/what-we-do</td><td className="mono-val">.wwd-page</td><td className="mono-val">White (particles)</td><td>HeroParticles, 5-tab integration model, drag-scroll gallery, capability matrix</td></tr>
+              <tr><td>Division (T2)</td><td className="mono-val">/what-we-do/:slug</td><td className="mono-val">.t2-page</td><td className="mono-val">Dark (blueprint)</td><td>T2 Hero, SubNav, ServiceGrid, AdvDiagram, FlowSteps</td></tr>
+              <tr><td>Service (T3)</td><td className="mono-val">/what-we-do/:div/:svc</td><td className="mono-val">.t3-page</td><td className="mono-val">Dark (photo)</td><td>Sibling nav, rating system, drag-scroll gallery, specs table</td></tr>
+            </tbody>
+          </table>
+
+          <SubLabel>Shared Interaction Patterns</SubLabel>
+          <table className="specs-table" style={{ marginBottom: 32 }}>
+            <thead><tr><th>Pattern</th><th>Used In</th><th>Behavior</th></tr></thead>
+            <tbody>
+              <tr><td>Drag-to-scroll</td><td className="mono-val">About timeline, WhatWeDo gallery, T3 gallery</td><td>mouseDown/Move/Up with 1.5x multiplier, cursor: grab/grabbing, hidden scrollbar</td></tr>
+              <tr><td>Dot indicators</td><td className="mono-val">About timeline, WhatWeDo gallery</td><td>Active dot expands to 24px pill (blue), inactive 8px circle (g200), clickable</td></tr>
+              <tr><td>Prev/Next buttons</td><td className="mono-val">About timeline, WhatWeDo gallery</td><td>40px circle, g200 border, hover: blue border + shadow, scrollBy one card width</td></tr>
+              <tr><td>ScrollReveal</td><td className="mono-val">All pages</td><td>IntersectionObserver, translateY(24px) → 0, opacity 0 → 1, threshold 0.15</td></tr>
+              <tr><td>CountUp</td><td className="mono-val">About stats, home stats</td><td>Animated number counter, triggers on IntersectionObserver</td></tr>
+              <tr><td>Image reveal wipe</td><td className="mono-val">About manifesto</td><td>::after pseudo scaleX(1→0) with 1.2s transition, desaturated → partial color</td></tr>
+            </tbody>
+          </table>
+
+          <SubLabel>Navbar Adaptation</SubLabel>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+            <div className="dark-section" style={{ padding: 20, borderRadius: 'var(--r-lg)', textAlign: 'center' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', marginBottom: 4 }}>Dark Hero Pages</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>Home, About, Divisions, Services</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>White text → blue text on scroll</div>
+            </div>
+            <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--g150)', textAlign: 'center' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--blue)', marginBottom: 4 }}>White Hero Pages</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>What We Do</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)', marginTop: 4 }}>Blue text always</div>
+            </div>
+            <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--surface)', border: '1px solid var(--g150)', textAlign: 'center' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--blue)', marginBottom: 4 }}>Scrolled State</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>All pages (after 50px)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)', marginTop: 4 }}>White bg + shadow + blue text</div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

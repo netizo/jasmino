@@ -1,13 +1,15 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import WhatWeDoOverview from './pages/WhatWeDoOverview';
-import DivisionLanding from './pages/DivisionLanding';
-import ServicePage from './pages/ServicePage';
-import InnerPage from './pages/InnerPage';
-import DesignSystem from './pages/DesignSystem';
+
+const WhatWeDoPage = lazy(() => import('./pages/WhatWeDoPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const DivisionLanding = lazy(() => import('./pages/DivisionLanding'));
+const ServicePage = lazy(() => import('./pages/ServicePage'));
+const InnerPage = lazy(() => import('./pages/InnerPage'));
+const DesignSystem = lazy(() => import('./pages/DesignSystem'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -20,19 +22,21 @@ export default function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/what-we-do" element={<WhatWeDoOverview />} />
-        <Route path="/what-we-do/:divisionSlug" element={<DivisionLanding />} />
-        <Route path="/what-we-do/:divisionSlug/:serviceSlug" element={<ServicePage />} />
-        <Route path="/about/our-story" element={<InnerPage page="our-story" />} />
-        <Route path="/about/jasmino-group" element={<InnerPage page="jasmino-group" />} />
-        <Route path="/industries" element={<InnerPage page="industries" />} />
-        <Route path="/infrastructure" element={<InnerPage page="infrastructure" />} />
-        <Route path="/news" element={<InnerPage page="news" />} />
-        <Route path="/contact" element={<InnerPage page="contact" />} />
-        <Route path="/design-system" element={<DesignSystem />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/what-we-do" element={<WhatWeDoPage />} />
+          <Route path="/what-we-do/:divisionSlug" element={<DivisionLanding />} />
+          <Route path="/what-we-do/:divisionSlug/:serviceSlug" element={<ServicePage />} />
+          <Route path="/about/our-story" element={<AboutPage />} />
+          <Route path="/about/jasmino-group" element={<InnerPage page="jasmino-group" />} />
+          <Route path="/industries" element={<InnerPage page="industries" />} />
+          <Route path="/infrastructure" element={<InnerPage page="infrastructure" />} />
+          <Route path="/news" element={<InnerPage page="news" />} />
+          <Route path="/contact" element={<InnerPage page="contact" />} />
+          <Route path="/design-system" element={<DesignSystem />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </>
   );

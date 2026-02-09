@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasmino — Navigation v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1D34;--navy-mid:#0F2744;--dark:#0D2847;
+  --blue:#1B4B8F;--blue-bright:#3B7BDB;
+  --green:#04E586;--green-dim:rgba(4,229,134,0.08);
+  --surface:#F4F5F7;--white:#FFFFFF;
+  --g50:#FAFBFC;--g100:#F0F2F5;--g150:#E4E7EC;--g200:#D5D9E0;
+  --g300:#B0B7C3;--g400:#8892A2;--g500:#6B7280;--g600:#4B5563;
+  --g700:#374151;--g800:#1F2937;--g900:#0C1220;
+  --r:12px;--r-lg:18px;--r-xl:24px;
+  --serif:'Fraunces',serif;--sans:'Sora',sans-serif;--mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --nav-h:72px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--surface);color:var(--g900);-webkit-font-smoothing:antialiased;line-height:1.6}
+
+/* ═══════════════════════════════════════════════════════
+   NAV CORE
+   ═══════════════════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav-h);display:flex;align-items:center;
+  transition:background 0.4s var(--ease),box-shadow 0.4s var(--ease),border-color 0.4s var(--ease);
+  background:transparent;border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom-color:var(--g150);
+  box-shadow:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);
+}
+/* When mega is open on dark hero, force solid bg */
+.nav.mega-active{
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom-color:var(--g150);
+}
+.nav.mega-active .nav-link{color:var(--g600)!important}
+.nav.mega-active .nav-link:hover{color:var(--g900)!important}
+.nav.mega-active .nav-wordmark{color:var(--g900)!important}
+.nav.mega-active .nav-wordmark-sub{color:var(--g400)!important}
+.nav.mega-active .nav-brand::before{background:var(--green)}
+
+/* Transparent state text colors */
+.nav:not(.scrolled):not(.mega-active) .nav-link{color:rgba(255,255,255,0.7)}
+.nav:not(.scrolled):not(.mega-active) .nav-link:hover{color:#fff}
+.nav:not(.scrolled):not(.mega-active) .nav-wordmark{color:#fff}
+.nav:not(.scrolled):not(.mega-active) .nav-wordmark-sub{color:rgba(255,255,255,0.25)}
+.nav:not(.scrolled):not(.mega-active) .nav-cta{background:var(--green);color:var(--dark)}
+.nav:not(.scrolled):not(.mega-active) .burger-line{background:rgba(255,255,255,0.7)}
+
+.nav-inner{
+  width:100%;max-width:1320px;margin:0 auto;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WORDMARK
+   ═══════════════════════════════════════════════════════ */
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;position:relative;z-index:1002}
+.nav-wordmark{
+  font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:-0.02em;
+  color:var(--g900);transition:color 0.4s var(--ease);line-height:1;
+}
+.nav-wordmark-sub{
+  font-family:var(--mono);font-size:8.5px;font-weight:500;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--g400);transition:color 0.4s var(--ease);margin-top:1px;
+}
+.nav-brand::before{
+  content:'';width:3px;height:28px;border-radius:2px;
+  background:var(--green);flex-shrink:0;opacity:0.7;transition:opacity 0.3s;
+}
+.nav-brand:hover::before{opacity:1}
+
+/* ═══════════════════════════════════════════════════════
+   DESKTOP LINKS
+   ═══════════════════════════════════════════════════════ */
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-item{position:relative}
+.nav-link{
+  display:flex;align-items:center;gap:5px;
+  font-size:13px;font-weight:500;color:var(--g600);
+  text-decoration:none;padding:8px 14px;border-radius:8px;
+  transition:color 0.25s,background 0.25s;
+  white-space:nowrap;cursor:pointer;-webkit-user-select:none;user-select:none;
+}
+.nav.scrolled .nav-link{color:var(--g600)}
+.nav.scrolled .nav-link:hover{color:var(--g900);background:var(--g100)}
+.nav-link svg.chevron{width:12px;height:12px;transition:transform 0.3s var(--ease);flex-shrink:0;opacity:0.5}
+.nav-item.open .nav-link svg.chevron{transform:rotate(180deg)}
+.nav-item.open .nav-link{color:var(--blue)}
+.nav.scrolled .nav-item.open .nav-link,
+.nav.mega-active .nav-item.open .nav-link{background:rgba(27,75,143,0.06);color:var(--blue)}
+
+/* ═══════════════════════════════════════════════════════
+   CTA
+   ═══════════════════════════════════════════════════════ */
+.nav-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--sans);font-weight:600;font-size:12.5px;
+  padding:10px 22px;border-radius:var(--r);border:none;cursor:pointer;
+  background:var(--green);color:var(--dark);
+  text-decoration:none;white-space:nowrap;
+  transition:all 0.3s var(--ease);position:relative;overflow:hidden;
+}
+.nav-cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(4,229,134,0.25)}
+.nav-cta:hover::before{opacity:1}
+.nav-cta svg{width:13px;height:13px;flex-shrink:0;transition:transform 0.3s var(--ease)}
+.nav-cta:hover svg{transform:translateX(2px)}
+
+/* ═══════════════════════════════════════════════════════
+   MEGA MENU — Full Width
+   ═══════════════════════════════════════════════════════ */
+.mega-wrap{
+  position:fixed;top:var(--nav-h);left:0;right:0;z-index:999;
+  opacity:0;visibility:hidden;
+  transform:translateY(-6px);
+  transition:opacity 0.35s var(--ease),transform 0.35s var(--ease),visibility 0.35s;
+  pointer-events:none;
+  padding-top:8px; /* invisible hover bridge between nav and panel */
+}
+.mega-wrap.open{
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
+}
+
+.mega-panel{
+  background:var(--white);
+  border-bottom:1px solid var(--g150);
+  box-shadow:0 8px 40px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.03);
+}
+.mega-inner{
+  max-width:1320px;margin:0 auto;padding:32px 48px 36px;
+}
+
+/* Top bar: overline + overview link */
+.mega-top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;padding-bottom:16px;
+  border-bottom:1px solid var(--g100);
+}
+.mega-top-title{
+  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--g400);
+  display:flex;align-items:center;gap:8px;
+}
+.mega-top-title::before{content:'';width:12px;height:1.5px;background:var(--green);opacity:0.6}
+.mega-overview-link{
+  font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;
+  display:flex;align-items:center;gap:5px;
+  padding:6px 14px;border-radius:6px;border:1px solid var(--g150);
+  transition:all 0.25s var(--ease);
+}
+.mega-overview-link:hover{background:var(--g50);border-color:var(--g200);gap:8px}
+.mega-overview-link svg{width:12px;height:12px}
+
+/* 4-column division grid */
+.mega-divisions{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+}
+.mega-col{
+  padding:0 24px;
+  border-right:1px solid var(--g100);
+}
+.mega-col:first-child{padding-left:0}
+.mega-col:last-child{padding-right:0;border-right:none}
+
+/* Division header row */
+.mega-col-header{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;padding-bottom:12px;
+  border-bottom:1px solid var(--g100);
+  text-decoration:none;
+  transition:all 0.2s var(--ease);
+  border-radius:6px;
+  padding:8px 10px 12px;
+  margin:-8px -10px 16px;
+}
+.mega-col-header:hover{background:var(--g50)}
+.mega-col-header:hover .mega-col-icon{border-color:var(--green);background:var(--green-dim)}
+.mega-col-header:hover .mega-col-icon svg{color:var(--green)}
+.mega-col-header:hover .mega-col-name{color:var(--blue)}
+
+.mega-col-icon{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  background:var(--g50);border:1.5px solid var(--g150);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.25s var(--ease);
+}
+.mega-col-icon svg{width:17px;height:17px;color:var(--g500);transition:color 0.25s}
+
+.mega-col-num{
+  font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.08em;
+  color:var(--green);opacity:0.6;line-height:1;margin-bottom:2px;
+}
+.mega-col-name{
+  font-weight:600;font-size:13px;color:var(--g800);transition:color 0.2s;line-height:1.2;
+}
+
+/* T3 service links */
+.mega-service{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;margin:0 -10px;border-radius:6px;
+  text-decoration:none;transition:all 0.2s var(--ease);
+  position:relative;
+}
+.mega-service:hover{background:var(--g50)}
+.mega-service:hover .mega-service-name{color:var(--g900)}
+.mega-service:hover .mega-service-arrow{opacity:1;transform:translateX(0)}
+
+.mega-service-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--g300);flex-shrink:0;
+  transition:background 0.2s;
+}
+.mega-service:hover .mega-service-dot{background:var(--green)}
+
+.mega-service-name{
+  font-size:13px;color:var(--g500);transition:color 0.2s;font-weight:400;
+}
+.mega-service-arrow{
+  margin-left:auto;opacity:0;transform:translateX(-4px);
+  transition:all 0.2s var(--ease);
+  color:var(--blue);
+}
+.mega-service-arrow svg{width:12px;height:12px}
+
+/* Stat row at the bottom */
+.mega-stat-row{
+  display:flex;align-items:center;gap:32px;
+  margin-top:24px;padding-top:20px;
+  border-top:1px solid var(--g100);
+}
+.mega-stat{display:flex;align-items:baseline;gap:6px}
+.mega-stat-num{font-family:var(--mono);font-weight:600;font-size:18px;color:var(--blue);line-height:1}
+.mega-stat-label{font-family:var(--mono);font-size:10px;color:var(--g400)}
+.mega-stat-divider{width:1px;height:20px;background:var(--g150)}
+
+/* ═══════════════════════════════════════════════════════
+   BACKDROP
+   ═══════════════════════════════════════════════════════ */
+.mega-backdrop{
+  position:fixed;inset:0;z-index:998;
+  background:rgba(0,0,0,0.12);
+  opacity:0;visibility:hidden;
+  transition:opacity 0.35s,visibility 0.35s;
+  backdrop-filter:blur(2px);
+}
+.mega-backdrop.active{opacity:1;visibility:visible}
+
+/* ═══════════════════════════════════════════════════════
+   ABOUT DROPDOWN — Compact
+   ═══════════════════════════════════════════════════════ */
+.about-drop{
+  position:absolute;top:calc(100% + 12px);left:50%;
+  transform:translateX(-50%) translateY(8px);
+  width:260px;
+  background:var(--white);border:1px solid var(--g150);
+  border-radius:var(--r-lg);
+  box-shadow:0 4px 6px rgba(0,0,0,0.02),0 12px 40px rgba(0,0,0,0.08),0 0 0 1px rgba(0,0,0,0.02);
+  padding:10px;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.3s var(--ease),transform 0.3s var(--ease),visibility 0.3s;
+  pointer-events:none;z-index:1001;
+}
+.about-drop::before{
+  content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);
+  width:12px;height:12px;background:var(--white);
+  border-left:1px solid var(--g150);border-top:1px solid var(--g150);
+}
+/* Invisible hover bridge above the dropdown */
+.about-drop::after{
+  content:'';position:absolute;top:-16px;left:0;right:0;height:16px;
+}
+.nav-item.open .about-drop{
+  opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto;
+}
+.about-drop-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:var(--r);
+  text-decoration:none;transition:background 0.2s var(--ease);
+}
+.about-drop-item:hover{background:var(--g50)}
+.about-drop-item:hover .about-drop-icon{border-color:var(--green);background:var(--green-dim)}
+.about-drop-item:hover .about-drop-icon svg{color:var(--green)}
+.about-drop-item:hover .about-drop-name{color:var(--blue)}
+
+.about-drop-icon{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  background:var(--g50);border:1.5px solid var(--g150);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.25s var(--ease);
+}
+.about-drop-icon svg{width:17px;height:17px;color:var(--g500);transition:color 0.25s}
+.about-drop-name{font-weight:600;font-size:13px;color:var(--g800);transition:color 0.2s}
+.about-drop-desc{font-family:var(--mono);font-size:10px;color:var(--g400);margin-top:1px}
+
+.about-drop-divider{height:1px;background:var(--g100);margin:4px 8px}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE BURGER
+   ═══════════════════════════════════════════════════════ */
+.burger{
+  display:none;width:40px;height:40px;border:none;background:none;cursor:pointer;
+  position:relative;z-index:1002;padding:0;
+  flex-direction:column;align-items:center;justify-content:center;gap:6px;
+}
+.burger-line{
+  width:22px;height:1.5px;background:var(--g700);border-radius:1px;
+  transition:all 0.35s var(--ease);transform-origin:center;
+}
+.burger.active .burger-line:nth-child(1){transform:translateY(3.75px) rotate(45deg)}
+.burger.active .burger-line:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.active .burger-line:nth-child(3){transform:translateY(-3.75px) rotate(-45deg)}
+.burger.active .burger-line{background:#fff}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE OVERLAY
+   ═══════════════════════════════════════════════════════ */
+.mobile-nav{
+  position:fixed;inset:0;z-index:1001;
+  background:var(--navy);
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.4s var(--ease),visibility 0.4s;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+}
+.mobile-nav.open{opacity:1;visibility:visible}
+.mobile-nav::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+  opacity:0.6;
+}
+.mobile-nav-inner{
+  padding:calc(var(--nav-h) + 24px) 28px 48px;
+  display:flex;flex-direction:column;gap:0;flex:1;
+  position:relative;z-index:1;
+}
+.mobile-nav-link{
+  font-size:24px;font-weight:500;color:rgba(255,255,255,0.5);
+  text-decoration:none;padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  transition:color 0.25s,padding-left 0.3s var(--ease);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.mobile-nav-link:hover,.mobile-nav-link.active{color:#fff;padding-left:8px}
+.mobile-nav-link svg{width:14px;height:14px;opacity:0.3;transition:all 0.3s var(--ease)}
+.mobile-nav-link.active svg{opacity:0.6;transform:rotate(180deg)}
+
+/* Mobile accordion for divisions */
+.mobile-divisions{
+  max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease);
+}
+.mobile-divisions.open{max-height:1200px}
+.mobile-divisions-inner{padding:8px 0 12px}
+
+.mobile-div-group{margin-bottom:16px}
+.mobile-div-group:last-child{margin-bottom:0}
+
+.mobile-div-header{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0;text-decoration:none;
+}
+.mobile-div-header:hover .mobile-div-name{color:rgba(255,255,255,0.7)}
+
+.mobile-div-num{
+  font-family:var(--mono);font-size:10px;font-weight:500;color:var(--green);opacity:0.5;
+  width:18px;text-align:right;flex-shrink:0;
+}
+.mobile-div-name{
+  font-size:15px;font-weight:600;color:rgba(255,255,255,0.4);transition:color 0.2s;
+}
+
+.mobile-service{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 0 7px 28px;text-decoration:none;
+  transition:padding-left 0.2s var(--ease);
+}
+.mobile-service:hover{padding-left:34px}
+.mobile-service-dot{
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(255,255,255,0.15);flex-shrink:0;
+  transition:background 0.2s;
+}
+.mobile-service:hover .mobile-service-dot{background:var(--green)}
+.mobile-service-name{
+  font-size:13px;color:rgba(255,255,255,0.3);transition:color 0.2s;
+}
+.mobile-service:hover .mobile-service-name{color:rgba(255,255,255,0.6)}
+
+.mobile-nav-cta{margin-top:auto;padding-top:28px;position:relative;z-index:1}
+.mobile-nav-cta a{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:16px;border-radius:var(--r);
+  background:var(--green);color:var(--dark);
+  font-weight:600;font-size:14px;text-decoration:none;
+  transition:all 0.3s var(--ease);
+}
+.mobile-nav-cta a:hover{background:#06f59a;transform:translateY(-1px)}
+
+.mobile-nav-footer{
+  position:relative;z-index:1;padding-top:20px;margin-top:20px;
+  border-top:1px solid rgba(255,255,255,0.04);
+  display:flex;align-items:center;gap:20px;
+}
+.mobile-nav-footer-item{
+  font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.04em;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+@media(max-width:1100px){
+  .nav-inner{padding:0 32px}
+  .mega-inner{padding:28px 32px 32px}
+  .mega-col{padding:0 16px}
+}
+@media(max-width:900px){
+  .nav-links,.nav-cta-desktop{display:none}
+  .burger{display:flex}
+  .nav-inner{padding:0 24px}
+  .mega-wrap{display:none}
+  .mega-backdrop{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════
+   DEMO SECTIONS
+   ═══════════════════════════════════════════════════════ */
+.demo-hero{
+  min-height:100vh;
+  background:linear-gradient(160deg,var(--navy) 0%,var(--dark) 60%,#0E2F55 100%);
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.demo-hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;opacity:0.5;
+}
+.demo-hero-text{position:relative;z-index:1;text-align:center;padding:0 24px}
+.demo-hero-text h1{
+  font-family:var(--serif);font-weight:500;font-size:52px;
+  color:#fff;line-height:1.06;letter-spacing:-0.025em;margin-bottom:16px;
+}
+.demo-hero-text h1 em{font-style:italic;color:var(--green)}
+.demo-hero-text p{font-size:15px;color:rgba(255,255,255,0.4);max-width:440px;margin:0 auto}
+.demo-scroll{
+  min-height:120vh;padding:120px 48px;
+  background:var(--surface);
+  background-image:
+    linear-gradient(rgba(27,75,143,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.04) 1px,transparent 1px),
+    linear-gradient(rgba(27,75,143,0.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(27,75,143,0.07) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px,100px 100px,100px 100px;
+}
+.demo-scroll h2{
+  font-family:var(--serif);font-weight:400;font-size:36px;
+  color:var(--g900);text-align:center;margin-bottom:16px;
+}
+.demo-scroll p{font-size:14px;color:var(--g400);text-align:center;max-width:400px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div>
+        <div class="nav-wordmark">Jasmino</div>
+        <div class="nav-wordmark-sub">Corporation</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li class="nav-item" id="navWWD">
+        <a class="nav-link" id="navWWDToggle">
+          What We Do
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+      </li>
+      <li class="nav-item"><a href="#" class="nav-link">Industries</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Infrastructure</a></li>
+      <li class="nav-item" id="navAbout">
+        <a class="nav-link" id="navAboutToggle">
+          About
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="about-drop">
+          <a href="#" class="about-drop-item">
+            <div class="about-drop-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M12 8v4l3 3"/>
+                <circle cx="12" cy="12" r="9"/>
+              </svg>
+            </div>
+            <div>
+              <div class="about-drop-name">Our Story</div>
+              <div class="about-drop-desc">40+ years of heritage</div>
+            </div>
+          </a>
+          <div class="about-drop-divider"></div>
+          <a href="#" class="about-drop-item">
+            <div class="about-drop-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M3.6 9h16.8M3.6 15h16.8"/>
+                <path d="M12 3a15 15 0 010 18 15 15 0 010-18"/>
+              </svg>
+            </div>
+            <div>
+              <div class="about-drop-name">Jasmino Group</div>
+              <div class="about-drop-desc">Companies & structure</div>
+            </div>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#" class="nav-link">News</a></li>
+    </ul>
+
+    <a href="#" class="nav-cta nav-cta-desktop">
+      Contact Us
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <button class="burger" id="burger" aria-label="Toggle menu">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     FULL-WIDTH MEGA MENU
+     ═══════════════════════════════════════════════════════ -->
+<div class="mega-wrap" id="megaWrap">
+  <div class="mega-panel">
+    <div class="mega-inner">
+
+      <!-- Top bar -->
+      <div class="mega-top">
+        <span class="mega-top-title">Our Four Divisions</span>
+        <a href="#" class="mega-overview-link">
+          What We Do — Overview
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- 4-column grid -->
+      <div class="mega-divisions">
+
+        <!-- COL 1: Engineering Design -->
+        <div class="mega-col">
+          <a href="#" class="mega-col-header">
+            <div class="mega-col-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M2 20h20M5 20V9l7-5 7 5v11"/>
+                <rect x="9" y="13" width="6" height="7" rx="0.5"/>
+                <line x1="12" y1="9" x2="12" y2="11"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mega-col-num">Division 01</div>
+              <div class="mega-col-name">Engineering Design</div>
+            </div>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Process & Plant Design</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Equipment Design</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Piping Design</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Water Treatment</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+
+        <!-- COL 2: Equipment Manufacturing -->
+        <div class="mega-col">
+          <a href="#" class="mega-col-header">
+            <div class="mega-col-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <rect x="3" y="6" width="18" height="12" rx="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="10" y1="3" x2="10" y2="6"/>
+                <line x1="14" y1="3" x2="14" y2="6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mega-col-num">Division 02</div>
+              <div class="mega-col-name">Equipment Manufacturing</div>
+            </div>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Steel Equipment</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Plastic & FRP</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+
+        <!-- COL 3: Corrosion Protection -->
+        <div class="mega-col">
+          <a href="#" class="mega-col-header">
+            <div class="mega-col-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z"/>
+                <path d="M8 16a4 4 0 008 0" opacity="0.4"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mega-col-num">Division 03</div>
+              <div class="mega-col-name">Corrosion Protection</div>
+            </div>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Rubber Linings</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Plastic Linings</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Coatings & Resin</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Inspection & Repair</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+
+        <!-- COL 4: Rubber Products -->
+        <div class="mega-col">
+          <a href="#" class="mega-col-header">
+            <div class="mega-col-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 3v2M12 19v2M3 12h2M19 12h2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="mega-col-num">Division 04</div>
+              <div class="mega-col-name">Rubber Products</div>
+            </div>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Custom Compounds</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#" class="mega-service">
+            <span class="mega-service-dot"></span>
+            <span class="mega-service-name">Engineered Products</span>
+            <span class="mega-service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Stat row -->
+      <div class="mega-stat-row">
+        <div class="mega-stat">
+          <span class="mega-stat-num">12</span>
+          <span class="mega-stat-label">Service Areas</span>
+        </div>
+        <div class="mega-stat-divider"></div>
+        <div class="mega-stat">
+          <span class="mega-stat-num">4</span>
+          <span class="mega-stat-label">Integrated Divisions</span>
+        </div>
+        <div class="mega-stat-divider"></div>
+        <div class="mega-stat">
+          <span class="mega-stat-num">1</span>
+          <span class="mega-stat-label">Point of Accountability</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="mega-backdrop" id="megaBackdrop"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MOBILE OVERLAY
+     ═══════════════════════════════════════════════════════ -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-inner">
+
+    <a href="#" class="mobile-nav-link" id="mobileWWDToggle">
+      What We Do
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+    <div class="mobile-divisions" id="mobileDivisions">
+      <div class="mobile-divisions-inner">
+
+        <!-- Engineering -->
+        <div class="mobile-div-group">
+          <a href="#" class="mobile-div-header">
+            <span class="mobile-div-num">01</span>
+            <span class="mobile-div-name">Engineering Design</span>
+          </a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Process & Plant Design</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Equipment Design</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Piping Design</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Water Treatment</span></a>
+        </div>
+
+        <!-- Manufacturing -->
+        <div class="mobile-div-group">
+          <a href="#" class="mobile-div-header">
+            <span class="mobile-div-num">02</span>
+            <span class="mobile-div-name">Equipment Manufacturing</span>
+          </a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Steel Equipment</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Plastic & FRP</span></a>
+        </div>
+
+        <!-- Corrosion -->
+        <div class="mobile-div-group">
+          <a href="#" class="mobile-div-header">
+            <span class="mobile-div-num">03</span>
+            <span class="mobile-div-name">Corrosion Protection</span>
+          </a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Rubber Linings</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Plastic Linings</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Coatings & Resin</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Inspection & Repair</span></a>
+        </div>
+
+        <!-- Rubber -->
+        <div class="mobile-div-group">
+          <a href="#" class="mobile-div-header">
+            <span class="mobile-div-num">04</span>
+            <span class="mobile-div-name">Rubber Products</span>
+          </a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Custom Compounds</span></a>
+          <a href="#" class="mobile-service"><span class="mobile-service-dot"></span><span class="mobile-service-name">Engineered Products</span></a>
+        </div>
+
+      </div>
+    </div>
+
+    <a href="#" class="mobile-nav-link">Industries</a>
+    <a href="#" class="mobile-nav-link">Infrastructure</a>
+    <a href="#" class="mobile-nav-link" id="mobileAboutToggle">
+      About
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+    <div class="mobile-divisions" id="mobileAboutSub">
+      <div class="mobile-divisions-inner">
+        <a href="#" class="mobile-sub-item" style="padding-left:12px">
+          <span class="mobile-service-dot"></span>
+          <span class="mobile-service-name" style="font-size:14px;color:rgba(255,255,255,0.4);">Our Story</span>
+        </a>
+        <a href="#" class="mobile-sub-item" style="padding-left:12px">
+          <span class="mobile-service-dot"></span>
+          <span class="mobile-service-name" style="font-size:14px;color:rgba(255,255,255,0.4);">Jasmino Group</span>
+        </a>
+      </div>
+    </div>
+    <a href="#" class="mobile-nav-link">News</a>
+
+    <div class="mobile-nav-cta">
+      <a href="#">
+        Contact Us
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="mobile-nav-footer">
+      <span class="mobile-nav-footer-item"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c65626a634c666d7f61656263226f6361">[email&#160;protected]</a></span>
+      <span class="mobile-nav-footer-item">+91 XXX XXX XXXX</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     DEMO CONTENT
+     ═══════════════════════════════════════════════════════ -->
+<div class="demo-hero">
+  <div class="demo-hero-text">
+    <h1>We <em>design</em> it.<br>We build it.<br>We <em>protect</em> it.</h1>
+    <p>Hover over "What We Do" or "About" to see the dropdowns. Scroll to see the nav transition. Resize for mobile.</p>
+  </div>
+</div>
+<div class="demo-scroll">
+  <h2>Solid nav state</h2>
+  <p>The mega menu works in both transparent and solid states. Try it here too.</p>
+</div>
+
+
+<script>
+/* Scroll */
+const nav = document.getElementById('mainNav');
+let ticking = false;
+function onScroll() {
+  if (!ticking) {
+    requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 40); ticking = false; });
+    ticking = true;
+  }
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ═══════════════════════════════════════════════════════
+   HOVER-INTENT DROPDOWN SYSTEM (desktop)
+   Uses a short delay to prevent flicker on diagonal mouse movement.
+   ═══════════════════════════════════════════════════════ */
+const HOVER_DELAY_IN = 80;   // ms before opening
+const HOVER_DELAY_OUT = 220; // ms grace period before closing
+
+const navWWD = document.getElementById('navWWD');
+const megaWrap = document.getElementById('megaWrap');
+const megaBackdrop = document.getElementById('megaBackdrop');
+const navAbout = document.getElementById('navAbout');
+
+let wwdTimer = null;
+let aboutTimer = null;
+
+function closeAll() {
+  navWWD.classList.remove('open');
+  megaWrap.classList.remove('open');
+  navAbout.classList.remove('open');
+  megaBackdrop.classList.remove('active');
+  nav.classList.remove('mega-active');
+}
+
+function openMega() {
+  clearTimeout(wwdTimer);
+  closeAboutImmediate();
+  navWWD.classList.add('open');
+  megaWrap.classList.add('open');
+  megaBackdrop.classList.add('active');
+  nav.classList.add('mega-active');
+}
+function closeMega() {
+  navWWD.classList.remove('open');
+  megaWrap.classList.remove('open');
+  if (!navAbout.classList.contains('open')) {
+    megaBackdrop.classList.remove('active');
+    nav.classList.remove('mega-active');
+  }
+}
+
+function openAbout() {
+  clearTimeout(aboutTimer);
+  closeMegaImmediate();
+  navAbout.classList.add('open');
+  megaBackdrop.classList.add('active');
+  nav.classList.add('mega-active');
+}
+function closeAboutFn() {
+  navAbout.classList.remove('open');
+  if (!navWWD.classList.contains('open')) {
+    megaBackdrop.classList.remove('active');
+    nav.classList.remove('mega-active');
+  }
+}
+
+// Immediate close helpers (no delay, used when switching between dropdowns)
+function closeMegaImmediate() { clearTimeout(wwdTimer); closeMega(); }
+function closeAboutImmediate() { clearTimeout(aboutTimer); closeAboutFn(); }
+
+// --- What We Do hover zones: nav item + mega panel ---
+navWWD.addEventListener('mouseenter', () => {
+  clearTimeout(wwdTimer);
+  wwdTimer = setTimeout(openMega, HOVER_DELAY_IN);
+});
+navWWD.addEventListener('mouseleave', () => {
+  clearTimeout(wwdTimer);
+  wwdTimer = setTimeout(closeMega, HOVER_DELAY_OUT);
+});
+megaWrap.addEventListener('mouseenter', () => {
+  clearTimeout(wwdTimer);
+});
+megaWrap.addEventListener('mouseleave', () => {
+  clearTimeout(wwdTimer);
+  wwdTimer = setTimeout(closeMega, HOVER_DELAY_OUT);
+});
+
+// --- About hover zone: nav item (dropdown is inside it) ---
+navAbout.addEventListener('mouseenter', () => {
+  clearTimeout(aboutTimer);
+  aboutTimer = setTimeout(openAbout, HOVER_DELAY_IN);
+});
+navAbout.addEventListener('mouseleave', () => {
+  clearTimeout(aboutTimer);
+  aboutTimer = setTimeout(closeAboutFn, HOVER_DELAY_OUT);
+});
+
+// Backdrop click closes all
+megaBackdrop.addEventListener('click', closeAll);
+
+// Escape closes all
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+// Close on link click inside dropdowns
+megaWrap.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => setTimeout(closeAll, 100));
+});
+navAbout.querySelectorAll('.about-drop a').forEach(a => {
+  a.addEventListener('click', () => setTimeout(closeAll, 100));
+});
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE (stays as click/tap)
+   ═══════════════════════════════════════════════════════ */
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobileNav');
+const mobileWWDToggle = document.getElementById('mobileWWDToggle');
+const mobileDivisions = document.getElementById('mobileDivisions');
+let mobileOpen = false;
+
+function toggleMobile() {
+  mobileOpen = !mobileOpen;
+  burger.classList.toggle('active', mobileOpen);
+  mobileNav.classList.toggle('open', mobileOpen);
+  document.body.style.overflow = mobileOpen ? 'hidden' : '';
+}
+burger.addEventListener('click', toggleMobile);
+
+mobileWWDToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  mobileWWDToggle.classList.toggle('active');
+  mobileDivisions.classList.toggle('open');
+});
+
+const mobileAboutToggle = document.getElementById('mobileAboutToggle');
+const mobileAboutSub = document.getElementById('mobileAboutSub');
+mobileAboutToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  mobileAboutToggle.classList.toggle('active');
+  mobileAboutSub.classList.toggle('open');
+});
+
+// Close mobile on link click
+document.querySelectorAll('.mobile-nav-link:not(#mobileWWDToggle):not(#mobileAboutToggle), .mobile-service, .mobile-div-header, .mobile-nav-cta a, .mobile-sub-item').forEach(a => {
+  a.addEventListener('click', () => { if (mobileOpen) toggleMobile(); });
+});
+
+window.addEventListener('resize', () => { if (window.innerWidth <= 900) closeAll(); });
+</script>
+</body>
+</html>

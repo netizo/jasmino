@@ -110,8 +110,7 @@ const TrustBand = React.memo(() => {
             <section className="trust" ref={sectionRef}>
                 {/* Layer 1: Background image */}
                 <div className="trust-bg"></div>
-                {/* Layer 2: Color overlay */}
-                <div className="trust-overlay"></div>
+
                 {/* Layer 3: Grid texture */}
                 <div className="trust-grid"></div>
                 {/* Layer 4: Ambient glow */}
@@ -142,8 +141,6 @@ const TrustBand = React.memo(() => {
                 </div>
             </section>
 
-            {/* Gradient transition to light */}
-            <div className="trust-fade"></div>
         </>
     );
 });
