@@ -145,8 +145,8 @@
   border-bottom: 1px solid var(--g100);
 }
 .mega-top-title {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--g400);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--g500);
   display: flex; align-items: center; gap: 8px;
 }
 .mega-top-title::before {
@@ -203,8 +203,8 @@
 }
 
 .mega-col-num {
-  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
-  letter-spacing: 0.08em; color: var(--green); opacity: 0.6;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; color: var(--green); opacity: 0.75;
   line-height: 1; margin-bottom: 2px;
 }
 .mega-col-name {
@@ -252,7 +252,7 @@
   color: var(--blue); line-height: 1;
 }
 .mega-stat-label {
-  font-family: var(--font-mono); font-size: 10px; color: var(--g400);
+  font-family: var(--font-mono); font-size: 12px; color: var(--g500);
 }
 .mega-stat-divider {
   width: 1px; height: 20px; background: var(--g150);
@@ -324,7 +324,7 @@
   font-weight: 600; font-size: 13px; color: var(--g800); transition: color 0.2s;
 }
 .about-drop-desc {
-  font-family: var(--font-mono); font-size: 10px; color: var(--g400); margin-top: 1px;
+  font-family: var(--font-mono); font-size: 12px; color: var(--g500); margin-top: 1px;
 }
 .about-drop-divider {
   height: 1px; background: var(--g100); margin: 4px 8px;
@@ -403,12 +403,12 @@
 .mobile-div-header:hover .mobile-div-name { color: rgba(255,255,255,0.7); }
 
 .mobile-div-num {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
-  color: var(--green); opacity: 0.5;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--green); opacity: 0.7;
   width: 18px; text-align: right; flex-shrink: 0;
 }
 .mobile-div-name {
-  font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.4);
+  font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.55);
   transition: color 0.2s;
 }
 
@@ -425,7 +425,7 @@
 }
 .mobile-service:hover .mobile-service-dot { background: var(--green); }
 .mobile-service-name {
-  font-size: 13px; color: rgba(255,255,255,0.3); transition: color 0.2s;
+  font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.2s;
 }
 .mobile-service:hover .mobile-service-name { color: rgba(255,255,255,0.6); }
 
@@ -445,8 +445,8 @@
   display: flex; align-items: center; gap: 20px;
 }
 .mobile-nav-footer-item {
-  font-family: var(--font-mono); font-size: 10px;
-  color: rgba(255,255,255,0.2); letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 12px;
+  color: rgba(255,255,255,0.45); letter-spacing: 0.04em;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -484,7 +484,7 @@
 
 .footer-col h5 {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--green);
   letter-spacing: 0.14em;
@@ -494,14 +494,14 @@
 
 .footer-col p {
   font-size: 13px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.55);
   line-height: 1.7;
 }
 
 .footer-col a {
   display: block;
   font-size: 13px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.55);
   padding: 4px 0;
   transition: color 0.2s;
 }
@@ -522,7 +522,7 @@
 
 .footer-bottom p {
   font-size: 12px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.45);
 }
 
 .footer-bottom-links {
@@ -532,7 +532,7 @@
 
 .footer-bottom-links a {
   font-size: 12px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.45);
   transition: color 0.2s;
 }
 
@@ -579,12 +579,12 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--g400);
+  font-size: 12px;
+  color: var(--g500);
 }
 
 .breadcrumb a {
-  color: var(--g400);
+  color: var(--g500);
   transition: color 0.2s;
 }
 
@@ -633,8 +633,8 @@
 
 .sticky-cta-bar .contact-info {
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -680,9 +680,9 @@
 
 .specs-table th {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--g400);
+  color: var(--g500);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   text-align: left;

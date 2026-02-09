@@ -87,19 +87,12 @@ const pages = {
           </div>
         </section>
         <section className="cream-section eng-grid section-pad">
-          <div className="container">
-            <div className="resp-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-              {facilities.map((f, i) => (
-                <ScrollReveal key={f.name} delay={i * 100}>
-                  <div className="card corner-brackets" style={{ textAlign: 'center', padding: 40 }}>
-                    <span style={{ fontSize: 48, display: 'block', marginBottom: 16 }}>{f.flag}</span>
-                    <h3 style={{ fontSize: 22, marginBottom: 4 }}>{f.name}</h3>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', display: 'block', marginBottom: 12 }}>{f.area} · {f.country}</span>
-                    <p style={{ fontSize: 13, color: 'var(--g500)', lineHeight: 1.7 }}>{f.capabilities}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
+          <div className="container" style={{ maxWidth: 600, textAlign: 'center', padding: '80px 24px' }}>
+            <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--g100)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--g150)' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 18, color: 'var(--g400)' }}>...</span>
             </div>
+            <h2 style={{ fontSize: 24, marginBottom: 8, color: 'var(--g800)' }}>Under Construction</h2>
+            <p style={{ fontSize: 14, color: 'var(--g500)', lineHeight: 1.7 }}>This page is coming soon. We're working on something great.</p>
           </div>
         </section>
       </>
@@ -123,83 +116,12 @@ const pages = {
           </div>
         </section>
         <section className="cream-section eng-grid section-pad">
-          <div className="container">
-            <div className="resp-grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
-              {industries.map((ind, i) => (
-                <ScrollReveal key={ind.name} delay={i * 60}>
-                  <div className="card corner-brackets" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 20, alignItems: 'start' }}>
-                    <span style={{ fontSize: 36 }}>{ind.icon}</span>
-                    <div>
-                      <h3 style={{ fontSize: 22, marginBottom: 4 }}>{ind.name}</h3>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', display: 'block', marginBottom: 12 }}>{ind.subtitle}</span>
-                      <p style={{ fontSize: 13, color: 'var(--g500)', lineHeight: 1.7 }}>
-                        We provide engineering design, equipment manufacturing, corrosion protection, and rubber products tailored for the {ind.name.toLowerCase()} industry.
-                      </p>
-                      <div className="pills-wrap" style={{ marginTop: 12 }}>
-                        {divisions.map(d => (
-                          <Link key={d.id} to={`/what-we-do/${d.slug}`} className="pill">{d.shortName}</Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+          <div className="container" style={{ maxWidth: 600, textAlign: 'center', padding: '80px 24px' }}>
+            <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--g100)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--g150)' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 18, color: 'var(--g400)' }}>...</span>
             </div>
-          </div>
-        </section>
-      </>
-    )
-  },
-  'infrastructure': {
-    title: 'Infrastructure',
-    overline: 'Facilities',
-    sections: () => (
-      <>
-        <section className="dark-section eng-grid-dark section-pad" style={{ paddingTop: 120 }}>
-          <div className="container" style={{ maxWidth: 900 }}>
-            <div className="breadcrumb" style={{ marginBottom: 24 }}>
-              <Link to="/">Home</Link><span className="sep">/</span><span style={{ color: 'rgba(255,255,255,0.6)' }}>Infrastructure</span>
-            </div>
-            <span className="overline overline-with-line">Infrastructure</span>
-            <h1 style={{ marginTop: 16, marginBottom: 20 }}>130,000+ m² of <span className="italic-accent">capability</span></h1>
-            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 16, lineHeight: 1.8 }}>
-              Three purpose-built facilities across India, Germany, and Turkey — equipped for engineering, fabrication, lining application, rubber compounding, and testing.
-            </p>
-          </div>
-        </section>
-        <section className="cream-section eng-grid section-pad">
-          <div className="container">
-            {facilities.map((f, i) => (
-              <ScrollReveal key={f.name} delay={i * 100}>
-                <div className="card corner-brackets resp-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginBottom: 24, padding: 40 }}>
-                  <div>
-                    <span style={{ fontSize: 48, display: 'block', marginBottom: 12 }}>{f.flag}</span>
-                    <h3 style={{ fontSize: 28, marginBottom: 4 }}>{f.name}</h3>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', display: 'block', marginBottom: 16 }}>{f.area} · {f.country}</span>
-                    <p style={{ fontSize: 14, color: 'var(--g500)', lineHeight: 1.7 }}>{f.capabilities}</p>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 160, height: 160, borderRadius: '50%', border: '2px dashed var(--g200)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <div>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 600, color: 'var(--blue)', textAlign: 'center' }}>{f.area}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </section>
-        <section className="white-section section-pad">
-          <div className="container">
-            <ScrollReveal>
-              <h2 style={{ marginBottom: 24 }}>Certifications & Standards</h2>
-            </ScrollReveal>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              {['ASME (Section VIII Div 1 & 2)', 'API (650/620)', 'PED', 'ISO 9001:2015', 'ISO 14001:2015', 'TÜV', 'Bureau Veritas', 'IS 2825', 'ASME B31.3', 'PD 5500'].map(cert => (
-                <span key={cert} className="trust-badge" style={{ fontSize: 11, padding: '8px 16px' }}>{cert}</span>
-              ))}
-            </div>
+            <h2 style={{ fontSize: 24, marginBottom: 8, color: 'var(--g800)' }}>Under Construction</h2>
+            <p style={{ fontSize: 14, color: 'var(--g500)', lineHeight: 1.7 }}>This page is coming soon. We're working on something great.</p>
           </div>
         </section>
       </>
@@ -307,7 +229,7 @@ const pages = {
                             <span>{f.flag}</span>
                             <span style={{ fontWeight: 600, fontSize: 14 }}>{f.name}</span>
                           </div>
-                          <p style={{ fontSize: 12, color: 'var(--g400)', fontFamily: 'var(--font-mono)' }}>{f.area} · {f.country}</p>
+                          <p style={{ fontSize: 12, color: 'var(--g500)', fontFamily: 'var(--font-mono)' }}>{f.area} · {f.country}</p>
                         </div>
                       ))}
                     </div>

@@ -84,7 +84,7 @@ export default function DivisionLanding() {
                 {division.stats.map(s => (
                   <div key={s.label}>
                     <div style={{ fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 600, color: 'var(--green)' }}>{s.num}</div>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -116,7 +116,7 @@ export default function DivisionLanding() {
                 <Link to={`/what-we-do/${divisionSlug}/${slug}`} style={{ textDecoration: 'none' }}>
                   <div className="card corner-brackets" style={{ height: '100%' }}>
                     <div style={{ height: 6, background: `linear-gradient(90deg, var(--dark), var(--navy))`, borderRadius: '3px 3px 0 0', marginBottom: 20, marginTop: -32, marginLeft: -32, marginRight: -32 }} />
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--green)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                       {division.num}.{String(i + 1).padStart(2, '0')}
                     </span>
                     <h3 style={{ fontSize: 22, marginTop: 8, marginBottom: 8, color: 'var(--gray-900)' }}>{svc.name}</h3>

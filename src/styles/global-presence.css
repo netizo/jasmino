@@ -45,7 +45,7 @@
 
 .s6-over {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -139,8 +139,8 @@
     justify-content: center;
     gap: 12px;
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
-    color: var(--g400, #8892A2);
+    font-size: 12px;
+    color: var(--g500, #6B7280);
     letter-spacing: 0.08em;
 }
 
@@ -240,11 +240,11 @@
 
 .fac-country {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--g400, #8892A2);
+    color: var(--g500, #6B7280);
 }
 
 .fac-stat {
@@ -264,8 +264,8 @@
 
 .fac-stat-unit {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
-    color: var(--g400, #8892A2);
+    font-size: 12px;
+    color: var(--g500, #6B7280);
 }
 
 /* Green accent bar */

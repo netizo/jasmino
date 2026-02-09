@@ -49,7 +49,7 @@
 
 .s4-over {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -274,8 +274,8 @@
 
 .ind-desc {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
-    color: var(--g400, #8892A2);
+    font-size: 12px;
+    color: var(--g500, #6B7280);
     position: relative;
     z-index: 1;
     transition: color 0.3s;

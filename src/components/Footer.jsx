@@ -9,7 +9,7 @@ export default function Footer() {
           <p style={{ marginBottom: 16 }}>
             The only company that designs, manufactures, and protects industrial process equipment under one roof.
           </p>
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)', letterSpacing: '0.06em' }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.06em' }}>
             40+ YEARS · 15+ COUNTRIES · 130,000+ m²
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function Footer() {
           <h5>Contact</h5>
           <p style={{ marginBottom: 4 }}>info@jasmino.com</p>
           <p style={{ marginBottom: 12 }}>+91 22 6789 0000</p>
-          <Link to="/contact" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '11px' }}>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12px' }}>
             Get in Touch
           </Link>
         </div>

@@ -9,6 +9,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const DivisionLanding = lazy(() => import('./pages/DivisionLanding'));
 const ServicePage = lazy(() => import('./pages/ServicePage'));
 const InnerPage = lazy(() => import('./pages/InnerPage'));
+const InfrastructurePage = lazy(() => import('./pages/InfrastructurePage'));
 const DesignSystem = lazy(() => import('./pages/DesignSystem'));
 
 function ScrollToTop() {
@@ -31,7 +32,7 @@ export default function App() {
           <Route path="/about/our-story" element={<AboutPage />} />
           <Route path="/about/jasmino-group" element={<InnerPage page="jasmino-group" />} />
           <Route path="/industries" element={<InnerPage page="industries" />} />
-          <Route path="/infrastructure" element={<InnerPage page="infrastructure" />} />
+          <Route path="/infrastructure" element={<InfrastructurePage />} />
           <Route path="/news" element={<InnerPage page="news" />} />
           <Route path="/contact" element={<InnerPage page="contact" />} />
           <Route path="/design-system" element={<DesignSystem />} />

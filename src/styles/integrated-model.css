@@ -95,7 +95,7 @@
 
 .s3-overline {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -136,7 +136,7 @@
     font-family: var(--font-sans, 'Inter', -apple-system, sans-serif);
     font-size: 16px;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.55);
     max-width: 560px;
     margin: 0 auto;
 }
@@ -380,10 +380,10 @@
 
 .step-sub {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.45);
     transition: color 0.4s;
 }
 
@@ -454,10 +454,10 @@
     align-items: center;
     justify-content: center;
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.45);
     box-shadow: 0 0 40px 10px rgba(4, 10, 20, 0.8);
 }
 
@@ -513,7 +513,7 @@
 /* Card content */
 .comp-tag {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -530,7 +530,7 @@
 }
 
 .comp-card.problem .comp-tag {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .comp-card.problem .tag-dot {
@@ -583,11 +583,11 @@
 }
 
 .comp-card.problem .comp-desc {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .comp-card.solution .comp-desc {
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 /* Points list */
@@ -610,11 +610,11 @@
 }
 
 .comp-card.problem .comp-point {
-    color: rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .comp-card.solution .comp-point {
-    color: rgba(255, 255, 255, 0.48);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .point-icon {
@@ -626,7 +626,7 @@
     justify-content: center;
     flex-shrink: 0;
     margin-top: 1px;
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
 }
 
@@ -673,16 +673,16 @@
 
 .comp-stat-label {
     font-family: var(--font-mono, 'JetBrains Mono', monospace);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.04em;
 }
 
 .comp-card.problem .comp-stat-label {
-    color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .comp-card.solution .comp-stat-label {
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* Bottom accent line */

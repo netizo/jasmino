@@ -182,7 +182,7 @@ export default function AboutPage() {
           <span className="caption-dot" />
           <span>Fabrication floor &middot; 130,000+ m&sup2; combined capacity</span>
           <div className="photo-break-line" />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'rgba(255,255,255,0.15)' }}>Jasmino Corporation</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>Jasmino Corporation</span>
         </div>
       </div>
 

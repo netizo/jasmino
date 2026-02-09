@@ -23,7 +23,7 @@
 /* ═══ OVERLINE PATTERN ═══ */
 .about-page .overline {
   font-family: var(--font-mono);
-  font-size: 11px; font-weight: 500;
+  font-size: 12px; font-weight: 500;
   letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--green); margin-bottom: 16px;
   display: flex; align-items: center; gap: 10px;
@@ -81,9 +81,9 @@
 
 .about-page .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.5);
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
   padding: 7px 16px; border-radius: 24px; margin-bottom: 28px;
@@ -103,10 +103,10 @@
   letter-spacing: -0.035em; color: #fff; margin-bottom: 28px;
 }
 .about-page .hero-h1 em { font-style: italic; font-weight: 300; color: var(--green); }
-.about-page .hero-h1 .thin { font-weight: 300; color: rgba(255,255,255,0.35); }
+.about-page .hero-h1 .thin { font-weight: 300; color: rgba(255,255,255,0.55); }
 
 .about-page .hero-sub {
-  font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.35);
+  font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.55);
   max-width: 480px;
   opacity: 0; transform: translateY(16px);
   animation: about-fs 0.9s 0.6s var(--ease) forwards;
@@ -123,7 +123,7 @@
   font-family: var(--font-mono); font-weight: 600; font-size: 20px; color: var(--green);
 }
 .about-page .hero-metric-label {
-  font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.25);
+  font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,0.5);
   letter-spacing: 0.04em;
 }
 
@@ -146,17 +146,17 @@
   color: var(--green); line-height: 1;
 }
 .about-page .hero-stamp-label {
-  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: rgba(255,255,255,0.2); text-align: center;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5); text-align: center;
 }
 
 /* Scroll indicator */
 .about-page .hero-scroll {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
   z-index: 5; display: flex; flex-direction: column; align-items: center;
-  gap: 6px; font-family: var(--font-mono); font-size: 9px;
+  gap: 6px; font-family: var(--font-mono); font-size: 11px;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.45);
   opacity: 0; animation: about-fi 1s 1.4s forwards;
 }
 .about-page .scroll-line {
@@ -224,8 +224,8 @@
   padding: 10px 14px; background: rgba(11,29,52,0.75);
   backdrop-filter: blur(8px); border-radius: var(--r);
   border: 1px solid rgba(255,255,255,0.05);
-  font-family: var(--font-mono); font-size: 9.5px;
-  color: rgba(255,255,255,0.45); letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 11px;
+  color: rgba(255,255,255,0.55); letter-spacing: 0.04em;
   display: flex; align-items: center; gap: 8px;
   opacity: 0; transition: opacity 0.5s 0.8s;
 }
@@ -252,8 +252,8 @@
 .about-page .photo-break-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 56px; display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 10px;
-  color: rgba(255,255,255,0.3); letter-spacing: 0.04em; z-index: 2;
+  font-family: var(--font-mono); font-size: 12px;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.04em; z-index: 2;
 }
 .about-page .photo-break-line {
   flex: 1; height: 1px; background: rgba(255,255,255,0.06);
@@ -285,8 +285,8 @@
   color: var(--g800); margin-bottom: 24px; letter-spacing: -0.01em;
 }
 .about-page .eq-attr {
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--g400); letter-spacing: 0.06em;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--g500); letter-spacing: 0.06em;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -446,7 +446,7 @@
   background: var(--g50); box-shadow: 0 4px 24px rgba(0,0,0,0.04);
 }
 .about-page .value-row-tag {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--green); margin-bottom: 12px;
 }
@@ -476,7 +476,7 @@
 }
 .about-page .infra-text h2 em { font-style: italic; font-weight: 300; color: var(--green); }
 .about-page .infra-text > p {
-  font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.35);
+  font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.55);
   margin-bottom: 32px; max-width: 420px;
 }
 
@@ -511,8 +511,8 @@
   font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.8);
 }
 .about-page .facility-detail {
-  font-family: var(--font-mono); font-size: 10px;
-  color: rgba(255,255,255,0.25); margin-top: 2px;
+  font-family: var(--font-mono); font-size: 12px;
+  color: rgba(255,255,255,0.5); margin-top: 2px;
 }
 .about-page .facility-stat {
   font-family: var(--font-mono); font-weight: 600; font-size: 15px;
@@ -535,8 +535,8 @@
   line-height: 1; margin-bottom: 6px;
 }
 .about-page .stat-label {
-  font-family: var(--font-mono); font-size: 11px;
-  color: var(--g400); letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--g500); letter-spacing: 0.04em;
 }
 
 /* ═══ CERTIFICATIONS ═══ */
@@ -568,7 +568,7 @@
   color: var(--g800); margin-bottom: 4px;
 }
 .about-page .cert-box-desc {
-  font-family: var(--font-mono); font-size: 10px; color: var(--g400);
+  font-family: var(--font-mono); font-size: 12px; color: var(--g500);
 }
 
 .about-page .heritage-grid {
@@ -599,7 +599,7 @@
   font-size: 13px; line-height: 1.6; color: var(--g500);
 }
 .about-page .heritage-tag {
-  font-family: var(--font-mono); font-size: 10px; color: var(--green);
+  font-family: var(--font-mono); font-size: 12px; color: var(--green);
   letter-spacing: 0.06em; text-transform: uppercase;
   margin-top: 6px; display: inline-block;
 }
@@ -624,7 +624,7 @@
 }
 .about-page .cta-content h2 em { font-style: italic; font-weight: 300; }
 .about-page .cta-content p {
-  font-size: 15px; color: rgba(255,255,255,0.4);
+  font-size: 15px; color: rgba(255,255,255,0.55);
   max-width: 380px; margin-top: 10px; line-height: 1.7;
 }
 .about-page .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }

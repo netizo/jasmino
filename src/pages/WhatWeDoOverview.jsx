@@ -21,7 +21,7 @@ export default function WhatWeDoOverview() {
               <Link key={div.id} to={`/what-we-do/${div.slug}`} className="glass-card" style={{ padding: 24, textDecoration: 'none', transition: 'all 0.3s var(--ease)' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 600, color: 'var(--green)', display: 'block', marginBottom: 8 }}>{div.num}</span>
                 <h4 style={{ color: 'var(--white)', fontSize: 14, marginBottom: 4 }}>{div.shortName}</h4>
-                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-mono)' }}>{div.services.length} services</p>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-mono)' }}>{div.services.length} services</p>
               </Link>
             ))}
           </div>
@@ -37,7 +37,7 @@ export default function WhatWeDoOverview() {
           {companyStats.map(s => (
             <div key={s.label} style={{ textAlign: 'center', padding: '0 8px' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 600, color: 'var(--blue)' }}>{s.num}</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: 'var(--g400)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g500)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
             </div>
           ))}
         </div>

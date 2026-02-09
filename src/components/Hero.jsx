@@ -188,7 +188,7 @@ export default function Hero() {
                                             transition: 'all 0.4s'
                                         }} />
                                         <div className="phase-label" style={{
-                                            fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase',
+                                            fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase',
                                             color: phase === i ? (i === 2 ? '#04E586' : '#1B4B8F') : 'var(--gray-600)',
                                             transition: 'color 0.4s'
                                         }}>
@@ -226,7 +226,7 @@ export default function Hero() {
                     display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
                     opacity: 0, animation: 'fadeUp 0.8s ease 1.3s forwards'
                 }}>
-                    <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--gray-400)' }}>
+                    <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--gray-500)' }}>
                         Scroll
                     </span>
                     <div style={{
