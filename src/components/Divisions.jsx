@@ -86,7 +86,20 @@ const Divisions = React.memo(() => {
                     </div>
                   </div>
                 ) : (
-                  <div className="div-visual-photo" style={{ backgroundImage: `url(${DIVISION_PHOTOS[card.id]})` }}>
+                  <div
+                    className="div-visual-photo"
+                    style={card.id === 'cor' ? {} : { backgroundImage: `url(${DIVISION_PHOTOS[card.id]})` }}
+                  >
+                    {card.id === 'cor' && (
+                      <video
+                        className="div-visual-video"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        src="/videos/corrosion.mp4"
+                      />
+                    )}
                     <div className="div-visual-photo-overlay" />
                     <div className="div-visual-photo-caption">
                       <span className="div-caption-dot" />

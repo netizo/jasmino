@@ -31,7 +31,7 @@ export default function CaseStudies() {
             <Link
               key={study.id}
               to={`/case-studies/${study.id}`}
-              className={`case-study-card${i === 0 ? ' featured' : ''}`}
+              className={`case-study-card gsap-stagger${i === 0 ? ' featured' : ''}`}
             >
               <div
                 className="case-study-photo"

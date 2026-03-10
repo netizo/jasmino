@@ -42,6 +42,7 @@ const mapConnections = [
 export default function InfrastructurePage() {
   const [activeNav, setActiveNav] = useState(data.facilityNav[0].id);
   const [tooltip, setTooltip] = useState(null);
+  const [heroVideoError, setHeroVideoError] = useState(false);
   const fnavRef = useRef(null);
   const mapFrameRef = useRef(null);
   const heroRef = useRef(null);
@@ -105,8 +106,19 @@ export default function InfrastructurePage() {
     <main className="infra-page">
       {/* ════ HERO ════ */}
       <section className="infra-hero">
-        {/* Video placeholder — replace <div> with <video> later */}
         <div className="hero-video">
+          {!heroVideoError && (
+            <video
+              className="hero-video-bg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onError={() => setHeroVideoError(true)}
+            >
+              <source src="/videos/infra.mp4" type="video/mp4" />
+            </video>
+          )}
           <div
             className="hero-video-fallback"
             style={{ backgroundImage: `url('${data.hero.fallback_image}')` }}

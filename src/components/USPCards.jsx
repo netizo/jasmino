@@ -75,40 +75,142 @@ export default function USPCards() {
 
     const slides = cardRef.current.querySelectorAll('.usp-slide');
 
-    gsap.set(cardRef.current, { y: 120, autoAlpha: 0.6 });
-    gsap.set(slides, { autoAlpha: 0, y: 20 });
-    if (slides[0]) gsap.set(slides[0], { autoAlpha: 1, y: 0 });
+    // Custom easing for premium feel
+    const smoothOut = 'power4.out';
+    const smoothIn = 'power3.inOut';
+
+    // Stagger target selectors
+    const leftEls = '.usp-card-overline, .usp-card-headline, .usp-card-body, .usp-card-dots';
+    const rightEls = '.usp-evidence';
+
+    // GPU-accelerated initial states
+    gsap.set(cardRef.current, {
+      y: 100, autoAlpha: 0, scale: 0.92, filter: 'blur(8px)', force3d: true,
+    });
+    gsap.set(slides, { autoAlpha: 0, y: 40, scale: 0.96, filter: 'blur(6px)', force3d: true });
+    // First slide container visible but inner elements hidden for staggered reveal
+    if (slides[0]) gsap.set(slides[0], { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)' });
+
+    // All inner elements start hidden
+    slides.forEach(slide => {
+      gsap.set(slide.querySelectorAll(leftEls), {
+        y: 24, autoAlpha: 0, filter: 'blur(4px)', force3d: true,
+      });
+      gsap.set(slide.querySelectorAll(rightEls), {
+        y: 30, autoAlpha: 0, filter: 'blur(5px)', force3d: true,
+      });
+    });
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: true,
+        scrub: 1.2,
         pin: pinWrapperRef.current,
         pinSpacing: true,
       },
     });
 
-    tl.to(cardRef.current, { y: 0, autoAlpha: 1, duration: 0.12, ease: 'power2.out' }, 0);
+    // ── CARD ENTRANCE — 20% of timeline for dramatic reveal ──
+    // Phase 1: Card shell rises into view
+    tl.to(cardRef.current, {
+      y: 0, autoAlpha: 1, scale: 1, filter: 'blur(0px)',
+      duration: 0.12, ease: smoothOut,
+    }, 0);
 
-    const step = 0.88 / USP_SLIDES.length;
+    // Phase 2: First slide inner elements cascade in with stagger
+    if (slides[0]) {
+      tl.fromTo(slides[0].querySelectorAll('.usp-card-overline'),
+        { y: 24, autoAlpha: 0, filter: 'blur(4px)' },
+        { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.06, ease: smoothOut },
+        0.06)
+        .fromTo(slides[0].querySelectorAll('.usp-card-headline'),
+          { y: 28, autoAlpha: 0, filter: 'blur(4px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.06, ease: smoothOut },
+          0.08)
+        .fromTo(slides[0].querySelectorAll('.usp-card-body'),
+          { y: 24, autoAlpha: 0, filter: 'blur(4px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.06, ease: smoothOut },
+          0.10)
+        .fromTo(slides[0].querySelectorAll('.usp-card-dots'),
+          { y: 16, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.05, ease: smoothOut },
+          0.12)
+        .fromTo(slides[0].querySelectorAll(rightEls),
+          { y: 30, autoAlpha: 0, filter: 'blur(5px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.07, ease: smoothOut },
+          0.09);
+    }
+
+    // Slide transitions — blur crossfade with staggered inner elements
+    const step = 0.78 / USP_SLIDES.length;  // reduced from 0.88 since entrance takes 0.20
     USP_SLIDES.forEach((_, index) => {
       if (index === 0) return;
       const prev = slides[index - 1];
       const next = slides[index];
-      const startAt = 0.12 + step * index;
+      const startAt = 0.22 + step * index;  // 0.22 = after card entrance completes
+      const t = step * 0.7;   // transition window — 70% of step for more breathing room
 
-      tl.to(prev, { autoAlpha: 0, y: -16, duration: 0.2 }, startAt - step / 2)
-        .fromTo(next, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.25 }, startAt - step / 3);
+      // ── EXIT previous slide ──
+      // Left column exits first (top to bottom stagger)
+      tl.to(prev.querySelectorAll('.usp-card-overline'), {
+        y: -14, autoAlpha: 0, filter: 'blur(3px)', duration: t * 0.35, ease: smoothIn,
+      }, startAt - t)
+        .to(prev.querySelectorAll('.usp-card-headline'), {
+          y: -18, autoAlpha: 0, filter: 'blur(3px)', duration: t * 0.35, ease: smoothIn,
+        }, startAt - t + t * 0.04)
+        .to(prev.querySelectorAll('.usp-card-body'), {
+          y: -14, autoAlpha: 0, filter: 'blur(3px)', duration: t * 0.32, ease: smoothIn,
+        }, startAt - t + t * 0.08)
+        .to(prev.querySelectorAll('.usp-card-dots'), {
+          y: -10, autoAlpha: 0, duration: t * 0.28, ease: smoothIn,
+        }, startAt - t + t * 0.1)
+        // Right column (evidence) exits simultaneously but slightly delayed
+        .to(prev.querySelectorAll(rightEls), {
+          y: -16, autoAlpha: 0, filter: 'blur(4px)', duration: t * 0.36, ease: smoothIn,
+        }, startAt - t + t * 0.06)
+        // Whole slide fades + scales + blurs
+        .to(prev, {
+          autoAlpha: 0, scale: 0.96, filter: 'blur(6px)', duration: t * 0.4, ease: smoothIn,
+        }, startAt - t + t * 0.12);
+
+      // ── ENTER next slide ──
+      const enterAt = startAt - t * 0.25; // overlap with exit for smooth crossfade
+      tl.fromTo(next,
+        { autoAlpha: 0, y: 36, scale: 0.96, filter: 'blur(6px)' },
+        { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: t * 0.5, ease: smoothOut },
+        enterAt)
+        // Left column cascades in
+        .fromTo(next.querySelectorAll('.usp-card-overline'),
+          { y: 18, autoAlpha: 0, filter: 'blur(3px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
+          enterAt + t * 0.1)
+        .fromTo(next.querySelectorAll('.usp-card-headline'),
+          { y: 22, autoAlpha: 0, filter: 'blur(3px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
+          enterAt + t * 0.16)
+        .fromTo(next.querySelectorAll('.usp-card-body'),
+          { y: 20, autoAlpha: 0, filter: 'blur(3px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
+          enterAt + t * 0.22)
+        .fromTo(next.querySelectorAll('.usp-card-dots'),
+          { y: 14, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: t * 0.35, ease: smoothOut },
+          enterAt + t * 0.26)
+        // Right column (evidence) enters with slight delay for asymmetry
+        .fromTo(next.querySelectorAll(rightEls),
+          { y: 28, autoAlpha: 0, filter: 'blur(4px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.45, ease: smoothOut },
+          enterAt + t * 0.18);
     });
 
     tl.eventCallback('onUpdate', () => {
       const p = tl.progress();
-      const stepSize = 0.88 / USP_SLIDES.length;
+      const stepSize = 0.78 / USP_SLIDES.length;
       let idx = 0;
       for (let i = 1; i <= USP_SLIDES.length; i++) {
-        if (p >= 0.12 + stepSize * i) idx = i;
+        if (p >= 0.22 + stepSize * i) idx = i;
       }
       setActiveSlideIndex(Math.min(idx, USP_SLIDES.length - 1));
     });
@@ -141,6 +243,7 @@ export default function USPCards() {
 
   return (
     <section className="usp-section usp-scroll-mode" ref={sectionRef}>
+      <div className="usp-bg-photo" aria-hidden="true" />
       <div className="usp-bg" aria-hidden="true" />
       <div className="usp-inner">
         <div className="usp-pin-wrapper" ref={pinWrapperRef}>

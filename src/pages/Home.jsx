@@ -49,7 +49,7 @@ export default function Home({ variant = 'A' }) {
 
       <Divisions />
 
-      <Suspense fallback={<div style={{ minHeight: 400 }} />}>
+      <Suspense fallback={<div style={{ minHeight: 600, background: 'var(--navy)' }} />}>
         <IntegratedModel />
       </Suspense>
 
@@ -57,7 +57,7 @@ export default function Home({ variant = 'A' }) {
 
       <CaseStudies />
 
-      <Suspense fallback={<div style={{ minHeight: 500 }} />}>
+      <Suspense fallback={<div style={{ minHeight: 700, background: 'var(--navy)' }} />}>
         <GlobalPresence />
       </Suspense>
 
@@ -75,10 +75,10 @@ export default function Home({ variant = 'A' }) {
                   <Link to="/news" className="btn-ghost">All News</Link>
                 </div>
               </GsapReveal>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+              <div className="news-cards-grid">
                 {NEWS_TEXT.map((article, i) => (
-                  <div key={i} className="news-card" style={{ padding: 0 }}>
-                    <div className="news-card-body" style={{ padding: '24px 0' }}>
+                  <div key={i} className="news-card news-card-equal gsap-stagger">
+                    <div className="news-card-body">
                       <div style={{
                         display: 'inline-block',
                         fontFamily: 'var(--font-mono)',
@@ -113,7 +113,7 @@ export default function Home({ variant = 'A' }) {
               </GsapReveal>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
                 {RECENT_DELIVERIES.map((d, i) => (
-                  <div key={i} className="news-card" style={{ padding: '28px 24px', background: 'var(--white)', border: '1px solid var(--n150)', borderRadius: 'var(--r-xl)' }}>
+                  <div key={i} className="news-card gsap-stagger" style={{ padding: '28px 24px', background: 'var(--white)', border: '1px solid var(--n150)', borderRadius: 'var(--r-xl)' }}>
                     <div style={{
                       display: 'inline-block',
                       fontFamily: 'var(--font-mono)',

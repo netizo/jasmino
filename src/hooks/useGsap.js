@@ -47,13 +47,14 @@ export function useScrollReveal(selector = '.gsap-reveal', options = {}) {
       return;
     }
 
-    gsap.set(elements, { opacity: 0, y });
-
+    // Initial hidden state handled by CSS (.gsap-reveal class)
+    // GSAP just animates to visible on scroll
     ScrollTrigger.batch(elements, {
       onEnter: (batch) => {
         gsap.to(batch, {
           opacity: 1,
           y: 0,
+          filter: 'blur(0px)',
           duration,
           ease,
           stagger,
@@ -97,16 +98,16 @@ export function useStagger(selector = '.gsap-stagger', options = {}) {
       return;
     }
 
-    gsap.fromTo(els,
-      { opacity: 0, y },
-      { opacity: 1, y: 0, duration, ease, stagger,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start,
-          once: true,
-        },
-      }
-    );
+    // Initial hidden state handled by CSS (.gsap-stagger class)
+    // GSAP just animates to visible
+    gsap.to(els, {
+      opacity: 1, y: 0, duration, ease, stagger,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start,
+        once: true,
+      },
+    });
   }, { scope: containerRef, dependencies: [] });
 
   return containerRef;

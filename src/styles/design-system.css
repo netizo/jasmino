@@ -67,7 +67,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth — REMOVED, breaks GSAP ScrollTrigger & SPA scroll-to-top */
   font-size: 16px;
 }
 body {
@@ -194,14 +194,36 @@ h4 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; line-heig
 }
 
 /* ─── 8. GSAP ANIMATION TARGETS ─── */
-.gsap-reveal, .gsap-stagger {
+.gsap-reveal {
   opacity: 0;
   filter: blur(8px);
   will-change: transform, opacity, filter;
 }
+.gsap-stagger {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Hero FOUC prevention — hidden until GSAP animates in */
+.hero-variant-a .hero-badge,
+.hero-variant-a .hero-headline,
+.hero-variant-a .hero-subtext,
+.hero-variant-a .hero-ctas,
+.hero-variant-a .phase-indicator,
+.hero-variant-a .scroll-hint {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .rv, .rv-s, .gsap-reveal, .gsap-stagger {
+  .rv, .rv-s, .gsap-reveal, .gsap-stagger,
+  .hero-variant-a .hero-badge,
+  .hero-variant-a .hero-headline,
+  .hero-variant-a .hero-subtext,
+  .hero-variant-a .hero-ctas,
+  .hero-variant-a .phase-indicator,
+  .hero-variant-a .scroll-hint {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;

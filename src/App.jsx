@@ -35,10 +35,14 @@ function ScrollToTop() {
     return () => cancelAnimationFrame(id);
   }, [pathname]);
   useEffect(() => {
-    requestAnimationFrame(() => {
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        ScrollTrigger.refresh();
-      });
+    // Refresh ScrollTrigger after lazy components have mounted.
+    // Single rAF is too early — lazy chunks need time to load & render.
+    // Staggered refreshes cover both fast and slow loads.
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+      const t1 = setTimeout(() => ScrollTrigger.refresh(), 800);
+      const t2 = setTimeout(() => ScrollTrigger.refresh(), 2500);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
     });
   }, [pathname]);
   return null;

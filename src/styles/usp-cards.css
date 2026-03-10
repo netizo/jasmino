@@ -23,7 +23,24 @@
 
 .usp-section.usp-scroll-mode {
   padding: 0 0 300px;
-  background: radial-gradient(circle at top left, rgba(30,74,125,0.18), transparent 60%), #050d18;
+  background: #050d18;
+}
+
+/* Background photo — under blueprint grid & gradient overlays */
+.usp-section .usp-bg-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('/images/jasmino-section-2.webp') center 20% / cover no-repeat;
+  opacity: 0.15;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 12%, black 75%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 12%, black 75%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .usp-bg {
@@ -32,7 +49,7 @@
   pointer-events: none;
   background:
     radial-gradient(circle at 20% 30%, rgba(46,139,87,0.12), transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(30,74,125,0.35), transparent 55%);
+    radial-gradient(circle at 80% 70%, rgba(30,74,125,0.18), transparent 55%);
   opacity: 0.95;
 }
 
@@ -468,6 +485,18 @@
   justify-content: flex-start;
   opacity: 0;
   overflow: hidden;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* GPU-accelerated inner elements for staggered reveals */
+.usp-slide .usp-card-overline,
+.usp-slide .usp-card-headline,
+.usp-slide .usp-card-body,
+.usp-slide .usp-card-dots,
+.usp-slide .usp-evidence {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 /* ─── RESPONSIVE (RULE 3) ─── */

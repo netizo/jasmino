@@ -114,12 +114,15 @@ export default function HeroVariantC() {
           ))}
         </div>
 
-        {/* Dark gradient overlay */}
+        {/* Dark gradient overlay (matches infrastructure hero) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(12,27,46,0.85) 0%, rgba(12,27,46,0.5) 50%, rgba(12,27,46,0.7) 100%)',
+            background: `
+              radial-gradient(ellipse at center, transparent 50%, rgba(11, 29, 52, 0.5) 100%),
+              linear-gradient(180deg, rgba(11, 29, 52, 0.15) 0%, rgba(11, 29, 52, 0.08) 20%, rgba(11, 29, 52, 0.35) 50%, rgba(11, 29, 52, 0.85) 82%, var(--navy) 100%)
+            `,
             pointerEvents: 'none',
             zIndex: 1,
           }}

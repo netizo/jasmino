@@ -119,7 +119,7 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.06);
   position: sticky;
-  top: 0;
+  top: 172px;
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.02),
     0 4px 12px rgba(0, 0, 0, 0.04),
@@ -160,6 +160,15 @@
   background-position: center;
   filter: saturate(0.15) brightness(0.6) contrast(1.2);
   transition: filter 0.5s var(--ease, ease);
+}
+
+.div-visual-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .div-card:hover .div-visual-photo {
