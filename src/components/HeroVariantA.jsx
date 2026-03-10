@@ -331,8 +331,8 @@ export default function HeroVariantA() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 16,
-            padding: '14px 24px',
+            gap: 20,
+            padding: '28px 24px',
             background: 'rgba(11,29,52,0.45)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
@@ -352,22 +352,28 @@ export default function HeroVariantA() {
           >
             Certified to
           </span>
-          {['ASME', 'API', 'PED', 'ISO 9001', 'TÜV', 'Bureau Veritas'].map(c => (
+          {['ASME', 'API', 'PED', 'ISO 9001', 'TÜV', 'Bureau Veritas'].map((c) => (
             <span
               key={c}
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.5)',
-                padding: '4px 10px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                color: 'rgba(255,255,255,0.6)',
+                padding: '10px 16px',
                 border: '1px solid rgba(255,255,255,0.08)',
                 borderRadius: 6,
               }}
             >
-              {c}
+              <img
+                src={{ ASME: '/logos/certs/asme.svg', API: '/logos/certs/api.svg', PED: '/logos/certs/ped.svg', 'ISO 9001': '/logos/certs/iso9001.svg', 'TÜV': '/logos/certs/tuv.svg', 'Bureau Veritas': '/logos/certs/bureau-veritas.svg' }[c]}
+                alt={c}
+                width={64}
+                height={40}
+                style={{ objectFit: 'contain', opacity: 0.9 }}
+                loading="lazy"
+              />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{c}</span>
             </span>
           ))}
         </div>

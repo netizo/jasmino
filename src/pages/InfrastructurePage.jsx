@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { infrastructureData as data } from '../data/infrastructureData';
 import GsapReveal from '../components/GsapReveal';
+import CertLogo from '../components/CertLogo';
+import { hasCertLogo } from '../data/certLogos';
 import CountUp from '../components/CountUp';
 import HeroParticles from '../components/HeroParticles';
 import { useGSAP } from '@gsap/react';
@@ -378,7 +380,13 @@ export default function InfrastructurePage() {
               <div className="cert-grid">
                 {data.quality.certifications.map((cert, i) => (
                   <div className="cert-card" key={i}>
-                    <div className="cert-logo">{cert.logo}</div>
+                    <div className="cert-logo">
+                      {hasCertLogo(cert.logo) ? (
+                        <CertLogo certKey={cert.logo} alt={cert.logo} width={56} height={32} />
+                      ) : (
+                        cert.logo
+                      )}
+                    </div>
                     <div className="cert-name">{cert.name}</div>
                   </div>
                 ))}

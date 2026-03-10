@@ -1209,6 +1209,18 @@
   transition: all 0.3s;
   position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 36px;
+}
+
+.infra-page .cert-logo img {
+  opacity: 0.85;
+}
+
+.infra-page .cert-card:hover .cert-logo img {
+  opacity: 1;
 }
 
 .infra-page .cert-card:hover .cert-logo {
