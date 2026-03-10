@@ -1,10 +1,18 @@
-import { useRef } from 'react';
+import { useRef, lazy, Suspense } from 'react';
 import HeroBackground from './HeroBackground';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../../hooks/useGsap';
 
-export default function T2Hero({ data }) {
+const sceneMap = {
+  'engineering-design': lazy(() => import('./EngScene')),
+  'equipment-manufacturing': lazy(() => import('./MfgScene')),
+  'corrosion-protection': lazy(() => import('./CorScene')),
+  'rubber-products': lazy(() => import('./RubScene')),
+};
+
+export default function T2Hero({ data, divisionSlug }) {
   const containerRef = useRef(null);
+  const SceneComponent = sceneMap[divisionSlug] || null;
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -45,11 +53,19 @@ export default function T2Hero({ data }) {
           <p className="hdesc">{data.hero.desc}</p>
         </div>
 
-        <div
-          className="hero-right hero-scene-col hero-visual-gradient"
-          aria-hidden="true"
-          style={{ background: data.heroGradient || bgStyle.background }}
-        />
+        <div className="hero-right hero-scene-col">
+          {SceneComponent ? (
+            <Suspense fallback={null}>
+              <SceneComponent />
+            </Suspense>
+          ) : (
+            <div
+              className="hero-visual-gradient"
+              aria-hidden="true"
+              style={{ width: '100%', height: '100%', background: data.heroGradient || bgStyle.background }}
+            />
+          )}
+        </div>
       </div>
 
       <div className="hero-scroll-indicator">

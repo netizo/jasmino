@@ -66,7 +66,7 @@ export default function ServicePage() {
   // GSAP parallax (replaces manual scroll listener)
   const evidenceParallaxRef = useParallax({ speed: -50 });
   const caseBgParallaxRef = useParallax({ speed: -30 });
-  const timelineRef = useStagger('.t3-timeline-step', { stagger: 0.1, y: 28 });
+  const timelineRef = useStagger('.tl-step', { stagger: 0.1, y: 28 });
 
   // Gallery drag-to-scroll
   const handleMouseDown = useCallback((e) => {
@@ -391,7 +391,7 @@ export default function ServicePage() {
                 </div>
               </GsapReveal>
             </div>
-            <div className="timeline">
+            <div className="timeline" ref={timelineRef}>
               <div className="timeline-track" />
               {process_timeline.steps.map((step, i) => (
                 <GsapReveal key={i} delay={i * 0.1}>
