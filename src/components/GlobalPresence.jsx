@@ -14,20 +14,21 @@ const GLOBE = {
     mouseFactor: 0.3,
     damping: 0.04,
     colors: {
-        land: 0x2a3a52,
-        landLight: 0x4a607a,
-        ocean: 0xd0d4da,
-        presence: 0x04E586,
-        ring: 0x04E586,
+        // Dark-bg palette: light dots on navy
+        land: 0x8899aa,
+        landLight: 0xaabbcc,
+        ocean: 0x2a3a52,
+        presence: 0x1DB954,
+        ring: 0x1DB954,
         atmo: 0x1B4B8F,
-        atmoGlow: 0x04E586,
+        atmoGlow: 0x1DB954,
     },
 };
 
 const LOCATIONS = [
     { lat: 19.0, lng: 73.0, name: 'Jasmino HQ', type: 'hq' },
     { lat: 51.5, lng: 7.0, name: 'HAW Linings', type: 'facility' },
-    { lat: 40.0, lng: 29.0, name: 'GBT', type: 'facility' },
+    { lat: 51.7, lng: 7.1, name: 'GBT', type: 'facility' },
     { lat: 25.3, lng: 55.3, type: 'service' },
     { lat: 25.3, lng: 51.5, type: 'service' },
     { lat: 26.2, lng: 50.6, type: 'service' },
@@ -154,8 +155,6 @@ const Globe = () => {
         const w = el.clientWidth || 640;
         const h = el.clientHeight || 540;
 
-        console.log('Globe init: container dimensions', w, h);
-
         // Scene setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(30, w / h, 0.1, 100);
@@ -189,7 +188,6 @@ const Globe = () => {
             try {
                 const { default: topo } = await import('../data/land-50m.json');
                 landPolys = decodeTopojson(topo, 'land');
-                console.log('Land data loaded, polygons:', landPolys.length);
             } catch (e) {
                 console.warn('Failed to load land data:', e);
             }
@@ -226,8 +224,6 @@ const Globe = () => {
                 }
             }
 
-            console.log('Dots generated:', { ocean: oceanPts.length, landDark: landDarkPts.length, landLight: landLightPts.length, presence: presPts.length });
-
             const dotGeo = new THREE.CircleGeometry(dotSize, 6);
             const dummy = new THREE.Object3D();
             const nrm = new THREE.Vector3();
@@ -250,9 +246,9 @@ const Globe = () => {
                 return mesh;
             }
 
-            const oceanMesh = makeInstanced(oceanPts, GLOBE.colors.ocean, 0.22, 1);
-            const landDarkMesh = makeInstanced(landDarkPts, GLOBE.colors.land, 0.85, 1);
-            const landLightMesh = makeInstanced(landLightPts, GLOBE.colors.landLight, 0.55, 1);
+            const oceanMesh = makeInstanced(oceanPts, GLOBE.colors.ocean, 0.18, 1);
+            const landDarkMesh = makeInstanced(landDarkPts, GLOBE.colors.land, 0.7, 1);
+            const landLightMesh = makeInstanced(landLightPts, GLOBE.colors.landLight, 0.5, 1);
             const presMesh = makeInstanced(presPts, GLOBE.colors.presence, 1.0, 1.8);
 
             if (oceanMesh) globe.add(oceanMesh);
@@ -316,7 +312,7 @@ const Globe = () => {
             float rim = 1.0 - max(0.0, dot(viewDir, vNormal));
             float glow = pow(rim, 2.5);
             vec3 col = mix(uColor, uGlow, glow * 0.3);
-            gl_FragColor = vec4(col, glow * 0.08);
+            gl_FragColor = vec4(col, glow * 0.15);
           }
         `,
             });
@@ -326,7 +322,7 @@ const Globe = () => {
             const orbit = new THREE.Mesh(
                 new THREE.RingGeometry(radius * 1.25, radius * 1.25 + 0.004, 128),
                 new THREE.MeshBasicMaterial({
-                    color: 0x1B4B8F, side: THREE.DoubleSide, transparent: true, opacity: 0.06
+                    color: 0x1B4B8F, side: THREE.DoubleSide, transparent: true, opacity: 0.15
                 })
             );
             orbit.rotation.x = Math.PI / 2.2;
@@ -335,7 +331,7 @@ const Globe = () => {
             const orbit2 = new THREE.Mesh(
                 new THREE.RingGeometry(radius * 1.12, radius * 1.12 + 0.003, 128),
                 new THREE.MeshBasicMaterial({
-                    color: 0x04E586, side: THREE.DoubleSide, transparent: true, opacity: 0.04
+                    color: 0x1DB954, side: THREE.DoubleSide, transparent: true, opacity: 0.1
                 })
             );
             orbit2.rotation.x = Math.PI / 1.8;
@@ -343,7 +339,7 @@ const Globe = () => {
             globe.add(orbit2);
 
             // Graticule
-            const gratMat = new THREE.LineBasicMaterial({ color: 0xB0B7C3, transparent: true, opacity: 0.05 });
+            const gratMat = new THREE.LineBasicMaterial({ color: 0x4a6080, transparent: true, opacity: 0.12 });
             for (let lat = -60; lat <= 60; lat += 30) {
                 const pts = [];
                 for (let lng = -180; lng <= 180; lng += 3) pts.push(latLngToVec3(lat, lng, radius + 0.003));
@@ -357,8 +353,6 @@ const Globe = () => {
 
             // Initial rotation
             globe.rotation.y = -0.8;
-
-            console.log('Globe built, starting animation');
 
             // Mouse interaction
             let mouseX = 0, mouseY = 0;
@@ -400,7 +394,7 @@ const Globe = () => {
                 if (!visible) return;
 
                 const now = performance.now();
-                const dt = (now - lastTime) / 1000;
+                const dt = Math.min((now - lastTime) / 1000, 0.05);
                 lastTime = now;
 
                 baseRotY += GLOBE.autoRotate * dt;
@@ -435,7 +429,6 @@ const Globe = () => {
 
         // Cleanup
         return () => {
-            console.log('Globe cleanup');
             globeRef.current.initialized = false;
             if (globeRef.current.animationId) {
                 cancelAnimationFrame(globeRef.current.animationId);
@@ -466,7 +459,7 @@ const Globe = () => {
 };
 
 /* ── Facility Card ── */
-const FacilityCard = ({ flag, name, country, area, detail }) => (
+const FacilityCard = ({ flag, name, country, area, detail, established }) => (
     <div className="fac-card">
         <div className="fac-card-top">
             <div className="fac-flag">{flag}</div>
@@ -481,35 +474,38 @@ const FacilityCard = ({ flag, name, country, area, detail }) => (
         </div>
         <div className="fac-bar"></div>
         <div className="fac-detail">{detail}</div>
+        {established && <div className="fac-est">Est. {established}</div>}
     </div>
 );
 
 /* ── Main Component ── */
 const GlobalPresence = () => {
     const facilities = [
-        { flag: '🇮🇳', name: 'Jasmino HQ', country: 'India', area: '80,000', detail: 'Engineering, Manufacturing, Rubber Products' },
-        { flag: '🇩🇪', name: 'HAW Linings', country: 'Germany', area: '30,000', detail: 'Rubber & Plastic Linings' },
-        { flag: '🇹🇷', name: 'GBT', country: 'Turkey', area: '20,000', detail: 'Linings & Coatings' },
+        { flag: '🇮🇳', name: 'Jasmino HQ', country: 'India', area: '80,000', detail: 'Engineering, Manufacturing, Rubber Products', established: '1972' },
+        { flag: '🇩🇪', name: 'HAW Linings', country: 'Germany', area: '30,000', detail: 'Rubber & Plastic Linings', established: '1956' },
+        { flag: '🇩🇪', name: 'GBT', country: 'Germany', area: '20,000', detail: 'Linings & Coatings', established: '1985' },
     ];
 
     return (
-        <section className="s6">
+        <section className="s6 s6-dark">
             <div className="s6-grid"></div>
             <div className="s6-inner">
                 <div className="s6-header">
-                    <div className="s6-over">Global Presence</div>
                     <h2 className="s6-h2">Three continents, one<br /><em>standard</em></h2>
                     <p className="s6-body">
-                        Jasmino operates from facilities in India, Germany, and Turkey — deploying 150+ technicians across 15+ countries.
+                        Jasmino operates from facilities in India and Germany — deploying 150+ technicians across 15+ countries.
                     </p>
                 </div>
 
-                <Globe />
-
-                <div className="fac-row">
-                    {facilities.map(f => (
-                        <FacilityCard key={f.name} {...f} />
-                    ))}
+                <div className="s6-split">
+                    <div className="s6-globe-col">
+                        <Globe />
+                    </div>
+                    <div className="s6-cards-col">
+                        {facilities.map(f => (
+                            <FacilityCard key={f.name} {...f} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

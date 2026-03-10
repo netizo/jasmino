@@ -3,14 +3,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { divisions } from '../data/divisions';
 import { getServiceBySlug, getSiblingServices } from '../data/services';
 import t3Content from '../data/t3Content.json';
-import { rubberLiningsData } from '../data/t3RubberLinings';
-import ScrollReveal from '../components/ScrollReveal';
+import GsapReveal from '../components/GsapReveal';
+import { useParallax, useStagger } from '../hooks/useGsap';
 import '../styles/service-t3.css';
 
 function getT3Data(serviceSlug) {
-  if (serviceSlug === 'rubber-linings') return rubberLiningsData;
-  const page = t3Content.pages.find(p => p.id === serviceSlug);
-  return page || null;
+  return t3Content.pages.find(p => p.id === serviceSlug) || null;
 }
 
 const ratingMap = {
@@ -48,8 +46,7 @@ export default function ServicePage() {
   const galleryRef = useRef(null);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const evidenceRef = useRef(null);
-  const caseBgRef = useRef(null);
+  /* evidenceRef and caseBgRef replaced by GSAP useParallax hooks below */
 
   // Reset on route change
   useEffect(() => {
@@ -66,30 +63,10 @@ export default function ServicePage() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Parallax for evidence strip and case study
-  useEffect(() => {
-    const onScroll = () => {
-      const evi = evidenceRef.current;
-      if (evi) {
-        const r = evi.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          const p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
-          const img = evi.querySelector('img');
-          if (img) img.style.transform = `translateY(${(p - 0.5) * -60}px)`;
-        }
-      }
-      const cs = caseBgRef.current;
-      if (cs) {
-        const r = cs.parentElement.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          const p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
-          cs.style.transform = `translateY(${(p - 0.5) * -40}px) scale(1.1)`;
-        }
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [serviceSlug]);
+  // GSAP parallax (replaces manual scroll listener)
+  const evidenceParallaxRef = useParallax({ speed: -50 });
+  const caseBgParallaxRef = useParallax({ speed: -30 });
+  const timelineRef = useStagger('.t3-timeline-step', { stagger: 0.1, y: 28 });
 
   // Gallery drag-to-scroll
   const handleMouseDown = useCallback((e) => {
@@ -163,7 +140,7 @@ export default function ServicePage() {
         <div className="hero-num">{hero.hero_num}</div>
 
         <div className="hero-content">
-          <ScrollReveal delay={100}>
+          <GsapReveal delay={0.1}>
             <nav className="hero-breadcrumb">
               <Link to="/what-we-do">What We Do</Link>
               <span className="sep">&rsaquo;</span>
@@ -171,31 +148,31 @@ export default function ServicePage() {
               <span className="sep">&rsaquo;</span>
               <span className="cur">{service.name}</span>
             </nav>
-          </ScrollReveal>
+          </GsapReveal>
 
-          <ScrollReveal delay={200}>
+          <GsapReveal delay={0.2}>
             <div className="hero-badge">
               <div className="hero-badge-dot" />
               {hero.badge_text}
             </div>
-          </ScrollReveal>
+          </GsapReveal>
 
-          <ScrollReveal delay={300}>
+          <GsapReveal delay={0.3}>
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: hero.title_html }} />
-          </ScrollReveal>
+          </GsapReveal>
 
-          <ScrollReveal delay={400}>
+          <GsapReveal delay={0.4}>
             <p className="hero-lead">{hero.lead}</p>
-          </ScrollReveal>
+          </GsapReveal>
 
-          <ScrollReveal delay={500}>
+          <GsapReveal delay={0.5}>
             <div className="hero-actions">
               <Link to="/contact" className="btn btn-green">
                 Discuss Project <ArrowIcon />
               </Link>
               <a className="btn btn-outline" href="#">Capability Sheet</a>
             </div>
-          </ScrollReveal>
+          </GsapReveal>
         </div>
 
         <div className="hero-stat-strip">
@@ -237,28 +214,28 @@ export default function ServicePage() {
         <div className="t3-contain">
           <div className="intro-inner">
             <div className="intro-text">
-              <ScrollReveal>
+              <GsapReveal>
                 <div className="t3-overline">{intro.overline}</div>
-              </ScrollReveal>
-              <ScrollReveal delay={100}>
+              </GsapReveal>
+              <GsapReveal delay={0.1}>
                 <h2 dangerouslySetInnerHTML={{ __html: intro.title_html }} />
-              </ScrollReveal>
+              </GsapReveal>
               {intro.paragraphs.map((p, i) => (
-                <ScrollReveal key={i} delay={200 + i * 100}>
+                <GsapReveal key={i} delay={0.2 + i * 0.1}>
                   <p dangerouslySetInnerHTML={{ __html: p }} />
-                </ScrollReveal>
+                </GsapReveal>
               ))}
               {intro.pull_quote && (
-                <ScrollReveal delay={400}>
+                <GsapReveal delay={0.4}>
                   <div className="pull-quote">
                     <p>{intro.pull_quote.text}</p>
                     <cite>{intro.pull_quote.cite}</cite>
                   </div>
-                </ScrollReveal>
+                </GsapReveal>
               )}
             </div>
 
-            <ScrollReveal delay={300}>
+            <GsapReveal delay={0.3}>
               <aside className="meta-panel">
                 {intro.meta_panel.map((section, i) => (
                   <div key={i}>
@@ -281,14 +258,14 @@ export default function ServicePage() {
                   <span className="meta-phone">+91 22 2740 2533</span>
                 </div>
               </aside>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </div>
       </section>
 
       {/* ---- EVIDENCE STRIP ---- */}
       {evidence_strip && (
-        <div className="evidence-strip" ref={evidenceRef}>
+        <div className="evidence-strip" ref={evidenceParallaxRef}>
           <img src={evidence_strip.image_url} alt={evidence_strip.tag} loading="lazy" />
 
           <div className="evidence-strip-content">
@@ -307,19 +284,19 @@ export default function ServicePage() {
         <section className="materials eng-grid">
           <div className="t3-contain">
             <div className="materials-header">
-              <ScrollReveal>
+              <GsapReveal>
                 <div className="t3-overline">{materials_section.overline}</div>
-              </ScrollReveal>
-              <ScrollReveal delay={100}>
+              </GsapReveal>
+              <GsapReveal delay={0.1}>
                 <h2 className="sec-title" dangerouslySetInnerHTML={{ __html: materials_section.title_html }} />
-              </ScrollReveal>
-              <ScrollReveal delay={200}>
+              </GsapReveal>
+              <GsapReveal delay={0.2}>
                 <p className="sec-desc">{materials_section.description}</p>
-              </ScrollReveal>
+              </GsapReveal>
             </div>
             <div className="materials-grid">
               {materials_section.cards.map((card, i) => (
-                <ScrollReveal key={i} delay={i * 100}>
+                <GsapReveal key={i} delay={i * 0.1}>
                   <div className="mat-card">
                     <div className="mat-card-header">
                       <div className="mat-card-symbol">{card.symbol}</div>
@@ -346,7 +323,7 @@ export default function ServicePage() {
                     </div>
                     <div className="mat-card-accent" />
                   </div>
-                </ScrollReveal>
+                </GsapReveal>
               ))}
             </div>
           </div>
@@ -358,7 +335,7 @@ export default function ServicePage() {
         <section className="gallery">
           <div className="gallery-header">
             <div>
-              <div className="t3-overline" style={{ color: 'var(--green)' }}>Evidence</div>
+              <div className="t3-overline" style={{ color: 'var(--green)' }}>{gallery.overline || 'Evidence'}</div>
               <div className="gallery-title" dangerouslySetInnerHTML={{ __html: gallery.title_html }} />
             </div>
             <div className="gallery-counter">01 &mdash; {String(gallery.slides.length).padStart(2, '0')}</div>
@@ -397,27 +374,27 @@ export default function ServicePage() {
           <div className="process-inner t3-contain">
             <div className="process-header">
               <div>
-                <ScrollReveal>
+                <GsapReveal>
                   <div className="t3-overline" style={{ color: 'var(--green)' }}>{process_timeline.overline}</div>
-                </ScrollReveal>
-                <ScrollReveal delay={100}>
+                </GsapReveal>
+                <GsapReveal delay={0.1}>
                   <h2 className="sec-title" style={{ color: '#fff' }} dangerouslySetInnerHTML={{ __html: process_timeline.title_html }} />
-                </ScrollReveal>
-                <ScrollReveal delay={200}>
+                </GsapReveal>
+                <GsapReveal delay={0.2}>
                   <p className="sec-desc" style={{ color: 'rgba(255,255,255,0.4)' }}>{process_timeline.description}</p>
-                </ScrollReveal>
+                </GsapReveal>
               </div>
-              <ScrollReveal delay={300}>
+              <GsapReveal delay={0.3}>
                 <div className="process-header-right">
                   <div className="process-stat-big">{process_timeline.stat_big}</div>
                   <div className="process-stat-label">{process_timeline.stat_label}</div>
                 </div>
-              </ScrollReveal>
+              </GsapReveal>
             </div>
             <div className="timeline">
               <div className="timeline-track" />
               {process_timeline.steps.map((step, i) => (
-                <ScrollReveal key={i} delay={i * 100}>
+                <GsapReveal key={i} delay={i * 0.1}>
                   <div className="tl-step">
                     <div className="tl-dot" />
                     <div className="tl-num">{step.num}</div>
@@ -431,7 +408,7 @@ export default function ServicePage() {
                       </div>
                     )}
                   </div>
-                </ScrollReveal>
+                </GsapReveal>
               ))}
             </div>
           </div>
@@ -443,17 +420,17 @@ export default function ServicePage() {
         <section className="resistance eng-grid">
           <div className="t3-contain">
             <div className="resistance-header">
-              <ScrollReveal>
+              <GsapReveal>
                 <div className="t3-overline">{specs_table.overline}</div>
-              </ScrollReveal>
-              <ScrollReveal delay={100}>
+              </GsapReveal>
+              <GsapReveal delay={0.1}>
                 <h2 className="sec-title" dangerouslySetInnerHTML={{ __html: specs_table.title_html }} />
-              </ScrollReveal>
-              <ScrollReveal delay={200}>
+              </GsapReveal>
+              <GsapReveal delay={0.2}>
                 <p className="sec-desc">{specs_table.description}</p>
-              </ScrollReveal>
+              </GsapReveal>
             </div>
-            <ScrollReveal delay={300}>
+            <GsapReveal delay={0.3}>
               <div className="res-table-wrap" style={{ overflowX: 'auto' }}>
                 <table className="res-table">
                   <thead>
@@ -480,15 +457,15 @@ export default function ServicePage() {
                   </tbody>
                 </table>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={400}>
+            </GsapReveal>
+            <GsapReveal delay={0.4}>
               <div className="res-legend">
                 <div className="res-legend-item legend-a">{specs_table.rating_labels?.rating_a || 'Excellent'}</div>
                 <div className="res-legend-item legend-b">{specs_table.rating_labels?.rating_b || 'Good'}</div>
                 <div className="res-legend-item legend-c">{specs_table.rating_labels?.rating_c || 'Limited'}</div>
                 <div className="res-legend-item legend-x">{specs_table.rating_labels?.rating_x || 'N/A'}</div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </section>
       )}
@@ -497,7 +474,7 @@ export default function ServicePage() {
       {integrationServices.length > 0 && (
         <section className="integration" style={{ padding: '0 0 100px' }}>
           <div className="t3-contain">
-            <ScrollReveal>
+            <GsapReveal>
               <div className="integration-band">
                 <div className="eng-grid-dark" style={{ position: 'absolute', inset: 0 }} />
                 <div className="integration-inner">
@@ -519,7 +496,7 @@ export default function ServicePage() {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </section>
       )}
@@ -529,7 +506,7 @@ export default function ServicePage() {
         <section className="case-study">
           <div
             className="case-study-bg"
-            ref={caseBgRef}
+            ref={caseBgParallaxRef}
             style={{ backgroundImage: `url(${case_study.bg_image_url})` }}
           />
 
@@ -537,16 +514,16 @@ export default function ServicePage() {
           <div className="case-study-content">
             <div>
               <div className="case-study-tag">{case_study.tag}</div>
-              <ScrollReveal>
+              <GsapReveal>
                 <h2 className="case-study-title" dangerouslySetInnerHTML={{ __html: case_study.title_html }} />
-              </ScrollReveal>
-              <ScrollReveal delay={100}>
+              </GsapReveal>
+              <GsapReveal delay={0.1}>
                 <p className="case-study-desc">{case_study.description}</p>
-              </ScrollReveal>
+              </GsapReveal>
             </div>
             <div className="case-study-stats">
               {case_study.stats.map((stat, i) => (
-                <ScrollReveal key={i} delay={200 + i * 100}>
+                <GsapReveal key={i} delay={0.2 + i * 0.1}>
                   <div className="case-stat">
                     <div className="case-stat-num">
                       {stat.num}
@@ -554,7 +531,7 @@ export default function ServicePage() {
                     </div>
                     <div className="case-stat-label">{stat.label}</div>
                   </div>
-                </ScrollReveal>
+                </GsapReveal>
               ))}
             </div>
           </div>
@@ -565,7 +542,7 @@ export default function ServicePage() {
       {cta && (
         <section className="cta">
           <div className="t3-contain">
-            <ScrollReveal>
+            <GsapReveal>
               <div className="cta-band">
                 <div className="cta-text">
                   <h2 dangerouslySetInnerHTML={{ __html: cta.title_html }} />
@@ -578,7 +555,7 @@ export default function ServicePage() {
                   <a className="btn btn-outline" href="#">Download Brochure</a>
                 </div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </section>
       )}

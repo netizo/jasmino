@@ -202,11 +202,11 @@ export default function Navbar() {
   /* ═══════════════════════════════════════════════════════
      RENDER
      ═══════════════════════════════════════════════════════ */
-  // Light-hero pages: Home, What We Do overview, and T2 division pages (/what-we-do/SLUG)
-  // Dark-hero pages: About, T3 service pages (/what-we-do/SLUG/SERVICE), etc.
+  // Light-hero pages: What We Do overview, T2 division pages
+  // Dark-hero pages: Home (HeroVariantA/B/C with real imagery), About, T3 service pages
   const path = location.pathname;
   const isDivisionPage = /^\/what-we-do\/[^/]+$/.test(path);
-  const isDarkHero = path !== '/' && path !== '/what-we-do' && !isDivisionPage;
+  const isDarkHero = path === '/' || (path !== '/what-we-do' && !isDivisionPage);
 
   const navCls = ['nav'];
   if (scrolled) navCls.push('scrolled');
@@ -231,7 +231,7 @@ export default function Navbar() {
               onMouseEnter={onAboutEnter}
               onMouseLeave={onAboutLeave}
             >
-              <span className="nav-link" role="button" tabIndex={0}>
+              <span className="nav-link" role="button" tabIndex={0} aria-label="Open About menu">
                 About
                 <Chevron />
               </span>
@@ -256,7 +256,7 @@ export default function Navbar() {
               onMouseEnter={onWWDEnter}
               onMouseLeave={onWWDLeave}
             >
-              <span className="nav-link" role="button" tabIndex={0}>
+              <span className="nav-link" role="button" tabIndex={0} aria-label="Open What We Do menu">
                 What We Do
                 <Chevron />
               </span>
@@ -376,6 +376,7 @@ export default function Navbar() {
             className={`mobile-nav-link${mobileAbout ? ' active' : ''}`}
             onClick={(e) => { e.preventDefault(); setMobileAbout(v => !v); }}
             role="button"
+            aria-label={mobileAbout ? 'Close About menu' : 'Open About menu'}
           >
             About
             <Chevron />
@@ -391,7 +392,7 @@ export default function Navbar() {
                   onClick={closeMobile}
                 >
                   <span className="mobile-service-dot" />
-                  <span className="mobile-service-name" style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)' }}>{item.name}</span>
+                  <span className="mobile-service-name" style={{ fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>{item.name}</span>
                 </Link>
               ))}
             </div>
@@ -402,6 +403,7 @@ export default function Navbar() {
             className={`mobile-nav-link${mobileWWD ? ' active' : ''}`}
             onClick={(e) => { e.preventDefault(); setMobileWWD(v => !v); }}
             role="button"
+            aria-label={mobileWWD ? 'Close What We Do menu' : 'Open What We Do menu'}
           >
             What We Do
             <Chevron />
@@ -444,7 +446,7 @@ export default function Navbar() {
 
           <div className="mobile-nav-footer">
             <span className="mobile-nav-footer-item">info@jasmino.com</span>
-            <span className="mobile-nav-footer-item">+91 XXX XXX XXXX</span>
+            <span className="mobile-nav-footer-item" title="Contact for phone number">+91 XXX XXX XXXX</span>
           </div>
         </div>
       </div>

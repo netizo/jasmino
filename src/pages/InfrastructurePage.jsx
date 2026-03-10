@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { infrastructureData as data } from '../data/infrastructureData';
-import ScrollReveal from '../components/ScrollReveal';
+import GsapReveal from '../components/GsapReveal';
 import CountUp from '../components/CountUp';
 import HeroParticles from '../components/HeroParticles';
+import { useGSAP } from '@gsap/react';
+import { gsap, useStagger } from '../hooks/useGsap';
 import '../styles/infrastructure-page.css';
 
 /* ── SVG icon helper ── */
@@ -41,6 +43,17 @@ export default function InfrastructurePage() {
   const [tooltip, setTooltip] = useState(null);
   const fnavRef = useRef(null);
   const mapFrameRef = useRef(null);
+  const heroRef = useRef(null);
+
+  /* ── GSAP hero entrance timeline ── */
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = (s) => heroRef.current?.querySelector(s);
+    const targets = ['.hero-bc', '.hero-badge', '.hero-title', '.hero-desc', '.hero-stats']
+      .map(el).filter(Boolean);
+    gsap.set(targets, { opacity: 0, y: 24 });
+    gsap.to(targets, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.12, delay: 0.15 });
+  }, { scope: heroRef, dependencies: [] });
 
   /* ── IntersectionObserver: track active facility ── */
   useEffect(() => {
@@ -106,45 +119,35 @@ export default function InfrastructurePage() {
         </div>
         <div className="hero-flare" />
 
-        <div className="hero-content">
-          <ScrollReveal delay={100}>
-            <div className="hero-bc">
-              <Link to="/">Home</Link>
-              <span className="sep">&rsaquo;</span>
-              <span style={{ color: 'rgba(255,255,255,.45)' }}>Infrastructure</span>
-            </div>
-          </ScrollReveal>
+        <div className="hero-content" ref={heroRef}>
+          <div className="hero-bc">
+            <Link to="/">Home</Link>
+            <span className="sep">&rsaquo;</span>
+            <span style={{ color: 'rgba(255,255,255,.45)' }}>Infrastructure</span>
+          </div>
 
-          <ScrollReveal delay={200}>
-            <div className="hero-badge">
-              <div className="hero-badge-dot" />
-              {data.hero.badge}
-            </div>
-          </ScrollReveal>
+          <div className="hero-badge">
+            <div className="hero-badge-dot" />
+            {data.hero.badge}
+          </div>
 
-          <ScrollReveal delay={300}>
-            <h1
-              className="hero-title"
-              dangerouslySetInnerHTML={{ __html: data.hero.title_html }}
-            />
-          </ScrollReveal>
+          <h1
+            className="hero-title"
+            dangerouslySetInnerHTML={{ __html: data.hero.title_html }}
+          />
 
-          <ScrollReveal delay={400}>
-            <p className="hero-desc">{data.hero.description}</p>
-          </ScrollReveal>
+          <p className="hero-desc">{data.hero.description}</p>
 
-          <ScrollReveal delay={500}>
-            <div className="hero-stats">
-              {data.hero.stats.map((s, i) => (
-                <div className="hero-stat" key={i}>
-                  <div className="hero-stat-num">
-                    <CountUp target={s.value} />
-                  </div>
-                  <div className="hero-stat-label">{s.label}</div>
+          <div className="hero-stats">
+            {data.hero.stats.map((s, i) => (
+              <div className="hero-stat" key={i}>
+                <div className="hero-stat-num">
+                  <CountUp target={s.value} />
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
+                <div className="hero-stat-label">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="hero-scroll">
@@ -183,7 +186,7 @@ export default function InfrastructurePage() {
       <section className="overview eng-grid">
         <div className="inner">
           <div className="overview-grid">
-            <ScrollReveal>
+            <GsapReveal>
               <div className="overline">{data.overview.overline}</div>
               <h2
                 className="sec-title"
@@ -200,9 +203,9 @@ export default function InfrastructurePage() {
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={200}>
+            <GsapReveal delay={0.2}>
               <div className="map-frame" ref={mapFrameRef}>
                 <div className="map-corner map-corner--tl" />
                 <div className="map-corner map-corner--tr" />
@@ -216,11 +219,11 @@ export default function InfrastructurePage() {
                   <defs>
                     <linearGradient id="connGrad">
                       <stop offset="0%" stopColor="#1B4B8F" />
-                      <stop offset="100%" stopColor="#04E586" />
+                      <stop offset="100%" stopColor="#1DB954" />
                     </linearGradient>
                     <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#04E586" stopOpacity="0.2" />
-                      <stop offset="100%" stopColor="#04E586" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#1DB954" stopOpacity="0.2" />
+                      <stop offset="100%" stopColor="#1DB954" stopOpacity="0" />
                     </radialGradient>
                   </defs>
 
@@ -236,11 +239,11 @@ export default function InfrastructurePage() {
                       onMouseLeave={handlePinLeave}
                     >
                       <circle cx={pin.cx} cy={pin.cy} r="24" fill="url(#pinGlow)" />
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR} fill="rgba(4,229,134,0.06)" stroke="rgba(4,229,134,0.2)" strokeWidth="0.5">
+                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR} fill="rgba(29,185,84,0.06)" stroke="rgba(29,185,84,0.2)" strokeWidth="0.5">
                         <animate attributeName="r" values={`${pin.pulseR};${pin.pulseR + 4};${pin.pulseR}`} dur={pin.pulseDur} repeatCount="indefinite" />
                         <animate attributeName="opacity" values="1;0.3;1" dur={pin.pulseDur} repeatCount="indefinite" />
                       </circle>
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 6 : 5} fill="#04E586" opacity="0.9" />
+                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 6 : 5} fill="#1DB954" opacity="0.9" />
                       <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 2.5 : 2} fill="#fff" />
                       <text x={pin.labelX} y={pin.labelY} fontFamily="'JetBrains Mono',monospace" fontSize="7.5" fontWeight="500" fill="#8892A2" textAnchor="middle" letterSpacing="0.08em">{pin.labelText}</text>
                     </g>
@@ -256,7 +259,7 @@ export default function InfrastructurePage() {
                   <div className="map-tooltip-meta">{tooltip?.meta}</div>
                 </div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </div>
       </section>
@@ -271,7 +274,7 @@ export default function InfrastructurePage() {
           <div className="fac-ghost-num">{fac.num}</div>
           <div className="inner">
             {/* Header */}
-            <ScrollReveal>
+            <GsapReveal>
               <div className="fac-hdr">
                 <div>
                   <div className="fac-flag-bar">
@@ -288,10 +291,10 @@ export default function InfrastructurePage() {
                   {fac.capacity.label}
                 </div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
             {/* Gallery */}
-            <ScrollReveal delay={100}>
+            <GsapReveal delay={0.1}>
               <div className="fac-gal">
                 {fac.gallery.map((img, i) => (
                   <div key={i} className={`fac-gal-item${img.span2 ? ' span-2' : ''}`}>
@@ -305,10 +308,10 @@ export default function InfrastructurePage() {
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
             {/* Spec cards */}
-            <ScrollReveal delay={200}>
+            <GsapReveal delay={0.2}>
               <div className="fac-specs">
                 {fac.specs.map((spec, i) => (
                   <div className="spec-card" key={i}>
@@ -326,10 +329,10 @@ export default function InfrastructurePage() {
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
             {/* Equipment */}
-            <ScrollReveal delay={300}>
+            <GsapReveal delay={0.3}>
               <div className="equip-title">Key Equipment &amp; Capabilities</div>
               <div className="equip-grid">
                 {fac.equipment.map((eq, i) => (
@@ -339,7 +342,7 @@ export default function InfrastructurePage() {
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </section>
       ))}
@@ -348,7 +351,7 @@ export default function InfrastructurePage() {
       <section className="quality eng-grid-dark">
         <div className="inner">
           <div className="quality-grid">
-            <ScrollReveal>
+            <GsapReveal>
               <div className="overline" style={{ color: 'var(--green)' }}>
                 {data.quality.overline}
               </div>
@@ -368,9 +371,9 @@ export default function InfrastructurePage() {
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={300}>
+            <GsapReveal delay={0.3}>
               <div className="cert-label">Certifications</div>
               <div className="cert-grid">
                 {data.quality.certifications.map((cert, i) => (
@@ -380,7 +383,7 @@ export default function InfrastructurePage() {
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </div>
       </section>
@@ -388,7 +391,7 @@ export default function InfrastructurePage() {
       {/* ════ CTA ════ */}
       <section className="infra-cta">
         <div className="inner">
-          <ScrollReveal>
+          <GsapReveal>
             <div className="cta-split">
               <div>
                 <h2
@@ -407,7 +410,7 @@ export default function InfrastructurePage() {
                 <a className="infra-btn sec-btn" href="#">Download Brochure</a>
               </div>
             </div>
-          </ScrollReveal>
+          </GsapReveal>
         </div>
       </section>
     </main>

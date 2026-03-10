@@ -7,5 +7,16 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5000,
     allowedHosts: true
-  }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-three': ['three'],
+          'vendor-gsap': ['gsap', '@gsap/react'],
+        },
+      },
+    },
+  },
 });

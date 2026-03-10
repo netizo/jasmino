@@ -1,0 +1,113 @@
+/* Design Comparison — scoped styles only. Do not affect global CSS variables. */
+
+.design-comparison {
+  padding: 100px 24px 80px;
+  min-height: 100vh;
+  background: #E4E7EC;
+}
+
+.dc-header {
+  max-width: 1200px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.dc-header-title {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  color: #0C1220;
+  margin-bottom: 8px;
+}
+
+.dc-header-desc {
+  font-size: 14px;
+  color: #6B7280;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.dc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .dc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dc-quadrant {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #D5D9E0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.dc-quadrant-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0C1220;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E4E7EC;
+  letter-spacing: 0.02em;
+}
+
+.dc-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dc-block {
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dc-hero {
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.dc-body {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.dc-stats {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.dc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dc-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: 1px solid;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+}
+
+.dc-trust {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

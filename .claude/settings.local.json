@@ -7,7 +7,22 @@
       "Bash(npm update:*)",
       "Bash(npx vite build)",
       "Bash(cd:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(sort:*)",
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd About & What We Do pages, navbar v2, remove gradient overlays, update design system\n\n- Add AboutPage \\(/about/our-story\\) with dark hero, canvas particles, drag-scroll\n  timeline, image reveal, values, globe, stats, certifications, and CTA sections\n- Add WhatWeDoPage \\(/what-we-do\\) with white hero, 5-tab integration model,\n  drag-scroll gallery, project cards, capability matrix, and certifications strip\n- Add HeroParticles shared 2D canvas component \\(green attract / blue repel modes\\)\n- Rebuild Navbar v2: hover-intent mega menu, About dropdown with icons, backdrop\n  overlay, mobile accordion, text wordmark, z-index 1000, 900px mobile breakpoint\n- Remove all gradient fade overlays \\(hero-fade, bridge, photo-break-fade,\n  evidence-strip-overlay, gallery-slide-overlay, case-study-overlay, trust-overlay,\n  trust-fade, gallery-card-overlay\\) across all pages\n- Reorder nav: About first, then What We Do\n- Update design system: fix z-index scale \\(1000+\\), fix navbar breakpoint \\(900px\\),\n  remove deleted effect refs, add new animations/components/page patterns sections\n- Add self-hosted fonts \\(Fraunces, Sora, JetBrains Mono\\) and land-50m.json for globe\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "WebFetch(domain:fonts.googleapis.com)",
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)",
+      "Bash(npm install:*)",
+      "Bash(grep:*)",
+      "Bash(npx vite:*)",
+      "Bash(node:*)"
     ]
   }
 }

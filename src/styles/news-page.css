@@ -1,0 +1,174 @@
+/* ═══════════════════════════════════════════════════════
+   NEWS PAGE — .np scoped
+   ═══════════════════════════════════════════════════════ */
+.np { font-size: 16px; }
+
+/* ── Hero ── */
+.np-hero {
+  position: relative;
+  min-height: 54vh;
+  background: linear-gradient(168deg, #060e1a 0%, #0B1D34 35%, #112e55 70%, #0a1828 100%);
+  display: flex; align-items: center; overflow: hidden;
+}
+.np-hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: none;
+}
+.np-hero-inner {
+  max-width: 1320px; margin: 0 auto; padding: 140px 48px 80px;
+  position: relative; z-index: 1;
+}
+.np-crumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em;
+  margin-bottom: 32px;
+}
+.np-crumb a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.np-crumb a:hover { color: rgba(255,255,255,0.7); }
+.np-sep { color: rgba(255,255,255,0.15); }
+.np-cur { color: var(--green); font-weight: 500; }
+.np-hero-h {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+  letter-spacing: -0.025em; color: #fff; margin-bottom: 20px;
+  max-width: 600px;
+}
+.np-hero-h em { font-style: italic; color: var(--green); font-weight: 400; }
+.np-hero-desc {
+  font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.55);
+  max-width: 500px;
+}
+
+/* ── Body ── */
+.np-body { background: var(--white); }
+.np-body-inner {
+  max-width: 1320px; margin: 0 auto; padding: 56px 48px 120px;
+}
+
+/* ── Filter Tabs ── */
+.np-tabs {
+  display: flex; gap: 8px; margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.np-tab {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.04em; padding: 9px 20px;
+  border-radius: 100px; border: 1.5px solid var(--g200);
+  background: var(--white); color: var(--g600);
+  cursor: pointer; transition: all 0.2s;
+}
+.np-tab:hover { border-color: var(--g300); color: var(--g800); }
+.np-tab--active {
+  background: var(--navy, #0B1D34); border-color: var(--navy, #0B1D34);
+  color: #fff;
+}
+.np-tab:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 2px;
+}
+
+/* ── Card Grid ── */
+.np-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.np-empty {
+  grid-column: 1 / -1; text-align: center;
+  font-size: 15px; color: var(--g500); padding: 48px 0;
+}
+
+/* ── Card — GSAP handles opacity/transform entrance ── */
+.np-card {
+  border-radius: var(--r, 12px); overflow: hidden;
+  border: 1px solid var(--g150); background: var(--white);
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+.np-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+.np-card-photo {
+  position: relative; height: 200px; overflow: hidden;
+}
+.np-card-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.2) brightness(0.7) contrast(1.15);
+  transition: filter 0.4s, transform 0.5s;
+}
+.np-card:hover .np-card-photo img {
+  filter: saturate(0.4) brightness(0.75) contrast(1.15);
+  transform: scale(1.03);
+}
+.np-card-cat {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: #fff; background: rgba(11,29,52,0.75);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  padding: 4px 10px; border-radius: 100px;
+}
+.np-card-body {
+  padding: 24px 24px 28px; display: flex;
+  flex-direction: column; gap: 8px; flex: 1;
+}
+.np-card-date {
+  font-family: var(--font-mono); font-size: 12px; color: var(--g500);
+  letter-spacing: 0.04em;
+}
+.np-card-title {
+  font-family: var(--font-sans); font-size: 17px; font-weight: 700;
+  color: var(--g900); line-height: 1.3;
+}
+.np-card-excerpt {
+  font-size: 14px; line-height: 1.6; color: var(--g600);
+  flex: 1;
+}
+.np-card-link {
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+  color: var(--blue, #3B7BDB); margin-top: 8px;
+  transition: letter-spacing 0.2s;
+}
+.np-card:hover .np-card-link { letter-spacing: 0.02em; }
+
+/* ── Pagination ── */
+.np-pagination {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 56px;
+}
+.np-page-btn {
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+  color: var(--blue, #3B7BDB); background: none; border: none;
+  padding: 8px 16px; cursor: pointer; border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.np-page-btn:hover:not(:disabled) { background: var(--g100); }
+.np-page-btn:disabled { color: var(--g300); cursor: not-allowed; }
+.np-page-num {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 600;
+  color: var(--g600); background: none; border: 1.5px solid transparent;
+  cursor: pointer; transition: all 0.2s;
+}
+.np-page-num:hover { border-color: var(--g200); background: var(--g50); }
+.np-page-num--active {
+  background: var(--navy, #0B1D34); border-color: var(--navy, #0B1D34);
+  color: #fff;
+}
+.np-page-num:focus-visible,
+.np-page-btn:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .np-body-inner { padding: 48px 32px 100px; }
+}
+@media (max-width: 900px) {
+  .np-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .np-hero-inner { padding: 120px 20px 60px; }
+  .np-body-inner { padding: 32px 20px 80px; }
+  .np-grid { grid-template-columns: 1fr; gap: 20px; }
+  .np-tabs { gap: 6px; }
+  .np-tab { font-size: 12px; padding: 7px 14px; }
+}

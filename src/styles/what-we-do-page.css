@@ -2,22 +2,12 @@
    WHAT WE DO PAGE — scoped under .wwd-page
    ═══════════════════════════════════════════════════════ */
 
-/* ═══ ENGINEERING GRIDS ═══ */
+/* ═══ ENGINEERING GRIDS (disabled) ═══ */
 .wwd-page .eng-grid {
-  background-image:
-    linear-gradient(rgba(27,75,143,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27,75,143,0.04) 1px, transparent 1px),
-    linear-gradient(rgba(27,75,143,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27,75,143,0.07) 1px, transparent 1px);
-  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+  background-image: none;
 }
 .wwd-page .eng-grid-dark {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+  background-image: none;
 }
 
 /* ═══ OVERLINE ═══ */
@@ -51,13 +41,13 @@
 }
 .wwd-page .sec-title em { font-style: italic; font-weight: 300; }
 .wwd-page .sec-desc {
-  font-size: 15px; line-height: 1.7; color: var(--g500); max-width: 500px;
+  font-size: 16px; line-height: 1.7; color: var(--g600); max-width: 500px;
 }
 
 /* ═══ BUTTONS ═══ */
 .wwd-page .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-sans); font-weight: 600; font-size: 13px;
+  font-family: var(--font-sans); font-weight: 600; font-size: 16px;
   padding: 14px 28px; border-radius: var(--r); border: none;
   cursor: pointer; text-decoration: none;
   transition: all 0.3s var(--ease); white-space: nowrap;
@@ -66,7 +56,7 @@
 .wwd-page .btn-green { background: var(--green); color: var(--dark); }
 .wwd-page .btn-green:hover {
   background: #06f59a; transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(4,229,134,0.2);
+  box-shadow: 0 8px 24px rgba(29,185,84,0.2);
 }
 .wwd-page .btn-outline {
   background: transparent; color: #fff;
@@ -93,12 +83,20 @@
   display: flex; flex-direction: column; justify-content: center;
   overflow: hidden; border-bottom: 1px solid var(--g150);
 }
+.wwd-page .hero-visual {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 48%; max-width: 640px;
+  z-index: 1; pointer-events: none;
+}
+.wwd-page .hero-visual > div { width: 100%; height: 100%; min-height: 500px; }
 .wwd-page .hero-grid { position: absolute; inset: 0; z-index: 2; }
 .wwd-page .hero-content {
   position: relative; z-index: 3; padding: 0 48px;
 }
 .wwd-page .hero-inner {
   max-width: 1280px; margin: 0 auto; width: 100%;
+  /* Override global .hero-inner from DivisionT2.css */
+  display: block; grid-template-columns: none;
+  gap: 0; padding: 0; min-height: auto;
 }
 
 /* Breadcrumb */
@@ -119,7 +117,7 @@
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--g500); background: var(--g50);
+  color: var(--g600); background: var(--g50);
   border: 1px solid var(--g200); padding: 7px 16px;
   border-radius: 20px; margin-bottom: 24px;
 }
@@ -139,7 +137,7 @@
 .wwd-page .hero-title em { font-style: italic; color: var(--blue); font-weight: 400; }
 
 .wwd-page .hero-desc {
-  font-size: 16px; line-height: 1.7; color: var(--g500);
+  font-size: 16px; line-height: 1.7; color: var(--g600);
   max-width: 480px; margin-bottom: 36px;
 }
 
@@ -154,8 +152,8 @@
   line-height: 1; color: var(--blue);
 }
 .wwd-page .hero-stat-label {
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--g500); margin-top: 6px; letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--g600); margin-top: 6px; letter-spacing: 0.04em;
 }
 
 /* Scroll indicator */
@@ -163,8 +161,8 @@
   position: absolute; bottom: 32px; left: 50%;
   transform: translateX(-50%); z-index: 3;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
-  color: var(--g400); font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--g500); font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
 }
 .wwd-page .scroll-line {
   width: 1px; height: 28px;
@@ -216,7 +214,7 @@
   transition: transform 0.3s var(--ease);
 }
 .wwd-page .model-tab:hover { background: rgba(255,255,255,0.02); }
-.wwd-page .model-tab.active { background: rgba(4,229,134,0.03); }
+.wwd-page .model-tab.active { background: rgba(29,185,84,0.03); }
 .wwd-page .model-tab.active::before { transform: scaleY(1); }
 .wwd-page .model-tab-num {
   font-family: var(--font-mono); font-size: 12px;
@@ -244,7 +242,7 @@
   color: #fff; line-height: 1.2; margin-bottom: 16px;
 }
 .wwd-page .model-pane-desc {
-  font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.4);
+  font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.6);
   margin-bottom: 24px; max-width: 520px;
 }
 .wwd-page .model-pane-pills {
@@ -255,7 +253,7 @@
   padding: 7px 16px; border-radius: 20px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.6);
   cursor: pointer; transition: all 0.25s var(--ease);
   text-decoration: none; position: relative; overflow: hidden;
 }
@@ -273,18 +271,18 @@
 
 .wwd-page .model-pane-handoff {
   margin-top: auto; padding: 20px 24px;
-  background: rgba(4,229,134,0.03);
-  border: 1px solid rgba(4,229,134,0.08); border-radius: var(--r);
+  background: rgba(29,185,84,0.03);
+  border: 1px solid rgba(29,185,84,0.08); border-radius: var(--r);
 }
 .wwd-page .model-pane-handoff-label {
-  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--green); opacity: 0.75; margin-bottom: 8px;
   display: flex; align-items: center; gap: 8px;
 }
 .wwd-page .model-pane-handoff-label::after { content: '\2192'; font-size: 12px; }
 .wwd-page .model-pane-handoff-text {
-  font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6;
+  font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6;
 }
 .wwd-page .model-pane-handoff-text strong { color: rgba(255,255,255,0.8); }
 
@@ -303,8 +301,8 @@
   display: flex; align-items: center; gap: 12px;
 }
 .wwd-page .gallery-counter {
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--g500); letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--g600); letter-spacing: 0.04em;
 }
 .wwd-page .gallery-btn {
   width: 44px; height: 44px; border-radius: 50%;
@@ -384,7 +382,7 @@
 .wwd-page .projects-label {
   font-family: var(--font-mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--g500); margin-bottom: 24px;
+  color: var(--g600); margin-bottom: 24px;
 }
 .wwd-page .projects-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
@@ -392,7 +390,7 @@
 .wwd-page .proj-card {
   background: var(--white); border: 1px solid var(--g150);
   border-radius: var(--r-xl); padding: 32px;
-  transition: all 0.4s var(--ease); position: relative; overflow: hidden;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease); position: relative; overflow: hidden;
 }
 .wwd-page .proj-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -487,7 +485,7 @@
 .wwd-page .cap-yes {
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; border-radius: 50%;
-  background: rgba(4,229,134,0.1);
+  background: rgba(29,185,84,0.1);
 }
 .wwd-page .cap-yes svg { width: 14px; height: 14px; color: var(--green); }
 .wwd-page .cap-no {

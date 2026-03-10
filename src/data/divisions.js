@@ -52,7 +52,7 @@ export const divisions = [
     name: 'Corrosion Protection',
     shortName: 'Corrosion',
     tagline: 'The crown jewel \u2014 protecting assets that can\u2019t afford to fail',
-    description: 'Rubber linings, plastic linings, coatings, and resin systems applied by 150+ technicians deployed globally. Backed by HAW (Germany) and GBT (Turkey) heritage with 2,000+ proven formulations.',
+    description: 'Rubber linings, plastic linings, coatings, and resin systems applied by 150+ technicians deployed globally. Backed by HAW and GBT (Germany) heritage with 2,000+ proven formulations.',
     stats: [
       { num: '2,000+', label: 'Formulations' },
       { num: '150+', label: 'Field Technicians' }
@@ -67,7 +67,7 @@ export const divisions = [
       stat: '97% reorder rate',
       detail: 'Clients return because our lining systems consistently outperform warranty periods. HAW and GBT bring 60+ years of combined European lining expertise.'
     },
-    color: '#04E586'
+    color: '#1DB954'
   },
   {
     id: 'rubber-products',
@@ -94,14 +94,15 @@ export const divisions = [
 ];
 
 export const industries = [
-  { name: 'Chemical', subtitle: 'Reactors, tanks, piping', icon: '\u2697' },
-  { name: 'Petrochemical', subtitle: 'Refining & processing', icon: '\u26A2' },
-  { name: 'Power', subtitle: 'Boilers, FGD, cooling', icon: '\u26A1' },
-  { name: 'Water Treatment', subtitle: 'Filtration & purification', icon: '\uD83D\uDCA7' },
-  { name: 'Fertilizer', subtitle: 'Acid plants, storage', icon: '\uD83C\uDF3E' },
-  { name: 'Mining', subtitle: 'Leaching, flotation', icon: '\u26CF' },
-  { name: 'Pharmaceutical', subtitle: 'Clean rooms, vessels', icon: '\uD83D\uDC8A' },
-  { name: 'Food & Beverage', subtitle: 'Sanitary processing', icon: '\uD83C\uDFED' }
+  { name: 'Chemical', subtitle: 'Reactors, tanks, piping' },
+  { name: 'Petrochemical', subtitle: 'Refining & processing' },
+  { name: 'Power Generation', subtitle: 'Boilers, FGD, cooling' },
+  { name: 'Water Treatment', subtitle: 'Filtration & purification' },
+  { name: 'Fertilizer', subtitle: 'Acid plants, storage' },
+  { name: 'Mining & Metals', subtitle: 'Leaching, flotation' },
+  { name: 'Pulp & Paper', subtitle: 'Digesters, bleach towers' },
+  { name: 'Food & Beverage', subtitle: 'Processing equipment' },
+  { name: 'Pharmaceuticals', subtitle: 'Reaction vessels, HP piping' },
 ];
 
 export const certifications = ['ASME', 'API', 'PED', 'ISO 9001', 'T\u00DCV', 'BV'];
@@ -122,8 +123,8 @@ export const facilities = [
     capabilities: 'Rubber & Plastic Linings'
   },
   {
-    flag: '\uD83C\uDDF9\uD83C\uDDF7',
-    country: 'Turkey',
+    flag: '\uD83C\uDDE9\uD83C\uDDEA',
+    country: 'Germany',
     name: 'GBT',
     area: '20,000 m\u00B2',
     capabilities: 'Linings & Coatings'
@@ -131,7 +132,7 @@ export const facilities = [
 ];
 
 export const companyStats = [
-  { num: '40+', label: 'Years' },
+  { num: '50+', label: 'Years' },
   { num: '15+', label: 'Countries' },
   { num: '130K+', label: 'm\u00B2 Shop Floor' },
   { num: '97%', label: 'Reorder Rate' }

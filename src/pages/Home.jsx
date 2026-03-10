@@ -1,26 +1,53 @@
 import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { industries, certifications, facilities, companyStats } from '../data/divisions';
-import ScrollReveal from '../components/ScrollReveal';
-import CountUp from '../components/CountUp';
-import Hero from '../components/Hero';
-import TrustBand from '../components/TrustBand';
+import GsapReveal from '../components/GsapReveal';
+import HeroVariantA from '../components/HeroVariantA';
+import Divisions from '../components/Divisions';
 import Industries from '../components/Industries';
+import CaseStudies from '../components/CaseStudies';
+import IntroBlackBox from '../components/IntroBlackBox';
+import { useStagger } from '../hooks/useGsap';
 
-const Divisions = lazy(() => import('../components/Divisions'));
+const HeroVariantB = lazy(() => import('../components/HeroVariantB'));
+const HeroVariantC = lazy(() => import('../components/HeroVariantC'));
 const IntegratedModel = lazy(() => import('../components/IntegratedModel'));
 const GlobalPresence = lazy(() => import('../components/GlobalPresence'));
 
-export default function Home() {
+const HERO_VARIANTS = {
+  A: HeroVariantA,
+  B: HeroVariantB,
+  C: HeroVariantC,
+};
+
+// Toggle: 'A' = text-only news, 'B' = recent deliveries
+const NEWS_VARIANT = 'A';
+
+const NEWS_TEXT = [
+  { date: 'Jan 2026', title: 'Jasmino completes 200-tonne reactor for petrochemical plant', excerpt: 'Largest single-piece vessel delivered from our India facility, featuring ASME VIII Div 2 design with Hastelloy C-276 cladding.' },
+  { date: 'Dec 2025', title: 'HAW Linings expands European service footprint', excerpt: 'New partnerships in Scandinavia and Eastern Europe bring our rubber lining expertise to 8 additional countries.' },
+  { date: 'Nov 2025', title: 'New rubber compound passes 10,000-hour immersion test', excerpt: 'Our R&D lab develops chlorobutyl formulation achieving breakthrough resistance to hot concentrated sulfuric acid at 98\u00B0C.' },
+];
+
+const RECENT_DELIVERIES = [
+  { badge: 'Power', title: '600MW FGD Absorber System', location: 'Southeast Asia', stat: '600 MW', statLabel: 'Capacity' },
+  { badge: 'Fertilizer', title: 'Phosphoric Acid Reactor Battery', location: 'North Africa', stat: '6', statLabel: 'Reactors' },
+  { badge: 'Water', title: 'Desalination Pre-Treatment', location: 'Middle East', stat: '50K', statLabel: 'm³/day' },
+];
+
+export default function Home({ variant = 'A' }) {
+  const HeroComponent = HERO_VARIANTS[variant] || HeroVariantA;
+  const newsRef = useStagger('.news-card', { stagger: 0.1, y: 28 });
+  const ctaRef = useStagger('.cta-inner > *', { stagger: 0.1, y: 24 });
+
   return (
     <main>
-      <Hero />
-
-      <TrustBand />
-
-      <Suspense fallback={<div style={{ minHeight: 600 }} />}>
-        <Divisions />
+      <Suspense fallback={null}>
+        <HeroComponent />
       </Suspense>
+
+      <IntroBlackBox />
+
+      <Divisions />
 
       <Suspense fallback={<div style={{ minHeight: 400 }} />}>
         <IntegratedModel />
@@ -28,96 +55,135 @@ export default function Home() {
 
       <Industries />
 
+      <CaseStudies />
+
       <Suspense fallback={<div style={{ minHeight: 500 }} />}>
         <GlobalPresence />
       </Suspense>
 
+      {/* News Section — toggle NEWS_VARIANT to compare */}
       <section className="cream-section eng-grid section-pad">
-        <div className="container">
-          <ScrollReveal>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
-              <div>
-                <span className="overline overline-with-line">News</span>
-                <h2 style={{ marginTop: 12 }}>What's <span className="italic-accent">happening</span></h2>
-              </div>
-              <Link to="/news" className="btn-ghost">All News</Link>
-            </div>
-          </ScrollReveal>
-          <div className="resp-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-            {[
-              { date: 'Jan 2026', title: 'Jasmino completes 200-tonne reactor for petrochemical plant', excerpt: 'Largest single-piece vessel delivered from our India facility, featuring ASME VIII Div 2 design with Hastelloy C-276 cladding.' },
-              { date: 'Dec 2025', title: 'HAW Linings expands European service footprint', excerpt: 'New partnerships in Scandinavia and Eastern Europe bring our rubber lining expertise to 8 additional countries.' },
-              { date: 'Nov 2025', title: 'New rubber compound passes 10,000-hour immersion test', excerpt: 'Our R&D lab develops chlorobutyl formulation achieving breakthrough resistance to hot concentrated sulfuric acid at 98\u00B0C.' }
-            ].map((article, i) => (
-              <ScrollReveal key={i} delay={i * 100}>
-                <div className="news-card">
-                  <div className="news-card-img" />
-                  <div className="news-card-body">
-                    <div className="date">{article.date}</div>
-                    <h4>{article.title}</h4>
-                    <p>{article.excerpt}</p>
+        <div className="container" ref={newsRef}>
+          {NEWS_VARIANT === 'A' ? (
+            /* Option A: Text-only news (no image placeholders) */
+            <>
+              <GsapReveal>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
+                  <div>
+                    <h2>What's <span className="italic-accent">happening</span></h2>
                   </div>
+                  <Link to="/news" className="btn-ghost">All News</Link>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+              </GsapReveal>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+                {NEWS_TEXT.map((article, i) => (
+                  <div key={i} className="news-card" style={{ padding: 0 }}>
+                    <div className="news-card-body" style={{ padding: '24px 0' }}>
+                      <div style={{
+                        display: 'inline-block',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 11,
+                        fontWeight: 500,
+                        letterSpacing: '0.08em',
+                        color: 'var(--green)',
+                        background: 'rgba(29,185,84,0.08)',
+                        padding: '4px 10px',
+                        borderRadius: 4,
+                        marginBottom: 12,
+                      }}>
+                        {article.date}
+                      </div>
+                      <h4 style={{ fontSize: 16, lineHeight: 1.4, marginBottom: 8 }}>{article.title}</h4>
+                      <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--g500)' }}>{article.excerpt}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            /* Option B: Recent Deliveries */
+            <>
+              <GsapReveal>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
+                  <div>
+                    <h2>Recent <span className="italic-accent">deliveries</span></h2>
+                  </div>
+                  <Link to="/case-studies" className="btn-ghost">All Projects</Link>
+                </div>
+              </GsapReveal>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+                {RECENT_DELIVERIES.map((d, i) => (
+                  <div key={i} className="news-card" style={{ padding: '28px 24px', background: 'var(--white)', border: '1px solid var(--g150)', borderRadius: 16 }}>
+                    <div style={{
+                      display: 'inline-block',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 10,
+                      fontWeight: 600,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: 'var(--blue)',
+                      background: 'rgba(27,75,143,0.06)',
+                      padding: '4px 10px',
+                      borderRadius: 4,
+                      marginBottom: 14,
+                    }}>
+                      {d.badge}
+                    </div>
+                    <h4 style={{ fontSize: 16, lineHeight: 1.3, marginBottom: 4 }}>{d.title}</h4>
+                    <p style={{ fontSize: 13, color: 'var(--g400)', marginBottom: 16, fontFamily: 'var(--font-mono)', letterSpacing: '0.02em' }}>{d.location}</p>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 24, fontWeight: 700, color: 'var(--blue)' }}>{d.stat}</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)' }}>{d.statLabel}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
-      <section style={{ background: 'linear-gradient(135deg, var(--blue), #1A3F73)', padding: '64px 56px' }}>
-        <div className="container resp-cta" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'center' }}>
-          <div>
-            <h2 style={{ color: 'var(--white)' }}>Ready to discuss your <span style={{ fontStyle: 'italic' }}>project?</span></h2>
-            <p style={{ color: 'rgba(255,255,255,0.6)', marginTop: 12, fontSize: 15 }}>
-              Whether it's a new build, a corrosion problem, or a plant expansion — let's talk.
-            </p>
+      {/* CTA Section — enhanced */}
+      <section
+        style={{
+          background: 'linear-gradient(135deg, var(--blue), #1A3F73)',
+          padding: '192px 56px',
+        }}
+        ref={ctaRef}
+      >
+        <div className="container cta-inner" style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
+          <h2 style={{ color: 'var(--white)', fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1.1, marginBottom: 16 }}>
+            Ready to discuss your <span style={{ fontStyle: 'italic' }}>project?</span>
+          </h2>
+          <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: 12, fontSize: 16 }}>
+            Whether it's a new build, a corrosion problem, or a plant expansion — let's talk.
+          </p>
+
+          {/* Social proof stat */}
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 8, marginBottom: 40 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 700, color: 'var(--green)' }}>97%</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.04em' }}>reorder rate</span>
           </div>
-          <div style={{ display: 'flex', gap: 12 }}>
-            <Link to="/contact" className="btn btn-primary">Get in Touch</Link>
-            <a href="#" className="btn btn-secondary" style={{ color: 'var(--white)', borderColor: 'rgba(255,255,255,0.2)' }}>Download Brochure</a>
+
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 24 }}>
+            <Link to="/contact" className="btn btn-primary">
+              Get in Touch
+            </Link>
+            <a
+              href="/contact"
+              style={{
+                color: 'rgba(255,255,255,0.6)',
+                fontSize: 14,
+                textDecoration: 'underline',
+                textUnderlineOffset: 3,
+                fontFamily: 'var(--font-sans)',
+              }}
+            >
+              Download Brochure
+            </a>
           </div>
         </div>
       </section>
     </main>
-  );
-}
-
-
-
-function GlobeSVG() {
-  return (
-    <svg viewBox="0 0 300 300" style={{ width: '100%', maxWidth: 360, margin: '0 auto', display: 'block' }} fill="none">
-      <circle cx="150" cy="150" r="120" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-      <ellipse cx="150" cy="150" rx="120" ry="40" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-      <ellipse cx="150" cy="150" rx="120" ry="80" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-      <ellipse cx="150" cy="150" rx="40" ry="120" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-      <ellipse cx="150" cy="150" rx="80" ry="120" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-      <line x1="30" y1="150" x2="270" y2="150" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
-      <line x1="150" y1="30" x2="150" y2="270" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
-      <circle cx="120" cy="110" r="4" fill="rgba(4,229,134,0.8)">
-        <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="120" cy="110" r="8" stroke="rgba(4,229,134,0.3)" strokeWidth="1" fill="none">
-        <animate attributeName="r" values="8;14;8" dur="2s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="175" cy="95" r="4" fill="rgba(4,229,134,0.8)">
-        <animate attributeName="r" values="4;6;4" dur="2.5s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="175" cy="95" r="8" stroke="rgba(4,229,134,0.3)" strokeWidth="1" fill="none">
-        <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="155" cy="130" r="4" fill="rgba(4,229,134,0.8)">
-        <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="155" cy="130" r="8" stroke="rgba(4,229,134,0.3)" strokeWidth="1" fill="none">
-        <animate attributeName="r" values="8;14;8" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite" />
-      </circle>
-      <text x="120" y="125" fill="rgba(4,229,134,0.5)" fontSize="7" fontFamily="monospace">INDIA</text>
-      <text x="172" y="87" fill="rgba(4,229,134,0.5)" fontSize="7" fontFamily="monospace">GERMANY</text>
-      <text x="158" y="145" fill="rgba(4,229,134,0.5)" fontSize="7" fontFamily="monospace">TURKEY</text>
-    </svg>
   );
 }

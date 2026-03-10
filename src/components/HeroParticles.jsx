@@ -1,8 +1,8 @@
 import { useEffect, useRef, useCallback } from 'react';
 
 export default function HeroParticles({
-  particleColor = 'rgba(4,229,134,',
-  connectionColor = 'rgba(4,229,134,',
+  particleColor = 'rgba(29,185,84,',
+  connectionColor = 'rgba(29,185,84,',
   mouseMode = 'attract',
   maxParticles = 120,
   className = ''

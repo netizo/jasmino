@@ -3,18 +3,16 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { divisions } from '../data/divisions';
 import { services } from '../data/services';
 import { t2Data } from '../data/t2Data';
-import ScrollReveal from '../components/ScrollReveal';
+import GsapReveal from '../components/GsapReveal';
 import '../styles/divisions.css';
 import '../styles/DivisionT2.css';
 
-// T2 Components
 import T2SubNav from '../components/T2/SubNav';
 import T2Hero from '../components/T2/Hero';
-import T2Advantage from '../components/T2/Advantage';
-import T2Gallery from '../components/T2/Gallery';
+import T2Overview from '../components/T2/Overview';
 import T2ServiceGrid from '../components/T2/ServiceGrid';
-import T2Capabilities from '../components/T2/Capabilities';
-import T2Flow from '../components/T2/Flow';
+import T2StatsStrip from '../components/T2/StatsStrip';
+import T2Gallery from '../components/T2/Gallery';
 import T2CTA from '../components/T2/CTA';
 import GrainEffect from '../components/GrainEffect';
 
@@ -33,7 +31,7 @@ export default function DivisionLanding() {
     return (
       <div style={{ paddingTop: 120, textAlign: 'center' }}>
         <h2>Division not found</h2>
-        <button onClick={() => navigate('/what-we-do')} style={{
+        <button onClick={() => navigate('/what-we-do')} aria-label="Back to What We Do" style={{
           padding: '10px 20px', fontSize: '16px', cursor: 'pointer',
           backgroundColor: 'var(--green)', border: 'none', borderRadius: '4px'
         }}>Back to What We Do</button>
@@ -41,18 +39,22 @@ export default function DivisionLanding() {
     );
   }
 
-  // If we have T2 data, render the high-fidelity version
   if (t2) {
     return (
       <div className="division-landing-t2">
         <GrainEffect />
         <T2SubNav />
-        <T2Hero data={t2} />
-        <T2Advantage data={t2} />
-        <T2Gallery data={t2} />
+        {/* S0 — Hero */}
+        <T2Hero data={t2} divisionSlug={divisionSlug} />
+        {/* S1 — Overview */}
+        <T2Overview data={t2} />
+        {/* S2 — Services Grid */}
         <T2ServiceGrid data={t2} />
-        <T2Capabilities data={t2} />
-        <T2Flow data={t2} />
+        {/* S3 — Stats Strip */}
+        <T2StatsStrip data={t2} />
+        {/* S4 — Gallery */}
+        <T2Gallery data={t2} />
+        {/* S5 — CTA */}
         <T2CTA data={t2} />
       </div>
     );
@@ -61,7 +63,6 @@ export default function DivisionLanding() {
   const divServices = services[divisionSlug] || {};
   const serviceEntries = Object.entries(divServices);
 
-  // Fallback to basic version
   return (
     <main style={{ paddingTop: 72 }}>
       <section className="dark-section eng-grid-dark section-pad" style={{ paddingTop: 48 }}>
@@ -80,23 +81,6 @@ export default function DivisionLanding() {
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginBottom: 24 }}>
                 {division.tagline}
               </p>
-              <div style={{ display: 'flex', gap: 32 }}>
-                {division.stats.map(s => (
-                  <div key={s.label}>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 600, color: 'var(--green)' }}>{s.num}</div>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{
-                width: 280, height: 280, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.08)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative'
-              }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 100, fontWeight: 700, color: 'rgba(4,229,134,0.08)', userSelect: 'none' }}>{division.num}</div>
-                <div style={{ position: 'absolute', width: 240, height: 240, borderRadius: '50%', border: '1px dashed rgba(255,255,255,0.05)' }} />
-              </div>
             </div>
           </div>
         </div>
@@ -104,27 +88,23 @@ export default function DivisionLanding() {
 
       <section className="white-section section-pad">
         <div className="container">
-          <ScrollReveal>
+          <GsapReveal>
             <div style={{ marginBottom: 40 }}>
               <span className="overline overline-with-line">Services</span>
               <h2 style={{ marginTop: 12 }}>Our {division.shortName.toLowerCase()} capabilities</h2>
             </div>
-          </ScrollReveal>
+          </GsapReveal>
           <div className="resp-grid-2" style={{ display: 'grid', gridTemplateColumns: serviceEntries.length > 2 ? 'repeat(2, 1fr)' : '1fr 1fr', gap: 24 }}>
             {serviceEntries.map(([slug, svc], i) => (
-              <ScrollReveal key={slug} delay={i * 100}>
+              <GsapReveal key={slug} delay={i * 0.1}>
                 <Link to={`/what-we-do/${divisionSlug}/${slug}`} style={{ textDecoration: 'none' }}>
                   <div className="card corner-brackets" style={{ height: '100%' }}>
-                    <div style={{ height: 6, background: `linear-gradient(90deg, var(--dark), var(--navy))`, borderRadius: '3px 3px 0 0', marginBottom: 20, marginTop: -32, marginLeft: -32, marginRight: -32 }} />
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                      {division.num}.{String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 style={{ fontSize: 22, marginTop: 8, marginBottom: 8, color: 'var(--gray-900)' }}>{svc.name}</h3>
-                    <p style={{ fontSize: 14, color: 'var(--gray-500)', lineHeight: 1.7, marginBottom: 16 }}>{svc.tagline}</p>
+                    <h3 style={{ fontSize: 22, marginTop: 8, marginBottom: 8, color: 'var(--g900)' }}>{svc.name}</h3>
+                    <p style={{ fontSize: 14, color: 'var(--g500)', lineHeight: 1.7, marginBottom: 16 }}>{svc.tagline}</p>
                     <span className="btn-ghost" style={{ fontSize: 12 }}>View Details</span>
                   </div>
                 </Link>
-              </ScrollReveal>
+              </GsapReveal>
             ))}
           </div>
         </div>

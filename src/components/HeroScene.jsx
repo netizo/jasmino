@@ -114,11 +114,11 @@ export default function HeroScene({ phase }) {
         rimLight.position.set(-1, -2, -5);
         scene.add(rimLight);
 
-        const greenAccent = new THREE.PointLight(0x04E586, 0, 10);
+        const greenAccent = new THREE.PointLight(0x1DB954, 0, 10);
         greenAccent.position.set(2, 1, 3);
         scene.add(greenAccent);
 
-        const greenAccent2 = new THREE.PointLight(0x04E586, 0, 10);
+        const greenAccent2 = new THREE.PointLight(0x1DB954, 0, 10);
         greenAccent2.position.set(-2, -0.5, 2);
         scene.add(greenAccent2);
 
@@ -359,7 +359,7 @@ export default function HeroScene({ phase }) {
             uniforms: {
                 uOpacity: { value: 0.0 },
                 uTime: { value: 0 },
-                uColor: { value: new THREE.Color(0x04E586) },
+                uColor: { value: new THREE.Color(0x1DB954) },
                 uGlowIntensity: { value: 0.0 },
                 uCoatingProgress: { value: 0.0 },
                 uEnvMap: { value: cubeRT.texture }
@@ -746,7 +746,7 @@ export default function HeroScene({ phase }) {
 
             // Check for phase prop change
             if (phaseRef.current !== lastPhaseVal) {
-                const colors = [new THREE.Color(0x1B4B8F), new THREE.Color(0xc0c8d0), new THREE.Color(0x04E586)];
+                const colors = [new THREE.Color(0x1B4B8F), new THREE.Color(0xc0c8d0), new THREE.Color(0x1DB954)];
                 emitParticles(40, colors[phaseRef.current]);
                 lastPhaseVal = phaseRef.current;
             }
@@ -797,7 +797,7 @@ export default function HeroScene({ phase }) {
                 cU.uGlowIntensity.value = damp(cU.uGlowIntensity.value, 1.0, dampSpeed * 0.5, dt);
                 greenAccent.intensity = damp(greenAccent.intensity, 5.0, dampSpeed * 0.5, dt);
                 greenAccent2.intensity = damp(greenAccent2.intensity, 3.0, dampSpeed * 0.5, dt);
-                apMat.color.lerp(new THREE.Color(0x04E586), dt * 3);
+                apMat.color.lerp(new THREE.Color(0x1DB954), dt * 3);
                 apMat.opacity = damp(apMat.opacity, 0.3, dampSpeed, dt);
                 keyLight.color.lerp(new THREE.Color(0xf0ffe8), dt * 2);
                 fillLight.color.lerp(new THREE.Color(0xd0f0e0), dt * 2);

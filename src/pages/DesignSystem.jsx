@@ -23,7 +23,7 @@ function ColorSwatch({ name, variable, hex, border }) {
       }} />
       <div>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{name}</div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)' }}>{variable} · {hex}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{variable} · {hex}</div>
       </div>
     </div>
   );
@@ -33,14 +33,14 @@ function SectionLabel({ children }) {
   return <h3 style={{ marginBottom: 24, marginTop: 48 }}>{children}</h3>;
 }
 
-function SubLabel({ children }) {
-  return <h4 style={{ marginBottom: 16, marginTop: 32, color: 'var(--g600)' }}>{children}</h4>;
+function SubLabel({ children, style }) {
+  return <h4 style={{ marginBottom: 16, marginTop: 32, color: 'var(--g600)', ...style }}>{children}</h4>;
 }
 
 function Code({ children }) {
   return (
     <code style={{
-      fontFamily: 'var(--font-mono)', fontSize: 11, background: 'var(--g100)',
+      fontFamily: 'var(--font-mono)', fontSize: 12, background: 'var(--g100)',
       padding: '2px 8px', borderRadius: 4, color: 'var(--g600)'
     }}>{children}</code>
   );
@@ -48,7 +48,7 @@ function Code({ children }) {
 
 function MonoLabel({ children, dark }) {
   return (
-    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: dark ? 'rgba(255,255,255,0.4)' : 'var(--g400)', marginTop: 8 }}>{children}</div>
+    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: dark ? 'rgba(255,255,255,0.55)' : 'var(--g500)', marginTop: 8 }}>{children}</div>
   );
 }
 
@@ -78,7 +78,7 @@ export default function DesignSystem() {
         <div className="container">
           <SectionLabel>Colors</SectionLabel>
           <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 600 }}>
-            Our palette is built around deep navy backgrounds with green accents, supported by a full neutral greyscale.
+            Our palette is built around deep navy backgrounds with green accents (#1DB954), supported by a full neutral greyscale.
           </p>
 
           <SubLabel>Primary Palette</SubLabel>
@@ -87,14 +87,14 @@ export default function DesignSystem() {
             <ColorSwatch name="Dark" variable="--dark" hex="#0D2847" />
             <ColorSwatch name="Blue" variable="--blue" hex="#1B4B8F" />
             <ColorSwatch name="Blue Bright" variable="--blue-bright" hex="#3B7BDB" />
-            <ColorSwatch name="Green" variable="--green" hex="#04E586" />
+            <ColorSwatch name="Green" variable="--green" hex="#1DB954" />
           </div>
 
           <SubLabel>Green Variants</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
-            <ColorSwatch name="Green Dim" variable="--green-dim" hex="rgba(4,229,134,0.08)" border="1px solid var(--g150)" />
-            <ColorSwatch name="Green Glow" variable="--green-glow" hex="rgba(4,229,134,0.25)" border="1px solid var(--g150)" />
-            <ColorSwatch name="Green Line" variable="--green-line" hex="rgba(4,229,134,0.35)" border="1px solid var(--g150)" />
+            <ColorSwatch name="Green Dim" variable="--green-dim" hex="rgba(29,185,84,0.08)" border="1px solid var(--g150)" />
+            <ColorSwatch name="Green Glow" variable="--green-glow" hex="rgba(29,185,84,0.25)" border="1px solid var(--g150)" />
+            <ColorSwatch name="Green Line" variable="--green-line" hex="rgba(29,185,84,0.35)" border="1px solid var(--g150)" />
           </div>
 
           <SubLabel>Neutral Scale</SubLabel>
@@ -135,21 +135,21 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gap: 24 }}>
             <div className="card corner-brackets">
               <div style={{ fontFamily: 'var(--font-serif)', fontSize: 28, fontWeight: 500, marginBottom: 8 }}>Fraunces</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 12 }}>--font-serif · Headings & display text</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>--font-serif · Headings & display text</div>
               <div style={{ fontFamily: 'var(--font-serif)', fontSize: 18, color: 'var(--g600)', lineHeight: 1.5 }}>
                 The quick brown fox jumps over the lazy dog — <span style={{ fontStyle: 'italic' }}>italic variant</span>
               </div>
             </div>
             <div className="card corner-brackets">
               <div style={{ fontFamily: 'var(--font-sans)', fontSize: 24, fontWeight: 600, marginBottom: 8 }}>Sora</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 12 }}>--font-sans · Body & UI text</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>--font-sans · Body & UI text</div>
               <div style={{ fontFamily: 'var(--font-sans)', fontSize: 15, color: 'var(--g600)', lineHeight: 1.7 }}>
                 The quick brown fox jumps over the lazy dog. Weights: <span style={{ fontWeight: 400 }}>400 Regular</span> · <span style={{ fontWeight: 500 }}>500 Medium</span> · <span style={{ fontWeight: 600 }}>600 SemiBold</span>
               </div>
             </div>
             <div className="card corner-brackets">
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 600, marginBottom: 8 }}>JetBrains Mono</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 12 }}>--font-mono · Numbers, labels, code</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>--font-mono · Numbers, labels, code</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--g600)', lineHeight: 1.7 }}>
                 0123456789 · ABCDEFGHIJ · abcdefghij
               </div>
@@ -169,7 +169,7 @@ export default function DesignSystem() {
 
           <SubLabel>Body Text</SubLabel>
           <div className="card" style={{ marginBottom: 24 }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 12 }}>Default body: Sora 15px / 1.7 / 400</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>Default body: Sora 15px / 1.7 / 400</div>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--g700)', margin: 0 }}>
               Our equipment operates in some of the most corrosive, high-temperature, and high-pressure environments in industry. We serve these sectors with a complete vertical solution — from engineering design through manufacturing, corrosion protection, and rubber products.
             </p>
@@ -205,7 +205,7 @@ export default function DesignSystem() {
                 { val: '0', usage: 'Body text default', text: 'Body copy' },
                 { val: '0.04em', usage: 'Captions, small labels', text: 'CAPTION' },
                 { val: '0.06em', usage: 'Stat labels, table headers', text: 'STAT LABEL' },
-                { val: '0.08em', usage: 'Blueprint labels', text: 'BLUEPRINT' },
+                { val: '0.08em', usage: 'Division labels, T2 tags', text: 'LABEL' },
                 { val: '0.12em', usage: 'Hero badge, gallery tags', text: 'BADGE TAG' },
                 { val: '0.14em', usage: 'Overline, nav headers', text: 'OVERLINE' },
                 { val: '0.18em', usage: 'Section overlines (max)', text: 'OVERLINE MAX' }
@@ -265,7 +265,7 @@ export default function DesignSystem() {
                   margin: '0 auto 12px', opacity: 0.8
                 }} />
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{r.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)' }}>{r.val}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{r.val}</div>
               </div>
             ))}
           </div>
@@ -313,7 +313,7 @@ export default function DesignSystem() {
               <div key={a.label} style={{ textAlign: 'center' }}>
                 <div style={{ width: a.w, height: a.h, background: 'linear-gradient(135deg, var(--dark), var(--navy))', borderRadius: 'var(--r)', margin: '0 auto 12px' }} />
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>aspect-ratio: {a.ratio}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{a.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{a.usage}</div>
               </div>
             ))}
           </div>
@@ -329,13 +329,13 @@ export default function DesignSystem() {
               <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
                 {g.labels.map((label, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    {i > 0 && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)' }}>→</span>}
+                    {i > 0 && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>→</span>}
                     <div style={{ display: 'flex', gap: 4 }}>
                       {Array.from({ length: g.cols[i] }).map((_, j) => (
                         <div key={j} style={{ width: 32, height: 20, background: 'var(--blue)', borderRadius: 4, opacity: 0.7 }} />
                       ))}
                     </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{label}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{label}</span>
                   </div>
                 ))}
               </div>
@@ -362,8 +362,8 @@ export default function DesignSystem() {
             ].map(s => (
               <div key={s.cls}>
                 <div className={s.cls} style={{ padding: 32, borderRadius: 'var(--r-lg)', minHeight: 120, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', border: s.border || 'none' }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: s.dark ? 'var(--green)' : 'var(--blue)' }}>{s.label}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: s.dark ? 'rgba(255,255,255,0.4)' : 'var(--g400)' }}>{s.sub}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: s.dark ? 'var(--green)' : 'var(--blue)' }}>{s.label}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: s.dark ? 'rgba(255,255,255,0.55)' : 'var(--g500)' }}>{s.sub}</div>
                 </div>
               </div>
             ))}
@@ -414,16 +414,16 @@ export default function DesignSystem() {
           <div style={{ maxWidth: 600 }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginBottom: 6 }}>Text Input</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Text Input</div>
                 <input type="text" placeholder="Full Name" style={inputStyle} readOnly />
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginBottom: 6 }}>Email Input</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Email Input</div>
                 <input type="email" placeholder="Email Address" style={inputStyle} readOnly />
               </div>
             </div>
             <div style={{ marginBottom: 16 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginBottom: 6 }}>Select</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Select</div>
               <select style={inputStyle} defaultValue="">
                 <option value="">Select Service Area</option>
                 <option>Engineering Design</option>
@@ -433,10 +433,10 @@ export default function DesignSystem() {
               </select>
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginBottom: 6 }}>Textarea</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Textarea</div>
               <textarea placeholder="Tell us about your project" rows={3} style={{ ...inputStyle, resize: 'vertical' }} readOnly />
             </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginTop: 12 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 12 }}>
               Sora 14px · padding: 12px 16px · border: 1px solid var(--g200) · border-radius: var(--r)
             </div>
           </div>
@@ -481,10 +481,10 @@ export default function DesignSystem() {
             <div className="division-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderRadius: 'var(--r-2xl)', overflow: 'hidden', border: '1px solid var(--g150)', background: 'var(--white)' }}>
               <div style={{ position: 'relative', minHeight: 320, background: 'linear-gradient(135deg, var(--dark), var(--navy))', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 64, fontWeight: 700, color: 'rgba(255,255,255,0.03)', position: 'absolute' }}>01</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Division Visual</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Division Visual</div>
               </div>
               <div style={{ padding: 48, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500, color: 'var(--green)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>01 — Engineering</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, color: 'var(--green)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>01 — Engineering</span>
                 <h3 style={{ fontSize: 28, marginBottom: 0 }}>Engineering Design</h3>
                 <p style={{ color: 'var(--g500)', fontSize: 14.5, lineHeight: 1.7 }}>Pressure equipment, process plant, and structural design using ASME, PD 5500, EN 13445.</p>
                 <span className="btn btn-ghost" style={{ alignSelf: 'flex-start' }}>Explore capabilities</span>
@@ -499,7 +499,7 @@ export default function DesignSystem() {
               <span style={{ fontSize: 28 }}>🇮🇳</span>
               <div>
                 <h4 style={{ color: 'var(--white)', marginBottom: 2 }}>Jasmino India</h4>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', display: 'block', marginBottom: 8 }}>80,000 m² · Gujarat</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', display: 'block', marginBottom: 8 }}>80,000 m² · Gujarat</span>
                 <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.6 }}>Full-cycle fabrication, engineering design, rubber compounding, and lining application.</p>
               </div>
             </div>
@@ -516,14 +516,14 @@ export default function DesignSystem() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#FF5A5A' }} />
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Problem</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Problem</span>
                 </div>
                 <h4 style={{ marginBottom: 8 }}>Fragmented Supply Chain</h4>
                 <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.75 }}>Multiple vendors, mismatched specs, project delays.</p>
                 <div style={{ marginTop: 16 }}>
                   {['Coordination overhead', 'Quality inconsistency'].map(p => (
                     <div key={p} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <span style={{ width: 20, height: 20, borderRadius: 6, background: 'rgba(255,90,90,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: '#FF5A5A', flexShrink: 0 }}>✕</span>
+                      <span style={{ width: 20, height: 20, borderRadius: 6, background: 'rgba(255,90,90,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#FF5A5A', flexShrink: 0 }}>✕</span>
                       <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{p}</span>
                     </div>
                   ))}
@@ -531,19 +531,19 @@ export default function DesignSystem() {
               </div>
               <div style={{
                 padding: 32, borderRadius: 'var(--r-lg)',
-                background: 'linear-gradient(145deg, rgba(4,229,134,0.04), rgba(4,229,134,0.008))',
-                border: '1px solid rgba(4,229,134,0.1)'
+                background: 'linear-gradient(145deg, rgba(29,185,84,0.04), rgba(29,185,84,0.008))',
+                border: '1px solid rgba(29,185,84,0.1)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--green)' }} />
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Solution</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Solution</span>
                 </div>
                 <h4 style={{ marginBottom: 8 }}>Vertically Integrated</h4>
                 <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.75 }}>One company, one standard, complete accountability.</p>
                 <div style={{ marginTop: 16 }}>
                   {['Single point of contact', 'Consistent quality'].map(p => (
                     <div key={p} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <span style={{ width: 20, height: 20, borderRadius: 6, background: 'rgba(4,229,134,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: 'var(--green)', flexShrink: 0 }}>✓</span>
+                      <span style={{ width: 20, height: 20, borderRadius: 6, background: 'rgba(29,185,84,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--green)', flexShrink: 0 }}>✓</span>
                       <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{p}</span>
                     </div>
                   ))}
@@ -578,8 +578,31 @@ export default function DesignSystem() {
           <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)', marginBottom: 32 }}>
             <div className="hero-badge">
               <span className="hero-dot" />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>Engineering Excellence Since 1984</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>Engineering Excellence Since 1984</span>
             </div>
+          </div>
+
+          <SubLabel>Diamond Button</SubLabel>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 32 }}>
+            <Link to="/contact" className="diamond-btn diamond-btn-primary">
+              <span className="diamond-edge diamond-edge-left" />
+              <span className="diamond-label">Get in Touch</span>
+              <span className="diamond-edge diamond-edge-right" />
+            </Link>
+            <a href="#" className="diamond-btn diamond-btn-secondary">
+              <span className="diamond-edge diamond-edge-left" />
+              <span className="diamond-label">Secondary</span>
+              <span className="diamond-edge diamond-edge-right" />
+            </a>
+          </div>
+          <MonoLabel>.diamond-btn · .diamond-btn-primary / .diamond-btn-secondary · clip-path polygon</MonoLabel>
+
+          <SubLabel>IntroBlackBox (Sticky Scroll Card)</SubLabel>
+          <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)', marginBottom: 32 }}>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginBottom: 16 }}>
+              Pinned scroll card with slide transitions. Card enters from bottom, stays centered, cycles through 3 slides, exits after background section. GSAP ScrollTrigger + pin.
+            </p>
+            <MonoLabel dark>.ibb-section · .ibb-pin-wrapper · .ibb-card · useGSAP + ScrollTrigger</MonoLabel>
           </div>
 
           <SubLabel>Industry Card</SubLabel>
@@ -588,7 +611,7 @@ export default function DesignSystem() {
               <div key={name} className="industry-card">
                 <span style={{ fontSize: 28, display: 'block', marginBottom: 8 }}>🏭</span>
                 <h4 style={{ fontSize: 14, marginBottom: 4 }}>{name}</h4>
-                <p style={{ fontSize: 11, color: 'var(--g400)' }}>Industry sector</p>
+                <p style={{ fontSize: 12, color: 'var(--g500)' }}>Industry sector</p>
               </div>
             ))}
           </div>
@@ -632,7 +655,7 @@ export default function DesignSystem() {
             <div style={{ display: 'flex', gap: 16, overflow: 'hidden', padding: '8px 0' }}>
               {['Card 1', 'Card 2', 'Card 3', 'Card 4'].map(c => (
                 <div key={c} style={{ flex: '0 0 200px', padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--g150)', borderRadius: 'var(--r-xl)', userSelect: 'none' }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 8 }}>{c}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 8 }}>{c}</div>
                   <div style={{ fontSize: 13, color: 'var(--g500)' }}>Drag to scroll. cursor: grab/grabbing.</div>
                 </div>
               ))}
@@ -649,14 +672,14 @@ export default function DesignSystem() {
           <SubLabel>Canvas Particles (HeroParticles)</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
             <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', marginBottom: 4 }}>About Page Hero</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>Green particles · attract mode · 120 max</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 8 }}>rgba(4,229,134,*) · dark bg</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', marginBottom: 4 }}>About Page Hero</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>Green particles · attract mode · 120 max</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>rgba(29,185,84,*) · dark bg</div>
             </div>
             <div style={{ padding: 32, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--g150)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--blue)', marginBottom: 4 }}>What We Do Hero</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>Blue particles · repel mode · 100 max</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)', marginTop: 8 }}>rgba(27,75,143,*) · white bg</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--blue)', marginBottom: 4 }}>What We Do Hero</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Blue particles · repel mode · 100 max</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 8 }}>rgba(27,75,143,*) · white bg</div>
             </div>
           </div>
 
@@ -712,9 +735,10 @@ export default function DesignSystem() {
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 0 }}>
             {[
               { num: '01', name: 'Design', label: 'Engineering' },
-              { num: '02', name: 'Build', label: 'Manufacturing' },
-              { num: '03', name: 'Protect', label: 'Lining' },
-              { num: '04', name: 'Deliver', label: 'Logistics' }
+              { num: '02', name: 'Fabricate', label: 'Manufacturing' },
+              { num: '03', name: 'Protect', label: 'Linings' },
+              { num: '04', name: 'Inspect', label: 'Quality' },
+              { num: '05', name: 'Deliver', label: 'Logistics' }
             ].map((step, i) => (
               <React.Fragment key={step.num}>
                 <div className="process-step">
@@ -722,7 +746,7 @@ export default function DesignSystem() {
                   <span className="step-name">{step.name}</span>
                   <span className="step-label">{step.label}</span>
                 </div>
-                {i < 3 && <div className="process-connector" />}
+                {i < 4 && <div className="process-connector" />}
               </React.Fragment>
             ))}
           </div>
@@ -744,27 +768,27 @@ export default function DesignSystem() {
             ].map(e => (
               <div key={e.name} className="card">
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginBottom: 4 }}>{e.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)', marginBottom: 16 }}>{e.val}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 16 }}>{e.val}</div>
                 <div style={{ height: 4, background: 'var(--g100)', borderRadius: 2, overflow: 'hidden' }}>
                   <div style={{ width: '60%', height: '100%', background: e.color, borderRadius: 2, transition: `width 0.6s ${e.val}` }} />
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginTop: 8 }}>{e.desc}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 8 }}>{e.desc}</div>
               </div>
             ))}
           </div>
 
-          <SubLabel>Fade Up</SubLabel>
+          <SubLabel>GSAP Scroll Reveal</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
             <div style={{ padding: 24, background: 'var(--g50)', borderRadius: 'var(--r)', textAlign: 'center' }}>
-              <div className="fade-up" style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)' }}>.fade-up (initial)</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)' }}>opacity: 0 · translateY(40px)</div>
+              <div className="gsap-reveal" style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g500)' }}>.gsap-reveal (initial)</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>opacity: 0 · will-change: transform, opacity</div>
               </div>
             </div>
             <div style={{ padding: 24, background: 'var(--g50)', borderRadius: 'var(--r)', textAlign: 'center' }}>
-              <div className="fade-up visible" style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)' }}>.fade-up.visible</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)' }}>opacity: 1 · translateY(0)</div>
+              <div style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g500)' }}>.gsap-reveal (after ScrollTrigger)</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>opacity: 1 · translateY(0) via GSAP</div>
               </div>
             </div>
           </div>
@@ -775,8 +799,8 @@ export default function DesignSystem() {
               <div className="scroll-line" style={{ width: 1, height: 32, background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.3))' }} />
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.5)' }}>.scroll-indicator + .scroll-line</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>Animated pulse-line keyframe</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>.scroll-indicator + .scroll-line</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>Animated pulse-line keyframe</div>
             </div>
           </div>
         </div>
@@ -796,7 +820,7 @@ export default function DesignSystem() {
             <thead><tr><th>Breakpoint</th><th>Target</th><th>Key Changes</th></tr></thead>
             <tbody>
               <tr><td className="mono-val">1100px</td><td>Navbar tablet</td><td>Navbar dropdown spacing tightens</td></tr>
-              <tr><td className="mono-val">1080px</td><td>T2 pages</td><td>T2 hero grid stacks, advantage section stacks, service card grid shifts to 2-col</td></tr>
+              <tr><td className="mono-val">1080px</td><td>T2 division pages</td><td>T2 hero grid stacks, advantage section stacks, service card grid shifts to 2-col</td></tr>
               <tr><td className="mono-val">1024px</td><td>Tablet / landscape</td><td>Footer 4-col → 2-col, resp-grid-3 → 2-col, division card stacks, About/WhatWeDo layout shifts, section padding reduces</td></tr>
               <tr><td className="mono-val">900px</td><td>Mobile nav</td><td>Navbar → hamburger + full-screen mobile menu accordion</td></tr>
               <tr><td className="mono-val">768px</td><td>Mobile</td><td>Footer → 1-col, resp-grids → 1-col, section padding tightens, About timeline cards shrink</td></tr>
@@ -820,8 +844,8 @@ export default function DesignSystem() {
                   <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
                 </div>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Desktop</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{'>'}1024px</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Desktop</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{'>'}1024px</div>
             </div>
             {/* Tablet */}
             <div style={{ textAlign: 'center' }}>
@@ -843,8 +867,8 @@ export default function DesignSystem() {
                   <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
                 </div>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Tablet</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{'<'}=1024px</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Tablet</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{'<'}=1024px</div>
             </div>
             {/* Mobile */}
             <div style={{ textAlign: 'center' }}>
@@ -861,8 +885,8 @@ export default function DesignSystem() {
                 <div style={{ height: 14, background: 'var(--g100)', borderRadius: 3 }} />
                 <div style={{ height: 14, background: 'var(--g100)', borderRadius: 3 }} />
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Mobile</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{'<'}=768px</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Mobile</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{'<'}=768px</div>
             </div>
           </div>
 
@@ -871,7 +895,7 @@ export default function DesignSystem() {
             <thead><tr><th>Component</th><th>Desktop</th><th>Tablet (1024px)</th><th>Mobile (768px)</th></tr></thead>
             <tbody>
               <tr><td>Navbar</td><td className="mono-val">Full links + mega menu</td><td className="mono-val">Full links (tight)</td><td className="mono-val">Hamburger @900px</td></tr>
-              <tr><td>Footer grid</td><td className="mono-val">4-col (1.5fr 1fr 1fr 1fr)</td><td className="mono-val">2-col</td><td className="mono-val">1-col</td></tr>
+              <tr><td>Footer grid</td><td className="mono-val">5-col (repeat(5, 1fr))</td><td className="mono-val">2-col</td><td className="mono-val">1-col</td></tr>
               <tr><td>Division card</td><td className="mono-val">2-col grid</td><td className="mono-val">Stacked (1-col)</td><td className="mono-val">Stacked (1-col)</td></tr>
               <tr><td>.section-pad</td><td className="mono-val">80px 56px</td><td className="mono-val">64px 32px</td><td className="mono-val">48px 20px</td></tr>
               <tr><td>Navbar padding</td><td className="mono-val">0 56px</td><td className="mono-val">0 32px</td><td className="mono-val">0 20px</td></tr>
@@ -906,8 +930,8 @@ export default function DesignSystem() {
                   border: '1px solid var(--g100)', boxShadow: s.shadow, marginBottom: 12
                 }} />
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{s.label}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)', marginBottom: 4 }}>{s.usage}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--g300)', wordBreak: 'break-all' }}>{s.shadow}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 4 }}>{s.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', wordBreak: 'break-all' }}>{s.shadow}</div>
               </div>
             ))}
           </div>
@@ -917,19 +941,19 @@ export default function DesignSystem() {
             <div style={{ textAlign: 'center' }}>
               <div style={{
                 width: '100%', height: 60, background: 'var(--green)', borderRadius: 'var(--r)',
-                boxShadow: '0 4px 20px rgba(4,229,134,0.3)', marginBottom: 12
+                boxShadow: '0 4px 20px rgba(29,185,84,0.3)', marginBottom: 12
               }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--g800)' }}>Green Glow</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>Primary button hover</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>Green Glow</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Primary button hover</div>
             </div>
             <div className="dark-section" style={{ padding: 24, borderRadius: 'var(--r-lg)', textAlign: 'center' }}>
               <div style={{
                 width: '100%', height: 60, borderRadius: 'var(--r)',
-                boxShadow: 'inset 0 0 20px rgba(4,229,134,0.06), inset 0 0 20px rgba(4,229,134,0.03)',
+                boxShadow: 'inset 0 0 20px rgba(29,185,84,0.06), inset 0 0 20px rgba(29,185,84,0.03)',
                 border: '1px solid rgba(255,255,255,0.08)', marginBottom: 12
               }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--green)' }}>Inset Glow</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>Pipeline step hover</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--green)' }}>Inset Glow</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>Pipeline step hover</div>
             </div>
           </div>
         </div>
@@ -946,18 +970,18 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 32 }}>
             {[
               { name: 'Division Visual', gradient: 'linear-gradient(135deg, #0D2847, #0B1D34)', usage: '.division-card-visual' },
-              { name: 'Green Connector', gradient: 'linear-gradient(90deg, rgba(4,229,134,0.35), #04E586)', usage: '.process-connector' },
+              { name: 'Green Connector', gradient: 'linear-gradient(90deg, rgba(29,185,84,0.35), #1DB954)', usage: '.process-connector' },
               { name: 'CTA Gradient', gradient: 'linear-gradient(180deg, #1B4B8F, #1A3F73)', usage: 'CTA button (T2)' },
-              { name: 'Content Edge', gradient: 'linear-gradient(to bottom, rgba(4,229,134,0.25), #04E586, rgba(4,229,134,0.25), transparent)', usage: '.div-content accent' },
-              { name: 'Blueprint: Engineering', gradient: 'linear-gradient(170deg, #0d1e35, #0a1628, #0c1a2e)', usage: '.div-visual.eng' },
-              { name: 'Blueprint: Manufacturing', gradient: 'linear-gradient(170deg, #0b1828, #081220, #0a1524)', usage: '.div-visual.mfg' },
-              { name: 'Blueprint: Corrosion', gradient: 'linear-gradient(170deg, #0c1b30, #091525, #0b1829)', usage: '.div-visual.cor' },
-              { name: 'Blueprint: Rubber', gradient: 'linear-gradient(170deg, #091420, #060e18, #08111e)', usage: '.div-visual.rub' }
+              { name: 'Content Edge', gradient: 'linear-gradient(to bottom, rgba(29,185,84,0.25), #1DB954, rgba(29,185,84,0.25), transparent)', usage: '.div-content accent' },
+              { name: 'Division: Engineering', gradient: 'linear-gradient(170deg, #0d1e35, #0a1628, #0c1a2e)', usage: '.div-visual.eng' },
+              { name: 'Division: Manufacturing', gradient: 'linear-gradient(170deg, #0b1828, #081220, #0a1524)', usage: '.div-visual.mfg' },
+              { name: 'Division: Corrosion', gradient: 'linear-gradient(170deg, #0c1b30, #091525, #0b1829)', usage: '.div-visual.cor' },
+              { name: 'Division: Rubber', gradient: 'linear-gradient(170deg, #091420, #060e18, #08111e)', usage: '.div-visual.rub' }
             ].map(g => (
               <div key={g.name}>
                 <div style={{ height: 64, borderRadius: 'var(--r)', background: g.gradient, marginBottom: 8 }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--g800)' }}>{g.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{g.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{g.name}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{g.usage}</div>
               </div>
             ))}
           </div>
@@ -965,14 +989,14 @@ export default function DesignSystem() {
           <SubLabel>Radial Gradients</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
             {[
-              { name: 'Green Glow', gradient: 'radial-gradient(ellipse at 50% 0%, rgba(4,229,134,0.06), transparent 70%)', bg: 'var(--dark)', usage: 'Solution card glow' },
+              { name: 'Green Glow', gradient: 'radial-gradient(ellipse at 50% 0%, rgba(29,185,84,0.06), transparent 70%)', bg: 'var(--dark)', usage: 'Solution card glow' },
               { name: 'Globe Shadow', gradient: 'radial-gradient(ellipse, rgba(11,29,52,0.07), transparent 70%)', bg: 'var(--g50)', usage: 'Globe section shadow' },
-              { name: 'Service Card', gradient: 'radial-gradient(circle at 30% 40%, rgba(4,229,134,0.06), transparent 50%), radial-gradient(circle at 80% 70%, rgba(27,75,143,0.08), transparent 50%)', bg: 'var(--dark)', usage: 'T2 card visual' }
+              { name: 'Service Card', gradient: 'radial-gradient(circle at 30% 40%, rgba(29,185,84,0.06), transparent 50%), radial-gradient(circle at 80% 70%, rgba(27,75,143,0.08), transparent 50%)', bg: 'var(--dark)', usage: 'T2 card visual' }
             ].map(g => (
               <div key={g.name}>
                 <div style={{ height: 100, borderRadius: 'var(--r)', background: `${g.gradient}, ${g.bg}`, marginBottom: 8, border: '1px solid var(--g150)' }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--g800)' }}>{g.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{g.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{g.name}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{g.usage}</div>
               </div>
             ))}
           </div>
@@ -991,14 +1015,14 @@ export default function DesignSystem() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
               { z: 1002, label: 'Navbar brand / burger', color: 'var(--green)' },
-              { z: 1001, label: 'Mobile nav overlay', color: 'rgba(4,229,134,0.6)' },
-              { z: 1000, label: 'Navbar (fixed)', color: 'rgba(4,229,134,0.55)' },
-              { z: 999, label: 'Mega menu wrapper', color: 'rgba(4,229,134,0.5)' },
-              { z: 998, label: 'Backdrop overlay', color: 'rgba(4,229,134,0.4)' },
-              { z: 105, label: 'T2 SubNav (alternate)', color: 'rgba(4,229,134,0.35)' },
-              { z: 90, label: 'T2 SubNav / Sticky CTA bar', color: 'rgba(4,229,134,0.3)' },
-              { z: 7, label: 'Blueprint labels', color: 'rgba(255,255,255,0.12)' },
-              { z: 5, label: 'Blueprint corners, status', color: 'rgba(255,255,255,0.10)' },
+              { z: 1001, label: 'Mobile nav overlay', color: 'rgba(29,185,84,0.6)' },
+              { z: 1000, label: 'Navbar (fixed)', color: 'rgba(29,185,84,0.55)' },
+              { z: 999, label: 'Mega menu wrapper', color: 'rgba(29,185,84,0.5)' },
+              { z: 998, label: 'Backdrop overlay', color: 'rgba(29,185,84,0.4)' },
+              { z: 105, label: 'T2 SubNav (alternate)', color: 'rgba(29,185,84,0.35)' },
+              { z: 90, label: 'T2 SubNav / Sticky CTA bar', color: 'rgba(29,185,84,0.3)' },
+              { z: 7, label: 'Division visual labels', color: 'rgba(255,255,255,0.12)' },
+              { z: 5, label: 'Division corners, status', color: 'rgba(255,255,255,0.10)' },
               { z: 3, label: 'Content layers', color: 'rgba(255,255,255,0.08)' },
               { z: 1, label: 'Grid backgrounds, noise', color: 'rgba(255,255,255,0.05)' },
               { z: 0, label: 'Default', color: 'rgba(255,255,255,0.03)' }
@@ -1006,7 +1030,7 @@ export default function DesignSystem() {
               <div key={item.z} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 600, color: 'var(--green)', width: 56, textAlign: 'right', flexShrink: 0 }}>{item.z}</div>
                 <div style={{ flex: 1, height: 28, background: item.color, borderRadius: 4, display: 'flex', alignItems: 'center', paddingLeft: 12 }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--white)' }}>{item.label}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)' }}>{item.label}</span>
                 </div>
               </div>
             ))}
@@ -1041,8 +1065,8 @@ export default function DesignSystem() {
               ].map(o => (
                 <div key={o.val} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                   <div style={{ width: 80, height: 24, background: `rgba(255,255,255,${o.val})`, borderRadius: 4, flexShrink: 0 }} />
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', width: 48, flexShrink: 0 }}>{o.val}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{o.usage}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', width: 48, flexShrink: 0 }}>{o.val}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>{o.usage}</div>
                 </div>
               ))}
             </div>
@@ -1079,9 +1103,9 @@ export default function DesignSystem() {
                 { dur: '0.4s', usage: 'Larger transitions', items: 'Sticky CTA bar, division card, sibling-nav' },
                 { dur: '0.5s', usage: 'Complex transforms', items: 'Division card scale, step animations' },
                 { dur: '0.6s', usage: 'Entrance / exit', items: 'Division link underline, gallery items' },
-                { dur: '0.7s', usage: 'Scroll reveal', items: '.fade-up, section headers, pipeline elements' },
-                { dur: '0.8s', usage: 'Slow reveal', items: '.rv (scroll-reveal T2), pipeline wrap' },
-                { dur: '1s', usage: 'Dramatic entrance', items: '.rv-s (scale scroll-reveal)' }
+                { dur: '0.7s', usage: 'Scroll reveal', items: '.gsap-reveal, section headers, pipeline elements' },
+                { dur: '0.8s', usage: 'Slow reveal', items: 'GSAP ScrollTrigger entries, pipeline wrap' },
+                { dur: '1s', usage: 'Dramatic entrance', items: 'GSAP scale reveals, stagger groups' }
               ].map(t => (
                 <tr key={t.dur}>
                   <td className="mono-val">{t.dur}</td>
@@ -1107,7 +1131,7 @@ export default function DesignSystem() {
                   boxShadow: '0 8px 24px rgba(0,0,0,0.08)', marginBottom: 12
                 }} />
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{t.label}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>{t.desc}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{t.desc}</div>
               </div>
             ))}
           </div>
@@ -1127,16 +1151,16 @@ export default function DesignSystem() {
                 <div style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', background: 'rgba(255,255,255,0.04)' }} />
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', position: 'relative', zIndex: 1 }}>backdrop-filter: blur(12px)</span>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--g800)' }}>Glass Blur</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>.glass-card, overlays</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>Glass Blur</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>.glass-card, overlays</div>
             </div>
             <div>
               <div style={{ height: 100, borderRadius: 'var(--r-lg)', background: 'linear-gradient(135deg, var(--blue), var(--green))', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', marginBottom: 8 }}>
                 <div style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(24px) saturate(1.5)', WebkitBackdropFilter: 'blur(24px) saturate(1.5)', background: 'rgba(8,16,28,0.88)' }} />
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', position: 'relative', zIndex: 1 }}>blur(24px) saturate(1.5)</span>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--g800)' }}>Heavy Blur + Saturate</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>T2 sticky nav (.topnav)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>Heavy Blur + Saturate</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>T2 sticky nav (.topnav)</div>
             </div>
           </div>
 
@@ -1144,17 +1168,17 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
             <div>
               <div style={{ height: 80, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c, #e74)', marginBottom: 8 }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>Original</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Original</div>
             </div>
             <div>
               <div style={{ height: 80, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c, #e74)', filter: 'saturate(0) brightness(0.3) contrast(1.2)', marginBottom: 8 }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>saturate(0) brightness(0.3) contrast(1.2)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)' }}>Trust band background</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>saturate(0) brightness(0.3) contrast(1.2)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Trust band background</div>
             </div>
             <div>
               <div style={{ height: 80, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c, #e74)', filter: 'saturate(0.55) brightness(0.6) contrast(1.1)', marginBottom: 8 }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>saturate(.55) brightness(.6) contrast(1.1)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)' }}>Gallery hover state</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>saturate(.55) brightness(.6) contrast(1.1)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Gallery hover state</div>
             </div>
           </div>
 
@@ -1162,7 +1186,7 @@ export default function DesignSystem() {
           <table className="specs-table">
             <thead><tr><th>Property</th><th>Value</th><th>Usage</th></tr></thead>
             <tbody>
-              <tr><td className="mono-val">mix-blend-mode</td><td className="mono-val">overlay</td><td>Noise textures (blueprint, integrated model)</td></tr>
+              <tr><td className="mono-val">mix-blend-mode</td><td className="mono-val">overlay</td><td>Noise textures (integrated model)</td></tr>
               <tr><td className="mono-val">pointer-events</td><td className="mono-val">none</td><td>All overlay layers (grid, noise, glows)</td></tr>
               <tr><td className="mono-val">user-select</td><td className="mono-val">none</td><td>Decorative background numbers, drag-scroll cards</td></tr>
               <tr><td className="mono-val">will-change</td><td className="mono-val">transform</td><td>Service cards (hover performance)</td></tr>
@@ -1187,23 +1211,23 @@ export default function DesignSystem() {
             {/* pulse-dot */}
             <div style={{ textAlign: 'center', padding: 24 }}>
               <div style={{ width: 12, height: 12, borderRadius: '50%', background: 'var(--green)', margin: '0 auto 16px', animation: 'pulse-dot 2s infinite' }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)' }}>pulse-dot</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>2s infinite</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)' }}>pulse-dot</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>2s infinite</div>
             </div>
             {/* pulse-line */}
             <div style={{ textAlign: 'center', padding: 24 }}>
               <div style={{ width: 1, height: 40, margin: '0 auto 16px', background: 'linear-gradient(180deg, transparent, rgba(255,255,255,0.3))', animation: 'pulse-line 2s infinite' }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)' }}>pulse-line</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>2s infinite</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)' }}>pulse-line</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>2s infinite</div>
             </div>
             {/* rotating ring */}
             <div style={{ textAlign: 'center', padding: 24 }}>
               <div style={{
                 width: 48, height: 48, borderRadius: '50%', margin: '0 auto 16px',
-                border: '1.5px dashed rgba(255,255,255,0.1)', animation: 'rr 6s linear infinite'
+                border: '1.5px dashed rgba(255,255,255,0.1)', animation: 'rr 20s linear infinite'
               }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)' }}>rr (rotating ring)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)' }}>20s linear infinite</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)' }}>rr (rotating ring)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>20s linear infinite</div>
             </div>
           </div>
 
@@ -1214,8 +1238,8 @@ export default function DesignSystem() {
               {[
                 { name: 'pulse-dot', dur: '2s', ease: 'ease-in-out', usage: 'Hero badge indicator' },
                 { name: 'pulse-line', dur: '2s', ease: 'ease-in-out', usage: 'Scroll indicator' },
-                { name: 'scanDown', dur: '6s', ease: 'ease-in-out', usage: 'Blueprint scan line' },
-                { name: 'bpPulse', dur: '2.5s', ease: 'ease-in-out', usage: 'Blueprint pulse circles' },
+                { name: 'scanDown', dur: '6s', ease: 'ease-in-out', usage: '(legacy)' },
+                { name: 'bpPulse', dur: '2.5s', ease: 'ease-in-out', usage: '(legacy)' },
                 { name: 'bubbleUp', dur: '1.8–2.6s', ease: 'var(--ease)', usage: 'Chemical industry icon' },
                 { name: 'liquidSway', dur: '4s', ease: 'ease-in-out', usage: 'Liquid level animation' },
                 { name: 'smokeRise', dur: '2.5–3s', ease: 'ease-out', usage: 'Petrochemical icon' },
@@ -1298,7 +1322,7 @@ export default function DesignSystem() {
             <div>
               <div style={{ height: 160, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--white)', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: 4 }}>object-fit: cover</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: 4 }}>object-fit: cover</span>
                 </div>
               </div>
               <MonoLabel>Gallery images, background fills</MonoLabel>
@@ -1306,7 +1330,7 @@ export default function DesignSystem() {
             <div>
               <div style={{ height: 160, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c)', position: 'relative', overflow: 'hidden', filter: 'saturate(0.15) brightness(0.6) contrast(1.15)' }}>
                 <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--white)', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: 4 }}>desaturated treatment</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', background: 'rgba(0,0,0,0.3)', padding: '4px 12px', borderRadius: 4 }}>desaturated treatment</span>
                 </div>
               </div>
               <MonoLabel>About page images (desat + contrast)</MonoLabel>
@@ -1319,7 +1343,7 @@ export default function DesignSystem() {
             gridTemplateRows: '1fr 1fr', gap: 12, height: 200, marginBottom: 8
           }}>
             <div style={{ gridRow: '1 / 3', background: 'linear-gradient(135deg, var(--dark), var(--navy))', borderRadius: 'var(--r)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.3)' }}>span 2 rows</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>span 2 rows</span>
             </div>
             <div style={{ background: 'linear-gradient(135deg, var(--dark), var(--blue))', borderRadius: 'var(--r)' }} />
             <div style={{ background: 'linear-gradient(135deg, var(--dark), var(--blue))', borderRadius: 'var(--r)' }} />
@@ -1344,11 +1368,17 @@ export default function DesignSystem() {
           <table className="specs-table" style={{ marginBottom: 32 }}>
             <thead><tr><th>Page</th><th>Route</th><th>Scope Class</th><th>Hero Type</th><th>Key Components</th></tr></thead>
             <tbody>
-              <tr><td>Home</td><td className="mono-val">/</td><td className="mono-val">—</td><td className="mono-val">Dark (3D)</td><td>HeroScene, IntegratedModel, GlobalPresence, Divisions</td></tr>
-              <tr><td>About</td><td className="mono-val">/about/our-story</td><td className="mono-val">.about-page</td><td className="mono-val">Dark (particles)</td><td>HeroParticles, drag-scroll timeline, image reveal, GlobalPresence, CountUp</td></tr>
+              <tr><td>Home</td><td className="mono-val">/</td><td className="mono-val">—</td><td className="mono-val">Dark (HeroVariant)</td><td>HeroVariantA/B/C, IntroBlackBox, Divisions, IntegratedModel, Industries, CaseStudies, GlobalPresence</td></tr>
+              <tr><td>About</td><td className="mono-val">/about/our-story</td><td className="mono-val">.about-page</td><td className="mono-val">Dark (particles)</td><td>HeroParticles, scroll story (pinned timeline), image reveal, GlobalPresence, CountUp</td></tr>
               <tr><td>What We Do</td><td className="mono-val">/what-we-do</td><td className="mono-val">.wwd-page</td><td className="mono-val">White (particles)</td><td>HeroParticles, 5-tab integration model, drag-scroll gallery, capability matrix</td></tr>
-              <tr><td>Division (T2)</td><td className="mono-val">/what-we-do/:slug</td><td className="mono-val">.t2-page</td><td className="mono-val">Dark (blueprint)</td><td>T2 Hero, SubNav, ServiceGrid, AdvDiagram, FlowSteps</td></tr>
+              <tr><td>Division (T2)</td><td className="mono-val">/what-we-do/:slug</td><td className="mono-val">.t2-page</td><td className="mono-val">Dark (gradient)</td><td>T2Hero, T2SubNav, T2Overview, T2ServiceGrid, T2StatsStrip, T2Gallery, T2CTA</td></tr>
               <tr><td>Service (T3)</td><td className="mono-val">/what-we-do/:div/:svc</td><td className="mono-val">.t3-page</td><td className="mono-val">Dark (photo)</td><td>Sibling nav, rating system, drag-scroll gallery, specs table</td></tr>
+              <tr><td>Industries</td><td className="mono-val">/industries</td><td className="mono-val">.ip-*</td><td className="mono-val">Dark</td><td>Industry cards, sector icons</td></tr>
+              <tr><td>Case Studies</td><td className="mono-val">/case-studies</td><td className="mono-val">.csp-*</td><td className="mono-val">Dark</td><td>Case study grid, filters</td></tr>
+              <tr><td>News</td><td className="mono-val">/news</td><td className="mono-val">.np-*</td><td className="mono-val">Dark</td><td>News grid</td></tr>
+              <tr><td>Contact</td><td className="mono-val">/contact</td><td className="mono-val">.cp-*</td><td className="mono-val">Dark</td><td>Contact form, map</td></tr>
+              <tr><td>Infrastructure</td><td className="mono-val">/infrastructure</td><td className="mono-val">.infra-page</td><td className="mono-val">Dark</td><td>Map, facility cards</td></tr>
+              <tr><td>Design System</td><td className="mono-val">/design-system</td><td className="mono-val">—</td><td className="mono-val">Dark</td><td>This reference page</td></tr>
             </tbody>
           </table>
 
@@ -1356,31 +1386,32 @@ export default function DesignSystem() {
           <table className="specs-table" style={{ marginBottom: 32 }}>
             <thead><tr><th>Pattern</th><th>Used In</th><th>Behavior</th></tr></thead>
             <tbody>
-              <tr><td>Drag-to-scroll</td><td className="mono-val">About timeline, WhatWeDo gallery, T3 gallery</td><td>mouseDown/Move/Up with 1.5x multiplier, cursor: grab/grabbing, hidden scrollbar</td></tr>
-              <tr><td>Dot indicators</td><td className="mono-val">About timeline, WhatWeDo gallery</td><td>Active dot expands to 24px pill (blue), inactive 8px circle (g200), clickable</td></tr>
-              <tr><td>Prev/Next buttons</td><td className="mono-val">About timeline, WhatWeDo gallery</td><td>40px circle, g200 border, hover: blue border + shadow, scrollBy one card width</td></tr>
-              <tr><td>ScrollReveal</td><td className="mono-val">All pages</td><td>IntersectionObserver, translateY(24px) → 0, opacity 0 → 1, threshold 0.15</td></tr>
+              <tr><td>Drag-to-scroll</td><td className="mono-val">WhatWeDo gallery, T3 gallery</td><td>mouseDown/Move/Up with 1.5x multiplier, cursor: grab/grabbing, hidden scrollbar</td></tr>
+              <tr><td>Scroll story (pinned)</td><td className="mono-val">About timeline, IntroBlackBox</td><td>GSAP ScrollTrigger pin, scrub-linked slide transitions, card stays centered</td></tr>
+              <tr><td>Dot indicators</td><td className="mono-val">WhatWeDo gallery, IntroBlackBox</td><td>Active dot expands (green/blue), inactive circle (g200), clickable</td></tr>
+              <tr><td>Prev/Next buttons</td><td className="mono-val">WhatWeDo gallery</td><td>40px circle, g200 border, hover: blue border + shadow, scrollBy one card width</td></tr>
+              <tr><td>GsapReveal</td><td className="mono-val">All pages</td><td>GSAP ScrollTrigger, fade-up entrance, optional delay. T2 uses useScrollReveal for .rv elements.</td></tr>
               <tr><td>CountUp</td><td className="mono-val">About stats, home stats</td><td>Animated number counter, triggers on IntersectionObserver</td></tr>
-              <tr><td>Image reveal wipe</td><td className="mono-val">About manifesto</td><td>::after pseudo scaleX(1→0) with 1.2s transition, desaturated → partial color</td></tr>
+              <tr><td>Image reveal wipe</td><td className="mono-val">About manifesto</td><td>useImageReveal hook, scaleX(1→0) with 1.2s transition, desaturated → partial color</td></tr>
             </tbody>
           </table>
 
           <SubLabel>Navbar Adaptation</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
             <div className="dark-section" style={{ padding: 20, borderRadius: 'var(--r-lg)', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--green)', marginBottom: 4 }}>Dark Hero Pages</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>Home, About, Divisions, Services</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>White text → blue text on scroll</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', marginBottom: 4 }}>Dark Hero Pages</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>Home, About, Divisions, Services</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 4 }}>White text → blue text on scroll</div>
             </div>
             <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--g150)', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--blue)', marginBottom: 4 }}>White Hero Pages</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>What We Do</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)', marginTop: 4 }}>Blue text always</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--blue)', marginBottom: 4 }}>White Hero Pages</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>What We Do</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 4 }}>Blue text always</div>
             </div>
             <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--surface)', border: '1px solid var(--g150)', textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--blue)', marginBottom: 4 }}>Scrolled State</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g400)' }}>All pages (after 50px)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--g300)', marginTop: 4 }}>White bg + shadow + blue text</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--blue)', marginBottom: 4 }}>Scrolled State</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>All pages (after 50px)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 4 }}>White bg + shadow + blue text</div>
             </div>
           </div>
         </div>

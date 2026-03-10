@@ -4,9 +4,9 @@
     "notes": [
       "Use rubber-linings-v2.html as the HTML/CSS template. Replace content per page.",
       "<em> tags render as italic green text in the template.",
-      "hero_photo: Unsplash w=1800&h=1200. evidence_strip: w=1800&h=800. gallery: w=1200&h=900 first, w=1000&h=900 rest.",
+      "hero_photo: Unsplash w=800&h=533&q=75. evidence_strip: w=800&h=356&q=75. gallery: w=600&h=450&q=75 first, w=500&h=450&q=75 rest.",
       "Specs table ratings: rating_a=Excellent(green), rating_b=Good(blue), rating_c=Limited(orange), rating_x=N/A(gray).",
-      "Rubber Linings page is the BUILT template reference \u2014 NOT included here.",
+      "Rubber Linings page is now included in pages array as the reference implementation.",
       "hero_num = position within parent division (01, 02, etc).",
       "Process & Plant Design was previously built but should be rebuilt using this template for consistency."
     ],
@@ -25,6 +25,7 @@
       "Sticky Bar \u2014 service name + contact + buttons (fixed bottom)"
     ],
     "all_pages": [
+      "rubber-linings (Corrosion Protection \u2192 01)",
       "process-plant-design (Engineering Design \u2192 01)",
       "equipment-design (Engineering Design \u2192 02)",
       "piping-design (Engineering Design \u2192 03)",
@@ -40,6 +41,150 @@
   },
   "pages": [
     {
+      "id": "rubber-linings",
+      "filename": "rubber-linings.html",
+      "page_title": "Rubber Linings \u2014 Jasmino Corrosion Protection",
+      "hero": {
+        "breadcrumb": ["What We Do", "Corrosion Protection", "Rubber Linings"],
+        "badge_text": "HAW + GBT Heritage \u00b7 40+ Years",
+        "title_html": "Rubber<br><em>Linings</em>",
+        "lead": "Chemical-resistant elastomer barriers applied to steel equipment \u2014 protecting critical assets in the harshest chemical environments on earth.",
+        "hero_num": "01",
+        "hero_photo_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=800&h=533&q=75&fit=crop&crop=center",
+        "stats": [
+          { "num": "40+", "label": "Years Expertise" },
+          { "num": "7", "label": "Elastomer Types" },
+          { "num": "3", "label": "Continents" },
+          { "num": "0", "label": "Defect Tolerance" }
+        ]
+      },
+      "intro": {
+        "overline": "What We Do",
+        "title_html": "Protecting steel from the chemistry that would <em>destroy</em> it",
+        "paragraphs": [
+          "Rubber lining is the application of a chemical-resistant elastomer barrier between steel substrates and aggressive process media. It's one of the most effective and cost-efficient methods for <strong>extending equipment life</strong> in chemical, mining, and power industries.",
+          "With <strong>HAW Linings</strong> (Germany) and <strong>GBT</strong> (Turkey) as part of the Jasmino group, we bring <strong>40+ years of European lining expertise</strong> combined with the manufacturing scale of our Indian facilities.",
+          "Our linings go directly onto equipment we've designed and manufactured \u2014 meaning <strong>surface preparation, geometry access, and application schedule</strong> are all coordinated from the start. No handoff gaps."
+        ],
+        "pull_quote": {
+          "text": "Every lining is specified, applied, and inspected by the same team \u2014 not subcontracted.",
+          "cite": "The Jasmino Integrated Model"
+        },
+        "meta_panel": [
+          { "label": "Lining Types", "tags": ["Natural Rubber", "Butyl", "EPDM", "CSM (Hypalon)", "Neoprene", "Nitrile", "Chlorobutyl"] },
+          { "label": "Equipment Types", "tags": ["Tanks & Vessels", "Piping & Ducts", "Agitators", "Valves", "FGD Systems"] },
+          { "label": "Certifications", "tags": ["ISO 9001", "ISO 14001", "T\u00dcV", "BV"] }
+        ]
+      },
+      "evidence_strip": {
+        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=356&q=75&fit=crop&crop=center",
+        "tag": "On The Shop Floor",
+        "title_html": "Where <em>protection</em> happens",
+        "caption": "HAW Linings \u00b7 Germany \u00b7 Hot Vulcanisation Bay"
+      },
+      "materials_section": {
+        "overline": "Material Selection",
+        "title_html": "Right rubber for the <em>right</em> chemistry",
+        "description": "Each elastomer has a specific resistance profile. We select and compound based on your exact process conditions.",
+        "cards": [
+          {
+            "symbol": "NR",
+            "title": "Natural Rubber",
+            "subtitle": "Soft & Hard \u00b7 40\u201370 Shore A",
+            "description": "The workhorse for mineral acid environments. Excellent abrasion resistance and elasticity. Hot-vulcanised application for maximum adhesion.",
+            "tags": ["H\u2082SO\u2084", "HCl", "H\u2083PO\u2084", "Brine"],
+            "specs": [{ "label": "Max Temp", "value": "80\u00b0C" }, { "label": "Thickness", "value": "3\u201312mm" }]
+          },
+          {
+            "symbol": "IIR",
+            "title": "Butyl Rubber",
+            "subtitle": "Isobutylene-Isoprene",
+            "description": "Superior resistance to oxidising acids and excellent gas impermeability. Ideal for mixed acid environments and elevated temperatures.",
+            "tags": ["HNO\u2083", "H\u2082CrO\u2084", "Mixed Acids"],
+            "specs": [{ "label": "Max Temp", "value": "120\u00b0C" }, { "label": "Thickness", "value": "3\u20138mm" }]
+          },
+          {
+            "symbol": "CSM",
+            "title": "CSM (Hypalon)",
+            "subtitle": "Chlorosulphonated PE",
+            "description": "Broad chemical resistance with excellent weathering and ozone performance. The go-to for FGD systems in power plants.",
+            "tags": ["FGD", "Chlorine", "Ozone", "UV"],
+            "specs": [{ "label": "Max Temp", "value": "130\u00b0C" }, { "label": "Thickness", "value": "3\u20136mm" }]
+          },
+          {
+            "symbol": "EP",
+            "title": "EPDM",
+            "subtitle": "Ethylene Propylene Diene",
+            "description": "Outstanding resistance to steam, hot water, and dilute acids. Excellent flexibility at low temperatures. Widely used in water treatment.",
+            "tags": ["Steam", "Alkalis", "Dilute Acids"],
+            "specs": [{ "label": "Max Temp", "value": "150\u00b0C" }, { "label": "Thickness", "value": "3\u201310mm" }]
+          }
+        ]
+      },
+      "gallery": {
+        "title_html": "Applied <em>protection</em> in the field",
+        "slides": [
+          { "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=450&q=75&fit=crop", "tag": "NR Lining", "text": "Manual Application \u2014 Hot Vulcanisation", "sub": "In-Shop \u00b7 HAW Germany" },
+          { "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop", "tag": "QC", "text": "Spark Testing \u2014 Holiday Detection", "sub": "100% Coverage \u00b7 10kV/mm" },
+          { "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop&crop=center", "tag": "CSM", "text": "FGD Absorber Interior", "sub": "600MW Power Plant \u00b7 SE Asia" },
+          { "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop", "tag": "Prep", "text": "Abrasive Blast Cleaning", "sub": "Sa 2\u00bd \u00b7 50\u201375\u03bcm Profile" },
+          { "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop", "tag": "Cure", "text": "Autoclave Vulcanisation", "sub": "140\u2013160\u00b0C \u00b7 3\u20135 bar" }
+        ]
+      },
+      "process_timeline": {
+        "overline": "Application Process",
+        "title_html": "Seven steps to a <em>defect-free</em> lining",
+        "description": "Every lining follows a controlled process from surface inspection to final spark testing. No shortcuts.",
+        "stat_big": "100%",
+        "stat_label": "Spark test coverage",
+        "steps": [
+          { "num": "Step 01", "title": "Surface Inspection", "description": "Incoming steel surface assessed for weld quality, sharp edges, and surface profile. All weld grinding and corner radiusing completed before blasting.", "specs": [] },
+          { "num": "Step 02", "title": "Abrasive Blast Cleaning", "description": "Steel blasted to Sa 2\u00bd (ISO 8501-1) with angular grit to achieve 50\u201375\u03bcm anchor profile.", "specs": ["Sa 2\u00bd", "50\u201375\u03bcm", "ISO 8501-1"] },
+          { "num": "Step 03", "title": "Primer Application", "description": "Bonding agent applied within 4 hours of blasting. Two-coat system chemically matched to the specific elastomer.", "specs": [] },
+          { "num": "Step 04", "title": "Sheet Laying & Consolidation", "description": "Calendered rubber sheet hand-applied with roller consolidation to eliminate trapped air. Seams overlapped and stitched.", "specs": [] },
+          { "num": "Step 05", "title": "Vulcanisation", "description": "Hot vulcanisation via autoclave or open cure. Temperature, pressure, and time monitored by data loggers.", "specs": ["140\u2013160\u00b0C", "3\u20135 bar", "Data-logged"] },
+          { "num": "Step 06", "title": "Spark Testing", "description": "100% holiday detection at specified voltage per lining thickness. Every square centimetre tested.", "specs": ["10kV per mm", "100% coverage"] },
+          { "num": "Step 07", "title": "Final Inspection & Documentation", "description": "Hardness, thickness, adhesion pull-off tests. Complete documentation with test certificates and cure records.", "specs": [] }
+        ]
+      },
+      "specs_table": {
+        "overline": "Chemical Resistance",
+        "title_html": "What resists <em>what</em>",
+        "description": "Quick reference guide. For specific concentrations and temperatures, contact our corrosion engineers.",
+        "columns": ["Chemical Environment", "Natural Rubber", "Butyl (IIR)", "CSM", "EPDM"],
+        "rows": [
+          ["Sulphuric Acid (\u226470%)", "rating_a", "rating_a", "rating_b", "rating_b"],
+          ["Hydrochloric Acid", "rating_a", "rating_a", "rating_b", "rating_b"],
+          ["Nitric Acid", "rating_x", "rating_a", "rating_b", "rating_c"],
+          ["Phosphoric Acid", "rating_a", "rating_a", "rating_a", "rating_b"],
+          ["Sodium Hydroxide", "rating_b", "rating_b", "rating_b", "rating_a"],
+          ["Chlorine / Hypochlorite", "rating_x", "rating_c", "rating_a", "rating_b"],
+          ["FGD Slurry", "rating_b", "rating_b", "rating_a", "rating_a"],
+          ["Steam / Hot Water", "rating_c", "rating_b", "rating_b", "rating_a"]
+        ],
+        "rating_labels": { "rating_a": "Excellent", "rating_b": "Good", "rating_c": "Limited", "rating_x": "\u2014" }
+      },
+      "case_study": {
+        "bg_image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1800&h=1000&fit=crop",
+        "tag": "Case Study",
+        "title_html": "600MW FGD Absorber \u2014<br>Full CSM <em>Lining</em> Package",
+        "description": "Complete rubber lining of a 16m diameter FGD absorber for a coal-fired power plant in Southeast Asia. 2,400m\u00b2 completed in 8 weeks \u2014 zero defects on final spark test.",
+        "stats": [
+          { "num": "2,400", "unit": "m\u00b2", "label": "Total Lined Area" },
+          { "num": "16", "unit": "m", "label": "Vessel Diameter" },
+          { "num": "0", "unit": "", "label": "Post-Cure Defects" }
+        ]
+      },
+      "cta": {
+        "title_html": "Need corrosion <em>protection?</em>",
+        "description": "Share your process conditions and we'll specify the right lining system."
+      },
+      "sticky_bar": {
+        "name": "Rubber Linings",
+        "contact": "contactus@jasmino.com \u00b7 +91 22 2740 2533"
+      }
+    },
+    {
       "id": "process-plant-design",
       "filename": "process-plant-design.html",
       "page_title": "Process & Plant Design \u2014 Jasmino Engineering Design",
@@ -53,7 +198,7 @@
         "title_html": "Process & Plant<br><em>Design</em>",
         "lead": "Complete plant engineering from feasibility studies through detailed 3D modelling \u2014 with fabrication constraints built into every design decision from day one.",
         "hero_num": "01",
-        "hero_photo_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "SP3D",
@@ -142,7 +287,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Engineering Office",
         "title_html": "Where designs become <em>reality</em>",
         "caption": "Jasmino Engineering \u00b7 India \u00b7 3D Modelling Centre"
@@ -245,31 +390,31 @@
         "title_html": "Engineering in <em>action</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=450&q=75&fit=crop",
             "tag": "3D Model",
             "text": "Complete Plant Model \u2014 SP3D",
             "sub": "Chemical Plant \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "Fabrication",
             "text": "Design-to-Shop Floor Transfer",
             "sub": "Zero Re-interpretation"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Review",
             "text": "Client Design Review Session",
             "sub": "Virtual Walkthrough \u00b7 Pre-Build"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "P&ID",
             "text": "Piping & Instrumentation Development",
             "sub": "Detailed Engineering Phase"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&h=450&q=75&fit=crop",
             "tag": "Delivery",
             "text": "Commissioned Plant \u2014 Operational",
             "sub": "Fertilizer Complex \u00b7 SE Asia"
@@ -457,7 +602,7 @@
         "title_html": "Equipment<br><em>Design</em>",
         "lead": "Pressure vessels, heat exchangers, reactors, columns, and storage tanks \u2014 engineered to international codes with fabrication and lining requirements designed in from the start.",
         "hero_num": "02",
-        "hero_photo_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "ASME",
@@ -545,7 +690,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Design Office",
         "title_html": "Where code meets <em>craft</em>",
         "caption": "Jasmino Engineering \u00b7 Equipment Design Team"
@@ -645,31 +790,31 @@
         "title_html": "Designed & <em>delivered</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=450&q=75&fit=crop",
             "tag": "Vessel",
             "text": "Large Pressure Vessel \u2014 ASME VIII",
             "sub": "Chemical Plant \u00b7 Middle East"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Heat Exchanger",
             "text": "Shell & Tube Bundle \u2014 TEMA C",
             "sub": "Petrochemical \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Reactor",
             "text": "Agitated Reactor \u2014 Rubber Lined",
             "sub": "Fertilizer Plant \u00b7 Africa"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&h=450&q=75&fit=crop",
             "tag": "Column",
             "text": "Absorption Column \u2014 FRP Internals",
             "sub": "Water Treatment \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop",
             "tag": "Tank",
             "text": "API 650 Storage Tank \u2014 5000m\u00b3",
             "sub": "Chemical Storage \u00b7 SE Asia"
@@ -846,7 +991,7 @@
         "title_html": "Piping<br><em>Design</em>",
         "lead": "3D piping layout, stress analysis, and isometric extraction \u2014 all from the same SP3D model that drives our fabrication. Zero translation between design and shop floor.",
         "hero_num": "03",
-        "hero_photo_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "SP3D",
@@ -932,7 +1077,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "3D Model",
         "title_html": "Intelligent piping in <em>three dimensions</em>",
         "caption": "SP3D Model \u00b7 Clash-Free \u00b7 Auto ISO Extraction"
@@ -1034,31 +1179,31 @@
         "title_html": "Piping <em>delivered</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=450&q=75&fit=crop",
             "tag": "3D Model",
             "text": "Full Plant Piping Model \u2014 SP3D",
             "sub": "Chemical Complex \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "Fabrication",
             "text": "Pipe Spool Fabrication from 3D",
             "sub": "In-House \u00b7 Jasmino India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Stress",
             "text": "CAESAR II Stress Model",
             "sub": "High-Temperature Steam Line"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Site",
             "text": "Installed Piping \u2014 Commissioning",
             "sub": "Power Plant \u00b7 SE Asia"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop",
             "tag": "ISO",
             "text": "Auto-Extracted Isometrics",
             "sub": "SP3D \u2192 Shop Floor"
@@ -1224,7 +1369,7 @@
         "title_html": "Water<br><em>Treatment</em>",
         "lead": "Complete water and wastewater treatment plant engineering \u2014 from process design through equipment supply. ETP, STP, DM, RO, UF, and zero liquid discharge systems.",
         "hero_num": "04",
-        "hero_photo_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "ETP/STP",
@@ -1314,7 +1459,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Delivered Project",
         "title_html": "Clean water, <em>engineered</em> right",
         "caption": "ZLD System \u00b7 Chemical Plant \u00b7 India"
@@ -1417,31 +1562,31 @@
         "title_html": "Water treatment <em>delivered</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=450&q=75&fit=crop",
             "tag": "ETP",
             "text": "Effluent Treatment Plant",
             "sub": "200 m\u00b3/day \u00b7 Chemical"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "RO",
             "text": "RO Plant \u2014 Brackish Water",
             "sub": "50 m\u00b3/hr \u00b7 Pharma"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "ZLD",
             "text": "Zero Liquid Discharge System",
             "sub": "Textile \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "FRP",
             "text": "FRP Vessels \u2014 In-House",
             "sub": "DM Plant Equipment"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&h=450&q=75&fit=crop",
             "tag": "Commission",
             "text": "Commissioning & Performance Test",
             "sub": "STP \u00b7 Food & Beverage"
@@ -1611,7 +1756,7 @@
         "title_html": "Steel<br><em>Equipment</em>",
         "lead": "Pressure vessels, heat exchangers, reactors, columns, and storage tanks fabricated to ASME, API, and PED standards \u2014 on one of the largest integrated shop floors in the sector.",
         "hero_num": "01",
-        "hero_photo_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "80K+",
@@ -1692,7 +1837,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Shop Floor",
         "title_html": "Heavy fabrication, <em>precision</em> standards",
         "caption": "Jasmino India \u00b7 80,000+ m\u00b2 \u00b7 ASME U & R Stamped"
@@ -1792,31 +1937,31 @@
         "title_html": "Built to <em>code</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=450&q=75&fit=crop",
             "tag": "Vessel",
             "text": "Pressure Vessel \u2014 Hydrotest",
             "sub": "ASME VIII \u00b7 80 bar \u00b7 SS316"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Rolling",
             "text": "4m Plate Rolling",
             "sub": "50mm Plate \u00b7 Carbon Steel"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Welding",
             "text": "SAW Longitudinal Weld",
             "sub": "Auto Welding \u00b7 RT Inspected"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop",
             "tag": "PWHT",
             "text": "In-House Stress Relieving",
             "sub": "Post-Weld Heat Treatment"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&h=450&q=75&fit=crop",
             "tag": "Dispatch",
             "text": "Equipment for Dispatch",
             "sub": "Heavy Transport \u00b7 Export"
@@ -1996,7 +2141,7 @@
         "title_html": "Plastic & FRP<br><em>Equipment</em>",
         "lead": "Corrosion-resistant equipment in fibre-reinforced plastic, polypropylene, PVDF, HDPE, and PVC \u2014 for environments where metal won't survive.",
         "hero_num": "02",
-        "hero_photo_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "FRP",
@@ -2076,7 +2221,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "FRP Workshop",
         "title_html": "Composite fabrication at <em>scale</em>",
         "caption": "Jasmino India \u00b7 FRP Division \u00b7 50,000+ m\u00b2"
@@ -2176,31 +2321,31 @@
         "title_html": "Composite equipment <em>in production</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&h=450&q=75&fit=crop",
             "tag": "FRP Vessel",
             "text": "Large FRP Tank \u2014 Filament Wound",
             "sub": "6m Dia \u00b7 Chemical Storage"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "PP Tank",
             "text": "PP Welded Tank \u2014 Plating Line",
             "sub": "DVS Certified"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Scrubber",
             "text": "FRP Scrubber \u2014 Fume Extraction",
             "sub": "Chemical \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop",
             "tag": "Duct",
             "text": "FRP Ducting \u2014 FGD",
             "sub": "Power Plant \u00b7 Africa"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&h=450&q=75&fit=crop",
             "tag": "Dual Lam",
             "text": "PVDF/FRP Dual Laminate",
             "sub": "Pharma \u00b7 Europe"
@@ -2376,7 +2521,7 @@
         "title_html": "Plastic<br><em>Linings</em>",
         "lead": "Fluoropolymer and thermoplastic barriers for extreme environments \u2014 where rubber can't go. PFA, PTFE, PVDF, PP, and PE by rotolining, loose lining, and welded sheet.",
         "hero_num": "02",
-        "hero_photo_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "260\u00b0C",
@@ -2465,7 +2610,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Application",
         "title_html": "Fluoropolymer <em>precision</em>",
         "caption": "HAW Linings \u00b7 Germany \u00b7 PFA Rotolining Facility"
@@ -2566,31 +2711,31 @@
         "title_html": "Plastic linings <em>in action</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=450&q=75&fit=crop",
             "tag": "PFA",
             "text": "PFA Rotolining \u2014 Reactor",
             "sub": "Seamless \u00b7 HAW Germany"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=500&h=450&q=75&fit=crop",
             "tag": "PTFE",
             "text": "PTFE Loose Lining \u2014 Column",
             "sub": "Chemical \u00b7 Middle East"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "PP",
             "text": "PP Welded Lining \u2014 Tank",
             "sub": "Acid Service \u00b7 India"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "QC",
             "text": "Spark Testing \u2014 Holiday Detection",
             "sub": "100% Coverage"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "ECTFE",
             "text": "ECTFE Spray Application",
             "sub": "Valve Internals \u00b7 Pharma"
@@ -2764,7 +2909,7 @@
         "title_html": "Coatings & Resin<br><em>Systems</em>",
         "lead": "Spray, brush, and trowel-applied protective coatings for tanks, floors, bunds, and secondary containment \u2014 from vinyl ester flake linings to high-build epoxy systems.",
         "hero_num": "03",
-        "hero_photo_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "4",
@@ -2851,7 +2996,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Field Application",
         "title_html": "On-site protection, <em>shop-floor</em> standards",
         "caption": "Coating Application \u00b7 Chemical Tank Farm \u00b7 India"
@@ -2951,31 +3096,31 @@
         "title_html": "Coatings <em>applied</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=450&q=75&fit=crop",
             "tag": "VE Flake",
             "text": "Vinyl Ester Flake Lining \u2014 Tank",
             "sub": "Chemical Storage \u00b7 6mm DFT"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "Epoxy",
             "text": "Epoxy Novolac \u2014 Immersion",
             "sub": "Acid Tank Interior"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Bund",
             "text": "Bund Lining \u2014 Vinyl Ester",
             "sub": "Secondary Containment"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Floor",
             "text": "Chemical Resistant Flooring",
             "sub": "Epoxy \u00b7 Warehouse"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop",
             "tag": "Inspection",
             "text": "DFT Verification \u2014 NACE",
             "sub": "100% Inspected"
@@ -3154,7 +3299,7 @@
         "title_html": "Inspection<br>& <em>Repair</em>",
         "lead": "Lining condition assessment, holiday detection, thickness measurement, and on-site repair \u2014 extending the service life of rubber, plastic, and coating systems across operating plants.",
         "hero_num": "04",
-        "hero_photo_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "24/7",
@@ -3242,7 +3387,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "On-Site Inspection",
         "title_html": "Finding problems <em>before</em> they find you",
         "caption": "Lining Inspection \u00b7 Holiday Detection \u00b7 Operating Plant"
@@ -3343,31 +3488,31 @@
         "title_html": "Inspection & repair <em>in the field</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=600&h=450&q=75&fit=crop",
             "tag": "Holiday Test",
             "text": "High-Voltage Holiday Detection",
             "sub": "Rubber Lining \u00b7 FGD Absorber"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=500&h=450&q=75&fit=crop",
             "tag": "Thickness",
             "text": "Ultrasonic Thickness Measurement",
             "sub": "Coating System \u00b7 Tank Farm"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "Repair",
             "text": "Rubber Patch Repair \u2014 On-Site",
             "sub": "Chemical Reactor \u00b7 Shutdown"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Report",
             "text": "Condition Assessment Report",
             "sub": "Annual Inspection Program"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=450&q=75&fit=crop",
             "tag": "Emergency",
             "text": "Emergency Lining Repair",
             "sub": "24/7 Response \u00b7 Minimise Downtime"
@@ -3544,7 +3689,7 @@
         "title_html": "Custom<br><em>Compounds</em>",
         "lead": "Engineered rubber compounds developed in our R&D laboratory \u2014 from natural rubber to advanced fluoroelastomers. 2,000+ proven formulations across four decades of compounding expertise.",
         "hero_num": "01",
-        "hero_photo_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "2,000+",
@@ -3627,7 +3772,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "R&D Laboratory",
         "title_html": "Where formulations are <em>proven</em>",
         "caption": "Jasmino R&D Lab \u00b7 Compound Testing \u00b7 India"
@@ -3727,31 +3872,31 @@
         "title_html": "Compounding <em>in action</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=450&q=75&fit=crop",
             "tag": "Lab",
             "text": "R&D Laboratory \u2014 Formulation",
             "sub": "Compound Development"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Mixing",
             "text": "Banbury Mixer \u2014 Production",
             "sub": "Batch Compounding"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "Testing",
             "text": "Tensile Testing \u2014 QC Lab",
             "sub": "Every Batch Tested"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=500&h=450&q=75&fit=crop",
             "tag": "Sheet",
             "text": "Calendered Rubber Sheet",
             "sub": "Lining Compound \u00b7 Ready"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Ageing",
             "text": "Accelerated Ageing Test",
             "sub": "Chemical Immersion \u00b7 1000hr"
@@ -3941,7 +4086,7 @@
         "title_html": "Engineered<br><em>Products</em>",
         "lead": "Custom moulded, extruded, and fabricated rubber products \u2014 from expansion joints and gaskets to wear-resistant liners and vibration mounts. Engineered for your specific application.",
         "hero_num": "02",
-        "hero_photo_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=1200&fit=crop&crop=center",
+        "hero_photo_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=533&q=75&fit=crop&crop=center",
         "stats": [
           {
             "num": "Custom",
@@ -4024,7 +4169,7 @@
         ]
       },
       "evidence_strip": {
-        "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1800&h=800&fit=crop&crop=center",
+        "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=356&q=75&fit=crop&crop=center",
         "tag": "Production",
         "title_html": "Custom rubber products at <em>scale</em>",
         "caption": "Jasmino India \u00b7 Moulding & Extrusion Facility"
@@ -4128,31 +4273,31 @@
         "title_html": "Products <em>delivered</em>",
         "slides": [
           {
-            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=450&q=75&fit=crop",
             "tag": "Expansion Joint",
             "text": "Rubber Expansion Joint \u2014 FGD",
             "sub": "3m Diameter \u00b7 Butyl"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&h=450&q=75&fit=crop",
             "tag": "Moulding",
             "text": "Compression Moulding \u2014 Gaskets",
             "sub": "Custom Tooling \u00b7 In-House"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&h=450&q=75&fit=crop",
             "tag": "Wear Liner",
             "text": "Chute Liners \u2014 Natural Rubber",
             "sub": "Mining \u00b7 Abrasion Resistant"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=500&h=450&q=75&fit=crop",
             "tag": "Extrusion",
             "text": "Extruded Profiles \u2014 Sealing",
             "sub": "Continuous \u00b7 Custom Profile"
           },
           {
-            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1000&h=900&fit=crop",
+            "image_url": "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=500&h=450&q=75&fit=crop",
             "tag": "Bridge Bearing",
             "text": "Structural Bearings \u2014 Bridge",
             "sub": "Infrastructure \u00b7 Neoprene"

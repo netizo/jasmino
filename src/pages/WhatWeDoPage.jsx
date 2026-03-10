@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ScrollReveal from '../components/ScrollReveal';
+import GsapReveal from '../components/GsapReveal';
 import HeroParticles from '../components/HeroParticles';
+import HeroScene from '../components/HeroScene';
 import '../styles/what-we-do-page.css';
 
 /* ─── Integration model data ─── */
@@ -40,7 +41,7 @@ const modelTabs = [
     pills: [
       { label: 'Rubber Linings', to: '/what-we-do/corrosion-protection/rubber-linings' },
       { label: 'Plastic Linings', to: '/what-we-do/corrosion-protection/plastic-linings' },
-      { label: 'Coatings & Resin', to: '/what-we-do/corrosion-protection/coatings-resin' },
+      { label: 'Coatings & Resin', to: '/what-we-do/corrosion-protection/coatings-resin-systems' },
       { label: 'Inspection & Repair', to: '/what-we-do/corrosion-protection/inspection-repair' },
     ],
     handoffLabel: 'Feeds into next stage',
@@ -74,12 +75,12 @@ const modelTabs = [
 
 /* ─── Gallery data ─── */
 const galleryCards = [
-  { img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1400&h=900&fit=crop', tag: 'ENG', tagBg: 'rgba(27,75,143,0.8)', title: '3D Plant Model \u2014 SP3D', sub: 'Chemical Complex \u00B7 Process Engineering' },
-  { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1400&h=900&fit=crop', tag: 'MFG', tagBg: 'rgba(20,50,90,0.8)', title: 'Pressure Vessel Fabrication', sub: 'ASME U-Stamp \u00B7 130,000 m\u00B2 Shop Floor' },
-  { img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1400&h=900&fit=crop', tag: 'COR', tagBg: 'rgba(26,63,115,0.8)', title: 'Rubber Lining Application', sub: 'CSM Lining \u00B7 Autoclave Vulcanisation' },
-  { img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1400&h=900&fit=crop', tag: 'RUB', tagBg: 'rgba(15,39,68,0.8)', title: 'Compound Development Lab', sub: '2,000+ Proven Formulations' },
-  { img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1400&h=900&fit=crop', tag: 'QA', tagBg: 'rgba(4,229,134,0.7)', title: 'Final Inspection & Delivery', sub: 'Single Documentation Set \u00B7 One Accountability' },
-  { img: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1400&h=900&fit=crop', tag: 'ALL', tagBg: 'rgba(27,75,143,0.8)', title: 'Delivered \u2014 FGD Absorber', sub: '4 Divisions \u00B7 1 Project \u00B7 0 Handoffs' },
+  { img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=700&h=450&q=75&fit=crop', tag: 'ENG', tagBg: 'rgba(27,75,143,0.8)', title: '3D Plant Model \u2014 SP3D', sub: 'Chemical Complex \u00B7 Process Engineering' },
+  { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=700&h=450&q=75&fit=crop', tag: 'MFG', tagBg: 'rgba(20,50,90,0.8)', title: 'Pressure Vessel Fabrication', sub: 'ASME U-Stamp \u00B7 130,000 m\u00B2 Shop Floor' },
+  { img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=700&h=450&q=75&fit=crop', tag: 'COR', tagBg: 'rgba(26,63,115,0.8)', title: 'Rubber Lining Application', sub: 'CSM Lining \u00B7 Autoclave Vulcanisation' },
+  { img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&h=450&q=75&fit=crop', tag: 'RUB', tagBg: 'rgba(15,39,68,0.8)', title: 'Compound Development Lab', sub: '2,000+ Proven Formulations' },
+  { img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&h=450&q=75&fit=crop', tag: 'QA', tagBg: 'rgba(29,185,84,0.7)', title: 'Final Inspection & Delivery', sub: 'Single Documentation Set \u00B7 One Accountability' },
+  { img: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=700&h=450&q=75&fit=crop', tag: 'ALL', tagBg: 'rgba(27,75,143,0.8)', title: 'Delivered \u2014 FGD Absorber', sub: '4 Divisions \u00B7 1 Project \u00B7 0 Handoffs' },
 ];
 
 /* ─── Capability matrix data ─── */
@@ -109,8 +110,16 @@ const CornerMark = ({ d, className }) => (
 export default function WhatWeDoPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
+  const [heroPhase, setHeroPhase] = useState(0);
   const galleryRef = useRef(null);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroPhase((p) => (p + 1) % 3);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
 
   /* ─── Gallery drag-to-scroll ─── */
   const onMouseDown = useCallback((e) => {
@@ -179,6 +188,9 @@ export default function WhatWeDoPage() {
           mouseMode="repel"
           maxParticles={100}
         />
+        <div className="hero-visual" aria-hidden="true">
+          <HeroScene phase={heroPhase} />
+        </div>
         <div className="hero-grid eng-grid" />
         <CornerMark d="M2 8V2h6" className="cm-tl" />
         <CornerMark d="M22 8V2h-6" className="cm-tr" />
@@ -187,34 +199,34 @@ export default function WhatWeDoPage() {
 
         <div className="hero-content">
           <div className="hero-inner">
-            <ScrollReveal>
+            <GsapReveal>
               <div className="hero-breadcrumb">
                 <Link to="/">Home</Link>
                 <span className="sep">/</span>
                 <span className="cur">What We Do</span>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={80}>
+            <GsapReveal delay={0.08}>
               <div className="hero-badge">
                 <div className="hero-badge-dot" />
                 4 Divisions &middot; 12 Services &middot; 1 Company
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={160}>
+            <GsapReveal delay={0.16}>
               <h1 className="hero-title">
                 The only company that<br/><em>designs, builds, &amp; protects</em><br/>under one roof.
               </h1>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={240}>
+            <GsapReveal delay={0.24}>
               <p className="hero-desc">
                 Most projects need 3&ndash;4 vendors. Each handoff introduces delays, miscommunication, and finger-pointing. We eliminated the handoffs &mdash; and built four divisions that share data, tooling, and accountability.
               </p>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={320}>
+            <GsapReveal delay={0.32}>
               <div className="hero-actions">
                 <a className="btn btn-green" href="#integration">
                   See How It Works
@@ -222,16 +234,16 @@ export default function WhatWeDoPage() {
                 </a>
                 <Link className="btn btn-outline-lt" to="/contact">Contact Engineering</Link>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
 
-            <ScrollReveal delay={320}>
+            <GsapReveal delay={0.32}>
               <div className="hero-stats">
                 <div><div className="hero-stat-num">4</div><div className="hero-stat-label">Divisions</div></div>
                 <div><div className="hero-stat-num">12</div><div className="hero-stat-label">Services</div></div>
                 <div><div className="hero-stat-num">1</div><div className="hero-stat-label">Contract</div></div>
                 <div><div className="hero-stat-num">0</div><div className="hero-stat-label">Handoffs</div></div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </div>
 
@@ -246,29 +258,32 @@ export default function WhatWeDoPage() {
         <div className="integration-grid eng-grid" />
         <div className="integration-inner contain">
           <div style={{ textAlign: 'center', marginBottom: 8 }}>
-            <ScrollReveal>
+            <GsapReveal>
               <div className="overline overline-center">How It Works</div>
-            </ScrollReveal>
-            <ScrollReveal delay={80}>
+            </GsapReveal>
+            <GsapReveal delay={0.08}>
               <h2 className="sec-title" style={{ color: 'var(--g900)', maxWidth: 540, margin: '0 auto 14px' }}>
                 Click each stage to see how <em>capabilities</em> connect
               </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={160}>
+            </GsapReveal>
+            <GsapReveal delay={0.16}>
               <p className="sec-desc" style={{ margin: '0 auto' }}>
                 Every stage feeds data, constraints, and context to the next. No re-interpretation. No translation loss.
               </p>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
 
-          <ScrollReveal delay={240}>
+          <GsapReveal delay={0.24}>
             <div className="model">
               <div className="model-nav">
                 {modelTabs.map((tab, i) => (
                   <div
                     key={i}
                     className={`model-tab${activeTab === i ? ' active' : ''}`}
+                    role="button"
+                    tabIndex={0}
                     onClick={() => setActiveTab(i)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveTab(i); } }}
                   >
                     <div className="model-tab-num">{tab.num}</div>
                     <div className="model-tab-title">{tab.title}</div>
@@ -297,7 +312,7 @@ export default function WhatWeDoPage() {
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </GsapReveal>
         </div>
       </section>
 
@@ -306,15 +321,15 @@ export default function WhatWeDoPage() {
         <div className="evidence-header contain">
           <div className="evidence-header-row">
             <div>
-              <ScrollReveal><div className="overline">Proof, Not Promises</div></ScrollReveal>
-              <ScrollReveal delay={80}><h2 className="sec-title">See what <em>integration</em> looks like</h2></ScrollReveal>
-              <ScrollReveal delay={160}>
+              <GsapReveal><div className="overline">Proof, Not Promises</div></GsapReveal>
+              <GsapReveal delay={0.08}><h2 className="sec-title">See what <em>integration</em> looks like</h2></GsapReveal>
+              <GsapReveal delay={0.16}>
                 <p className="sec-desc" style={{ marginTop: 8 }}>
                   Real projects, real photos. Every image shows a different division&rsquo;s contribution to the same delivery chain.
                 </p>
-              </ScrollReveal>
+              </GsapReveal>
             </div>
-            <ScrollReveal delay={240}>
+            <GsapReveal delay={0.24}>
               <div className="gallery-controls">
                 <span className="gallery-counter">{activeGalleryIdx + 1} / {galleryCards.length}</span>
                 <button className="gallery-btn" onClick={() => scrollGallery(-1)}>
@@ -324,7 +339,7 @@ export default function WhatWeDoPage() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </div>
 
@@ -339,7 +354,7 @@ export default function WhatWeDoPage() {
           {galleryCards.map((card, i) => (
             <div className="gallery-card" key={i}>
               <img src={card.img} alt={card.title} loading="lazy" />
-
+              <div className="gallery-card-overlay" />
               <div className="gallery-card-tag" style={{ background: card.tagBg, color: card.tag === 'QA' ? 'var(--dark)' : '#fff' }}>
                 {card.tag}
               </div>
@@ -356,18 +371,22 @@ export default function WhatWeDoPage() {
             <div
               key={i}
               className={`gallery-dot${activeGalleryIdx === i ? ' active' : ''}`}
+              role="button"
+              tabIndex={0}
               onClick={() => scrollToGalleryIdx(i)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToGalleryIdx(i); } }}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
 
         {/* Project cards */}
         <div className="projects contain">
-          <ScrollReveal>
+          <GsapReveal>
             <div className="projects-label">Featured Projects &mdash; Multiple Divisions Involved</div>
-          </ScrollReveal>
+          </GsapReveal>
           <div className="projects-grid">
-            <ScrollReveal delay={80}>
+            <GsapReveal delay={0.08}>
               <div className="proj-card">
                 <div className="proj-header">
                   <div>
@@ -391,8 +410,8 @@ export default function WhatWeDoPage() {
                   <div className="proj-stat"><div className="proj-stat-num">0</div><div className="proj-stat-label">Defects</div></div>
                 </div>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={160}>
+            </GsapReveal>
+            <GsapReveal delay={0.16}>
               <div className="proj-card">
                 <div className="proj-header">
                   <div>
@@ -415,7 +434,7 @@ export default function WhatWeDoPage() {
                   <div className="proj-stat"><div className="proj-stat-num">97%</div><div className="proj-stat-label">On-Time</div></div>
                 </div>
               </div>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
         </div>
       </section>
@@ -426,19 +445,19 @@ export default function WhatWeDoPage() {
         <div className="matrix-inner contain">
           <div className="matrix-header">
             <div>
-              <ScrollReveal><div className="overline">Capabilities</div></ScrollReveal>
-              <ScrollReveal delay={80}>
+              <GsapReveal><div className="overline">Capabilities</div></GsapReveal>
+              <GsapReveal delay={0.08}>
                 <h2 className="sec-title" style={{ color: 'var(--g900)' }}>What each division <em>delivers</em></h2>
-              </ScrollReveal>
+              </GsapReveal>
             </div>
-            <ScrollReveal delay={160}>
+            <GsapReveal delay={0.16}>
               <p className="sec-desc" style={{ textAlign: 'right' }}>
                 Click any row to jump to the service page for full specifications.
               </p>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
 
-          <ScrollReveal delay={240}>
+          <GsapReveal delay={0.24}>
             <div style={{ overflowX: 'auto' }}>
               <table className="matrix-table">
                 <thead>
@@ -467,13 +486,13 @@ export default function WhatWeDoPage() {
                 </tbody>
               </table>
             </div>
-          </ScrollReveal>
+          </GsapReveal>
         </div>
       </section>
 
       {/* ═══ CERTIFICATIONS STRIP ═══ */}
       <section className="certs-strip">
-        <ScrollReveal>
+        <GsapReveal>
           <div className="certs-strip-inner contain">
             <div className="certs-left">
               <div>
@@ -488,7 +507,7 @@ export default function WhatWeDoPage() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </Link>
           </div>
-        </ScrollReveal>
+        </GsapReveal>
       </section>
 
       {/* ═══ CTA ═══ */}
@@ -496,14 +515,14 @@ export default function WhatWeDoPage() {
         <div className="cta-grid eng-grid-dark" />
         <div className="cta-inner contain">
           <div>
-            <ScrollReveal>
+            <GsapReveal>
               <h2 className="cta-title">Ready to discuss your <em>project?</em></h2>
-            </ScrollReveal>
-            <ScrollReveal delay={80}>
+            </GsapReveal>
+            <GsapReveal delay={0.08}>
               <p className="cta-desc">Share your requirements. We&rsquo;ll show you how integration eliminates gaps.</p>
-            </ScrollReveal>
+            </GsapReveal>
           </div>
-          <ScrollReveal delay={160}>
+          <GsapReveal delay={0.16}>
             <div className="cta-actions">
               <Link className="btn btn-green" to="/contact">
                 Get in Touch
@@ -511,7 +530,7 @@ export default function WhatWeDoPage() {
               </Link>
               <Link className="btn btn-outline" to="/about/our-story">Download Brochure</Link>
             </div>
-          </ScrollReveal>
+          </GsapReveal>
         </div>
       </section>
     </div>
