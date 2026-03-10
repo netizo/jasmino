@@ -21,7 +21,7 @@
 .s6-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 80px 48px 64px;
+    padding: 100px 48px 64px;
     position: relative;
     z-index: 2;
     display: flex;
@@ -357,7 +357,7 @@
 /* ═══ Responsive ═══ */
 @media (max-width: 1024px) {
     .s6-inner {
-        padding: 64px 32px 52px;
+        padding: 72px 32px 52px;
     }
 
     .s6-h2 {
@@ -371,7 +371,7 @@
 
 @media (max-width: 768px) {
     .s6-inner {
-        padding: 48px 20px 40px;
+        padding: 56px 20px 40px;
     }
 
     .s6-h2 {

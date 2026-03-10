@@ -4,7 +4,7 @@
 .s2 {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 80px 48px 96px;
+  padding: 100px 48px 96px;
 }
 
 /* ── Section header ── */
@@ -497,7 +497,7 @@
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .s2 {
-    padding: 80px 32px 100px;
+    padding: 72px 32px 100px;
   }
 
   .s2-title {
@@ -520,7 +520,7 @@
 
 @media (max-width: 768px) {
   .s2 {
-    padding: 60px 20px 80px;
+    padding: 56px 20px 80px;
   }
 
   .s2-title {

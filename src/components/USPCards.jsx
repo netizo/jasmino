@@ -83,74 +83,45 @@ export default function USPCards() {
     const leftEls = '.usp-card-overline, .usp-card-headline, .usp-card-body, .usp-card-dots';
     const rightEls = '.usp-evidence';
 
-    // GPU-accelerated initial states
+    // Card starts hidden — entrance animation is scroll-triggered but separate from pin
     gsap.set(cardRef.current, {
-      y: 100, autoAlpha: 0, scale: 0.92, filter: 'blur(8px)', force3d: true,
+      y: 60, autoAlpha: 0, scale: 0.96, force3d: true,
     });
-    gsap.set(slides, { autoAlpha: 0, y: 40, scale: 0.96, filter: 'blur(6px)', force3d: true });
-    // First slide container visible but inner elements hidden for staggered reveal
-    if (slides[0]) gsap.set(slides[0], { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)' });
+    gsap.set(slides, { autoAlpha: 0, force3d: true });
+    if (slides[0]) gsap.set(slides[0], { autoAlpha: 1 });
 
-    // All inner elements start hidden
-    slides.forEach(slide => {
-      gsap.set(slide.querySelectorAll(leftEls), {
-        y: 24, autoAlpha: 0, filter: 'blur(4px)', force3d: true,
-      });
-      gsap.set(slide.querySelectorAll(rightEls), {
-        y: 30, autoAlpha: 0, filter: 'blur(5px)', force3d: true,
-      });
+    // Card entrance — triggers when card area scrolls into view (before pin starts)
+    gsap.to(cardRef.current, {
+      y: 0, autoAlpha: 1, scale: 1,
+      duration: 0.8, ease: smoothOut,
+      scrollTrigger: {
+        trigger: pinWrapperRef.current,
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: 0.6,
+      },
     });
 
+    // Pin timeline — starts when card hits top, entire timeline = slide transitions
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: sectionRef.current,
+        trigger: pinWrapperRef.current,
         start: 'top top',
-        end: 'bottom top',
+        end: '+=200%',
         scrub: 1.2,
         pin: pinWrapperRef.current,
         pinSpacing: true,
       },
     });
 
-    // ── CARD ENTRANCE — 20% of timeline for dramatic reveal ──
-    // Phase 1: Card shell rises into view
-    tl.to(cardRef.current, {
-      y: 0, autoAlpha: 1, scale: 1, filter: 'blur(0px)',
-      duration: 0.12, ease: smoothOut,
-    }, 0);
-
-    // Phase 2: First slide inner elements cascade in with stagger
-    if (slides[0]) {
-      tl.fromTo(slides[0].querySelectorAll('.usp-card-overline'),
-        { y: 24, autoAlpha: 0, filter: 'blur(4px)' },
-        { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.06, ease: smoothOut },
-        0.06)
-        .fromTo(slides[0].querySelectorAll('.usp-card-headline'),
-          { y: 28, autoAlpha: 0, filter: 'blur(4px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.06, ease: smoothOut },
-          0.08)
-        .fromTo(slides[0].querySelectorAll('.usp-card-body'),
-          { y: 24, autoAlpha: 0, filter: 'blur(4px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.06, ease: smoothOut },
-          0.10)
-        .fromTo(slides[0].querySelectorAll('.usp-card-dots'),
-          { y: 16, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.05, ease: smoothOut },
-          0.12)
-        .fromTo(slides[0].querySelectorAll(rightEls),
-          { y: 30, autoAlpha: 0, filter: 'blur(5px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.07, ease: smoothOut },
-          0.09);
-    }
-
-    // Slide transitions — blur crossfade with staggered inner elements
-    const step = 0.78 / USP_SLIDES.length;  // reduced from 0.88 since entrance takes 0.20
+    // Slide transitions — full timeline dedicated to crossfades
+    const step = 1 / USP_SLIDES.length;
     USP_SLIDES.forEach((_, index) => {
       if (index === 0) return;
       const prev = slides[index - 1];
       const next = slides[index];
-      const startAt = 0.22 + step * index;  // 0.22 = after card entrance completes
-      const t = step * 0.7;   // transition window — 70% of step for more breathing room
+      const startAt = step * index;
+      const t = step * 0.75;
 
       // ── EXIT previous slide ──
       // Left column exits first (top to bottom stagger)
@@ -207,10 +178,9 @@ export default function USPCards() {
 
     tl.eventCallback('onUpdate', () => {
       const p = tl.progress();
-      const stepSize = 0.78 / USP_SLIDES.length;
       let idx = 0;
       for (let i = 1; i <= USP_SLIDES.length; i++) {
-        if (p >= 0.22 + stepSize * i) idx = i;
+        if (p >= step * i) idx = i;
       }
       setActiveSlideIndex(Math.min(idx, USP_SLIDES.length - 1));
     });
@@ -246,16 +216,16 @@ export default function USPCards() {
       <div className="usp-bg-photo" aria-hidden="true" />
       <div className="usp-bg" aria-hidden="true" />
       <div className="usp-inner">
+        <div className="usp-header">
+          <div className="usp-overline">Why Jasmino</div>
+          <h2 className="usp-title">
+            The integrated <em>advantage</em>
+          </h2>
+          <p className="usp-subtitle">
+            Three principles that separate us from every other equipment supplier in the industry.
+          </p>
+        </div>
         <div className="usp-pin-wrapper" ref={pinWrapperRef}>
-          <div className="usp-header">
-            <div className="usp-overline">Why Jasmino</div>
-            <h2 className="usp-title">
-              The integrated <em>advantage</em>
-            </h2>
-            <p className="usp-subtitle">
-              Three principles that separate us from every other equipment supplier in the industry.
-            </p>
-          </div>
           <div className="usp-card-wrap">
             <div className="usp-card" ref={cardRef}>
             {/* Sizer: in-flow content for card height, hidden (RULE 1) */}

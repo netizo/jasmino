@@ -55,7 +55,7 @@
     z-index: 2;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 96px 48px 110px;
+    padding: 100px 48px 110px;
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -714,7 +714,7 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
     .s3-content {
-        padding: 80px 32px 96px;
+        padding: 72px 32px 96px;
     }
 
     .s3-title {
@@ -728,7 +728,7 @@
 
 @media (max-width: 768px) {
     .s3-content {
-        padding: 60px 20px 72px;
+        padding: 56px 20px 72px;
     }
 
     .s3-title {

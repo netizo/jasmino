@@ -15,14 +15,14 @@
 /* ─── SECTION ─── */
 .usp-section {
   position: relative;
-  padding: 120px 0 160px;
+  padding: 100px 0 160px;
   overflow: hidden;
   background: var(--navy);
   color: #fff;
 }
 
 .usp-section.usp-scroll-mode {
-  padding: 0 0 300px;
+  padding: 100px 0 300px;
   background: #050d18;
 }
 
@@ -88,7 +88,7 @@
   padding: 0 48px;
 }
 
-/* ─── SECTION HEADER (inside pin wrapper) ─── */
+/* ─── SECTION HEADER (scrolls away, outside pin wrapper) ─── */
 .usp-scroll-mode .usp-header {
   text-align: center;
   margin-bottom: 80px;
@@ -501,7 +501,7 @@
 
 /* ─── RESPONSIVE (RULE 3) ─── */
 @media (max-width: 1024px) {
-  .usp-section.usp-scroll-mode { padding: 0 0 240px; }
+  .usp-section.usp-scroll-mode { padding: 72px 0 240px; }
   .usp-pin-wrapper { padding: 28px 0 36px; }
   .usp-inner { padding: 0 32px; }
   .usp-scroll-mode .usp-card { padding: 48px 36px; }
@@ -516,7 +516,7 @@
 }
 
 @media (max-width: 768px) {
-  .usp-section.usp-scroll-mode { padding: 40px 0 60px; }
+  .usp-section.usp-scroll-mode { padding: 56px 0 60px; }
   .usp-pin-wrapper { padding: 20px 0 28px; }
   .usp-inner { padding: 0 20px; }
   .usp-scroll-mode .usp-card { padding: 36px 24px; }
