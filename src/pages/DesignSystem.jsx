@@ -85,7 +85,7 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
             <ColorSwatch name="Navy" variable="--navy" hex="#0C1B2E" />
             <ColorSwatch name="Dark" variable="--dark" hex="#0E2240" />
-            <ColorSwatch name="Blue" variable="--blue" hex="#1E4A7D" />
+            <ColorSwatch name="Blue" variable="--blue" hex="#2A6AAF" />
             <ColorSwatch name="Blue Bright" variable="--blue-bright" hex="#3474B8" />
             <ColorSwatch name="Green" variable="--green" hex="#2E8B57" />
             <ColorSwatch name="Green Light" variable="--green-light" hex="#3DA870" />

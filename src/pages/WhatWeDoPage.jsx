@@ -1,7 +1,9 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import GsapReveal from '../components/GsapReveal';
 import '../styles/what-we-do-page.css';
+
+const HeroScene = lazy(() => import('../components/HeroScene'));
 
 /* ─── Integration model data ─── */
 const modelTabs = [
@@ -172,7 +174,11 @@ export default function WhatWeDoPage() {
     <div className="wwd-page">
       {/* ═══ HERO ═══ */}
       <section className="hero">
-        <div className="hero-visual" aria-hidden="true" style={{ background: 'linear-gradient(135deg, var(--navy) 0%, #0d2847 50%, #0a1f38 100%)' }} />
+        <div className="hero-visual" aria-hidden="true">
+          <Suspense fallback={<div style={{ width: '100%', height: '100%', minHeight: 600, background: 'linear-gradient(135deg, rgba(27,75,143,0.06) 0%, rgba(13,40,71,0.08) 100%)' }} />}>
+            <HeroScene phase={0} />
+          </Suspense>
+        </div>
         <div className="hero-grid eng-grid" />
         <CornerMark d="M2 8V2h6" className="cm-tl" />
         <CornerMark d="M22 8V2h-6" className="cm-tr" />

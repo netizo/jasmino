@@ -1,0 +1,195 @@
+/* ===== Asset Manager — DEV ONLY (remove when done) ===== */
+
+.am-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.2);
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.4);
+  transition: transform .15s, background .15s;
+}
+.am-toggle:hover { transform: scale(1.1); background: #16213e; }
+.am-toggle.am-active { background: #e74c3c; border-color: #c0392b; }
+
+/* Toast */
+.am-toast {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 99999;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  animation: am-slide-in .25s ease-out;
+  max-width: 340px;
+  word-break: break-word;
+}
+.am-toast-uploading { background: #2980b9; }
+.am-toast-success { background: #27ae60; }
+.am-toast-error { background: #e74c3c; }
+
+@keyframes am-slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toolbar panel */
+.am-toolbar {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 99998;
+  width: 280px;
+  background: #1a1a2e;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+  font-family: 'Sora', sans-serif;
+  color: #fff;
+}
+.am-toolbar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.am-toolbar-title {
+  font-size: 14px;
+  font-weight: 600;
+  flex: 1;
+}
+.am-toolbar-count {
+  font-size: 11px;
+  opacity: .6;
+}
+.am-toolbar-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: .6;
+  padding: 0 4px;
+}
+.am-toolbar-btn:hover { opacity: 1; }
+
+.am-toolbar-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.am-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s;
+}
+.am-btn-add { background: #27ae60; color: #fff; }
+.am-btn-add:hover { background: #2ecc71; }
+.am-btn-scan { background: rgba(255,255,255,.1); color: #fff; }
+.am-btn-scan:hover { background: rgba(255,255,255,.2); }
+
+.am-toolbar-hint {
+  font-size: 11px;
+  opacity: .5;
+  line-height: 1.5;
+}
+.am-toolbar-hint kbd {
+  background: rgba(255,255,255,.15);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.am-minimized-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 99998;
+  background: #1a1a2e;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+
+/* Overlay on each asset */
+.am-overlay {
+  position: absolute;
+  z-index: 99997;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  cursor: pointer;
+  background: rgba(52, 152, 219, .08);
+  transition: background .15s, border-color .15s;
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.am-overlay:hover {
+  background: rgba(52, 152, 219, .2);
+  border-color: #2ecc71;
+}
+
+.am-overlay-badge {
+  background: rgba(0,0,0,.7);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.am-overlay:hover .am-overlay-badge { opacity: 1; }
+
+.am-overlay-label { font-size: 11px; }
+
+.am-overlay-path {
+  background: rgba(0,0,0,.7);
+  color: rgba(255,255,255,.7);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.am-overlay:hover .am-overlay-path { opacity: 1; }

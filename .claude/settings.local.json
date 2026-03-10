@@ -22,7 +22,8 @@
       "Bash(npm install:*)",
       "Bash(grep:*)",
       "Bash(npx vite:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(cd \"F:/Cursor/jasmino website/jasmino\" && npm run dev 2>&1 | head -20)"
     ]
   }
 }

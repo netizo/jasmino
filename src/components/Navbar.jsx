@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+﻿import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { divisions } from '../data/divisions';
 import logo from '../assets/logo.png';
@@ -303,7 +303,7 @@ export default function Navbar() {
             <div className="mega-top">
               <span className="mega-top-title">Our Four Divisions</span>
               <Link to="/what-we-do" className="mega-overview-link" onClick={closeAll}>
-                What We Do ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Overview
+                What We Do — Overview
                 <ArrowSmall />
               </Link>
             </div>

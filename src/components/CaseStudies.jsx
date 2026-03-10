@@ -38,7 +38,7 @@ export default function CaseStudies() {
                 style={{
                   backgroundImage: study.image
                     ? `url(${study.image})`
-                    : 'linear-gradient(135deg, #0C1B2E 0%, #1E4A7D 50%, #2E8B57 150%)',
+                    : 'linear-gradient(135deg, #0C1B2E 0%, #2A6AAF 50%, #2E8B57 150%)',
                 }}
               >
                 <div className="case-study-photo-overlay" />
