@@ -333,10 +333,11 @@ export default function HeroVariantA() {
             justifyContent: 'center',
             gap: 20,
             padding: '28px 24px',
-            background: 'rgba(11,29,52,0.45)',
+            background: 'rgba(11,29,52,0.25)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
+            borderTop: '1px solid rgba(255,255,255,0.04)',
+            color: 'rgba(12, 18, 32, 0.2)',
           }}
         >
           <span
@@ -358,7 +359,6 @@ export default function HeroVariantA() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 6,
                 color: 'rgba(255,255,255,0.6)',
                 padding: '10px 16px',
                 border: '1px solid rgba(255,255,255,0.08)',
@@ -373,7 +373,6 @@ export default function HeroVariantA() {
                 style={{ objectFit: 'contain', opacity: 0.9 }}
                 loading="lazy"
               />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{c}</span>
             </span>
           ))}
         </div>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { divisions } from '../data/divisions';
-import { useStagger } from '../hooks/useGsap';
+import { useGSAP } from '@gsap/react';
+import { gsap, ScrollTrigger } from '../hooks/useGsap';
 import '../styles/divisions.css';
 
 const DIVISION_PHOTOS = {
@@ -30,23 +31,48 @@ function getDivData(id) {
   return divisions.find(d => d.slug === SLUG_MAP[id]);
 }
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const Divisions = React.memo(() => {
-  const cardsRef = useStagger('.div-card', { stagger: 0.12, y: 40 });
+  const stackRef = useRef(null);
+
+  useGSAP(() => {
+    if (!stackRef.current || prefersReducedMotion()) return;
+    const cards = stackRef.current.querySelectorAll('.div-card');
+    const triggers = [];
+    cards.forEach((card) => {
+      const visual = card.querySelector('.div-visual-photo');
+      if (!visual) return;
+      const st = ScrollTrigger.create({
+        trigger: card,
+        start: 'top bottom',
+        end: 'top top',
+        scrub: 1.5,
+        onUpdate: (self) => {
+          gsap.set(visual, { scale: 0.98 + 0.02 * self.progress, transformOrigin: 'center center' });
+        },
+      });
+      triggers.push(st);
+    });
+    return () => triggers.forEach(t => t.kill());
+  }, { scope: stackRef, dependencies: [] });
 
   return (
-    <section className="eng-grid">
+    <section className="eng-grid div-sticky-section">
       <div className="s2">
         <div className="s2-header">
           <h2 className="s2-title">Four divisions, one<br /><em>integrated</em> model</h2>
           <p className="s2-subtitle">Every project benefits from design intelligence, manufacturing scale, and corrosion protection expertise working as one team.</p>
         </div>
-        <div className="div-cards-v2" ref={cardsRef}>
+        <div className="div-cards-v2 div-sticky-stack" ref={stackRef}>
           {CARDS.map((card) => {
             const data = getDivData(card.id);
             const isEng = card.id === 'eng';
 
             return (
-              <div key={card.id} className={`div-card div-card-${card.id}`}>
+              <div key={card.id} className="div-sticky-card-wrapper">
+                <div className={`div-card div-card-${card.id}`}>
                 {/* Photo/visual panel */}
                 {isEng ? (
                   <div
@@ -102,6 +128,7 @@ const Divisions = React.memo(() => {
                   <Link to={card.to} className="div-link">Explore capabilities →</Link>
                 </div>
               </div>
+            </div>
             );
           })}
         </div>

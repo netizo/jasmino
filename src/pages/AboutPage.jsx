@@ -359,9 +359,7 @@ export default function AboutPage() {
           <div className="cert-grid" ref={certGridRef}>
             {certs.map((c) => (
               <div key={c.name} className="cert-box">
-                {c.logoKey && <CertLogo certKey={c.logoKey} alt={c.name} width={56} height={32} style={{ marginBottom: 8 }} />}
-                <div className="cert-box-name">{c.name}</div>
-                <div className="cert-box-desc">{c.desc}</div>
+                {c.logoKey && <CertLogo certKey={c.logoKey} alt={c.name} width={56} height={32} />}
               </div>
             ))}
           </div>

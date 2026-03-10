@@ -382,12 +382,11 @@ export default function InfrastructurePage() {
                   <div className="cert-card" key={i}>
                     <div className="cert-logo">
                       {hasCertLogo(cert.logo) ? (
-                        <CertLogo certKey={cert.logo} alt={cert.logo} width={56} height={32} />
+                        <CertLogo certKey={cert.logo} alt={cert.name} width={56} height={32} />
                       ) : (
-                        cert.logo
+                        <span className="cert-fallback">{cert.logo}</span>
                       )}
                     </div>
-                    <div className="cert-name">{cert.name}</div>
                   </div>
                 ))}
               </div>

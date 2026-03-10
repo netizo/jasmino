@@ -596,9 +596,14 @@
   color: var(--g800);
 }
 
+.about-page .cert-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .about-page .cert-box img {
   display: block;
-  margin: 0 auto 8px;
   filter: brightness(0);
 }
 .about-page .cert-box:hover {
