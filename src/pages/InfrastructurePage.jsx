@@ -5,7 +5,6 @@ import GsapReveal from '../components/GsapReveal';
 import CertLogo from '../components/CertLogo';
 import { hasCertLogo } from '../data/certLogos';
 import CountUp from '../components/CountUp';
-import HeroParticles from '../components/HeroParticles';
 import { useGSAP } from '@gsap/react';
 import { gsap, useStagger } from '../hooks/useGsap';
 import '../styles/infrastructure-page.css';
@@ -115,10 +114,6 @@ export default function InfrastructurePage() {
         </div>
         <div className="hero-overlay" />
         <div className="hero-grid-ov eng-grid-dark" />
-        <div className="hero-grain" />
-        <div className="hero-canvas">
-          <HeroParticles maxParticles={90} />
-        </div>
         <div className="hero-flare" />
 
         <div className="hero-content" ref={heroRef}>
@@ -129,7 +124,6 @@ export default function InfrastructurePage() {
           </div>
 
           <div className="hero-badge">
-            <div className="hero-badge-dot" />
             {data.hero.badge}
           </div>
 
@@ -154,7 +148,6 @@ export default function InfrastructurePage() {
 
         <div className="hero-scroll">
           <span>Scroll</span>
-          <div className="scroll-line" />
         </div>
       </section>
 
@@ -221,11 +214,11 @@ export default function InfrastructurePage() {
                   <defs>
                     <linearGradient id="connGrad">
                       <stop offset="0%" stopColor="#1B4B8F" />
-                      <stop offset="100%" stopColor="#1DB954" />
+                      <stop offset="100%" stopColor="#2E8B57" />
                     </linearGradient>
                     <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#1DB954" stopOpacity="0.2" />
-                      <stop offset="100%" stopColor="#1DB954" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#2E8B57" stopOpacity="0.2" />
+                      <stop offset="100%" stopColor="#2E8B57" stopOpacity="0" />
                     </radialGradient>
                   </defs>
 
@@ -241,13 +234,13 @@ export default function InfrastructurePage() {
                       onMouseLeave={handlePinLeave}
                     >
                       <circle cx={pin.cx} cy={pin.cy} r="24" fill="url(#pinGlow)" />
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR} fill="rgba(29,185,84,0.06)" stroke="rgba(29,185,84,0.2)" strokeWidth="0.5">
+                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR} fill="rgba(46,139,87,0.06)" stroke="rgba(46,139,87,0.2)" strokeWidth="0.5">
                         <animate attributeName="r" values={`${pin.pulseR};${pin.pulseR + 4};${pin.pulseR}`} dur={pin.pulseDur} repeatCount="indefinite" />
                         <animate attributeName="opacity" values="1;0.3;1" dur={pin.pulseDur} repeatCount="indefinite" />
                       </circle>
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 6 : 5} fill="#1DB954" opacity="0.9" />
+                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 6 : 5} fill="#2E8B57" opacity="0.9" />
                       <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 2.5 : 2} fill="#fff" />
-                      <text x={pin.labelX} y={pin.labelY} fontFamily="'JetBrains Mono',monospace" fontSize="7.5" fontWeight="500" fill="#8892A2" textAnchor="middle" letterSpacing="0.08em">{pin.labelText}</text>
+                      <text x={pin.labelX} y={pin.labelY} fontFamily="var(--font-mono)" fontSize="7.5" fontWeight="500" fill="#8892A2" textAnchor="middle" letterSpacing="0.08em">{pin.labelText}</text>
                     </g>
                   ))}
                 </svg>

@@ -64,7 +64,7 @@ export const caseStudies = [
       year: '2024',
       divisions: ['Engineering Design', 'Equipment Manufacturing', 'Corrosion Protection', 'Rubber Products'],
       challenge: 'The client\'s existing reactor battery had experienced premature lining failure after just 4 years, resulting in unplanned shutdowns costing $200K per day. They needed a complete replacement system with at least 15 years of reliable service in concentrated phosphoric acid at 80°C with dissolved fluoride compounds.',
-      solution: 'We designed and fabricated six 200 m³ reactors from carbon steel, each internally lined with a dual-layer EPDM rubber system developed in our GBT Turkey compound lab. The compound was formulated specifically for the client\'s acid chemistry — validated through 10,000-hour immersion testing before application.',
+      solution: 'We designed and fabricated six 200 m³ reactors from carbon steel, each internally lined with a dual-layer EPDM rubber system developed in our GBT Marl, Germany compound lab. The compound was formulated specifically for the client\'s acid chemistry — validated through 10,000-hour immersion testing before application.',
       approach: [
         { heading: 'Compound Development', text: 'Our GBT lab in Turkey developed a custom EPDM formulation with optimised cross-link density for phosphoric acid resistance. Immersion testing confirmed <2% volume swell after 10,000 hours at 85°C.' },
         { heading: 'Reactor Design', text: 'ASME VIII Div 1 pressure vessels with agitator nozzles, acid inlet distributors, and slurry discharge systems. All internals designed for complete rubber coverage.' },
@@ -199,9 +199,9 @@ export const caseStudies = [
       year: '2023',
       divisions: ['Engineering Design', 'Corrosion Protection', 'Rubber Products'],
       challenge: 'The copper SX-EW operation processes acidic ore slurry (pH 1.5, 60°C) containing abrasive particulates. Previous rubber linings from other suppliers had failed within 3 years due to combined acid attack and abrasion wear, causing production losses exceeding $5M annually.',
-      solution: 'Jasmino engineered a dual-hardness rubber lining system — a hard natural rubber outer layer for abrasion resistance bonded to a soft chlorobutyl inner layer for acid impermeability. The compound was developed at GBT Turkey and applied at our India facility.',
+      solution: 'Jasmino engineered a dual-hardness rubber lining system — a hard natural rubber outer layer for abrasion resistance bonded to a soft chlorobutyl inner layer for acid impermeability. The compound was developed at GBT Marl, Germany and applied at our India facility.',
       approach: [
-        { heading: 'Compound R&D', text: 'GBT Turkey developed a dual-compound system: 65 Shore A natural rubber for abrasion resistance (DIN abrasion <100 mm³) over 50 Shore A chlorobutyl for chemical barrier performance.' },
+        { heading: 'Compound R&D', text: 'GBT Marl, Germany developed a dual-compound system: 65 Shore A natural rubber for abrasion resistance (DIN abrasion <100 mm³) over 50 Shore A chlorobutyl for chemical barrier performance.' },
         { heading: 'Vessel Design', text: '8 agitated leach tanks designed per ASME VIII with wear-resistant baffles and nozzle reinforcements. All agitator shafts sealed with rubber-lined stuffing boxes.' },
         { heading: 'Application', text: 'Full autoclave cure at 6 bar/140°C for maximum rubber-to-steel bond strength. Peel test results averaged 8 kN/m — 60% above specification.' },
         { heading: 'Piping Package', text: '2,400m of rubber-lined steel piping for slurry transfer between leach tanks, settlers, and the electro-winning circuit.' },

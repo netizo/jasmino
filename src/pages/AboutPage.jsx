@@ -11,12 +11,12 @@ const GlobalPresence = lazy(() => import('../components/GlobalPresence'));
 
 /* ─── Timeline data ─── */
 const timelineCards = [
-  { year: '1984', title: 'Founded in Ahmedabad', desc: 'Jasmino established as an engineering-led equipment manufacturer. One workshop. One vision: integrate design and fabrication.', img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1600&h=900&q=60&fit=crop' },
+  { year: '1972', title: 'Founded in Ahmedabad', desc: 'Jasmino established as an engineering-led equipment manufacturer. One workshop. One vision: integrate design and fabrication.', img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1600&h=900&q=60&fit=crop' },
   { year: '1996', title: 'Corrosion Division Added', desc: 'Rubber lining capability established \u2014 closing the design \u2192 build \u2192 protect loop. The integrated model is born.', img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=1600&h=900&q=60&fit=crop' },
   { year: '2004', title: 'Major Expansion', desc: 'Shop floor grows to 80,000+ m\u00B2. ASME U, U2, and R stamp certifications secured. International projects begin.', img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&h=900&q=60&fit=crop' },
   { year: '2008', title: 'HAW Acquisition', desc: 'Acquired German lining specialist HAW GmbH \u2014 gaining 40+ years of European corrosion protection expertise and market access.', img: 'https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=1600&h=900&q=60&fit=crop' },
-  { year: '2015', title: 'GBT Turkey Established', desc: 'Launched GBT in Turkey \u2014 extending lining and coating services into Central Asian and Middle Eastern markets.', img: 'https://images.unsplash.com/photo-1590846083693-f23fdede3a7e?w=1600&h=900&q=60&fit=crop' },
-  { year: 'Today', title: 'Global Integrated Enterprise', desc: 'Three continents. 15+ countries. 130,000+ m\u00B2 combined capacity. Four divisions. One standard. Zero handoffs.', img: 'https://images.unsplash.com/photo-1581093806997-124204d9fa9d?w=1600&h=900&q=60&fit=crop' },
+  { year: '2015', title: 'GBT Marl, Germany', desc: 'GBT established in Marl, Germany \u2014 extending lining and coating services into European and adjacent markets.', img: 'https://images.unsplash.com/photo-1590846083693-f23fdede3a7e?w=1600&h=900&q=60&fit=crop' },
+  { year: 'Today', title: 'Global Integrated Enterprise', desc: 'Two countries. 15+ countries served. 130,000+ m\u00B2 combined capacity. Four divisions. One standard. Zero handoffs.', img: 'https://images.unsplash.com/photo-1581093806997-124204d9fa9d?w=1600&h=900&q=60&fit=crop' },
 ];
 
 const values = [
@@ -102,7 +102,7 @@ export default function AboutPage() {
     });
     if (progressFill) gsap.set(progressFill, { scaleY: 1 / count });
     yearMarkers.forEach((m, mi) => {
-      gsap.set(m, { color: mi === 0 ? 'rgba(29,185,84,1)' : 'rgba(255,255,255,0.25)', fontWeight: mi === 0 ? 700 : 500 });
+      gsap.set(m, { color: mi === 0 ? 'rgba(46,139,87,1)' : 'rgba(255,255,255,0.25)', fontWeight: mi === 0 ? 700 : 500 });
     });
 
     /* Build scrub timeline — each "step" is one unit on the timeline */
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
       yearMarkers.forEach((m, mi) => {
         tl.to(m, {
-          color: mi <= i ? 'rgba(29,185,84,1)' : 'rgba(255,255,255,0.25)',
+          color: mi <= i ? 'rgba(46,139,87,1)' : 'rgba(255,255,255,0.25)',
           fontWeight: mi === i ? 700 : 500,
           duration: 0.2,
         }, i - 0.3);
@@ -154,8 +154,7 @@ export default function AboutPage() {
         />
         <div className="hero-content">
           <div className="hero-badge">
-            <div className="hero-badge-dot" />
-            Established 1984
+            Established 1972
           </div>
           <h1 className="hero-h1">
             <span className="hl"><span className="hl-inner">Four decades of</span></span>
@@ -166,21 +165,20 @@ export default function AboutPage() {
             Jasmino Corporation began with a single conviction: the company that designs the equipment should also build it &mdash; and protect it. That principle became a global enterprise.
           </p>
           <div className="hero-metrics">
-            <div className="hero-metric"><span className="hero-metric-num">1984</span><span className="hero-metric-label">Founded</span></div>
+            <div className="hero-metric"><span className="hero-metric-num">1972</span><span className="hero-metric-label">Founded</span></div>
             <div className="hero-metric"><span className="hero-metric-num">15+</span><span className="hero-metric-label">Countries</span></div>
             <div className="hero-metric"><span className="hero-metric-num">130K</span><span className="hero-metric-label">m&sup2; Capacity</span></div>
           </div>
         </div>
         <div className="hero-stamp">
           <svg width="192" height="192" viewBox="0 0 192 192" fill="none">
-            <circle cx="96" cy="96" r="90" stroke="rgba(29,185,84,0.06)" strokeWidth="1" strokeDasharray="4 6" />
+            <circle cx="96" cy="96" r="90" stroke="rgba(46,139,87,0.06)" strokeWidth="1" strokeDasharray="4 6" />
           </svg>
           <span className="hero-stamp-num">40+</span>
           <span className="hero-stamp-label">Years of<br/>Excellence</span>
         </div>
         <div className="hero-scroll">
           <span>Scroll</span>
-          <div className="scroll-line" />
         </div>
       </section>
 
@@ -191,7 +189,7 @@ export default function AboutPage() {
             <div className="overline">Our Story</div>
             <h2>We didn&rsquo;t set out to build a <em>conglomerate.</em><br/>We set out to solve a problem.</h2>
             <p className="manifesto-p">
-              In 1984, the industrial equipment supply chain was fragmented. Design firms handed off drawings they&rsquo;d never build. Fabricators welded steel they didn&rsquo;t engineer. Lining contractors coated surfaces they didn&rsquo;t understand. <strong>Every handoff was a failure point.</strong>
+              In 1972, the industrial equipment supply chain was fragmented. Design firms handed off drawings they&rsquo;d never build. Fabricators welded steel they didn&rsquo;t engineer. Lining contractors coated surfaces they didn&rsquo;t understand. <strong>Every handoff was a failure point.</strong>
             </p>
             <p className="manifesto-p">
               Jasmino was founded on the idea that one company &mdash; with deep expertise in engineering, fabrication, and corrosion protection &mdash; could do it better. Not by being bigger, but by being <strong>more integrated.</strong>
@@ -376,8 +374,8 @@ export default function AboutPage() {
               <div className="heritage-logo">GBT</div>
               <div>
                 <div className="heritage-name">GBT Corrosion Protection</div>
-                <div className="heritage-desc">Turkish operations hub extending Jasmino&rsquo;s services into Central Asia, Middle East, and CIS markets.</div>
-                <div className="heritage-tag">Turkey &middot; Est. 2015</div>
+                <div className="heritage-desc">German operations hub in Marl extending Jasmino&rsquo;s services into European and adjacent markets.</div>
+                <div className="heritage-tag">GBT Marl, Germany &middot; Est. 2015</div>
               </div>
             </div>
           </div>

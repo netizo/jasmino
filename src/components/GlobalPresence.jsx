@@ -18,10 +18,10 @@ const GLOBE = {
         land: 0x8899aa,
         landLight: 0xaabbcc,
         ocean: 0x2a3a52,
-        presence: 0x1DB954,
-        ring: 0x1DB954,
+        presence: 0x2E8B57,
+        ring: 0x2E8B57,
         atmo: 0x1B4B8F,
-        atmoGlow: 0x1DB954,
+        atmoGlow: 0x2E8B57,
     },
 };
 
@@ -331,7 +331,7 @@ const Globe = () => {
             const orbit2 = new THREE.Mesh(
                 new THREE.RingGeometry(radius * 1.12, radius * 1.12 + 0.003, 128),
                 new THREE.MeshBasicMaterial({
-                    color: 0x1DB954, side: THREE.DoubleSide, transparent: true, opacity: 0.1
+                    color: 0x2E8B57, side: THREE.DoubleSide, transparent: true, opacity: 0.1
                 })
             );
             orbit2.rotation.x = Math.PI / 1.8;
@@ -491,7 +491,7 @@ const GlobalPresence = () => {
             <div className="s6-grid"></div>
             <div className="s6-inner">
                 <div className="s6-header">
-                    <h2 className="s6-h2">Three continents, one<br /><em>standard</em></h2>
+                    <h2 className="s6-h2">Two countries, one<br /><em>standard</em></h2>
                     <p className="s6-body">
                         Jasmino operates from facilities in India and Germany — deploying 150+ technicians across 15+ countries.
                     </p>

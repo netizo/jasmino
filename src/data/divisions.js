@@ -67,7 +67,7 @@ export const divisions = [
       stat: '97% reorder rate',
       detail: 'Clients return because our lining systems consistently outperform warranty periods. HAW and GBT bring 60+ years of combined European lining expertise.'
     },
-    color: '#1DB954'
+    color: '#2E8B57'
   },
   {
     id: 'rubber-products',

@@ -1,8 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GsapReveal from '../components/GsapReveal';
-import HeroParticles from '../components/HeroParticles';
-import HeroScene from '../components/HeroScene';
 import '../styles/what-we-do-page.css';
 
 /* ─── Integration model data ─── */
@@ -79,7 +77,7 @@ const galleryCards = [
   { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=700&h=450&q=75&fit=crop', tag: 'MFG', tagBg: 'rgba(20,50,90,0.8)', title: 'Pressure Vessel Fabrication', sub: 'ASME U-Stamp \u00B7 130,000 m\u00B2 Shop Floor' },
   { img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=700&h=450&q=75&fit=crop', tag: 'COR', tagBg: 'rgba(26,63,115,0.8)', title: 'Rubber Lining Application', sub: 'CSM Lining \u00B7 Autoclave Vulcanisation' },
   { img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&h=450&q=75&fit=crop', tag: 'RUB', tagBg: 'rgba(15,39,68,0.8)', title: 'Compound Development Lab', sub: '2,000+ Proven Formulations' },
-  { img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&h=450&q=75&fit=crop', tag: 'QA', tagBg: 'rgba(29,185,84,0.7)', title: 'Final Inspection & Delivery', sub: 'Single Documentation Set \u00B7 One Accountability' },
+  { img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&h=450&q=75&fit=crop', tag: 'QA', tagBg: 'rgba(46,139,87,0.7)', title: 'Final Inspection & Delivery', sub: 'Single Documentation Set \u00B7 One Accountability' },
   { img: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=700&h=450&q=75&fit=crop', tag: 'ALL', tagBg: 'rgba(27,75,143,0.8)', title: 'Delivered \u2014 FGD Absorber', sub: '4 Divisions \u00B7 1 Project \u00B7 0 Handoffs' },
 ];
 
@@ -110,16 +108,8 @@ const CornerMark = ({ d, className }) => (
 export default function WhatWeDoPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeGalleryIdx, setActiveGalleryIdx] = useState(0);
-  const [heroPhase, setHeroPhase] = useState(0);
   const galleryRef = useRef(null);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHeroPhase((p) => (p + 1) % 3);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
 
   /* ─── Gallery drag-to-scroll ─── */
   const onMouseDown = useCallback((e) => {
@@ -182,15 +172,7 @@ export default function WhatWeDoPage() {
     <div className="wwd-page">
       {/* ═══ HERO ═══ */}
       <section className="hero">
-        <HeroParticles
-          particleColor="rgba(27,75,143,"
-          connectionColor="rgba(27,75,143,"
-          mouseMode="repel"
-          maxParticles={100}
-        />
-        <div className="hero-visual" aria-hidden="true">
-          <HeroScene phase={heroPhase} />
-        </div>
+        <div className="hero-visual" aria-hidden="true" style={{ background: 'linear-gradient(135deg, var(--navy) 0%, #0d2847 50%, #0a1f38 100%)' }} />
         <div className="hero-grid eng-grid" />
         <CornerMark d="M2 8V2h6" className="cm-tl" />
         <CornerMark d="M22 8V2h-6" className="cm-tr" />
@@ -209,7 +191,6 @@ export default function WhatWeDoPage() {
 
             <GsapReveal delay={0.08}>
               <div className="hero-badge">
-                <div className="hero-badge-dot" />
                 4 Divisions &middot; 12 Services &middot; 1 Company
               </div>
             </GsapReveal>
@@ -249,7 +230,6 @@ export default function WhatWeDoPage() {
 
         <div className="hero-scroll">
           <span>Scroll</span>
-          <div className="scroll-line" />
         </div>
       </section>
 
@@ -262,7 +242,7 @@ export default function WhatWeDoPage() {
               <div className="overline overline-center">How It Works</div>
             </GsapReveal>
             <GsapReveal delay={0.08}>
-              <h2 className="sec-title" style={{ color: 'var(--g900)', maxWidth: 540, margin: '0 auto 14px' }}>
+              <h2 className="sec-title" style={{ color: 'var(--n800)', maxWidth: 540, margin: '0 auto 14px' }}>
                 Click each stage to see how <em>capabilities</em> connect
               </h2>
             </GsapReveal>
@@ -447,7 +427,7 @@ export default function WhatWeDoPage() {
             <div>
               <GsapReveal><div className="overline">Capabilities</div></GsapReveal>
               <GsapReveal delay={0.08}>
-                <h2 className="sec-title" style={{ color: 'var(--g900)' }}>What each division <em>delivers</em></h2>
+                <h2 className="sec-title" style={{ color: 'var(--n800)' }}>What each division <em>delivers</em></h2>
               </GsapReveal>
             </div>
             <GsapReveal delay={0.16}>

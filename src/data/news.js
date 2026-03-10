@@ -36,7 +36,7 @@ export const newsArticles = [
     category: 'Certifications',
     date: '2025-11-20',
     title: 'ISO 45001 Certification Achieved Across All Facilities',
-    excerpt: 'All three global facilities — India, Germany, and Turkey — now operate under ISO 45001 occupational health & safety management.',
+    excerpt: 'All global facilities — India and Germany — now operate under ISO 45001 occupational health & safety management.',
     img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=400&h=250&q=75&fit=crop',
   },
   {

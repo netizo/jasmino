@@ -109,7 +109,7 @@ export default function ServicePage() {
         <section className="section-pad" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
             <h2>{service.name}</h2>
-            <p style={{ color: 'var(--g500)', marginTop: 8 }}>Page content is being prepared.</p>
+            <p style={{ color: 'var(--n500)', marginTop: 8 }}>Page content is being prepared.</p>
             <Link to={`/what-we-do/${divisionSlug}`} className="btn btn-primary" style={{ marginTop: 24 }}>Back to {division.shortName}</Link>
           </div>
         </section>
@@ -152,7 +152,6 @@ export default function ServicePage() {
 
           <GsapReveal delay={0.2}>
             <div className="hero-badge">
-              <div className="hero-badge-dot" />
               {hero.badge_text}
             </div>
           </GsapReveal>
@@ -189,7 +188,6 @@ export default function ServicePage() {
 
         <div className="hero-scroll">
           <div className="hero-scroll-text">Scroll</div>
-          <div className="hero-scroll-line" />
         </div>
       </section>
 

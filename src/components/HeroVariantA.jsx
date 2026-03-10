@@ -107,7 +107,7 @@ export default function HeroVariantA() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(11,29,52,0.85) 0%, rgba(11,29,52,0.5) 50%, rgba(11,29,52,0.7) 100%)',
+            background: 'linear-gradient(135deg, rgba(12,27,46,0.85) 0%, rgba(12,27,46,0.5) 50%, rgba(12,27,46,0.7) 100%)',
             pointerEvents: 'none',
             zIndex: 1,
           }}
@@ -128,7 +128,7 @@ export default function HeroVariantA() {
             padding: '0 24px',
           }}
         >
-          {/* Badge */}
+          {/* Badge — v4: no pulsing dot, IBM Plex Sans */}
           <div
             className="hero-badge"
             style={{
@@ -139,23 +139,12 @@ export default function HeroVariantA() {
             }}
           >
             <span
-              className="hero-badge-dot"
               style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: 'var(--green)',
-                animation: 'heroPulse 2s ease-in-out infinite',
-              }}
-            />
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 12,
-                fontWeight: 600,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: 'var(--green)',
+                fontFamily: 'var(--font-sans)',
+                fontSize: 13,
+                fontWeight: 500,
+                letterSpacing: '0.02em',
+                color: 'rgba(255,255,255,0.65)',
               }}
             >
               Engineering Excellence Since 1972
@@ -167,7 +156,7 @@ export default function HeroVariantA() {
             className="hero-headline"
             style={{
               fontFamily: 'var(--font-serif)',
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: 'clamp(48px, 5.5vw, 72px)',
               lineHeight: 1.05,
               color: 'var(--white)',
@@ -182,6 +171,7 @@ export default function HeroVariantA() {
                     transition: 'color 0.6s, opacity 0.6s',
                     color: phase === i ? (i === 2 ? 'var(--green)' : 'var(--blue-bright)') : 'inherit',
                     opacity: phase === i ? 1 : 0.85,
+                    fontWeight: 900,
                   }}
                 >
                   {p}
@@ -333,7 +323,7 @@ export default function HeroVariantA() {
             justifyContent: 'center',
             gap: 20,
             padding: '28px 24px',
-            background: 'rgba(11,29,52,0.25)',
+            background: 'rgba(12,27,46,0.25)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
             borderTop: '1px solid rgba(255,255,255,0.04)',
@@ -343,7 +333,7 @@ export default function HeroVariantA() {
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: 10,
+              fontSize: 13,
               fontWeight: 600,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
@@ -377,7 +367,7 @@ export default function HeroVariantA() {
           ))}
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll hint — v4: no pulsing animation */}
         <div
           className="scroll-hint"
           style={{
@@ -393,7 +383,7 @@ export default function HeroVariantA() {
         >
           <span
             style={{
-              fontFamily: 'var(--font-mono)',
+              fontFamily: 'var(--font-sans)',
               fontSize: 12,
               fontWeight: 600,
               letterSpacing: 2,
@@ -408,27 +398,11 @@ export default function HeroVariantA() {
               width: 1,
               height: 40,
               background: 'rgba(255,255,255,0.2)',
-              position: 'relative',
-              overflow: 'hidden',
             }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '50%',
-                background: 'var(--green)',
-                animation: 'heroScrollPulse 2s ease infinite',
-              }}
-            />
-          </div>
+          />
         </div>
 
         <style>{`
-          @keyframes heroPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-          @keyframes heroScrollPulse { 0% { top: -50%; } 100% { top: 150%; } }
           @media (max-width: 640px) {
             .hero-variant-a .phase-indicator { gap: 24px !important; }
             .hero-variant-a .scroll-hint { display: none !important; }

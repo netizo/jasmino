@@ -38,12 +38,12 @@
 }
 
 .s6-over {
-    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--green, #1DB954);
+    color: var(--green);
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -56,30 +56,30 @@
     content: '';
     width: 24px;
     height: 1px;
-    background: var(--green, #1DB954);
+    background: var(--green);
     opacity: 0.4;
 }
 
 .s6-h2 {
-    font-family: var(--font-heading, 'Fraunces', serif);
+    font-family: var(--font-serif);
     font-weight: 400;
     font-size: 48px;
     line-height: 1.08;
     letter-spacing: -0.025em;
-    color: var(--g900, #0C1220);
+    color: var(--n800);
     margin-bottom: 14px;
 }
 
 .s6-h2 em {
     font-style: italic;
     font-weight: 300;
-    color: var(--green, #1DB954);
+    color: var(--green);
 }
 
 .s6-body {
     font-size: 15px;
     line-height: 1.75;
-    color: var(--g500, #6B7280);
+    color: var(--n500);
     max-width: 500px;
     margin: 0 auto;
 }
@@ -132,17 +132,17 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--g500, #6B7280);
+    color: var(--n500);
     letter-spacing: 0.08em;
 }
 
 .globe-spinner {
     width: 28px;
     height: 28px;
-    border: 2px solid var(--g200, #D5D9E0);
-    border-top-color: var(--green, #1DB954);
+    border: 2px solid var(--n200);
+    border-top-color: var(--green);
     border-radius: 50%;
     animation: globeSpin 1s linear infinite;
 }
@@ -166,7 +166,7 @@
 
 .fac-card {
     background: #fff;
-    border: 1px solid var(--g150, #E4E7EC);
+    border: 1px solid var(--n150);
     border-radius: var(--r-lg, 18px);
     padding: 28px 24px;
     transition: all 0.4s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
@@ -182,7 +182,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--blue, #1B4B8F), var(--green, #1DB954));
+    background: linear-gradient(90deg, var(--blue), var(--green));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
@@ -191,7 +191,7 @@
 .fac-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-    border-color: var(--g200, #D5D9E0);
+    border-color: var(--n200);
 }
 
 .fac-card:hover::before {
@@ -209,8 +209,8 @@
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: var(--g100, #F0F2F5);
-    border: 1px solid var(--g150, #E4E7EC);
+    background: var(--n100);
+    border: 1px solid var(--n150);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,25 +220,25 @@
 }
 
 .fac-card:hover .fac-flag {
-    background: rgba(29, 185, 84, 0.06);
-    border-color: rgba(29, 185, 84, 0.15);
+    background: rgba(46, 139, 87, 0.06);
+    border-color: rgba(46, 139, 87, 0.15);
 }
 
 .fac-name {
     font-family: var(--font-sans, 'Inter', sans-serif);
     font-weight: 700;
     font-size: 15px;
-    color: var(--g900, #0C1220);
+    color: var(--n800);
     margin-bottom: 1px;
 }
 
 .fac-country {
-    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--g500, #6B7280);
+    color: var(--n500);
 }
 
 .fac-stat {
@@ -249,7 +249,7 @@
 }
 
 .fac-stat-num {
-    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-family: var(--font-mono);
     font-weight: 600;
     font-size: 20px;
     color: var(--blue, #1B4B8F);
@@ -257,16 +257,16 @@
 }
 
 .fac-stat-unit {
-    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--g500, #6B7280);
+    color: var(--n500);
 }
 
 /* Green accent bar */
 .fac-bar {
     width: 24px;
     height: 2px;
-    background: var(--green, #1DB954);
+    background: var(--green);
     border-radius: 1px;
     margin-bottom: 10px;
     opacity: 0.5;
@@ -275,14 +275,14 @@
 .fac-detail {
     font-size: 13px;
     line-height: 1.6;
-    color: var(--g500, #6B7280);
+    color: var(--n500);
 }
 
 /* ═══ Established year ═══ */
 .fac-est {
-    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--g400, #9CA3AF);
+    color: var(--n400);
     letter-spacing: 0.04em;
     margin-top: 8px;
 }
@@ -322,9 +322,9 @@
     background-image: none;
 }
 .s6.s6-dark .s6-h2 { color: #fff; }
-.s6.s6-dark .s6-h2 em { color: var(--green, #1DB954); }
+.s6.s6-dark .s6-h2 em { color: var(--green); }
 .s6.s6-dark .s6-body { color: rgba(255,255,255,0.55); }
-.s6.s6-dark .s6-over { color: var(--green, #1DB954); }
+.s6.s6-dark .s6-over { color: var(--green); }
 
 .s6.s6-dark .fac-card {
     background: rgba(255,255,255,0.03);
@@ -341,17 +341,17 @@
 }
 .s6.s6-dark .fac-name { color: rgba(255,255,255,0.9); }
 .s6.s6-dark .fac-country { color: rgba(255,255,255,0.45); }
-.s6.s6-dark .fac-stat-num { color: var(--green, #1DB954); }
+.s6.s6-dark .fac-stat-num { color: var(--green); }
 .s6.s6-dark .fac-stat-unit { color: rgba(255,255,255,0.45); }
 .s6.s6-dark .fac-detail { color: rgba(255,255,255,0.45); }
 .s6.s6-dark .fac-est { color: rgba(255,255,255,0.3); }
 .s6.s6-dark .globe-shadow {
-    background: radial-gradient(ellipse, rgba(29,185,84,0.04) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(46,139,87,0.04) 0%, transparent 70%);
 }
 .s6.s6-dark .globe-loading { color: rgba(255,255,255,0.4); }
 .s6.s6-dark .globe-spinner {
     border-color: rgba(255,255,255,0.1);
-    border-top-color: var(--green, #1DB954);
+    border-top-color: var(--green);
 }
 
 /* ═══ Responsive ═══ */

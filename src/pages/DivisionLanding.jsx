@@ -14,7 +14,6 @@ import T2ServiceGrid from '../components/T2/ServiceGrid';
 import T2StatsStrip from '../components/T2/StatsStrip';
 import T2Gallery from '../components/T2/Gallery';
 import T2CTA from '../components/T2/CTA';
-import GrainEffect from '../components/GrainEffect';
 
 export default function DivisionLanding() {
   const { divisionSlug } = useParams();
@@ -42,7 +41,6 @@ export default function DivisionLanding() {
   if (t2) {
     return (
       <div className="division-landing-t2">
-        <GrainEffect />
         <T2SubNav />
         {/* S0 — Hero */}
         <T2Hero data={t2} divisionSlug={divisionSlug} />
@@ -98,9 +96,9 @@ export default function DivisionLanding() {
             {serviceEntries.map(([slug, svc], i) => (
               <GsapReveal key={slug} delay={i * 0.1}>
                 <Link to={`/what-we-do/${divisionSlug}/${slug}`} style={{ textDecoration: 'none' }}>
-                  <div className="card corner-brackets" style={{ height: '100%' }}>
-                    <h3 style={{ fontSize: 22, marginTop: 8, marginBottom: 8, color: 'var(--g900)' }}>{svc.name}</h3>
-                    <p style={{ fontSize: 14, color: 'var(--g500)', lineHeight: 1.7, marginBottom: 16 }}>{svc.tagline}</p>
+                  <div className="card" style={{ height: '100%' }}>
+                    <h3 style={{ fontSize: 22, marginTop: 8, marginBottom: 8, color: 'var(--n800)' }}>{svc.name}</h3>
+                    <p style={{ fontSize: 14, color: 'var(--n500)', lineHeight: 1.7, marginBottom: 16 }}>{svc.tagline}</p>
                     <span className="btn-ghost" style={{ fontSize: 12 }}>View Details</span>
                   </div>
                 </Link>

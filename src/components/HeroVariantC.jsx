@@ -119,7 +119,7 @@ export default function HeroVariantC() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(11,29,52,0.85) 0%, rgba(11,29,52,0.5) 50%, rgba(11,29,52,0.7) 100%)',
+            background: 'linear-gradient(135deg, rgba(12,27,46,0.85) 0%, rgba(12,27,46,0.5) 50%, rgba(12,27,46,0.7) 100%)',
             pointerEvents: 'none',
             zIndex: 1,
           }}
@@ -157,21 +157,11 @@ export default function HeroVariantC() {
                 }}
               >
                 <span
-                  className="hero-badge-dot"
                   style={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: '50%',
-                    background: 'var(--green)',
-                    animation: 'heroPulse 2s ease-in-out infinite',
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 12,
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 13,
                     fontWeight: 600,
-                    letterSpacing: '0.14em',
+                    letterSpacing: '0.06em',
                     textTransform: 'uppercase',
                     color: 'var(--green)',
                   }}
@@ -462,7 +452,6 @@ export default function HeroVariantC() {
         </div>
 
         <style>{`
-          @keyframes heroPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
           @keyframes heroScrollPulse { 0% { top: -50%; } 100% { top: 150%; } }
           @media (max-width: 1024px) {
             .hero-variant-c .hero-grid { grid-template-columns: 1fr !important; }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../styles/DesignComparison.css';
 
-const GFONTS_URL = 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700&family=Space+Mono:wght@400;700&display=swap';
+const GFONTS_URL = 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700&family=Space+Mono:wght@400;700&display=swap';
 
 const BODY_PARAGRAPH =
   'Our equipment operates in some of the most corrosive, high-temperature, and high-pressure environments in industry. We serve these sectors with a complete vertical solution — from engineering design through manufacturing, corrosion protection, and rubber products.';
@@ -9,19 +9,19 @@ const BODY_PARAGRAPH =
 const OPTIONS = [
   {
     id: 'A',
-    label: 'A (Current)',
-    serif: "'Fraunces', serif",
-    sans: "'Sora', sans-serif",
-    mono: "'JetBrains Mono', monospace",
-    accent: '#1DB954',
+    label: 'A (Legacy)',
+    serif: "'Lora', serif",
+    sans: "'IBM Plex Sans', sans-serif",
+    mono: "'IBM Plex Mono', monospace",
+    accent: '#2E8B57',
   },
   {
     id: 'B',
     label: 'B',
-    serif: "'Fraunces', serif",
-    sans: "'DM Sans', sans-serif",
+    serif: "'Lora', serif",
+    sans: "'IBM Plex Sans', sans-serif",
     mono: "'IBM Plex Mono', monospace",
-    accent: '#2BB77A',
+    accent: '#2E8B57',
   },
   {
     id: 'C',
@@ -33,16 +33,16 @@ const OPTIONS = [
   },
   {
     id: 'D',
-    label: 'D (Recommended)',
-    serif: "'Fraunces', serif",
-    sans: "'Inter', sans-serif",
-    mono: "'JetBrains Mono', monospace",
-    accent: '#2BB77A',
+    label: 'D (v4)',
+    serif: "'Lora', serif",
+    sans: "'IBM Plex Sans', sans-serif",
+    mono: "'IBM Plex Mono', monospace",
+    accent: '#2E8B57',
   },
 ];
 
 function QuadrantBlock({ option, isDark }) {
-  const bg = isDark ? '#0B1D34' : '#FAFBFC';
+  const bg = isDark ? '#0C1B2E' : '#FAFBFC';
   const textColor = isDark ? 'rgba(255,255,255,0.9)' : '#1F2937';
   const mutedColor = isDark ? 'rgba(255,255,255,0.6)' : '#4B5563';
 

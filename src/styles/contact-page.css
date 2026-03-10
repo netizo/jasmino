@@ -40,7 +40,7 @@
 }
 
 /* ── Body: Form + Facilities ── */
-.cp-body { background: var(--white); border-bottom: 1px solid var(--g150); }
+.cp-body { background: var(--white); border-bottom: 1px solid var(--n150); }
 .cp-body-inner {
   max-width: 1320px; margin: 0 auto; padding: 80px 48px;
   display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 72px;
@@ -49,23 +49,23 @@
 .cp-form-h, .cp-fac-h {
   font-family: var(--font-serif); font-weight: 500;
   font-size: 28px; line-height: 1.1; letter-spacing: -0.015em;
-  color: var(--g900); margin-bottom: 32px;
+  color: var(--n800); margin-bottom: 32px;
 }
 .cp-form { display: flex; flex-direction: column; gap: 20px; }
 .cp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .cp-field { display: flex; flex-direction: column; gap: 6px; }
 .cp-label {
   font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-  letter-spacing: 0.04em; color: var(--g600);
+  letter-spacing: 0.04em; color: var(--n600);
 }
 .cp-input {
   font-family: var(--font-sans); font-size: 15px;
   padding: 13px 16px; border-radius: var(--r, 12px);
-  border: 1.5px solid var(--g200); background: var(--white);
-  color: var(--g900); transition: border-color 0.2s, box-shadow 0.2s;
+  border: 1.5px solid var(--n200); background: var(--white);
+  color: var(--n800); transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
 }
-.cp-input::placeholder { color: var(--g400); }
+.cp-input::placeholder { color: var(--n400); }
 .cp-input:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(27,75,143,0.08);
@@ -77,18 +77,18 @@
 /* ── Facility cards ── */
 .cp-fac-stack { display: flex; flex-direction: column; gap: 16px; }
 .cp-fac-card {
-  background: var(--g50); border: 1px solid var(--g150);
+  background: var(--n50); border: 1px solid var(--n150);
   border-radius: var(--r, 12px); padding: 24px 28px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .cp-fac-card:hover {
-  border-color: var(--g200);
+  border-color: var(--n200);
   box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 }
 .cp-fac-flag { font-size: 28px; margin-bottom: 8px; }
 .cp-fac-name {
   font-family: var(--font-sans); font-size: 16px; font-weight: 700;
-  color: var(--g900); margin-bottom: 2px;
+  color: var(--n800); margin-bottom: 2px;
 }
 .cp-fac-country {
   font-family: var(--font-mono); font-size: 12px; font-weight: 500;
@@ -97,20 +97,20 @@
 }
 .cp-fac-addr {
   font-style: normal; font-family: var(--font-mono); font-size: 13px;
-  line-height: 1.6; color: var(--g600); margin-bottom: 12px;
+  line-height: 1.6; color: var(--n600); margin-bottom: 12px;
 }
 .cp-fac-meta {
-  font-family: var(--font-mono); font-size: 13px; color: var(--g500);
+  font-family: var(--font-mono); font-size: 13px; color: var(--n500);
   line-height: 1.6;
 }
 
 /* ── Map ── */
-.cp-map { background: var(--g50); border-bottom: 1px solid var(--g150); }
+.cp-map { background: var(--n50); border-bottom: 1px solid var(--n150); }
 .cp-map-placeholder {
   max-width: 1320px; margin: 0 auto; padding: 80px 48px;
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 16px; min-height: 280px;
-  color: var(--g400);
+  color: var(--n400);
 }
 .cp-map-placeholder span {
   font-family: var(--font-mono); font-size: 13px;
@@ -124,7 +124,7 @@
 }
 .cp-cta::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(29,185,84,0.06), transparent 60%);
+  background: radial-gradient(ellipse at 70% 50%, rgba(46,139,87,0.06), transparent 60%);
 }
 .cp-cta-inner {
   max-width: 1320px; margin: 0 auto; padding: 64px 48px;

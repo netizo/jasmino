@@ -88,7 +88,7 @@ export default function HeroBackground() {
 
                 x.beginPath();
                 x.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                x.fillStyle = 'rgba(29,185,84,' + p.a + ')';
+                x.fillStyle = 'rgba(46,139,87,' + p.a + ')';
                 x.fill();
 
                 for (let j = i + 1; j < pts.length; j++) {
@@ -101,7 +101,7 @@ export default function HeroBackground() {
                         x.beginPath();
                         x.moveTo(p.x, p.y);
                         x.lineTo(q.x, q.y);
-                        x.strokeStyle = 'rgba(29,185,84,' + (0.055 * (1 - dd / 130)) + ')';
+                        x.strokeStyle = 'rgba(46,139,87,' + (0.055 * (1 - dd / 130)) + ')';
                         x.lineWidth = 0.5;
                         x.stroke();
                     }

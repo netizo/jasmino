@@ -31,12 +31,12 @@ const FACILITIES = [
     email: 'germany@jasmino.com',
   },
   {
-    flag: '🇹🇷',
-    country: 'Turkey',
-    name: 'GBT Rubber Technology',
-    address: 'Organize Sanayi Bölgesi, 3. Cadde No:12, 41400 Gebze, Kocaeli, Turkey',
-    phone: '+90 262 751 4800',
-    email: 'turkey@jasmino.com',
+    flag: '🇩🇪',
+    country: 'Germany',
+    name: 'GBT (Marl)',
+    address: 'Marl, Germany',
+    phone: '+49 2365 123 456',
+    email: 'gbt@jasmino.com',
   },
 ];
 

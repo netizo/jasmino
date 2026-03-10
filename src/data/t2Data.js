@@ -41,15 +41,15 @@ export const t2Data = {
             schematic: `
         <g opacity="0.65">
           <rect x="140" y="80" width="120" height="200" rx="60" stroke="var(--green)" stroke-width="1.2" class="line-anim"/>
-          <line x1="140" y1="130" x2="260" y2="130" stroke="rgba(29,185,84,0.12)" stroke-width="0.6"/>
-          <line x1="140" y1="230" x2="260" y2="230" stroke="rgba(29,185,84,0.12)" stroke-width="0.6"/>
-          <line x1="200" y1="80" x2="200" y2="50" stroke="rgba(29,185,84,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.3s"/>
-          <rect x="188" y="42" width="24" height="8" rx="2" stroke="rgba(29,185,84,0.2)" stroke-width="0.8"/>
-          <line x1="260" y1="170" x2="310" y2="170" stroke="rgba(29,185,84,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.6s"/>
-          <path d="M200 42 L200 25 L80 25 L80 170" stroke="rgba(29,185,84,0.15)" stroke-width="0.8" class="line-anim" style="animation-delay:0.9s"/>
-          <path d="M310 170 L350 170 L350 320 L200 320 L200 280" stroke="rgba(29,185,84,0.15)" stroke-width="0.8" class="line-anim" style="animation-delay:1.2s"/>
-          <circle cx="80" cy="185" r="18" stroke="rgba(29,185,84,0.2)" stroke-width="0.8" class="line-anim" style="animation-delay:1.5s"/>
-          <rect x="60" y="260" width="80" height="30" rx="15" stroke="rgba(29,185,84,0.18)" stroke-width="0.8" class="line-anim" style="animation-delay:1.8s"/>
+          <line x1="140" y1="130" x2="260" y2="130" stroke="rgba(46,139,87,0.12)" stroke-width="0.6"/>
+          <line x1="140" y1="230" x2="260" y2="230" stroke="rgba(46,139,87,0.12)" stroke-width="0.6"/>
+          <line x1="200" y1="80" x2="200" y2="50" stroke="rgba(46,139,87,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.3s"/>
+          <rect x="188" y="42" width="24" height="8" rx="2" stroke="rgba(46,139,87,0.2)" stroke-width="0.8"/>
+          <line x1="260" y1="170" x2="310" y2="170" stroke="rgba(46,139,87,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.6s"/>
+          <path d="M200 42 L200 25 L80 25 L80 170" stroke="rgba(46,139,87,0.15)" stroke-width="0.8" class="line-anim" style="animation-delay:0.9s"/>
+          <path d="M310 170 L350 170 L350 320 L200 320 L200 280" stroke="rgba(46,139,87,0.15)" stroke-width="0.8" class="line-anim" style="animation-delay:1.2s"/>
+          <circle cx="80" cy="185" r="18" stroke="rgba(46,139,87,0.2)" stroke-width="0.8" class="line-anim" style="animation-delay:1.5s"/>
+          <rect x="60" y="260" width="80" height="30" rx="15" stroke="rgba(46,139,87,0.18)" stroke-width="0.8" class="line-anim" style="animation-delay:1.8s"/>
           <line x1="120" y1="85" x2="120" y2="275" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" stroke-dasharray="3 4"/>
         </g>
       `
@@ -66,23 +66,23 @@ export const t2Data = {
             ],
             diagram: `
         <g opacity="0.9">
-          <rect x="20" y="20" width="100" height="48" rx="8" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.04)"/>
-          <text x="70" y="42" text-anchor="middle" fill="rgba(29,185,84,0.6)" font-family="monospace" font-size="8" font-weight="500">CONCEPT</text>
+          <rect x="20" y="20" width="100" height="48" rx="8" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.04)"/>
+          <text x="70" y="42" text-anchor="middle" fill="rgba(46,139,87,0.6)" font-family="monospace" font-size="8" font-weight="500">CONCEPT</text>
           <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">P&ID · SIMULATION</text>
           <rect x="220" y="20" width="100" height="48" rx="8" stroke="rgba(59,123,219,0.35)" stroke-width="1.2" fill="rgba(59,123,219,0.04)"/>
           <text x="270" y="42" text-anchor="middle" fill="rgba(59,123,219,0.6)" font-family="monospace" font-size="8" font-weight="500">FEA ANALYSIS</text>
           <text x="270" y="56" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">ANSYS · PV ELITE</text>
-          <rect x="20" y="120" width="100" height="48" rx="8" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.04)"/>
-          <text x="70" y="142" text-anchor="middle" fill="rgba(29,185,84,0.6)" font-family="monospace" font-size="8" font-weight="500">3D MODEL</text>
+          <rect x="20" y="120" width="100" height="48" rx="8" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.04)"/>
+          <text x="70" y="142" text-anchor="middle" fill="rgba(46,139,87,0.6)" font-family="monospace" font-size="8" font-weight="500">3D MODEL</text>
           <text x="70" y="156" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">SP3D · AVEVA E3D</text>
           <rect x="220" y="120" width="100" height="48" rx="8" stroke="rgba(59,123,219,0.35)" stroke-width="1.2" fill="rgba(59,123,219,0.04)"/>
           <text x="270" y="142" text-anchor="middle" fill="rgba(59,123,219,0.6)" font-family="monospace" font-size="8" font-weight="500">SHOP DRAWING</text>
           <text x="270" y="156" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">FABRICATION READY</text>
-          <line x1="120" y1="44" x2="220" y2="44" stroke="rgba(29,185,84,0.2)" stroke-width="1"/>
-          <line x1="270" y1="68" x2="270" y2="120" stroke="rgba(29,185,84,0.2)" stroke-width="1"/>
-          <line x1="220" y1="144" x2="120" y2="144" stroke="rgba(29,185,84,0.2)" stroke-width="1"/>
-          <path d="M70 168 L70 210 L270 210 L270 168" stroke="rgba(29,185,84,0.1)" stroke-width="0.8" stroke-dasharray="4 4" fill="none"/>
-          <text x="170" y="230" text-anchor="middle" fill="rgba(29,185,84,0.25)" font-family="monospace" font-size="7">MANUFACTURING FEEDBACK LOOP</text>
+          <line x1="120" y1="44" x2="220" y2="44" stroke="rgba(46,139,87,0.2)" stroke-width="1"/>
+          <line x1="270" y1="68" x2="270" y2="120" stroke="rgba(46,139,87,0.2)" stroke-width="1"/>
+          <line x1="220" y1="144" x2="120" y2="144" stroke="rgba(46,139,87,0.2)" stroke-width="1"/>
+          <path d="M70 168 L70 210 L270 210 L270 168" stroke="rgba(46,139,87,0.1)" stroke-width="0.8" stroke-dasharray="4 4" fill="none"/>
+          <text x="170" y="230" text-anchor="middle" fill="rgba(46,139,87,0.25)" font-family="monospace" font-size="7">MANUFACTURING FEEDBACK LOOP</text>
         </g>
       `
         },
@@ -110,12 +110,12 @@ export const t2Data = {
                     evidence: ['P&ID development', 'Process simulation'],
                     tags: ['P&ID', 'HAZOP', 'Plant Layout', 'Simulation'],
                     schematic: `
-            <rect x="20" y="20" width="80" height="80" rx="6" stroke="rgba(29,185,84,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-            <line x1="20" y1="60" x2="100" y2="60" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
-            <line x1="60" y1="20" x2="60" y2="100" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
-            <circle cx="40" cy="40" r="8" stroke="rgba(29,185,84,0.25)" stroke-width="1"/>
-            <circle cx="80" cy="40" r="6" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
-            <line x1="48" y1="40" x2="74" y2="40" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
+            <rect x="20" y="20" width="80" height="80" rx="6" stroke="rgba(46,139,87,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="20" y1="60" x2="100" y2="60" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
+            <line x1="60" y1="20" x2="60" y2="100" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
+            <circle cx="40" cy="40" r="8" stroke="rgba(46,139,87,0.25)" stroke-width="1"/>
+            <circle cx="80" cy="40" r="6" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
+            <line x1="48" y1="40" x2="74" y2="40" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
           `
                 },
                 {
@@ -126,11 +126,11 @@ export const t2Data = {
                     evidence: ['Mechanical design', 'FEA analysis'],
                     tags: ['ASME VIII', 'FEA / ANSYS', 'PV Elite', 'Compress'],
                     schematic: `
-            <rect x="35" y="15" width="50" height="90" rx="25" stroke="rgba(29,185,84,0.3)" stroke-width="1"/>
-            <line x1="35" y1="30" x2="85" y2="30" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
-            <line x1="35" y1="90" x2="85" y2="90" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
-            <circle cx="60" cy="60" r="12" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
-            <line x1="85" y1="50" x2="105" y2="50" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
+            <rect x="35" y="15" width="50" height="90" rx="25" stroke="rgba(46,139,87,0.3)" stroke-width="1"/>
+            <line x1="35" y1="30" x2="85" y2="30" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
+            <line x1="35" y1="90" x2="85" y2="90" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
+            <circle cx="60" cy="60" r="12" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
+            <line x1="85" y1="50" x2="105" y2="50" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
           `
                 },
                 {
@@ -141,9 +141,9 @@ export const t2Data = {
                     evidence: ['Pipe stress analysis', 'Isometrics'],
                     tags: ['CAESAR II', 'SP3D / E3D', 'Isometrics', 'Stress Analysis'],
                     schematic: `
-            <path d="M20 80 L20 40 L60 40 L60 80 L100 80" stroke="rgba(29,185,84,0.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <circle cx="20" cy="80" r="5" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
-            <circle cx="100" cy="80" r="5" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
+            <path d="M20 80 L20 40 L60 40 L60 80 L100 80" stroke="rgba(46,139,87,0.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <circle cx="20" cy="80" r="5" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
+            <circle cx="100" cy="80" r="5" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
           `
                 },
                 {
@@ -154,9 +154,9 @@ export const t2Data = {
                     evidence: ['ETP / STP design', 'Desalination'],
                     tags: ['ETP / STP', 'Desalination', 'ZLD Systems'],
                     schematic: `
-            <rect x="25" y="30" width="30" height="60" rx="4" stroke="rgba(29,185,84,0.3)" stroke-width="1"/>
-            <rect x="70" y="40" width="25" height="40" rx="3" stroke="rgba(29,185,84,0.25)" stroke-width="0.75"/>
-            <line x1="55" y1="55" x2="70" y2="55" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
+            <rect x="25" y="30" width="30" height="60" rx="4" stroke="rgba(46,139,87,0.3)" stroke-width="1"/>
+            <rect x="70" y="40" width="25" height="40" rx="3" stroke="rgba(46,139,87,0.25)" stroke-width="0.75"/>
+            <line x1="55" y1="55" x2="70" y2="55" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
           `
                 }
             ]
@@ -243,13 +243,13 @@ export const t2Data = {
             schematic: `
         <g opacity="0.65">
           <rect x="120" y="100" width="160" height="220" rx="80" stroke="var(--green)" stroke-width="1.2" class="line-anim"/>
-          <line x1="120" y1="150" x2="280" y2="150" stroke="rgba(29,185,84,0.12)" stroke-width="0.6"/>
-          <line x1="120" y1="270" x2="280" y2="270" stroke="rgba(29,185,84,0.12)" stroke-width="0.6"/>
-          <line x1="200" y1="100" x2="200" y2="60" stroke="rgba(29,185,84,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.4s"/>
-          <rect x="185" y="50" width="30" height="10" rx="2" stroke="rgba(29,185,84,0.2)" stroke-width="0.8"/>
-          <line x1="280" y1="200" x2="340" y2="200" stroke="rgba(29,185,84,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.8s"/>
-          <circle cx="200" cy="210" r="25" stroke="rgba(29,185,84,0.15)" stroke-width="0.6"/>
-          <path d="M100 340 Q120 360 140 340 Q160 320 180 340 Q200 360 220 340 Q240 320 260 340 Q280 360 300 340" stroke="rgba(29,185,84,0.08)" stroke-width="0.6" fill="none" class="line-anim" style="animation-delay:1.5s"/>
+          <line x1="120" y1="150" x2="280" y2="150" stroke="rgba(46,139,87,0.12)" stroke-width="0.6"/>
+          <line x1="120" y1="270" x2="280" y2="270" stroke="rgba(46,139,87,0.12)" stroke-width="0.6"/>
+          <line x1="200" y1="100" x2="200" y2="60" stroke="rgba(46,139,87,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.4s"/>
+          <rect x="185" y="50" width="30" height="10" rx="2" stroke="rgba(46,139,87,0.2)" stroke-width="0.8"/>
+          <line x1="280" y1="200" x2="340" y2="200" stroke="rgba(46,139,87,0.2)" stroke-width="1" class="line-anim" style="animation-delay:0.8s"/>
+          <circle cx="200" cy="210" r="25" stroke="rgba(46,139,87,0.15)" stroke-width="0.6"/>
+          <path d="M100 340 Q120 360 140 340 Q160 320 180 340 Q200 360 220 340 Q240 320 260 340 Q280 360 300 340" stroke="rgba(46,139,87,0.08)" stroke-width="0.6" fill="none" class="line-anim" style="animation-delay:1.5s"/>
         </g>
       `
         },
@@ -265,23 +265,23 @@ export const t2Data = {
             ],
             diagram: `
         <g opacity="0.9">
-          <rect x="20" y="20" width="100" height="48" rx="8" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.04)"/>
-          <text x="70" y="42" text-anchor="middle" fill="rgba(29,185,84,0.6)" font-family="monospace" font-size="8" font-weight="500">MATERIAL</text>
+          <rect x="20" y="20" width="100" height="48" rx="8" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.04)"/>
+          <text x="70" y="42" text-anchor="middle" fill="rgba(46,139,87,0.6)" font-family="monospace" font-size="8" font-weight="500">MATERIAL</text>
           <text x="70" y="56" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">PROCUREMENT</text>
           <rect x="220" y="20" width="100" height="48" rx="8" stroke="rgba(59,123,219,0.35)" stroke-width="1.2" fill="rgba(59,123,219,0.04)"/>
           <text x="270" y="42" text-anchor="middle" fill="rgba(59,123,219,0.6)" font-family="monospace" font-size="8" font-weight="500">FABRICATION</text>
           <text x="270" y="56" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">WELDING · FORMING</text>
-          <rect x="20" y="120" width="100" height="48" rx="8" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.04)"/>
-          <text x="70" y="142" text-anchor="middle" fill="rgba(29,185,84,0.6)" font-family="monospace" font-size="8" font-weight="500">NDT / QC</text>
+          <rect x="20" y="120" width="100" height="48" rx="8" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.04)"/>
+          <text x="70" y="142" text-anchor="middle" fill="rgba(46,139,87,0.6)" font-family="monospace" font-size="8" font-weight="500">NDT / QC</text>
           <text x="70" y="156" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">RT · UT · PMI</text>
           <rect x="220" y="120" width="100" height="48" rx="8" stroke="rgba(59,123,219,0.35)" stroke-width="1.2" fill="rgba(59,123,219,0.04)"/>
           <text x="270" y="142" text-anchor="middle" fill="rgba(59,123,219,0.6)" font-family="monospace" font-size="8" font-weight="500">DISPATCH</text>
           <text x="270" y="156" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">GLOBAL DELIVERY</text>
-          <line x1="120" y1="44" x2="220" y2="44" stroke="rgba(29,185,84,0.2)" stroke-width="1"/>
-          <line x1="270" y1="68" x2="270" y2="120" stroke="rgba(29,185,84,0.2)" stroke-width="1"/>
-          <line x1="220" y1="144" x2="120" y2="144" stroke="rgba(29,185,84,0.2)" stroke-width="1"/>
-          <path d="M70 168 L70 210 L270 210 L270 168" stroke="rgba(29,185,84,0.1)" stroke-width="0.8" stroke-dasharray="4 4" fill="none"/>
-          <text x="170" y="230" text-anchor="middle" fill="rgba(29,185,84,0.25)" font-family="monospace" font-size="7">ENGINEERING FEEDBACK LOOP</text>
+          <line x1="120" y1="44" x2="220" y2="44" stroke="rgba(46,139,87,0.2)" stroke-width="1"/>
+          <line x1="270" y1="68" x2="270" y2="120" stroke="rgba(46,139,87,0.2)" stroke-width="1"/>
+          <line x1="220" y1="144" x2="120" y2="144" stroke="rgba(46,139,87,0.2)" stroke-width="1"/>
+          <path d="M70 168 L70 210 L270 210 L270 168" stroke="rgba(46,139,87,0.1)" stroke-width="0.8" stroke-dasharray="4 4" fill="none"/>
+          <text x="170" y="230" text-anchor="middle" fill="rgba(46,139,87,0.25)" font-family="monospace" font-size="7">ENGINEERING FEEDBACK LOOP</text>
         </g>
       `
         },
@@ -309,10 +309,10 @@ export const t2Data = {
                     evidence: ['Pressure vessels', 'Heat exchangers'],
                     tags: ['Pressure Vessels', 'Heat Exchangers', 'Columns & Reactors', 'Storage Tanks'],
                     schematic: `
-            <rect x="30" y="20" width="80" height="100" rx="40" stroke="rgba(29,185,84,0.3)" stroke-width="1.5"/>
-            <line x1="30" y1="40" x2="110" y2="40" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
-            <line x1="30" y1="100" x2="110" y2="100" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
-            <circle cx="70" cy="70" r="15" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
+            <rect x="30" y="20" width="80" height="100" rx="40" stroke="rgba(46,139,87,0.3)" stroke-width="1.5"/>
+            <line x1="30" y1="40" x2="110" y2="40" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
+            <line x1="30" y1="100" x2="110" y2="100" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
+            <circle cx="70" cy="70" r="15" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
           `
                 },
                 {
@@ -323,9 +323,9 @@ export const t2Data = {
                     evidence: ['FRP vessels', 'Scrubbers'],
                     tags: ['FRP Vessels', 'PP/PVDF Lined', 'Duct Systems', 'Scrubbers'],
                     schematic: `
-            <rect x="30" y="25" width="80" height="90" rx="8" stroke="rgba(29,185,84,0.3)" stroke-width="1.5"/>
-            <rect x="38" y="33" width="64" height="74" rx="5" stroke="rgba(29,185,84,0.15)" stroke-width="0.75" stroke-dasharray="4 3"/>
-            <circle cx="70" cy="70" r="20" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
+            <rect x="30" y="25" width="80" height="90" rx="8" stroke="rgba(46,139,87,0.3)" stroke-width="1.5"/>
+            <rect x="38" y="33" width="64" height="74" rx="5" stroke="rgba(46,139,87,0.15)" stroke-width="0.75" stroke-dasharray="4 3"/>
+            <circle cx="70" cy="70" r="20" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
           `
                 }
             ]
@@ -412,13 +412,13 @@ export const t2Data = {
             schematic: `
         <g opacity="0.65">
           <rect x="100" y="100" width="200" height="200" rx="16" stroke="var(--green)" stroke-width="1.2" class="line-anim"/>
-          <rect x="115" y="115" width="170" height="170" rx="12" stroke="rgba(29,185,84,0.15)" stroke-width="0.8" class="line-anim" style="animation-delay:0.4s"/>
-          <rect x="130" y="130" width="140" height="140" rx="8" stroke="rgba(29,185,84,0.25)" stroke-width="1" class="line-anim" style="animation-delay:0.8s"/>
-          <rect x="148" y="148" width="104" height="104" rx="4" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.03)" class="line-anim" style="animation-delay:1.2s"/>
+          <rect x="115" y="115" width="170" height="170" rx="12" stroke="rgba(46,139,87,0.15)" stroke-width="0.8" class="line-anim" style="animation-delay:0.4s"/>
+          <rect x="130" y="130" width="140" height="140" rx="8" stroke="rgba(46,139,87,0.25)" stroke-width="1" class="line-anim" style="animation-delay:0.8s"/>
+          <rect x="148" y="148" width="104" height="104" rx="4" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.03)" class="line-anim" style="animation-delay:1.2s"/>
           <line x1="300" y1="140" x2="350" y2="140" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/><text x="355" y="143" fill="rgba(255,255,255,0.15)" font-family="monospace" font-size="7">STEEL</text>
           <line x1="285" y1="170" x2="350" y2="170" stroke="rgba(255,255,255,0.1)" stroke-width="0.6"/><text x="355" y="173" fill="rgba(255,255,255,0.15)" font-family="monospace" font-size="7">PRIMER</text>
-          <line x1="270" y1="200" x2="350" y2="200" stroke="rgba(29,185,84,0.15)" stroke-width="0.6"/><text x="355" y="203" fill="rgba(29,185,84,0.25)" font-family="monospace" font-size="7">ADHESIVE</text>
-          <line x1="252" y1="230" x2="350" y2="230" stroke="rgba(29,185,84,0.2)" stroke-width="0.6"/><text x="355" y="233" fill="rgba(29,185,84,0.35)" font-family="monospace" font-size="7">LINING</text>
+          <line x1="270" y1="200" x2="350" y2="200" stroke="rgba(46,139,87,0.15)" stroke-width="0.6"/><text x="355" y="203" fill="rgba(46,139,87,0.25)" font-family="monospace" font-size="7">ADHESIVE</text>
+          <line x1="252" y1="230" x2="350" y2="230" stroke="rgba(46,139,87,0.2)" stroke-width="0.6"/><text x="355" y="233" fill="rgba(46,139,87,0.35)" font-family="monospace" font-size="7">LINING</text>
         </g>
       `
         },
@@ -439,11 +439,11 @@ export const t2Data = {
           <text x="170" y="68" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="monospace" font-size="7">SA 2.5 BLAST · SURFACE PROFILE</text>
           <rect x="40" y="90" width="260" height="40" rx="6" stroke="rgba(180,160,80,0.25)" stroke-width="1" fill="rgba(180,160,80,0.03)"/>
           <text x="170" y="113" text-anchor="middle" fill="rgba(180,160,80,0.5)" font-family="monospace" font-size="8">PRIMER / ADHESIVE SYSTEM</text>
-          <rect x="40" y="140" width="260" height="50" rx="6" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.04)"/>
-          <text x="170" y="165" text-anchor="middle" fill="rgba(29,185,84,0.6)" font-family="monospace" font-size="8" font-weight="500">RUBBER / PLASTIC LINING</text>
+          <rect x="40" y="140" width="260" height="50" rx="6" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.04)"/>
+          <text x="170" y="165" text-anchor="middle" fill="rgba(46,139,87,0.6)" font-family="monospace" font-size="8" font-weight="500">RUBBER / PLASTIC LINING</text>
           <text x="170" y="180" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">AUTOCLAVE CURED · SPARK TESTED</text>
-          <rect x="40" y="210" width="260" height="40" rx="6" stroke="rgba(29,185,84,0.2)" stroke-width="0.8" fill="rgba(29,185,84,0.02)"/>
-          <text x="170" y="233" text-anchor="middle" fill="rgba(29,185,84,0.4)" font-family="monospace" font-size="8">INSPECTION & CERTIFICATION</text>
+          <rect x="40" y="210" width="260" height="40" rx="6" stroke="rgba(46,139,87,0.2)" stroke-width="0.8" fill="rgba(46,139,87,0.02)"/>
+          <text x="170" y="233" text-anchor="middle" fill="rgba(46,139,87,0.4)" font-family="monospace" font-size="8">INSPECTION & CERTIFICATION</text>
         </g>
       `
         },
@@ -471,9 +471,9 @@ export const t2Data = {
                     evidence: ['Natural rubber', 'Chlorobutyl'],
                     tags: ['Soft Rubber', 'Hard Rubber', 'Autoclave Cured', 'Ebonite'],
                     schematic: `
-            <rect x="20" y="20" width="80" height="80" rx="6" stroke="rgba(29,185,84,0.3)" stroke-width="1"/>
-            <rect x="28" y="28" width="64" height="64" rx="4" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/>
-            <rect x="36" y="36" width="48" height="48" rx="3" stroke="rgba(29,185,84,0.35)" stroke-width="1" fill="rgba(29,185,84,0.04)"/>
+            <rect x="20" y="20" width="80" height="80" rx="6" stroke="rgba(46,139,87,0.3)" stroke-width="1"/>
+            <rect x="28" y="28" width="64" height="64" rx="4" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/>
+            <rect x="36" y="36" width="48" height="48" rx="3" stroke="rgba(46,139,87,0.35)" stroke-width="1" fill="rgba(46,139,87,0.04)"/>
           `
                 },
                 {
@@ -484,7 +484,7 @@ export const t2Data = {
                     evidence: ['PP/PVDF', 'PTFE/FEP'],
                     tags: ['PP / PE', 'PVDF', 'PTFE / FEP', 'PFA'],
                     schematic: `
-            <rect x="25" y="25" width="70" height="70" rx="4" stroke="rgba(29,185,84,0.3)" stroke-width="1"/>
+            <rect x="25" y="25" width="70" height="70" rx="4" stroke="rgba(46,139,87,0.3)" stroke-width="1"/>
             <rect x="33" y="33" width="54" height="54" rx="2" stroke="rgba(59,123,219,0.25)" stroke-width="0.75" stroke-dasharray="4 3"/>
           `
                 },
@@ -496,7 +496,7 @@ export const t2Data = {
                     evidence: ['Epoxy systems', 'Vinyl ester'],
                     tags: ['Epoxy', 'Vinyl Ester', 'Flake Glass', 'Resin Mortar'],
                     schematic: `
-            <rect x="20" y="30" width="80" height="60" rx="6" stroke="rgba(29,185,84,0.3)" stroke-width="1"/><line x1="20" y1="50" x2="100" y2="50" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/><line x1="20" y1="70" x2="100" y2="70" stroke="rgba(29,185,84,0.12)" stroke-width="0.5"/>
+            <rect x="20" y="30" width="80" height="60" rx="6" stroke="rgba(46,139,87,0.3)" stroke-width="1"/><line x1="20" y1="50" x2="100" y2="50" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/><line x1="20" y1="70" x2="100" y2="70" stroke="rgba(46,139,87,0.12)" stroke-width="0.5"/>
           `
                 },
                 {
@@ -507,7 +507,7 @@ export const t2Data = {
                     evidence: ['Spark testing', 'Visual inspection'],
                     tags: ['Spark Testing', 'Thickness Mapping', 'Repair', 'Re-lining'],
                     schematic: `
-            <circle cx="60" cy="60" r="30" stroke="rgba(29,185,84,0.3)" stroke-width="1"/><path d="M40 60 L55 75 L80 45" stroke="rgba(29,185,84,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="30" stroke="rgba(46,139,87,0.3)" stroke-width="1"/><path d="M40 60 L55 75 L80 45" stroke="rgba(46,139,87,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
           `
                 }
             ]
@@ -594,15 +594,15 @@ export const t2Data = {
             schematic: `
         <g opacity="0.65">
           <circle cx="200" cy="180" r="40" stroke="var(--green)" stroke-width="1.2" class="line-anim"/>
-          <circle cx="120" cy="240" r="25" stroke="rgba(29,185,84,0.18)" stroke-width="0.8" class="line-anim" style="animation-delay:0.4s"/>
-          <circle cx="280" cy="240" r="30" stroke="rgba(29,185,84,0.2)" stroke-width="0.8" class="line-anim" style="animation-delay:0.7s"/>
-          <circle cx="160" cy="310" r="20" stroke="rgba(29,185,84,0.15)" stroke-width="0.6" class="line-anim" style="animation-delay:1s"/>
-          <circle cx="250" cy="320" r="22" stroke="rgba(29,185,84,0.18)" stroke-width="0.7" class="line-anim" style="animation-delay:1.3s"/>
-          <line x1="200" y1="220" x2="145" y2="240" stroke="rgba(29,185,84,0.12)" stroke-width="0.6"/>
-          <line x1="200" y1="220" x2="255" y2="240" stroke="rgba(29,185,84,0.12)" stroke-width="0.6"/>
-          <line x1="130" y1="260" x2="155" y2="295" stroke="rgba(29,185,84,0.1)" stroke-width="0.5"/>
-          <line x1="270" y1="265" x2="255" y2="300" stroke="rgba(29,185,84,0.1)" stroke-width="0.5"/>
-          <line x1="175" y1="310" x2="230" y2="315" stroke="rgba(29,185,84,0.08)" stroke-width="0.5" stroke-dasharray="3 3"/>
+          <circle cx="120" cy="240" r="25" stroke="rgba(46,139,87,0.18)" stroke-width="0.8" class="line-anim" style="animation-delay:0.4s"/>
+          <circle cx="280" cy="240" r="30" stroke="rgba(46,139,87,0.2)" stroke-width="0.8" class="line-anim" style="animation-delay:0.7s"/>
+          <circle cx="160" cy="310" r="20" stroke="rgba(46,139,87,0.15)" stroke-width="0.6" class="line-anim" style="animation-delay:1s"/>
+          <circle cx="250" cy="320" r="22" stroke="rgba(46,139,87,0.18)" stroke-width="0.7" class="line-anim" style="animation-delay:1.3s"/>
+          <line x1="200" y1="220" x2="145" y2="240" stroke="rgba(46,139,87,0.12)" stroke-width="0.6"/>
+          <line x1="200" y1="220" x2="255" y2="240" stroke="rgba(46,139,87,0.12)" stroke-width="0.6"/>
+          <line x1="130" y1="260" x2="155" y2="295" stroke="rgba(46,139,87,0.1)" stroke-width="0.5"/>
+          <line x1="270" y1="265" x2="255" y2="300" stroke="rgba(46,139,87,0.1)" stroke-width="0.5"/>
+          <line x1="175" y1="310" x2="230" y2="315" stroke="rgba(46,139,87,0.08)" stroke-width="0.5" stroke-dasharray="3 3"/>
         </g>
       `
         },
@@ -618,22 +618,22 @@ export const t2Data = {
             ],
             diagram: `
         <g opacity="0.9">
-          <circle cx="170" cy="60" r="30" stroke="rgba(29,185,84,0.3)" stroke-width="1.2" fill="rgba(29,185,84,0.03)"/>
-          <text x="170" y="57" text-anchor="middle" fill="rgba(29,185,84,0.5)" font-family="monospace" font-size="8" font-weight="500">R&D</text>
+          <circle cx="170" cy="60" r="30" stroke="rgba(46,139,87,0.3)" stroke-width="1.2" fill="rgba(46,139,87,0.03)"/>
+          <text x="170" y="57" text-anchor="middle" fill="rgba(46,139,87,0.5)" font-family="monospace" font-size="8" font-weight="500">R&D</text>
           <text x="170" y="70" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="monospace" font-size="7">FORMULATION</text>
           <circle cx="70" cy="170" r="30" stroke="rgba(59,123,219,0.3)" stroke-width="1.2" fill="rgba(59,123,219,0.03)"/>
           <text x="70" y="167" text-anchor="middle" fill="rgba(59,123,219,0.5)" font-family="monospace" font-size="8" font-weight="500">MIX</text>
           <text x="70" y="180" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="monospace" font-size="7">COMPOUND</text>
-          <circle cx="270" cy="170" r="30" stroke="rgba(29,185,84,0.3)" stroke-width="1.2" fill="rgba(29,185,84,0.03)"/>
-          <text x="270" y="167" text-anchor="middle" fill="rgba(29,185,84,0.5)" font-family="monospace" font-size="8" font-weight="500">TEST</text>
+          <circle cx="270" cy="170" r="30" stroke="rgba(46,139,87,0.3)" stroke-width="1.2" fill="rgba(46,139,87,0.03)"/>
+          <text x="270" y="167" text-anchor="middle" fill="rgba(46,139,87,0.5)" font-family="monospace" font-size="8" font-weight="500">TEST</text>
           <text x="270" y="180" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="monospace" font-size="7">VALIDATE</text>
-          <circle cx="170" cy="240" r="30" stroke="rgba(29,185,84,0.35)" stroke-width="1.2" fill="rgba(29,185,84,0.04)"/>
-          <text x="170" y="237" text-anchor="middle" fill="rgba(29,185,84,0.6)" font-family="monospace" font-size="8" font-weight="500">APPLY</text>
+          <circle cx="170" cy="240" r="30" stroke="rgba(46,139,87,0.35)" stroke-width="1.2" fill="rgba(46,139,87,0.04)"/>
+          <text x="170" y="237" text-anchor="middle" fill="rgba(46,139,87,0.6)" font-family="monospace" font-size="8" font-weight="500">APPLY</text>
           <text x="170" y="250" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="monospace" font-size="7">FIELD USE</text>
-          <line x1="145" y1="80" x2="95" y2="145" stroke="rgba(29,185,84,0.15)" stroke-width="0.8"/>
-          <line x1="195" y1="80" x2="245" y2="145" stroke="rgba(29,185,84,0.15)" stroke-width="0.8"/>
-          <line x1="95" y1="195" x2="145" y2="215" stroke="rgba(29,185,84,0.15)" stroke-width="0.8"/>
-          <line x1="245" y1="195" x2="195" y2="215" stroke="rgba(29,185,84,0.15)" stroke-width="0.8"/>
+          <line x1="145" y1="80" x2="95" y2="145" stroke="rgba(46,139,87,0.15)" stroke-width="0.8"/>
+          <line x1="195" y1="80" x2="245" y2="145" stroke="rgba(46,139,87,0.15)" stroke-width="0.8"/>
+          <line x1="95" y1="195" x2="145" y2="215" stroke="rgba(46,139,87,0.15)" stroke-width="0.8"/>
+          <line x1="245" y1="195" x2="195" y2="215" stroke="rgba(46,139,87,0.15)" stroke-width="0.8"/>
         </g>
       `
         },
@@ -661,7 +661,7 @@ export const t2Data = {
                     evidence: ['Natural rubber', 'Fluoroelastomers'],
                     tags: ['NR', 'SBR', 'EPDM', 'FKM', 'Chlorobutyl'],
                     schematic: `
-            <circle cx="60" cy="50" r="20" stroke="rgba(29,185,84,0.3)" stroke-width="1"/><circle cx="40" cy="85" r="12" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/><circle cx="80" cy="85" r="12" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/><line x1="48" y1="65" x2="44" y2="75" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/><line x1="72" y1="65" x2="76" y2="75" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
+            <circle cx="60" cy="50" r="20" stroke="rgba(46,139,87,0.3)" stroke-width="1"/><circle cx="40" cy="85" r="12" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/><circle cx="80" cy="85" r="12" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/><line x1="48" y1="65" x2="44" y2="75" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/><line x1="72" y1="65" x2="76" y2="75" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
           `
                 },
                 {
@@ -672,7 +672,7 @@ export const t2Data = {
                     evidence: ['Gaskets', 'Expansion joints'],
                     tags: ['Rubber Sheets', 'Gaskets', 'Expansion Joints', 'Wear Parts'],
                     schematic: `
-            <rect x="25" y="35" width="70" height="50" rx="6" stroke="rgba(29,185,84,0.3)" stroke-width="1"/><circle cx="45" cy="60" r="8" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/><circle cx="75" cy="60" r="8" stroke="rgba(29,185,84,0.2)" stroke-width="0.75"/><line x1="53" y1="60" x2="67" y2="60" stroke="rgba(29,185,84,0.15)" stroke-width="0.5"/>
+            <rect x="25" y="35" width="70" height="50" rx="6" stroke="rgba(46,139,87,0.3)" stroke-width="1"/><circle cx="45" cy="60" r="8" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/><circle cx="75" cy="60" r="8" stroke="rgba(46,139,87,0.2)" stroke-width="0.75"/><line x1="53" y1="60" x2="67" y2="60" stroke="rgba(46,139,87,0.15)" stroke-width="0.5"/>
           `
                 }
             ]

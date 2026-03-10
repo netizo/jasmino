@@ -1,42 +1,13 @@
 /* T2 Division Page Styles - Replicated from Design */
 /* Fonts are self-hosted via fonts.css — no external @import needed */
 
-:root {
-    --navy: #0B1D34;
-    --dark: #0D2847;
-    --blue: #1B4B8F;
-    --bb: #3B7BDB;
-    --green: #1DB954;
-    --gd: rgba(29, 185, 84, 0.08);
-    --g50: #FAFBFC;
-    --g100: #F0F2F5;
-    --g150: #E4E7EC;
-    --g200: #D5D9E0;
-    --g300: #B0B7C3;
-    --g400: #8892A2;
-    --g500: #6B7280;
-    --g600: #4B5563;
-    --g700: #374151;
-    --g800: #1F2937;
-    --g900: #0C1220;
-    --wh: #fff;
-    --surf: #F4F5F7;
-    --r: 12px;
-    --rl: 18px;
-    --rx: 24px;
-    --r2: 32px;
-    --sf: 'Fraunces', serif;
-    --ss: 'Sora', sans-serif;
-    --sm: 'JetBrains Mono', monospace;
-    --e: cubic-bezier(.16, 1, .3, 1);
-    --es: cubic-bezier(.22, 1, .36, 1);
-}
+/* T2 uses design-system v4 tokens from design-system.css */
 
 /* Division Wrapper */
 .division-landing-t2 {
-    font-family: var(--ss);
-    background: var(--wh);
-    color: var(--g900);
+    font-family: var(--font-sans);
+    background: #fff;
+    color: var(--n800);
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
     overflow-x: hidden;
@@ -62,8 +33,7 @@
     top: 72px;
     z-index: 90;
     background: rgba(8, 16, 28, 0.88);
-    backdrop-filter: blur(24px) saturate(1.5);
-    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    background: rgba(255,255,255,0.04);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05)
 }
 
@@ -82,7 +52,7 @@
 }
 
 .nav-tag {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: .14em;
     text-transform: uppercase;
@@ -102,7 +72,7 @@
     padding: 18px 24px;
     white-space: nowrap;
     position: relative;
-    transition: color .3s var(--e)
+    transition: color .3s var(--ease)
 }
 
 .nl:hover {
@@ -188,7 +158,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: .04em
 }
@@ -216,7 +186,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: .12em;
@@ -234,7 +204,7 @@
     height: 7px;
     border-radius: 50%;
     background: var(--green);
-    box-shadow: 0 0 12px rgba(29, 185, 84, .4);
+    box-shadow: 0 0 12px rgba(46, 139, 87, .4);
     animation: gp 2.5s ease-in-out infinite
 }
 
@@ -243,17 +213,17 @@
     0%,
     100% {
         opacity: 1;
-        box-shadow: 0 0 12px rgba(29, 185, 84, .4)
+        box-shadow: 0 0 12px rgba(46, 139, 87, .4)
     }
 
     50% {
         opacity: .3;
-        box-shadow: 0 0 4px rgba(29, 185, 84, .1)
+        box-shadow: 0 0 4px rgba(46, 139, 87, .1)
     }
 }
 
 .htitle {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-weight: 500;
     font-size: clamp(42px, 5.5vw, 72px);
     line-height: .98;
@@ -281,7 +251,7 @@
 }
 
 .hstat .hstat-num {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-weight: 600;
     font-size: 32px;
     color: var(--green);
@@ -289,7 +259,7 @@
 }
 
 .hstat .hstat-label {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .5);
     margin-top: 8px;
@@ -315,7 +285,7 @@
     position: absolute;
     inset: -20px;
     border-radius: 50%;
-    border: 1px solid rgba(29, 185, 84, .04);
+    border: 1px solid rgba(46, 139, 87, .04);
     animation: rr 20s linear infinite
 }
 
@@ -362,7 +332,7 @@
     top: 50%;
     right: 56px;
     transform: translateY(-50%);
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: clamp(140px, 18vw, 280px);
     font-weight: 700;
     color: rgba(255, 255, 255, .012);
@@ -374,8 +344,8 @@
 
 /* ADVANTAGE */
 .adv {
-    background: var(--wh);
-    border-bottom: 1px solid var(--g150);
+    background: #fff;
+    border-bottom: 1px solid var(--n150);
     position: relative;
     overflow: hidden
 }
@@ -406,7 +376,7 @@
     height: 60px;
     border-radius: 16px;
     background: var(--gd);
-    border: 1px solid rgba(29, 185, 84, .12);
+    border: 1px solid rgba(46, 139, 87, .12);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -418,16 +388,16 @@
     content: '';
     position: absolute;
     inset: -4px;
-    border-radius: 20px;
-    border: 1px solid rgba(29, 185, 84, .05)
+    border-radius: 6px;
+    border: 1px solid rgba(46, 139, 87, .05)
 }
 
 .adv-h {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-weight: 500;
     font-size: 36px;
     line-height: 1.1;
-    color: var(--g900);
+    color: var(--n800);
     margin-bottom: 16px;
     letter-spacing: -.015em
 }
@@ -440,7 +410,7 @@
 .adv-desc {
     font-size: 15px;
     line-height: 1.8;
-    color: var(--g500);
+    color: var(--n500);
     margin-bottom: 28px
 }
 
@@ -453,7 +423,7 @@
 
 .adv-list li {
     font-size: 13.5px;
-    color: var(--g600);
+    color: var(--n600);
     padding-left: 28px;
     position: relative;
     line-height: 1.7
@@ -474,12 +444,12 @@
 
 .adv-list li:hover::before {
     opacity: 1;
-    background: rgba(29, 185, 84, .1);
+    background: rgba(46, 139, 87, .1);
     transform: scale(1.2)
 }
 
 .adv-visual {
-    border-radius: var(--r2);
+    border-radius: var(--r-xl);
     overflow: hidden;
     background: linear-gradient(150deg, var(--navy), var(--dark), #0e2f55);
     aspect-ratio: 1.15;
@@ -573,7 +543,7 @@
     z-index: 2;
     transform: translateY(12px);
     opacity: 0;
-    transition: all .6s var(--e)
+    transition: all .6s var(--ease)
 }
 
 .gal-item:hover .gal-cap {
@@ -583,7 +553,7 @@
 
 .gal-tag {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: .12em;
@@ -594,7 +564,7 @@
 
 .gal-title {
     display: block;
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-size: 22px;
     font-weight: 500;
     color: #fff;
@@ -604,7 +574,7 @@
 
 .gal-sub {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .55)
 }
@@ -620,7 +590,7 @@
 }
 
 .gal-overlay-tag {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: .16em;
     text-transform: uppercase;
@@ -630,7 +600,7 @@
 }
 
 .gal-overlay-title {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-size: clamp(24px, 3.5vw, 40px);
     font-weight: 500;
     color: #fff;
@@ -647,7 +617,7 @@
     position: absolute;
     inset: 28px;
     border: 1px solid rgba(255, 255, 255, .04);
-    border-radius: var(--rl);
+    border-radius: var(--r-lg);
     z-index: 4;
     pointer-events: none
 }
@@ -657,7 +627,7 @@
     bottom: 40px;
     right: 48px;
     z-index: 6;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .45);
     letter-spacing: .08em;
@@ -666,7 +636,7 @@
 
 /* SERVICES */
 .svcs {
-    background: var(--g50);
+    background: var(--n50);
     position: relative
 }
 
@@ -687,7 +657,7 @@
 }
 
 .overline {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: .16em;
@@ -707,12 +677,12 @@
 }
 
 .sec-h {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-weight: 500;
     font-size: clamp(30px, 3.5vw, 44px);
     line-height: 1.06;
     letter-spacing: -.02em;
-    color: var(--g900);
+    color: var(--n800);
     margin-bottom: 16px
 }
 
@@ -724,7 +694,7 @@
 .sec-desc {
     font-size: 15px;
     line-height: 1.75;
-    color: var(--g500);
+    color: var(--n500);
     max-width: 540px
 }
 
@@ -736,20 +706,20 @@
 }
 
 .scard {
-    background: var(--wh);
-    border: 1px solid var(--g150);
-    border-radius: var(--rx);
+    background: #fff;
+    border: 1px solid var(--n150);
+    border-radius: var(--r-xl);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     will-change: transform;
-    transition: transform .4s var(--e), box-shadow .4s var(--e), border-color .4s var(--e);
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
 }
 
 .scard:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, .1), 0 4px 12px rgba(0, 0, 0, .04);
-    border-color: var(--g200)
+    border-color: var(--n200)
 }
 
 .scard-visual {
@@ -781,7 +751,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 30% 40%, rgba(29, 185, 84, .06), transparent 50%), radial-gradient(circle at 80% 70%, rgba(27, 75, 143, .08), transparent 50%);
+    background-image: radial-gradient(circle at 30% 40%, rgba(46, 139, 87, .06), transparent 50%), radial-gradient(circle at 80% 70%, rgba(27, 75, 143, .08), transparent 50%);
     pointer-events: none
 }
 
@@ -798,7 +768,7 @@
     top: 18px;
     left: 22px;
     z-index: 3;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .12em;
@@ -813,7 +783,7 @@
     transform: translate(-50%, -50%);
     z-index: 3;
     text-align: center;
-    transition: all .5s var(--e)
+    transition: all .5s var(--ease)
 }
 
 .scard:hover .scard-stat {
@@ -822,7 +792,7 @@
 
 .scard-stat-num {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-weight: 700;
     font-size: 42px;
     color: rgba(255, 255, 255, .12);
@@ -832,12 +802,12 @@
 }
 
 .scard:hover .scard-stat-num {
-    color: rgba(29, 185, 84, .2)
+    color: rgba(46, 139, 87, .2)
 }
 
 .scard-stat-label {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .45);
     margin-top: 6px;
@@ -854,7 +824,7 @@
     align-items: center;
     gap: 8px;
     padding: 14px 22px;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 11px;
     color: rgba(255, 255, 255, .5);
     letter-spacing: .04em
@@ -878,11 +848,11 @@
 }
 
 .scard-title {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-weight: 500;
     font-size: 24px;
     line-height: 1.12;
-    color: var(--g900);
+    color: var(--n800);
     margin-bottom: 12px;
     letter-spacing: -.01em
 }
@@ -890,7 +860,7 @@
 .scard-desc {
     font-size: 14px;
     line-height: 1.8;
-    color: var(--g500);
+    color: var(--n500);
     margin-bottom: 22px;
     flex: 1
 }
@@ -903,14 +873,14 @@
 }
 
 .stag {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     padding: 6px 14px;
     border-radius: 18px;
-    background: var(--g100);
-    color: var(--g600);
-    border: 1px solid var(--g150);
-    transition: all .3s var(--e);
+    background: var(--n100);
+    color: var(--n600);
+    border: 1px solid var(--n150);
+    transition: all .3s var(--ease);
     cursor: pointer;
     position: relative;
     overflow: hidden
@@ -923,7 +893,7 @@
     background: var(--blue);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform .35s var(--e);
+    transition: transform .35s var(--ease);
     border-radius: inherit
 }
 
@@ -951,7 +921,7 @@
     gap: 7px;
     position: relative;
     padding-bottom: 2px;
-    transition: gap .3s var(--e)
+    transition: gap .3s var(--ease)
 }
 
 .scard-link::after {
@@ -962,7 +932,7 @@
     width: 0;
     height: 1.5px;
     background: var(--blue);
-    transition: width .35s var(--e)
+    transition: width .35s var(--ease)
 }
 
 .scard-link:hover {
@@ -976,7 +946,7 @@
 .scard-link svg {
     width: 14px;
     height: 14px;
-    transition: transform .3s var(--e)
+    transition: transform .3s var(--ease)
 }
 
 .scard-link:hover svg {
@@ -985,8 +955,8 @@
 
 /* TOOLS */
 .tsec {
-    background: var(--wh);
-    border-top: 1px solid var(--g150)
+    background: #fff;
+    border-top: 1px solid var(--n150)
 }
 
 .tsec-in {
@@ -1003,7 +973,7 @@
 }
 
 .tcol-h {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: .14em;
@@ -1011,7 +981,7 @@
     color: var(--green);
     margin-bottom: 20px;
     padding-bottom: 14px;
-    border-bottom: 1px solid var(--g150)
+    border-bottom: 1px solid var(--n150)
 }
 
 .trows {
@@ -1026,9 +996,9 @@
     gap: 16px;
     padding: 16px 20px;
     border-radius: var(--r);
-    background: var(--g50);
+    background: var(--n50);
     border: 1px solid transparent;
-    transition: all .35s var(--e);
+    transition: all .35s var(--ease);
     position: relative;
     overflow: hidden
 }
@@ -1043,11 +1013,11 @@
     background: var(--green);
     border-radius: 0 2px 2px 0;
     transform: scaleY(0);
-    transition: transform .35s var(--e)
+    transition: transform .35s var(--ease)
 }
 
 .trow:hover {
-    border-color: var(--g200);
+    border-color: var(--n200);
     box-shadow: 0 2px 16px rgba(0, 0, 0, .04);
     transform: translateX(8px)
 }
@@ -1060,17 +1030,17 @@
     width: 46px;
     height: 46px;
     border-radius: 12px;
-    background: var(--wh);
-    border: 1px solid var(--g150);
+    background: #fff;
+    border: 1px solid var(--n150);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
     color: var(--blue);
     flex-shrink: 0;
-    transition: all .3s var(--e)
+    transition: all .3s var(--ease)
 }
 
 .trow:hover .trow-abbr {
@@ -1086,13 +1056,13 @@
 .trow-info strong {
     display: block;
     font-size: 13px;
-    color: var(--g800)
+    color: var(--n800)
 }
 
 .trow-info span {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--g500);
+    color: var(--n500);
     margin-top: 2px;
     display: block
 }
@@ -1149,7 +1119,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all .5s var(--e);
+    transition: all .5s var(--ease);
     position: relative
 }
 
@@ -1158,25 +1128,25 @@
     position: absolute;
     inset: -8px;
     border-radius: 50%;
-    border: 1px solid rgba(29, 185, 84, 0);
-    transition: all .5s var(--e)
+    border: 1px solid rgba(46, 139, 87, 0);
+    transition: all .5s var(--ease)
 }
 
 .fstep-ring span {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 22px;
     font-weight: 600;
     color: var(--green)
 }
 
 .fstep:hover .fstep-ring {
-    background: rgba(29, 185, 84, .06);
-    border-color: rgba(29, 185, 84, .18);
+    background: rgba(46, 139, 87, .06);
+    border-color: rgba(46, 139, 87, .18);
     transform: scale(1.12)
 }
 
 .fstep:hover .fstep-ring::after {
-    border-color: rgba(29, 185, 84, .06)
+    border-color: rgba(46, 139, 87, .06)
 }
 
 .fstep-name {
@@ -1186,7 +1156,7 @@
 }
 
 .fstep-desc {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .5);
     line-height: 1.5;
@@ -1209,7 +1179,7 @@
 }
 
 .flow-fb span {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .45);
     letter-spacing: .06em
@@ -1226,7 +1196,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(29, 185, 84, .06), transparent 60%)
+    background: radial-gradient(ellipse at 70% 50%, rgba(46, 139, 87, .06), transparent 60%)
 }
 
 .cta::after {
@@ -1249,7 +1219,7 @@
 }
 
 .cta-h {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-weight: 500;
     font-size: clamp(28px, 3vw, 40px);
     line-height: 1.08;
@@ -1279,7 +1249,7 @@
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    font-family: var(--ss);
+    font-family: var(--font-sans);
     font-weight: 600;
     font-size: 13px;
     padding: 15px 30px;
@@ -1287,7 +1257,7 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
-    transition: all .35s var(--e);
+    transition: all .35s var(--ease);
     white-space: nowrap
 }
 
@@ -1304,7 +1274,7 @@
 
 .btn-p:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(29, 185, 84, .3)
+    box-shadow: 0 8px 28px rgba(46, 139, 87, .3)
 }
 
 .btn-s {
@@ -1338,7 +1308,7 @@
 }
 
 .ft-brand {
-    font-family: var(--sf);
+    font-family: var(--font-serif);
     font-weight: 600;
     font-size: 20px;
     color: rgba(255, 255, 255, .8);
@@ -1353,7 +1323,7 @@
 }
 
 .ft-col-h {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: .14em;
@@ -1384,7 +1354,7 @@
 }
 
 .ft-legal {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255, 255, 255, .45)
 }
@@ -1566,7 +1536,7 @@
     pointer-events: none;
 }
 .hero-scroll-indicator span {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.14em;
@@ -1589,9 +1559,9 @@
    S1 OVERVIEW — white bg, engineering grid, two-column
    ═══════════════════════════════════════════════════════ */
 .t2-overview {
-    background: var(--wh);
+    background: #fff;
     position: relative;
-    border-bottom: 1px solid var(--g150);
+    border-bottom: 1px solid var(--n150);
 }
 .t2-overview-grid-bg {
     position: absolute;
@@ -1615,25 +1585,25 @@
 .t2-overview-p {
     font-size: 15px;
     line-height: 1.85;
-    color: var(--g600);
+    color: var(--n600);
     margin-bottom: 16px;
 }
 .t2-facts-card {
-    background: var(--g50);
-    border: 1px solid var(--g150);
-    border-radius: var(--rl);
+    background: var(--n50);
+    border: 1px solid var(--n150);
+    border-radius: var(--r-lg);
     overflow: hidden;
 }
 .t2-facts-header {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--g600);
+    color: var(--n600);
     padding: 20px 28px;
-    border-bottom: 1px solid var(--g150);
-    background: var(--wh);
+    border-bottom: 1px solid var(--n150);
+    background: #fff;
 }
 .t2-facts-list {
     display: flex;
@@ -1644,22 +1614,22 @@
     justify-content: space-between;
     align-items: center;
     padding: 14px 28px;
-    border-bottom: 1px solid var(--g150);
+    border-bottom: 1px solid var(--n150);
     transition: background 0.2s;
 }
 .t2-fact-row:last-child { border-bottom: none; }
 .t2-fact-row:hover { background: rgba(27,75,143,0.02); }
 .t2-fact-label {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--g500);
+    color: var(--n500);
     letter-spacing: 0.02em;
 }
 .t2-fact-value {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 600;
-    color: var(--g800);
+    color: var(--n800);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1669,7 +1639,7 @@
     height: 220px;
     position: relative;
     overflow: hidden;
-    background: var(--g100);
+    background: var(--n100);
 }
 .scard-photo img {
     width: 100%;
@@ -1687,7 +1657,7 @@
     top: 16px;
     left: 20px;
     z-index: 2;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -1702,7 +1672,7 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    transition: gap 0.3s var(--e), color 0.2s;
+    transition: gap 0.3s var(--ease), color 0.2s;
 }
 .scard-link:hover {
     gap: 8px;
@@ -1735,14 +1705,14 @@
 }
 .t2-stat { text-align: center; }
 .t2-stat-num {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-weight: 700;
     font-size: 40px;
     color: var(--green);
     line-height: 1;
 }
 .t2-stat-label {
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255,255,255,0.5);
     margin-top: 10px;
@@ -1819,7 +1789,7 @@
 }
 .t2-gallery-tag {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.12em;
@@ -1829,7 +1799,7 @@
 }
 .t2-gallery-title {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 16px;
     font-weight: 600;
     color: #fff;
@@ -1838,7 +1808,7 @@
 }
 .t2-gallery-sub {
     display: block;
-    font-family: var(--sm);
+    font-family: var(--font-mono);
     font-size: 12px;
     color: rgba(255,255,255,0.5);
 }

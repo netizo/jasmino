@@ -17,8 +17,8 @@ const SUBSIDIARIES = [
   },
   {
     name: 'GBT Rubber Technology',
-    location: 'Gebze, Kocaeli, Turkey',
-    flag: '🇹🇷',
+    location: 'Marl, Germany',
+    flag: '🇩🇪',
     specialization: 'Rubber sheet manufacturing, compound development, and autoclave curing for the global supply chain.',
     stats: [
       { num: '20+', label: 'Years Active' },
@@ -80,7 +80,7 @@ export default function JasminoGroupPage() {
             The <em>Jasmino</em> Group
           </h1>
           <p className="gp-hero-desc">
-            A vertically integrated family of companies spanning three continents — designing, manufacturing, and protecting industrial process equipment worldwide.
+            A vertically integrated family of companies spanning two countries — designing, manufacturing, and protecting industrial process equipment worldwide.
           </p>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function JasminoGroupPage() {
       <section className="gp-overview">
         <div className="gp-overview-inner">
           <p className="gp-overview-lead">
-            Jasmino Corporation is the parent company of a global group that combines deep engineering expertise with localised manufacturing capabilities. Through our subsidiaries in Germany, Turkey, and India, we offer a seamless, single-source solution — from initial process design through fabrication, corrosion protection, and field commissioning.
+            Jasmino Corporation is the parent company of a global group that combines deep engineering expertise with localised manufacturing capabilities. Through our subsidiaries in Germany and India, we offer a seamless, single-source solution — from initial process design through fabrication, corrosion protection, and field commissioning.
           </p>
           <p className="gp-overview-body">
             Each subsidiary operates autonomously with its own management and certifications, while sharing the group's unified quality standards (ISO 9001, ISO 14001, ISO 45001, ASME, PED). This structure enables us to serve clients locally with the backing of a global organisation.

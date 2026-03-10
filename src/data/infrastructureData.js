@@ -1,11 +1,11 @@
 export const infrastructureData = {
   hero: {
-    badge: 'Three continents \u00B7 One quality system',
+    badge: 'Two countries \u00B7 One quality system',
     title_html: '130,000 m\u00B2 of <em>integrated</em><br/>manufacturing capacity',
-    description: 'Purpose-built facilities in India, Germany, and Turkey \u2014 each engineered for a specific role in the design-to-delivery chain, all governed by one quality system.',
+    description: 'Purpose-built facilities in India and Germany \u2014 each engineered for a specific role in the design-to-delivery chain, all governed by one quality system.',
     fallback_image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=675&q=75&fit=crop&crop=center',
     stats: [
-      { value: '3', label: 'Countries' },
+      { value: '2', label: 'Countries' },
       { value: '130K+', label: 'm\u00B2 Total Capacity' },
       { value: '150+', label: 'Field Technicians' },
       { value: '15+', label: 'Countries Served' }
@@ -15,23 +15,21 @@ export const infrastructureData = {
   facilityNav: [
     { id: 'india', flag: '\uD83C\uDDEE\uD83C\uDDF3', label: 'India \u2014 HQ' },
     { id: 'germany', flag: '\uD83C\uDDE9\uD83C\uDDEA', label: 'Germany \u2014 HAW' },
-    { id: 'turkey', flag: '\uD83C\uDDF9\uD83C\uDDF7', label: 'Turkey \u2014 GBT' }
+    { id: 'gbt-marl', flag: '\uD83C\uDDE9\uD83C\uDDEA', label: 'Germany \u2014 GBT Marl' }
   ],
 
   overview: {
     overline: 'Our Infrastructure',
-    title_html: 'Three sites, one <em>supply chain</em>',
-    description: 'Each facility is purpose-built for a specific link in the chain. India handles engineering and heavy fabrication. Germany provides European rubber and plastic lining expertise. Turkey bridges the two with coating and lining services for the Middle East and Africa.',
+    title_html: 'Two sites, one <em>supply chain</em>',
+    description: 'Each facility is purpose-built for a specific link in the chain. India handles engineering and heavy fabrication. Germany provides European rubber and plastic lining expertise through HAW Linings and GBT in Marl.',
     stats: [
       { value: '80K', label: 'm\u00B2 India' },
-      { value: '30K', label: 'm\u00B2 Germany' },
-      { value: '20K', label: 'm\u00B2 Turkey' },
+      { value: '50K', label: 'm\u00B2 Germany' },
       { value: 'ISO', label: '9001 \u00B7 14001 \u00B7 45001', noCount: true }
     ],
     mapPins: [
       { id: 'india', cx: 545, cy: 210, name: 'Jasmino HQ', meta: '80,000 m\u00B2 \u00B7 India', labelX: 545, labelY: 238, labelText: 'INDIA', pulseR: 14, pulseDur: '2.5s' },
-      { id: 'germany', cx: 430, cy: 135, name: 'HAW Linings', meta: '30,000 m\u00B2 \u00B7 Germany', labelX: 415, labelY: 122, labelText: 'GERMANY', pulseR: 11, pulseDur: '2.8s' },
-      { id: 'turkey', cx: 445, cy: 155, name: 'GBT', meta: '20,000 m\u00B2 \u00B7 Turkey', labelX: 462, labelY: 172, labelText: 'TURKEY', pulseR: 11, pulseDur: '2.2s' }
+      { id: 'germany', cx: 430, cy: 135, name: 'HAW & GBT', meta: '50,000 m\u00B2 \u00B7 Germany', labelX: 415, labelY: 122, labelText: 'GERMANY', pulseR: 11, pulseDur: '2.8s' }
     ]
   },
 
@@ -131,13 +129,13 @@ export const infrastructureData = {
       ]
     },
     {
-      id: 'turkey',
+      id: 'gbt-marl',
       num: '03',
-      flag: '\uD83C\uDDF9\uD83C\uDDF7',
-      country: 'Turkey',
+      flag: '\uD83C\uDDE9\uD83C\uDDEA',
+      country: 'Germany',
       name: 'GBT',
-      nameAccent: 'Linings & Coatings',
-      description: 'The regional bridge \u2014 strategically positioned to serve the Middle East, North Africa, and Central Asian markets. Full rubber lining, plastic lining, and coating capabilities with rapid response for shutdown and turnaround services.',
+      nameAccent: 'Marl, Germany',
+      description: 'GBT in Marl, Germany \u2014 coating and lining services for the European market. Full rubber lining, plastic lining, and coating capabilities with rapid response for shutdown and turnaround services.',
       capacity: { num: '20,000', label: 'm\u00B2 service capacity' },
       alt: false,
       gallery: [
@@ -149,9 +147,9 @@ export const infrastructureData = {
       specs: [
         {
           icon: 'location',
-          title: 'Strategic Location',
-          description: 'Istanbul hub provides 4-hour flight access to the Middle East, North Africa, Central Asia, and all of Europe.',
-          stat: { value: '4hr', label: 'to 20+ countries', noCount: true }
+          title: 'European Hub',
+          description: 'Marl location provides access to European, Middle Eastern, and North African markets.',
+          stat: { value: '20+', label: 'countries served', noCount: true }
         },
         {
           icon: 'document',
@@ -184,7 +182,7 @@ export const infrastructureData = {
     title_html: 'One system.<br/>Three <em>locations.</em>',
     description: 'Every facility operates under the same integrated quality management system. Same procedures, same documentation, same audit trail \u2014 regardless of geography.',
     pillars: [
-      { num: '01', title: 'Unified Documentation', description: 'Shared QMS, work instructions, and weld procedures across all sites. A document revised in India is live in Turkey the same day.' },
+      { num: '01', title: 'Unified Documentation', description: 'Shared QMS, work instructions, and weld procedures across all sites. A document revised in India is live in Germany the same day.' },
       { num: '02', title: 'Cross-Site Audits', description: 'Regular internal audits between facilities. India audits HAW, HAW audits GBT, GBT audits India \u2014 circular accountability.' },
       { num: '03', title: 'Digital Traceability', description: 'Material test reports, inspection records, and project documentation tracked from raw material to final delivery across all locations.' }
     ],

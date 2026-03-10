@@ -5,7 +5,7 @@ import HeroVariantA from '../components/HeroVariantA';
 import Divisions from '../components/Divisions';
 import Industries from '../components/Industries';
 import CaseStudies from '../components/CaseStudies';
-import IntroBlackBox from '../components/IntroBlackBox';
+import USPCards from '../components/USPCards';
 import { useStagger } from '../hooks/useGsap';
 
 const HeroVariantB = lazy(() => import('../components/HeroVariantB'));
@@ -45,7 +45,7 @@ export default function Home({ variant = 'A' }) {
         <HeroComponent />
       </Suspense>
 
-      <IntroBlackBox />
+      <USPCards />
 
       <Divisions />
 
@@ -86,7 +86,7 @@ export default function Home({ variant = 'A' }) {
                         fontWeight: 500,
                         letterSpacing: '0.08em',
                         color: 'var(--green)',
-                        background: 'rgba(29,185,84,0.08)',
+                        background: 'var(--green-dim)',
                         padding: '4px 10px',
                         borderRadius: 4,
                         marginBottom: 12,
@@ -94,7 +94,7 @@ export default function Home({ variant = 'A' }) {
                         {article.date}
                       </div>
                       <h4 style={{ fontSize: 16, lineHeight: 1.4, marginBottom: 8 }}>{article.title}</h4>
-                      <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--g500)' }}>{article.excerpt}</p>
+                      <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--n500)' }}>{article.excerpt}</p>
                     </div>
                   </div>
                 ))}
@@ -113,7 +113,7 @@ export default function Home({ variant = 'A' }) {
               </GsapReveal>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
                 {RECENT_DELIVERIES.map((d, i) => (
-                  <div key={i} className="news-card" style={{ padding: '28px 24px', background: 'var(--white)', border: '1px solid var(--g150)', borderRadius: 16 }}>
+                  <div key={i} className="news-card" style={{ padding: '28px 24px', background: 'var(--white)', border: '1px solid var(--n150)', borderRadius: 'var(--r-xl)' }}>
                     <div style={{
                       display: 'inline-block',
                       fontFamily: 'var(--font-mono)',
@@ -122,7 +122,7 @@ export default function Home({ variant = 'A' }) {
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
                       color: 'var(--blue)',
-                      background: 'rgba(27,75,143,0.06)',
+                      background: 'rgba(30,74,125,0.06)',
                       padding: '4px 10px',
                       borderRadius: 4,
                       marginBottom: 14,
@@ -130,10 +130,10 @@ export default function Home({ variant = 'A' }) {
                       {d.badge}
                     </div>
                     <h4 style={{ fontSize: 16, lineHeight: 1.3, marginBottom: 4 }}>{d.title}</h4>
-                    <p style={{ fontSize: 13, color: 'var(--g400)', marginBottom: 16, fontFamily: 'var(--font-mono)', letterSpacing: '0.02em' }}>{d.location}</p>
+                    <p style={{ fontSize: 13, color: 'var(--n400)', marginBottom: 16, fontFamily: 'var(--font-mono)', letterSpacing: '0.02em' }}>{d.location}</p>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
                       <span style={{ fontFamily: 'var(--font-mono)', fontSize: 24, fontWeight: 700, color: 'var(--blue)' }}>{d.stat}</span>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--g400)' }}>{d.statLabel}</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--n400)' }}>{d.statLabel}</span>
                     </div>
                   </div>
                 ))}

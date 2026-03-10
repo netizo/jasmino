@@ -5,10 +5,10 @@ const inputStyle = {
   fontFamily: 'var(--font-sans)',
   fontSize: 14,
   padding: '12px 16px',
-  border: '1px solid var(--g200)',
+  border: '1px solid var(--n200)',
   borderRadius: 'var(--r)',
   background: 'var(--white)',
-  color: 'var(--g900)',
+  color: 'var(--n800)',
   outline: 'none',
   transition: 'border-color 0.2s',
   width: '100%'
@@ -16,14 +16,14 @@ const inputStyle = {
 
 function ColorSwatch({ name, variable, hex, border }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 0', borderBottom: '1px solid var(--g100)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 0', borderBottom: '1px solid var(--n100)' }}>
       <div style={{
         width: 48, height: 48, borderRadius: 'var(--r)', background: `var(${variable})`,
         border: border || 'none', flexShrink: 0
       }} />
       <div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{name}</div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{variable} · {hex}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>{name}</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{variable} · {hex}</div>
       </div>
     </div>
   );
@@ -34,21 +34,21 @@ function SectionLabel({ children }) {
 }
 
 function SubLabel({ children, style }) {
-  return <h4 style={{ marginBottom: 16, marginTop: 32, color: 'var(--g600)', ...style }}>{children}</h4>;
+  return <h4 style={{ marginBottom: 16, marginTop: 32, color: 'var(--n600)', ...style }}>{children}</h4>;
 }
 
 function Code({ children }) {
   return (
     <code style={{
-      fontFamily: 'var(--font-mono)', fontSize: 12, background: 'var(--g100)',
-      padding: '2px 8px', borderRadius: 4, color: 'var(--g600)'
+      fontFamily: 'var(--font-mono)', fontSize: 12, background: 'var(--n100)',
+      padding: '2px 8px', borderRadius: 4, color: 'var(--n600)'
     }}>{children}</code>
   );
 }
 
 function MonoLabel({ children, dark }) {
   return (
-    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: dark ? 'rgba(255,255,255,0.55)' : 'var(--g500)', marginTop: 8 }}>{children}</div>
+    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: dark ? 'rgba(255,255,255,0.55)' : 'var(--n500)', marginTop: 8 }}>{children}</div>
   );
 }
 
@@ -77,49 +77,48 @@ export default function DesignSystem() {
       <section className="cream-section eng-grid section-pad">
         <div className="container">
           <SectionLabel>Colors</SectionLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 600 }}>
-            Our palette is built around deep navy backgrounds with green accents (#1DB954), supported by a full neutral greyscale.
+          <p style={{ color: 'var(--n500)', marginBottom: 32, maxWidth: 600 }}>
+            Design System v4: Logo-derived palette. Green accent (#2E8B57) from the swoosh. Blues from the text. True neutral greyscale.
           </p>
 
           <SubLabel>Primary Palette</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
-            <ColorSwatch name="Navy" variable="--navy" hex="#0B1D34" />
-            <ColorSwatch name="Dark" variable="--dark" hex="#0D2847" />
-            <ColorSwatch name="Blue" variable="--blue" hex="#1B4B8F" />
-            <ColorSwatch name="Blue Bright" variable="--blue-bright" hex="#3B7BDB" />
-            <ColorSwatch name="Green" variable="--green" hex="#1DB954" />
+            <ColorSwatch name="Navy" variable="--navy" hex="#0C1B2E" />
+            <ColorSwatch name="Dark" variable="--dark" hex="#0E2240" />
+            <ColorSwatch name="Blue" variable="--blue" hex="#1E4A7D" />
+            <ColorSwatch name="Blue Bright" variable="--blue-bright" hex="#3474B8" />
+            <ColorSwatch name="Green" variable="--green" hex="#2E8B57" />
+            <ColorSwatch name="Green Light" variable="--green-light" hex="#3DA870" />
           </div>
 
           <SubLabel>Green Variants</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
-            <ColorSwatch name="Green Dim" variable="--green-dim" hex="rgba(29,185,84,0.08)" border="1px solid var(--g150)" />
-            <ColorSwatch name="Green Glow" variable="--green-glow" hex="rgba(29,185,84,0.25)" border="1px solid var(--g150)" />
-            <ColorSwatch name="Green Line" variable="--green-line" hex="rgba(29,185,84,0.35)" border="1px solid var(--g150)" />
+            <ColorSwatch name="Green Dim" variable="--green-dim" hex="rgba(46,139,87,0.08)" border="1px solid var(--n150)" />
+            <ColorSwatch name="Green Bg" variable="--green-bg" hex="#EBF5EF" border="1px solid var(--n150)" />
           </div>
 
-          <SubLabel>Neutral Scale</SubLabel>
+          <SubLabel>Neutral Scale (v4)</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
             {[
-              { name: 'g50', hex: '#FAFBFC', border: true },
-              { name: 'g100', hex: '#F0F2F5', border: true },
-              { name: 'g150', hex: '#E4E7EC', border: true },
-              { name: 'g200', hex: '#D5D9E0' },
-              { name: 'g300', hex: '#B0B7C3' },
-              { name: 'g400', hex: '#8892A2' },
-              { name: 'g500', hex: '#6B7280' },
-              { name: 'g600', hex: '#4B5563' },
-              { name: 'g700', hex: '#374151' },
-              { name: 'g800', hex: '#1F2937' },
-              { name: 'g900', hex: '#0C1220' }
+              { name: 'n50', hex: '#FAFAFA', border: true },
+              { name: 'n100', hex: '#F2F2F0', border: true },
+              { name: 'n150', hex: '#E8E8E5', border: true },
+              { name: 'n200', hex: '#DDDDD9' },
+              { name: 'n300', hex: '#B5B5B0' },
+              { name: 'n400', hex: '#8A8A85' },
+              { name: 'n500', hex: '#6B6B66' },
+              { name: 'n600', hex: '#4A4A46' },
+              { name: 'n700', hex: '#333330' },
+              { name: 'n800', hex: '#1C1C1A' }
             ].map(c => (
-              <ColorSwatch key={c.name} name={c.name} variable={`--${c.name}`} hex={c.hex} border={c.border ? '1px solid var(--g200)' : undefined} />
+              <ColorSwatch key={c.name} name={c.name} variable={`--${c.name}`} hex={c.hex} border={c.border ? '1px solid var(--n200)' : undefined} />
             ))}
           </div>
 
           <SubLabel>Surfaces</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
-            <ColorSwatch name="Surface" variable="--surface" hex="#F4F5F7" border="1px solid var(--g150)" />
-            <ColorSwatch name="White" variable="--white" hex="#FFFFFF" border="1px solid var(--g150)" />
+            <ColorSwatch name="Surface" variable="--surface" hex="#F5F5F3" border="1px solid var(--n150)" />
+            <ColorSwatch name="White" variable="--white" hex="#FFFFFF" border="1px solid var(--n150)" />
           </div>
         </div>
       </section>
@@ -133,24 +132,24 @@ export default function DesignSystem() {
 
           <SubLabel>Font Families</SubLabel>
           <div style={{ display: 'grid', gap: 24 }}>
-            <div className="card corner-brackets">
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: 28, fontWeight: 500, marginBottom: 8 }}>Fraunces</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>--font-serif · Headings & display text</div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: 18, color: 'var(--g600)', lineHeight: 1.5 }}>
+            <div className="card">
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: 28, fontWeight: 500, marginBottom: 8 }}>Lora</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 12 }}>--font-serif · Headings & display text</div>
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: 18, color: 'var(--n600)', lineHeight: 1.5 }}>
                 The quick brown fox jumps over the lazy dog — <span style={{ fontStyle: 'italic' }}>italic variant</span>
               </div>
             </div>
-            <div className="card corner-brackets">
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 24, fontWeight: 600, marginBottom: 8 }}>Sora</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>--font-sans · Body & UI text</div>
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 15, color: 'var(--g600)', lineHeight: 1.7 }}>
+            <div className="card">
+              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 24, fontWeight: 600, marginBottom: 8 }}>IBM Plex Sans</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 12 }}>--font-sans · Body & UI text</div>
+              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 15, color: 'var(--n600)', lineHeight: 1.7 }}>
                 The quick brown fox jumps over the lazy dog. Weights: <span style={{ fontWeight: 400 }}>400 Regular</span> · <span style={{ fontWeight: 500 }}>500 Medium</span> · <span style={{ fontWeight: 600 }}>600 SemiBold</span>
               </div>
             </div>
-            <div className="card corner-brackets">
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 600, marginBottom: 8 }}>JetBrains Mono</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>--font-mono · Numbers, labels, code</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--g600)', lineHeight: 1.7 }}>
+            <div className="card">
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 600, marginBottom: 8 }}>IBM Plex Mono</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 12 }}>--font-mono · Numbers, labels, code</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, color: 'var(--n600)', lineHeight: 1.7 }}>
                 0123456789 · ABCDEFGHIJ · abcdefghij
               </div>
             </div>
@@ -169,8 +168,8 @@ export default function DesignSystem() {
 
           <SubLabel>Body Text</SubLabel>
           <div className="card" style={{ marginBottom: 24 }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 12 }}>Default body: Sora 15px / 1.7 / 400</div>
-            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--g700)', margin: 0 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 12 }}>Default body: IBM Plex Sans 16px / 1.75 / 400</div>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--n700)', margin: 0 }}>
               Our equipment operates in some of the most corrosive, high-temperature, and high-pressure environments in industry. We serve these sectors with a complete vertical solution — from engineering design through manufacturing, corrosion protection, and rubber products.
             </p>
           </div>
@@ -186,7 +185,7 @@ export default function DesignSystem() {
               { el: <span className="caption">Caption Text</span>, code: '.caption' },
               { el: <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>Monospaced text</span>, code: 'var(--font-mono)' }
             ].map((item, i) => (
-              <div key={i} style={{ padding: '16px 24px', background: 'var(--g50)', borderRadius: 'var(--r)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div key={i} style={{ padding: '16px 24px', background: 'var(--n50)', borderRadius: 'var(--r)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 {item.el}
                 <Code>{item.code}</Code>
               </div>
@@ -264,8 +263,8 @@ export default function DesignSystem() {
                   width: 80, height: 80, background: 'var(--blue)', borderRadius: `var(${r.name})`,
                   margin: '0 auto 12px', opacity: 0.8
                 }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{r.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{r.val}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>{r.name}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{r.val}</div>
               </div>
             ))}
           </div>
@@ -282,10 +281,10 @@ export default function DesignSystem() {
               { val: 32, usage: 'Section internal spacing' },
               { val: 48, usage: 'Large section gaps, footer columns' }
             ].map(g => (
-              <div key={g.val} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '8px 16px', background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
+              <div key={g.val} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '8px 16px', background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--n150)' }}>
                 <div style={{ width: g.val, height: 20, background: 'var(--green)', borderRadius: 2, flexShrink: 0, opacity: 0.8 }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)', width: 40, flexShrink: 0 }}>{g.val}px</div>
-                <div style={{ fontSize: 12, color: 'var(--g500)' }}>{g.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)', width: 40, flexShrink: 0 }}>{g.val}px</div>
+                <div style={{ fontSize: 12, color: 'var(--n500)' }}>{g.usage}</div>
               </div>
             ))}
           </div>
@@ -299,7 +298,7 @@ export default function DesignSystem() {
           </table>
 
           <SubLabel>Container</SubLabel>
-          <div style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
+          <div style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--n150)' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>.container — max-width: 1280px; margin: 0 auto;</span>
           </div>
 
@@ -312,8 +311,8 @@ export default function DesignSystem() {
             ].map(a => (
               <div key={a.label} style={{ textAlign: 'center' }}>
                 <div style={{ width: a.w, height: a.h, background: 'linear-gradient(135deg, var(--dark), var(--navy))', borderRadius: 'var(--r)', margin: '0 auto 12px' }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>aspect-ratio: {a.ratio}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{a.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>aspect-ratio: {a.ratio}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{a.usage}</div>
               </div>
             ))}
           </div>
@@ -325,17 +324,17 @@ export default function DesignSystem() {
             { cls: '.resp-grid-4', cols: [4, 2, 1], labels: ['4 cols', '2 cols @1024px', '1 col @768px'] }
           ].map(g => (
             <div key={g.cls} style={{ marginBottom: 16 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)', marginBottom: 8 }}>{g.cls}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)', marginBottom: 8 }}>{g.cls}</div>
               <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
                 {g.labels.map((label, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    {i > 0 && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>→</span>}
+                    {i > 0 && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>→</span>}
                     <div style={{ display: 'flex', gap: 4 }}>
                       {Array.from({ length: g.cols[i] }).map((_, j) => (
                         <div key={j} style={{ width: 32, height: 20, background: 'var(--blue)', borderRadius: 4, opacity: 0.7 }} />
                       ))}
                     </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{label}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{label}</span>
                   </div>
                 ))}
               </div>
@@ -350,20 +349,20 @@ export default function DesignSystem() {
       <section className="white-section section-pad">
         <div className="container">
           <SectionLabel>Section Backgrounds</SectionLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 600 }}>
+          <p style={{ color: 'var(--n500)', marginBottom: 32, maxWidth: 600 }}>
             Four section background treatments, each with optional engineering grid overlays.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {[
               { cls: 'dark-section eng-grid-dark', label: '.dark-section + .eng-grid-dark', sub: 'background: var(--dark)', dark: true },
               { cls: 'navy-section', label: '.navy-section', sub: 'background: var(--navy)', dark: true },
-              { cls: 'cream-section eng-grid', label: '.cream-section + .eng-grid', sub: 'background: var(--g50)', border: '1px solid var(--g150)' },
-              { cls: 'white-section', label: '.white-section', sub: 'background: var(--white)', border: '1px solid var(--g150)' }
+              { cls: 'cream-section eng-grid', label: '.cream-section + .eng-grid', sub: 'background: var(--n50)', border: '1px solid var(--n150)' },
+              { cls: 'white-section', label: '.white-section', sub: 'background: var(--white)', border: '1px solid var(--n150)' }
             ].map(s => (
               <div key={s.cls}>
                 <div className={s.cls} style={{ padding: 32, borderRadius: 'var(--r-lg)', minHeight: 120, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', border: s.border || 'none' }}>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: s.dark ? 'var(--green)' : 'var(--blue)' }}>{s.label}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: s.dark ? 'rgba(255,255,255,0.55)' : 'var(--g500)' }}>{s.sub}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: s.dark ? 'rgba(255,255,255,0.55)' : 'var(--n500)' }}>{s.sub}</div>
                 </div>
               </div>
             ))}
@@ -414,16 +413,16 @@ export default function DesignSystem() {
           <div style={{ maxWidth: 600 }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Text Input</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 6 }}>Text Input</div>
                 <input type="text" placeholder="Full Name" style={inputStyle} readOnly />
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Email Input</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 6 }}>Email Input</div>
                 <input type="email" placeholder="Email Address" style={inputStyle} readOnly />
               </div>
             </div>
             <div style={{ marginBottom: 16 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Select</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 6 }}>Select</div>
               <select style={inputStyle} defaultValue="">
                 <option value="">Select Service Area</option>
                 <option>Engineering Design</option>
@@ -433,11 +432,11 @@ export default function DesignSystem() {
               </select>
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 6 }}>Textarea</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 6 }}>Textarea</div>
               <textarea placeholder="Tell us about your project" rows={3} style={{ ...inputStyle, resize: 'vertical' }} readOnly />
             </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 12 }}>
-              Sora 14px · padding: 12px 16px · border: 1px solid var(--g200) · border-radius: var(--r)
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginTop: 12 }}>
+              IBM Plex Sans 14px · padding: 12px 16px · border: 1px solid var(--n200) · border-radius: var(--r)
             </div>
           </div>
         </div>
@@ -452,15 +451,15 @@ export default function DesignSystem() {
 
           <SubLabel>Card + Corner Brackets</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 32 }}>
-            <div className="card corner-brackets">
-              <h4 style={{ marginBottom: 8, color: 'var(--g800)' }}>Card Title</h4>
-              <p style={{ fontSize: 13, color: 'var(--g500)', lineHeight: 1.7 }}>
+            <div className="card">
+              <h4 style={{ marginBottom: 8, color: 'var(--n800)' }}>Card Title</h4>
+              <p style={{ fontSize: 13, color: 'var(--n500)', lineHeight: 1.7 }}>
                 Standard card with corner bracket decoration. Hover to see elevation and green bracket accents.
               </p>
             </div>
             <div className="card">
-              <h4 style={{ marginBottom: 8, color: 'var(--g800)' }}>Card (no brackets)</h4>
-              <p style={{ fontSize: 13, color: 'var(--g500)', lineHeight: 1.7 }}>
+              <h4 style={{ marginBottom: 8, color: 'var(--n800)' }}>Card (no brackets)</h4>
+              <p style={{ fontSize: 13, color: 'var(--n500)', lineHeight: 1.7 }}>
                 Plain card without corner brackets. Same padding, border, and hover behavior.
               </p>
             </div>
@@ -468,17 +467,17 @@ export default function DesignSystem() {
 
           <SubLabel>Glass Card</SubLabel>
           <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)', marginBottom: 32 }}>
-            <div className="glass-card" style={{ maxWidth: 400 }}>
+            <div className="dark-card" style={{ maxWidth: 400 }}>
               <h4 style={{ marginBottom: 8 }}>Glass Card</h4>
               <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.7 }}>
-                Frosted glass effect with backdrop-filter: blur(12px). Used on dark backgrounds.
+                Solid dark card with rgba background. Used on dark backgrounds.
               </p>
             </div>
           </div>
 
           <SubLabel>Division Card</SubLabel>
           <div style={{ marginBottom: 32 }}>
-            <div className="division-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderRadius: 'var(--r-2xl)', overflow: 'hidden', border: '1px solid var(--g150)', background: 'var(--white)' }}>
+            <div className="division-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--n150)', background: 'var(--white)' }}>
               <div style={{ position: 'relative', minHeight: 320, background: 'linear-gradient(135deg, var(--dark), var(--navy))', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 64, fontWeight: 700, color: 'rgba(255,255,255,0.03)', position: 'absolute' }}>01</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Division Visual</div>
@@ -486,7 +485,7 @@ export default function DesignSystem() {
               <div style={{ padding: 48, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, color: 'var(--green)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>01 — Engineering</span>
                 <h3 style={{ fontSize: 28, marginBottom: 0 }}>Engineering Design</h3>
-                <p style={{ color: 'var(--g500)', fontSize: 14.5, lineHeight: 1.7 }}>Pressure equipment, process plant, and structural design using ASME, PD 5500, EN 13445.</p>
+                <p style={{ color: 'var(--n500)', fontSize: 14.5, lineHeight: 1.7 }}>Pressure equipment, process plant, and structural design using ASME, PD 5500, EN 13445.</p>
                 <span className="btn btn-ghost" style={{ alignSelf: 'flex-start' }}>Explore capabilities</span>
               </div>
             </div>
@@ -531,8 +530,8 @@ export default function DesignSystem() {
               </div>
               <div style={{
                 padding: 32, borderRadius: 'var(--r-lg)',
-                background: 'linear-gradient(145deg, rgba(29,185,84,0.04), rgba(29,185,84,0.008))',
-                border: '1px solid rgba(29,185,84,0.1)'
+                background: 'linear-gradient(145deg, rgba(46,139,87,0.04), rgba(46,139,87,0.008))',
+                border: '1px solid rgba(46,139,87,0.1)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--green)' }} />
@@ -543,7 +542,7 @@ export default function DesignSystem() {
                 <div style={{ marginTop: 16 }}>
                   {['Single point of contact', 'Consistent quality'].map(p => (
                     <div key={p} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                      <span style={{ width: 20, height: 20, borderRadius: 6, background: 'rgba(29,185,84,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--green)', flexShrink: 0 }}>✓</span>
+                      <span style={{ width: 20, height: 20, borderRadius: 6, background: 'rgba(46,139,87,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'var(--green)', flexShrink: 0 }}>✓</span>
                       <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{p}</span>
                     </div>
                   ))}
@@ -578,7 +577,7 @@ export default function DesignSystem() {
           <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)', marginBottom: 32 }}>
             <div className="hero-badge">
               <span className="hero-dot" />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>Engineering Excellence Since 1984</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>Engineering Excellence Since 1972</span>
             </div>
           </div>
 
@@ -611,7 +610,7 @@ export default function DesignSystem() {
               <div key={name} className="industry-card">
                 <span style={{ fontSize: 28, display: 'block', marginBottom: 8 }}>🏭</span>
                 <h4 style={{ fontSize: 14, marginBottom: 4 }}>{name}</h4>
-                <p style={{ fontSize: 12, color: 'var(--g500)' }}>Industry sector</p>
+                <p style={{ fontSize: 12, color: 'var(--n500)' }}>Industry sector</p>
               </div>
             ))}
           </div>
@@ -631,9 +630,9 @@ export default function DesignSystem() {
           </div>
 
           <SubLabel>Breadcrumb</SubLabel>
-          <div style={{ padding: 16, background: 'var(--g50)', borderRadius: 'var(--r)', marginBottom: 32 }}>
+          <div style={{ padding: 16, background: 'var(--n50)', borderRadius: 'var(--r)', marginBottom: 32 }}>
             <div className="breadcrumb">
-              <Link to="/">Home</Link><span className="sep">/</span><span>Division</span><span className="sep">/</span><span style={{ color: 'var(--g600)' }}>Current Page</span>
+              <Link to="/">Home</Link><span className="sep">/</span><span>Division</span><span className="sep">/</span><span style={{ color: 'var(--n600)' }}>Current Page</span>
             </div>
           </div>
 
@@ -654,17 +653,17 @@ export default function DesignSystem() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', gap: 16, overflow: 'hidden', padding: '8px 0' }}>
               {['Card 1', 'Card 2', 'Card 3', 'Card 4'].map(c => (
-                <div key={c} style={{ flex: '0 0 200px', padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--g150)', borderRadius: 'var(--r-xl)', userSelect: 'none' }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 8 }}>{c}</div>
-                  <div style={{ fontSize: 13, color: 'var(--g500)' }}>Drag to scroll. cursor: grab/grabbing.</div>
+                <div key={c} style={{ flex: '0 0 200px', padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--n150)', borderRadius: 'var(--r-xl)', userSelect: 'none' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 8 }}>{c}</div>
+                  <div style={{ fontSize: 13, color: 'var(--n500)' }}>Drag to scroll. cursor: grab/grabbing.</div>
                 </div>
               ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 12 }}>
               <div style={{ width: 24, height: 8, borderRadius: 4, background: 'var(--blue)' }} />
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--g200)' }} />
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--g200)' }} />
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--g200)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--n200)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--n200)' }} />
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--n200)' }} />
             </div>
             <MonoLabel>.timeline-scroll / .gallery-scroll · overflow-x: auto · scrollbar hidden · dot indicators + prev/next buttons</MonoLabel>
           </div>
@@ -674,12 +673,12 @@ export default function DesignSystem() {
             <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--green)', marginBottom: 4 }}>About Page Hero</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>Green particles · attract mode · 120 max</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>rgba(29,185,84,*) · dark bg</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 8 }}>rgba(46,139,87,*) · dark bg</div>
             </div>
-            <div style={{ padding: 32, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--g150)' }}>
+            <div style={{ padding: 32, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--n150)' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--blue)', marginBottom: 4 }}>What We Do Hero</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Blue particles · repel mode · 100 max</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 8 }}>rgba(27,75,143,*) · white bg</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>Blue particles · repel mode · 100 max</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginTop: 8 }}>rgba(30,74,125,*) · white bg</div>
             </div>
           </div>
 
@@ -721,7 +720,7 @@ export default function DesignSystem() {
           <div className="stat-inline">
             <div className="stat-inline-item"><div className="num">80,000</div><div className="label">m² India</div></div>
             <div className="stat-inline-item"><div className="num">30,000</div><div className="label">m² Germany</div></div>
-            <div className="stat-inline-item"><div className="num">20,000</div><div className="label">m² Turkey</div></div>
+            <div className="stat-inline-item"><div className="num">20,000</div><div className="label">m² Germany (GBT)</div></div>
           </div>
         </div>
       </section>
@@ -768,27 +767,27 @@ export default function DesignSystem() {
             ].map(e => (
               <div key={e.name} className="card">
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginBottom: 4 }}>{e.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 16 }}>{e.val}</div>
-                <div style={{ height: 4, background: 'var(--g100)', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 16 }}>{e.val}</div>
+                <div style={{ height: 4, background: 'var(--n100)', borderRadius: 2, overflow: 'hidden' }}>
                   <div style={{ width: '60%', height: '100%', background: e.color, borderRadius: 2, transition: `width 0.6s ${e.val}` }} />
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 8 }}>{e.desc}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginTop: 8 }}>{e.desc}</div>
               </div>
             ))}
           </div>
 
           <SubLabel>GSAP Scroll Reveal</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 32 }}>
-            <div style={{ padding: 24, background: 'var(--g50)', borderRadius: 'var(--r)', textAlign: 'center' }}>
-              <div className="gsap-reveal" style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g500)' }}>.gsap-reveal (initial)</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>opacity: 0 · will-change: transform, opacity</div>
+            <div style={{ padding: 24, background: 'var(--n50)', borderRadius: 'var(--r)', textAlign: 'center' }}>
+              <div className="gsap-reveal" style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--n150)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n500)' }}>.gsap-reveal (initial)</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>opacity: 0 · will-change: transform, opacity</div>
               </div>
             </div>
-            <div style={{ padding: 24, background: 'var(--g50)', borderRadius: 'var(--r)', textAlign: 'center' }}>
-              <div style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--g150)' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g500)' }}>.gsap-reveal (after ScrollTrigger)</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>opacity: 1 · translateY(0) via GSAP</div>
+            <div style={{ padding: 24, background: 'var(--n50)', borderRadius: 'var(--r)', textAlign: 'center' }}>
+              <div style={{ padding: 16, background: 'var(--white)', borderRadius: 'var(--r)', border: '1px solid var(--n150)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n500)' }}>.gsap-reveal (after ScrollTrigger)</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>opacity: 1 · translateY(0) via GSAP</div>
               </div>
             </div>
           </div>
@@ -812,7 +811,7 @@ export default function DesignSystem() {
       <section className="cream-section eng-grid section-pad">
         <div className="container">
           <SectionLabel>Responsive Breakpoints</SectionLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 700 }}>
+          <p style={{ color: 'var(--n500)', marginBottom: 32, maxWidth: 700 }}>
             The design system uses four breakpoints. Most layout shifts occur at 1024px (tablet) and 768px (mobile). The T2 division pages add a 1080px breakpoint.
           </p>
 
@@ -832,24 +831,24 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
             {/* Desktop */}
             <div style={{ textAlign: 'center' }}>
-              <div style={{ border: '2px solid var(--g200)', borderRadius: 'var(--r)', padding: 16, aspectRatio: '16/10', display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ border: '2px solid var(--n200)', borderRadius: 'var(--r)', padding: 16, aspectRatio: '16/10', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div style={{ height: 6, background: 'var(--navy)', borderRadius: 2 }} />
                 <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6, height: 24 }}>
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
                 </div>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Desktop</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{'>'}1024px</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--n800)' }}>Desktop</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{'>'}1024px</div>
             </div>
             {/* Tablet */}
             <div style={{ textAlign: 'center' }}>
-              <div style={{ border: '2px solid var(--g200)', borderRadius: 'var(--r)', padding: 12, aspectRatio: '3/4', maxWidth: 140, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ border: '2px solid var(--n200)', borderRadius: 'var(--r)', padding: 12, aspectRatio: '3/4', maxWidth: 140, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ height: 4, width: 40, background: 'var(--navy)', borderRadius: 2 }} />
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -857,22 +856,22 @@ export default function DesignSystem() {
                     <div style={{ width: 12, height: 2, background: 'var(--navy)', borderRadius: 1 }} />
                   </div>
                 </div>
-                <div style={{ flex: 1, background: 'var(--g100)', borderRadius: 4 }} />
+                <div style={{ flex: 1, background: 'var(--n100)', borderRadius: 4 }} />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, height: 20 }}>
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4, height: 20 }}>
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
-                  <div style={{ background: 'var(--g100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
+                  <div style={{ background: 'var(--n100)', borderRadius: 4 }} />
                 </div>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Tablet</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{'<'}=1024px</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--n800)' }}>Tablet</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{'<'}=1024px</div>
             </div>
             {/* Mobile */}
             <div style={{ textAlign: 'center' }}>
-              <div style={{ border: '2px solid var(--g200)', borderRadius: 'var(--r)', padding: 8, aspectRatio: '9/16', maxWidth: 90, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <div style={{ border: '2px solid var(--n200)', borderRadius: 'var(--r)', padding: 8, aspectRatio: '9/16', maxWidth: 90, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ height: 3, width: 24, background: 'var(--navy)', borderRadius: 2 }} />
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
@@ -880,13 +879,13 @@ export default function DesignSystem() {
                     <div style={{ width: 8, height: 1.5, background: 'var(--navy)', borderRadius: 1 }} />
                   </div>
                 </div>
-                <div style={{ flex: 1, background: 'var(--g100)', borderRadius: 3 }} />
-                <div style={{ height: 14, background: 'var(--g100)', borderRadius: 3 }} />
-                <div style={{ height: 14, background: 'var(--g100)', borderRadius: 3 }} />
-                <div style={{ height: 14, background: 'var(--g100)', borderRadius: 3 }} />
+                <div style={{ flex: 1, background: 'var(--n100)', borderRadius: 3 }} />
+                <div style={{ height: 14, background: 'var(--n100)', borderRadius: 3 }} />
+                <div style={{ height: 14, background: 'var(--n100)', borderRadius: 3 }} />
+                <div style={{ height: 14, background: 'var(--n100)', borderRadius: 3 }} />
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--g800)' }}>Mobile</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{'<'}=768px</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, marginTop: 8, color: 'var(--n800)' }}>Mobile</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{'<'}=768px</div>
             </div>
           </div>
 
@@ -911,7 +910,7 @@ export default function DesignSystem() {
       <section className="white-section section-pad">
         <div className="container">
           <SectionLabel>Shadows & Elevation</SectionLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 600 }}>
+          <p style={{ color: 'var(--n500)', marginBottom: 32, maxWidth: 600 }}>
             Six elevation levels from flat to dramatic, plus special-purpose shadows for glow and inset effects.
           </p>
 
@@ -919,7 +918,7 @@ export default function DesignSystem() {
             {[
               { level: 0, shadow: 'none', usage: 'Default / flat', label: 'Level 0' },
               { level: 1, shadow: '0 1px 3px rgba(0,0,0,0.08)', usage: 'Tabs, active nav', label: 'Level 1' },
-              { level: 2, shadow: '0 4px 16px rgba(27,75,143,0.06)', usage: 'Icon hover', label: 'Level 2' },
+              { level: 2, shadow: '0 4px 16px rgba(30,74,125,0.06)', usage: 'Icon hover', label: 'Level 2' },
               { level: 3, shadow: '0 8px 24px rgba(0,0,0,0.08)', usage: 'Card hover', label: 'Level 3' },
               { level: 4, shadow: '0 16px 48px rgba(0,0,0,0.1)', usage: 'Division card hover', label: 'Level 4' },
               { level: 5, shadow: '0 24px 64px rgba(0,0,0,0.25)', usage: 'Comparison cards', label: 'Level 5' }
@@ -927,11 +926,11 @@ export default function DesignSystem() {
               <div key={s.level} style={{ textAlign: 'center' }}>
                 <div style={{
                   width: '100%', height: 80, background: 'var(--white)', borderRadius: 'var(--r-lg)',
-                  border: '1px solid var(--g100)', boxShadow: s.shadow, marginBottom: 12
+                  border: '1px solid var(--n100)', boxShadow: s.shadow, marginBottom: 12
                 }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{s.label}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginBottom: 4 }}>{s.usage}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', wordBreak: 'break-all' }}>{s.shadow}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>{s.label}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginBottom: 4 }}>{s.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', wordBreak: 'break-all' }}>{s.shadow}</div>
               </div>
             ))}
           </div>
@@ -941,15 +940,15 @@ export default function DesignSystem() {
             <div style={{ textAlign: 'center' }}>
               <div style={{
                 width: '100%', height: 60, background: 'var(--green)', borderRadius: 'var(--r)',
-                boxShadow: '0 4px 20px rgba(29,185,84,0.3)', marginBottom: 12
+                boxShadow: '0 4px 20px rgba(46,139,87,0.3)', marginBottom: 12
               }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>Green Glow</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Primary button hover</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>Green Glow</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>Primary button hover</div>
             </div>
             <div className="dark-section" style={{ padding: 24, borderRadius: 'var(--r-lg)', textAlign: 'center' }}>
               <div style={{
                 width: '100%', height: 60, borderRadius: 'var(--r)',
-                boxShadow: 'inset 0 0 20px rgba(29,185,84,0.06), inset 0 0 20px rgba(29,185,84,0.03)',
+                boxShadow: 'inset 0 0 20px rgba(46,139,87,0.06), inset 0 0 20px rgba(46,139,87,0.03)',
                 border: '1px solid rgba(255,255,255,0.08)', marginBottom: 12
               }} />
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--green)' }}>Inset Glow</div>
@@ -970,9 +969,9 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginBottom: 32 }}>
             {[
               { name: 'Division Visual', gradient: 'linear-gradient(135deg, #0D2847, #0B1D34)', usage: '.division-card-visual' },
-              { name: 'Green Connector', gradient: 'linear-gradient(90deg, rgba(29,185,84,0.35), #1DB954)', usage: '.process-connector' },
+              { name: 'Green Connector', gradient: 'linear-gradient(90deg, rgba(46,139,87,0.35), #2E8B57)', usage: '.process-connector' },
               { name: 'CTA Gradient', gradient: 'linear-gradient(180deg, #1B4B8F, #1A3F73)', usage: 'CTA button (T2)' },
-              { name: 'Content Edge', gradient: 'linear-gradient(to bottom, rgba(29,185,84,0.25), #1DB954, rgba(29,185,84,0.25), transparent)', usage: '.div-content accent' },
+              { name: 'Content Edge', gradient: 'linear-gradient(to bottom, rgba(46,139,87,0.25), #2E8B57, rgba(46,139,87,0.25), transparent)', usage: '.div-content accent' },
               { name: 'Division: Engineering', gradient: 'linear-gradient(170deg, #0d1e35, #0a1628, #0c1a2e)', usage: '.div-visual.eng' },
               { name: 'Division: Manufacturing', gradient: 'linear-gradient(170deg, #0b1828, #081220, #0a1524)', usage: '.div-visual.mfg' },
               { name: 'Division: Corrosion', gradient: 'linear-gradient(170deg, #0c1b30, #091525, #0b1829)', usage: '.div-visual.cor' },
@@ -980,8 +979,8 @@ export default function DesignSystem() {
             ].map(g => (
               <div key={g.name}>
                 <div style={{ height: 64, borderRadius: 'var(--r)', background: g.gradient, marginBottom: 8 }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{g.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{g.usage}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>{g.name}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{g.usage}</div>
               </div>
             ))}
           </div>
@@ -989,14 +988,14 @@ export default function DesignSystem() {
           <SubLabel>Radial Gradients</SubLabel>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
             {[
-              { name: 'Green Glow', gradient: 'radial-gradient(ellipse at 50% 0%, rgba(29,185,84,0.06), transparent 70%)', bg: 'var(--dark)', usage: 'Solution card glow' },
-              { name: 'Globe Shadow', gradient: 'radial-gradient(ellipse, rgba(11,29,52,0.07), transparent 70%)', bg: 'var(--g50)', usage: 'Globe section shadow' },
-              { name: 'Service Card', gradient: 'radial-gradient(circle at 30% 40%, rgba(29,185,84,0.06), transparent 50%), radial-gradient(circle at 80% 70%, rgba(27,75,143,0.08), transparent 50%)', bg: 'var(--dark)', usage: 'T2 card visual' }
+              { name: 'Green Glow', gradient: 'radial-gradient(ellipse at 50% 0%, rgba(46,139,87,0.06), transparent 70%)', bg: 'var(--dark)', usage: 'Solution card glow' },
+              { name: 'Globe Shadow', gradient: 'radial-gradient(ellipse, rgba(11,29,52,0.07), transparent 70%)', bg: 'var(--n50)', usage: 'Globe section shadow' },
+              { name: 'Service Card', gradient: 'radial-gradient(circle at 30% 40%, rgba(46,139,87,0.06), transparent 50%), radial-gradient(circle at 80% 70%, rgba(30,74,125,0.08), transparent 50%)', bg: 'var(--dark)', usage: 'T2 card visual' }
             ].map(g => (
               <div key={g.name}>
-                <div style={{ height: 100, borderRadius: 'var(--r)', background: `${g.gradient}, ${g.bg}`, marginBottom: 8, border: '1px solid var(--g150)' }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{g.name}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{g.usage}</div>
+                <div style={{ height: 100, borderRadius: 'var(--r)', background: `${g.gradient}, ${g.bg}`, marginBottom: 8, border: '1px solid var(--n150)' }} />
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>{g.name}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{g.usage}</div>
               </div>
             ))}
           </div>
@@ -1015,12 +1014,12 @@ export default function DesignSystem() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
               { z: 1002, label: 'Navbar brand / burger', color: 'var(--green)' },
-              { z: 1001, label: 'Mobile nav overlay', color: 'rgba(29,185,84,0.6)' },
-              { z: 1000, label: 'Navbar (fixed)', color: 'rgba(29,185,84,0.55)' },
-              { z: 999, label: 'Mega menu wrapper', color: 'rgba(29,185,84,0.5)' },
-              { z: 998, label: 'Backdrop overlay', color: 'rgba(29,185,84,0.4)' },
-              { z: 105, label: 'T2 SubNav (alternate)', color: 'rgba(29,185,84,0.35)' },
-              { z: 90, label: 'T2 SubNav / Sticky CTA bar', color: 'rgba(29,185,84,0.3)' },
+              { z: 1001, label: 'Mobile nav overlay', color: 'rgba(46,139,87,0.6)' },
+              { z: 1000, label: 'Navbar (fixed)', color: 'rgba(46,139,87,0.55)' },
+              { z: 999, label: 'Mega menu wrapper', color: 'rgba(46,139,87,0.5)' },
+              { z: 998, label: 'Backdrop overlay', color: 'rgba(46,139,87,0.4)' },
+              { z: 105, label: 'T2 SubNav (alternate)', color: 'rgba(46,139,87,0.35)' },
+              { z: 90, label: 'T2 SubNav / Sticky CTA bar', color: 'rgba(46,139,87,0.3)' },
               { z: 7, label: 'Division visual labels', color: 'rgba(255,255,255,0.12)' },
               { z: 5, label: 'Division corners, status', color: 'rgba(255,255,255,0.10)' },
               { z: 3, label: 'Content layers', color: 'rgba(255,255,255,0.08)' },
@@ -1044,7 +1043,7 @@ export default function DesignSystem() {
       <section className="white-section section-pad">
         <div className="container">
           <SectionLabel>Opacity & Transparency</SectionLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 700 }}>
+          <p style={{ color: 'var(--n500)', marginBottom: 32, maxWidth: 700 }}>
             RGBA white and green values used on dark backgrounds for borders, text, and background fills. Consistent opacity steps create visual hierarchy.
           </p>
 
@@ -1110,7 +1109,7 @@ export default function DesignSystem() {
                 <tr key={t.dur}>
                   <td className="mono-val">{t.dur}</td>
                   <td>{t.usage}</td>
-                  <td style={{ fontSize: 12, color: 'var(--g500)' }}>{t.items}</td>
+                  <td style={{ fontSize: 12, color: 'var(--n500)' }}>{t.items}</td>
                 </tr>
               ))}
             </tbody>
@@ -1127,11 +1126,11 @@ export default function DesignSystem() {
               <div key={t.label} style={{ textAlign: 'center' }}>
                 <div style={{
                   width: '100%', height: 48, background: 'var(--white)', borderRadius: 'var(--r)',
-                  border: '1px solid var(--g150)', transform: t.transform,
+                  border: '1px solid var(--n150)', transform: t.transform,
                   boxShadow: '0 8px 24px rgba(0,0,0,0.08)', marginBottom: 12
                 }} />
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>{t.label}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>{t.desc}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>{t.label}</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>{t.desc}</div>
               </div>
             ))}
           </div>
@@ -1149,18 +1148,18 @@ export default function DesignSystem() {
             <div>
               <div style={{ height: 100, borderRadius: 'var(--r-lg)', background: 'linear-gradient(135deg, var(--blue), var(--green))', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', marginBottom: 8 }}>
                 <div style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', background: 'rgba(255,255,255,0.04)' }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', position: 'relative', zIndex: 1 }}>backdrop-filter: blur(12px)</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', position: 'relative', zIndex: 1 }}>solid rgba background</span>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>Glass Blur</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>.glass-card, overlays</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>Glass Blur</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>.dark-card, overlays</div>
             </div>
             <div>
               <div style={{ height: 100, borderRadius: 'var(--r-lg)', background: 'linear-gradient(135deg, var(--blue), var(--green))', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', marginBottom: 8 }}>
                 <div style={{ position: 'absolute', inset: 0, backdropFilter: 'blur(24px) saturate(1.5)', WebkitBackdropFilter: 'blur(24px) saturate(1.5)', background: 'rgba(8,16,28,0.88)' }} />
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--white)', position: 'relative', zIndex: 1 }}>blur(24px) saturate(1.5)</span>
               </div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--g800)' }}>Heavy Blur + Saturate</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>T2 sticky nav (.topnav)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: 'var(--n800)' }}>Heavy Blur + Saturate</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>T2 sticky nav (.topnav)</div>
             </div>
           </div>
 
@@ -1168,17 +1167,17 @@ export default function DesignSystem() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
             <div>
               <div style={{ height: 80, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c, #e74)', marginBottom: 8 }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Original</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>Original</div>
             </div>
             <div>
               <div style={{ height: 80, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c, #e74)', filter: 'saturate(0) brightness(0.3) contrast(1.2)', marginBottom: 8 }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>saturate(0) brightness(0.3) contrast(1.2)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Trust band background</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>saturate(0) brightness(0.3) contrast(1.2)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>Trust band background</div>
             </div>
             <div>
               <div style={{ height: 80, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, #4a9, #38c, #e74)', filter: 'saturate(0.55) brightness(0.6) contrast(1.1)', marginBottom: 8 }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>saturate(.55) brightness(.6) contrast(1.1)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>Gallery hover state</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>saturate(.55) brightness(.6) contrast(1.1)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>Gallery hover state</div>
             </div>
           </div>
 
@@ -1284,12 +1283,12 @@ export default function DesignSystem() {
           <SectionLabel>Image Patterns</SectionLabel>
 
           <SubLabel>Placeholder Gradients</SubLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 24, maxWidth: 600 }}>
+          <p style={{ color: 'var(--n500)', marginBottom: 24, maxWidth: 600 }}>
             When images are absent, gradient fills maintain visual consistency.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
             <div>
-              <div style={{ height: 120, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, var(--g100), var(--g200))' }} />
+              <div style={{ height: 120, borderRadius: 'var(--r)', background: 'linear-gradient(135deg, var(--n100), var(--n200))' }} />
               <MonoLabel>News card placeholder</MonoLabel>
             </div>
             <div>
@@ -1360,7 +1359,7 @@ export default function DesignSystem() {
       <section className="white-section section-pad">
         <div className="container">
           <SectionLabel>Page Patterns</SectionLabel>
-          <p style={{ color: 'var(--g500)', marginBottom: 32, maxWidth: 700 }}>
+          <p style={{ color: 'var(--n500)', marginBottom: 32, maxWidth: 700 }}>
             Each page follows a scoped CSS pattern with a wrapper class (.about-page, .wwd-page, .t3-page). Components are isolated to avoid conflicts.
           </p>
 
@@ -1403,15 +1402,15 @@ export default function DesignSystem() {
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>Home, About, Divisions, Services</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 4 }}>White text → blue text on scroll</div>
             </div>
-            <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--g150)', textAlign: 'center' }}>
+            <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--white)', border: '1px solid var(--n150)', textAlign: 'center' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--blue)', marginBottom: 4 }}>White Hero Pages</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>What We Do</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 4 }}>Blue text always</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>What We Do</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginTop: 4 }}>Blue text always</div>
             </div>
-            <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--surface)', border: '1px solid var(--g150)', textAlign: 'center' }}>
+            <div style={{ padding: 20, borderRadius: 'var(--r-lg)', background: 'var(--surface)', border: '1px solid var(--n150)', textAlign: 'center' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--blue)', marginBottom: 4 }}>Scrolled State</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)' }}>All pages (after 50px)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--g400)', marginTop: 4 }}>White bg + shadow + blue text</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)' }}>All pages (after 50px)</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--n400)', marginTop: 4 }}>White bg + shadow + blue text</div>
             </div>
           </div>
         </div>
