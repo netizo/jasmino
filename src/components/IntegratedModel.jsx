@@ -3,7 +3,7 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from '../hooks/useGsap';
 import '../styles/integrated-model.css';
 
-const HERO_VIDEO_SRC = '/videos/jasmino-hero.mp4';
+const SECTION_BG_IMAGE = '/images/onecompany.png';
 
 /* ══════════════════════════════════════════════════════════════════
    PIPELINE STEP ICONS (24x24 stroke-based SVGs)
@@ -145,10 +145,10 @@ const IntegratedModel = React.memo(() => {
 
   return (
     <section className="s3" ref={sectionRef}>
-      <div className="s3-shader">
-        <video className="s3-video" autoPlay muted loop playsInline>
-          <source src={HERO_VIDEO_SRC} type="video/mp4" />
-        </video>
+      <div
+        className="s3-shader"
+        style={{ backgroundImage: `url(${SECTION_BG_IMAGE})` }}
+      >
         <div className="s3-video-overlay" />
       </div>
       <div className="s3-spotlight" />

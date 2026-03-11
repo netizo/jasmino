@@ -111,69 +111,66 @@ export default function USPCards() {
         scrub: 1.2,
         pin: pinWrapperRef.current,
         pinSpacing: true,
+        toggleClass: { targets: pinWrapperRef.current, className: 'is-pinned' },
       },
     });
 
-    // Slide transitions — full timeline dedicated to crossfades
+    // Slide transitions — tight crossfade with heavy overlap
     const step = 1 / USP_SLIDES.length;
     USP_SLIDES.forEach((_, index) => {
       if (index === 0) return;
       const prev = slides[index - 1];
       const next = slides[index];
       const startAt = step * index;
-      const t = step * 0.75;
+      const t = step * 0.85;
 
-      // ── EXIT previous slide ──
-      // Left column exits first (top to bottom stagger)
+      // ── EXIT previous slide ── (compact, all elements exit nearly together)
+      const exitAt = startAt - t;
       tl.to(prev.querySelectorAll('.usp-card-overline'), {
-        y: -14, autoAlpha: 0, filter: 'blur(3px)', duration: t * 0.35, ease: smoothIn,
-      }, startAt - t)
+        y: -8, autoAlpha: 0, filter: 'blur(2px)', duration: t * 0.28, ease: smoothIn,
+      }, exitAt)
         .to(prev.querySelectorAll('.usp-card-headline'), {
-          y: -18, autoAlpha: 0, filter: 'blur(3px)', duration: t * 0.35, ease: smoothIn,
-        }, startAt - t + t * 0.04)
+          y: -10, autoAlpha: 0, filter: 'blur(2px)', duration: t * 0.28, ease: smoothIn,
+        }, exitAt + t * 0.02)
         .to(prev.querySelectorAll('.usp-card-body'), {
-          y: -14, autoAlpha: 0, filter: 'blur(3px)', duration: t * 0.32, ease: smoothIn,
-        }, startAt - t + t * 0.08)
+          y: -8, autoAlpha: 0, filter: 'blur(2px)', duration: t * 0.26, ease: smoothIn,
+        }, exitAt + t * 0.04)
         .to(prev.querySelectorAll('.usp-card-dots'), {
-          y: -10, autoAlpha: 0, duration: t * 0.28, ease: smoothIn,
-        }, startAt - t + t * 0.1)
-        // Right column (evidence) exits simultaneously but slightly delayed
+          y: -6, autoAlpha: 0, duration: t * 0.22, ease: smoothIn,
+        }, exitAt + t * 0.05)
         .to(prev.querySelectorAll(rightEls), {
-          y: -16, autoAlpha: 0, filter: 'blur(4px)', duration: t * 0.36, ease: smoothIn,
-        }, startAt - t + t * 0.06)
-        // Whole slide fades + scales + blurs
+          y: -10, autoAlpha: 0, filter: 'blur(2px)', duration: t * 0.28, ease: smoothIn,
+        }, exitAt + t * 0.02)
         .to(prev, {
-          autoAlpha: 0, scale: 0.96, filter: 'blur(6px)', duration: t * 0.4, ease: smoothIn,
-        }, startAt - t + t * 0.12);
+          autoAlpha: 0, scale: 0.98, filter: 'blur(4px)', duration: t * 0.3, ease: smoothIn,
+        }, exitAt + t * 0.06);
 
-      // ── ENTER next slide ──
-      const enterAt = startAt - t * 0.25; // overlap with exit for smooth crossfade
+      // ── ENTER next slide ── (heavy overlap — starts at 55% through exit)
+      const enterAt = exitAt + t * 0.18;
       tl.fromTo(next,
-        { autoAlpha: 0, y: 36, scale: 0.96, filter: 'blur(6px)' },
-        { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: t * 0.5, ease: smoothOut },
+        { autoAlpha: 0, y: 20, scale: 0.98, filter: 'blur(4px)' },
+        { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
         enterAt)
-        // Left column cascades in
         .fromTo(next.querySelectorAll('.usp-card-overline'),
-          { y: 18, autoAlpha: 0, filter: 'blur(3px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
-          enterAt + t * 0.1)
+          { y: 10, autoAlpha: 0, filter: 'blur(2px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.35, ease: smoothOut },
+          enterAt + t * 0.06)
         .fromTo(next.querySelectorAll('.usp-card-headline'),
-          { y: 22, autoAlpha: 0, filter: 'blur(3px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
-          enterAt + t * 0.16)
+          { y: 14, autoAlpha: 0, filter: 'blur(2px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.35, ease: smoothOut },
+          enterAt + t * 0.1)
         .fromTo(next.querySelectorAll('.usp-card-body'),
-          { y: 20, autoAlpha: 0, filter: 'blur(3px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.4, ease: smoothOut },
-          enterAt + t * 0.22)
+          { y: 12, autoAlpha: 0, filter: 'blur(2px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.35, ease: smoothOut },
+          enterAt + t * 0.14)
         .fromTo(next.querySelectorAll('.usp-card-dots'),
-          { y: 14, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: t * 0.35, ease: smoothOut },
-          enterAt + t * 0.26)
-        // Right column (evidence) enters with slight delay for asymmetry
+          { y: 8, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: t * 0.3, ease: smoothOut },
+          enterAt + t * 0.17)
         .fromTo(next.querySelectorAll(rightEls),
-          { y: 28, autoAlpha: 0, filter: 'blur(4px)' },
-          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.45, ease: smoothOut },
-          enterAt + t * 0.18);
+          { y: 16, autoAlpha: 0, filter: 'blur(2px)' },
+          { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: t * 0.38, ease: smoothOut },
+          enterAt + t * 0.1);
     });
 
     tl.eventCallback('onUpdate', () => {
@@ -228,48 +225,52 @@ export default function USPCards() {
         <div className="usp-pin-wrapper" ref={pinWrapperRef}>
           <div className="usp-card-wrap">
             <div className="usp-card" ref={cardRef}>
-            {/* Sizer: in-flow content for card height, hidden (RULE 1) */}
+            {/* Sizer: renders ALL slides stacked so height = tallest slide (RULE 1) */}
             <div className="usp-card-sizer" aria-hidden="true">
-              <div className="usp-card-content">
-                <div className="usp-card-left">
-                  <div className="usp-card-overline">
-                    <span className="usp-card-overline-dot" />
-                    {USP_SLIDES[activeSlideIndex]?.overline}
-                  </div>
-                  <h3 className="usp-card-headline">
-                    {USP_SLIDES[activeSlideIndex]?.headline.split('\n').map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        {i < USP_SLIDES[activeSlideIndex].headline.split('\n').length - 1 && <br />}
-                      </span>
-                    ))}
-                  </h3>
-                  {USP_SLIDES[activeSlideIndex]?.body.map((para, i) => (
-                    <p key={i} className="usp-card-body">{para}</p>
-                  ))}
-                  <div className="usp-card-dots" aria-hidden="true" />
-                </div>
-                <div className="usp-card-right">
-                  <div className="usp-evidence">
-                    <div className="usp-evidence-label">{USP_SLIDES[activeSlideIndex]?.evidenceLabel}</div>
-                    <div className="usp-evidence-stats">
-                      {USP_SLIDES[activeSlideIndex]?.stats.map((stat, i) => (
-                        <div key={i}>
-                          <div className="usp-stat-row">
-                            <span className="usp-stat-num">{stat.num}</span>
-                            <span className="usp-stat-detail">{stat.detail}</span>
-                          </div>
-                          {i < USP_SLIDES[activeSlideIndex].stats.length - 1 && <div className="usp-evidence-divider" />}
-                        </div>
+              {USP_SLIDES.map((slide, i) => (
+                <div className="usp-card-sizer-layer" key={i}>
+                  <div className="usp-card-content">
+                    <div className="usp-card-left">
+                      <div className="usp-card-overline">
+                        <span className="usp-card-overline-dot" />
+                        {slide.overline}
+                      </div>
+                      <h3 className="usp-card-headline">
+                        {slide.headline.split('\n').map((line, li) => (
+                          <span key={li}>
+                            {line}
+                            {li < slide.headline.split('\n').length - 1 && <br />}
+                          </span>
+                        ))}
+                      </h3>
+                      {slide.body.map((para, pi) => (
+                        <p key={pi} className="usp-card-body">{para}</p>
                       ))}
+                      <div className="usp-card-dots" aria-hidden="true" />
                     </div>
-                    <div className="usp-keyfact">
-                      <strong>{USP_SLIDES[activeSlideIndex]?.keyfactBold}</strong>
-                      {USP_SLIDES[activeSlideIndex]?.keyfactRest}
+                    <div className="usp-card-right">
+                      <div className="usp-evidence">
+                        <div className="usp-evidence-label">{slide.evidenceLabel}</div>
+                        <div className="usp-evidence-stats">
+                          {slide.stats.map((stat, si) => (
+                            <div key={si}>
+                              <div className="usp-stat-row">
+                                <span className="usp-stat-num">{stat.num}</span>
+                                <span className="usp-stat-detail">{stat.detail}</span>
+                              </div>
+                              {si < slide.stats.length - 1 && <div className="usp-evidence-divider" />}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="usp-keyfact">
+                          <strong>{slide.keyfactBold}</strong>
+                          {slide.keyfactRest}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="usp-card-frame-tl" aria-hidden="true" />
             <div className="usp-card-frame-br" aria-hidden="true" />

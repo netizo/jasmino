@@ -79,6 +79,14 @@ const Divisions = React.memo(() => {
                     className="div-visual-photo"
                     style={{ background: 'linear-gradient(135deg, var(--navy), var(--dark, #0c1a2e))' }}
                   >
+                    <video
+                      className="div-visual-video"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      src="/videos/engg-design.mp4"
+                    />
                     <div className="div-visual-photo-overlay" />
                     <div className="div-visual-photo-caption">
                       <span className="div-caption-dot" />
@@ -88,7 +96,7 @@ const Divisions = React.memo(() => {
                 ) : (
                   <div
                     className="div-visual-photo"
-                    style={card.id === 'cor' ? {} : { backgroundImage: `url(${DIVISION_PHOTOS[card.id]})` }}
+                    style={card.id === 'cor' || card.id === 'mfg' || card.id === 'rub' ? {} : { backgroundImage: `url(${DIVISION_PHOTOS[card.id]})` }}
                   >
                     {card.id === 'cor' && (
                       <video
@@ -97,7 +105,27 @@ const Divisions = React.memo(() => {
                         muted
                         loop
                         playsInline
-                        src="/videos/corrosion.mp4"
+                        src="/videos/corrosion%20(2).mp4"
+                      />
+                    )}
+                    {card.id === 'mfg' && (
+                      <video
+                        className="div-visual-video"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        src="/videos/manufacturing.mp4"
+                      />
+                    )}
+                    {card.id === 'rub' && (
+                      <video
+                        className="div-visual-video"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        src="/videos/rubber.mp4"
                       />
                     )}
                     <div className="div-visual-photo-overlay" />

@@ -16,6 +16,8 @@
     inset: 0;
     z-index: 0;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
 }
 
 .s3-video {
