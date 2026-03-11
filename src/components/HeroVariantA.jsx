@@ -150,7 +150,7 @@ export default function HeroVariantA() {
                 color: 'rgba(255,255,255,0.65)',
               }}
             >
-              Engineering Excellence Since 1972
+              Engineering Excellence Since 1984
             </span>
           </div>
 
@@ -204,7 +204,7 @@ export default function HeroVariantA() {
               marginBottom: 40,
             }}
           >
-            For over 50 years, Jasmino has done what no other company does — engineer, manufacture, and protect industrial process equipment under one roof.
+            For over 40 years, Jasmino has done what no other company does — engineer, manufacture, and protect industrial process equipment under one roof.
           </p>
 
           {/* CTAs */}

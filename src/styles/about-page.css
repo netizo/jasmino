@@ -22,12 +22,28 @@
   background: var(--green); opacity: 0.4;
 }
 
+/* ═══ ABOUT SIBLING NAV ═══ */
+.about-page .about-sub-nav {
+  display: flex; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: relative; z-index: 6; padding-top: 72px;
+  max-width: 1320px; margin: 0 auto; width: 100%; padding-left: 48px; padding-right: 48px;
+}
+.about-page .about-sub-nav a {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); text-decoration: none;
+  padding: 16px 32px; border-bottom: 2px solid transparent;
+  transition: all 0.25s var(--ease);
+}
+.about-page .about-sub-nav a:hover { color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.04); }
+.about-page .about-sub-nav a.active { color: rgba(255,255,255,0.85); border-bottom-color: var(--green); }
+
 /* ═══════════════════════════════════════════════════════
    S1 — DARK HERO
    ═══════════════════════════════════════════════════════ */
 .about-page .hero {
   position: relative; height: 100vh; min-height: 700px;
-  overflow: hidden; display: flex; align-items: flex-end;
+  overflow: hidden; display: flex; flex-direction: column;
   background: var(--navy);
 }
 .about-page .hero-photo {
@@ -38,7 +54,7 @@
 }
 .about-page .hero-content {
   position: relative; z-index: 5;
-  max-width: 1320px; margin: 0 auto; width: 100%;
+  max-width: 1320px; margin: auto auto 0; width: 100%;
   padding: 0 56px 80px;
 }
 
@@ -659,7 +675,7 @@
 .about-page .cta-inner {
   position: relative; overflow: hidden; border-radius: 16px;
   padding: 72px 56px;
-  background: linear-gradient(135deg, var(--blue), #1a3f73);
+  background: linear-gradient(135deg, rgba(27, 75, 143, 0.85), rgba(26, 63, 115, 0.8)), url(/images/discuss-bg.png) center/cover no-repeat;
 }
 .about-page .cta-grid {
   position: absolute; inset: 0; opacity: 0.25;

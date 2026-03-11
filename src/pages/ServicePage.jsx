@@ -133,7 +133,18 @@ export default function ServicePage() {
 
       {/* ---- HERO ---- */}
       <section className="hero">
-        <div className="hero-photo" style={{ backgroundImage: `url(${hero.hero_photo_url})` }} />
+        {hero.hero_video_url ? (
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            src={hero.hero_video_url}
+          />
+        ) : (
+          <div className="hero-photo" style={{ backgroundImage: `url(${hero.hero_photo_url})` }} />
+        )}
         <div className="hero-grid-overlay eng-grid-dark" />
         <div className="hero-corner tl" />
         <div className="hero-corner tr" />

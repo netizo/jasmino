@@ -481,7 +481,7 @@ const FacilityCard = ({ flag, name, country, area, detail, established }) => (
 /* ── Main Component ── */
 const GlobalPresence = () => {
     const facilities = [
-        { flag: '🇮🇳', name: 'Jasmino HQ', country: 'India', area: '80,000', detail: 'Engineering, Manufacturing, Rubber Products', established: '1972' },
+        { flag: '🇮🇳', name: 'Jasmino HQ', country: 'India', area: '80,000', detail: 'Engineering, Manufacturing, Rubber Products', established: '1984' },
         { flag: '🇩🇪', name: 'HAW Linings', country: 'Germany', area: '30,000', detail: 'Rubber & Plastic Linings', established: '1956' },
         { flag: '🇩🇪', name: 'GBT', country: 'Germany', area: '20,000', detail: 'Linings & Coatings', established: '1985' },
     ];

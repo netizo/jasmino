@@ -15,21 +15,23 @@ export const infrastructureData = {
   facilityNav: [
     { id: 'india', flag: '\uD83C\uDDEE\uD83C\uDDF3', label: 'India \u2014 HQ' },
     { id: 'germany', flag: '\uD83C\uDDE9\uD83C\uDDEA', label: 'Germany \u2014 HAW' },
-    { id: 'gbt-marl', flag: '\uD83C\uDDE9\uD83C\uDDEA', label: 'Germany \u2014 GBT Marl' }
+    { id: 'germany-gbt', flag: '\uD83C\uDDE9\uD83C\uDDEA', label: 'Germany \u2014 GBT' }
   ],
 
   overview: {
     overline: 'Our Infrastructure',
-    title_html: 'Two sites, one <em>supply chain</em>',
-    description: 'Each facility is purpose-built for a specific link in the chain. India handles engineering and heavy fabrication. Germany provides European rubber and plastic lining expertise through HAW Linings and GBT in Marl.',
+    title_html: 'Three sites, one <em>supply chain</em>',
+    description: 'Each facility is purpose-built for a specific link in the chain. India handles engineering and heavy fabrication. Germany provides European rubber and plastic lining expertise through HAW Linings, and GBT in Germany delivers coating and lining services.',
     stats: [
       { value: '80K', label: 'm\u00B2 India' },
-      { value: '50K', label: 'm\u00B2 Germany' },
+      { value: '30K', label: 'm\u00B2 Germany' },
+      { value: '20K', label: 'm\u00B2 Germany (GBT)' },
       { value: 'ISO', label: '9001 \u00B7 14001 \u00B7 45001', noCount: true }
     ],
     mapPins: [
       { id: 'india', cx: 545, cy: 210, name: 'Jasmino HQ', meta: '80,000 m\u00B2 \u00B7 India', labelX: 545, labelY: 238, labelText: 'INDIA', pulseR: 14, pulseDur: '2.5s' },
-      { id: 'germany', cx: 430, cy: 135, name: 'HAW & GBT', meta: '50,000 m\u00B2 \u00B7 Germany', labelX: 415, labelY: 122, labelText: 'GERMANY', pulseR: 11, pulseDur: '2.8s' }
+      { id: 'germany', cx: 430, cy: 135, name: 'HAW Linings', meta: '30,000 m\u00B2 \u00B7 Germany', labelX: 415, labelY: 122, labelText: 'GERMANY', pulseR: 11, pulseDur: '2.8s' },
+      { id: 'germany-gbt', cx: 465, cy: 160, name: 'GBT', meta: '20,000 m\u00B2 \u00B7 Germany', labelX: 475, labelY: 175, labelText: 'GERMANY (GBT)', pulseR: 11, pulseDur: '3.0s' }
     ]
   },
 
@@ -129,13 +131,13 @@ export const infrastructureData = {
       ]
     },
     {
-      id: 'gbt-marl',
+      id: 'germany-gbt',
       num: '03',
       flag: '\uD83C\uDDE9\uD83C\uDDEA',
       country: 'Germany',
       name: 'GBT',
-      nameAccent: 'Marl, Germany',
-      description: 'GBT in Marl, Germany \u2014 coating and lining services for the European market. Full rubber lining, plastic lining, and coating capabilities with rapid response for shutdown and turnaround services.',
+      nameAccent: 'Germany',
+      description: 'GBT in Germany \u2014 coating and lining services for the European and Middle Eastern markets. Full rubber lining, plastic lining, and coating capabilities with rapid response for shutdown and turnaround services.',
       capacity: { num: '20,000', label: 'm\u00B2 service capacity' },
       alt: false,
       gallery: [
@@ -147,8 +149,8 @@ export const infrastructureData = {
       specs: [
         {
           icon: 'location',
-          title: 'European Hub',
-          description: 'Marl location provides access to European, Middle Eastern, and North African markets.',
+          title: 'Strategic Hub',
+          description: 'Germany location provides access to European, Middle Eastern, and North African markets.',
           stat: { value: '20+', label: 'countries served', noCount: true }
         },
         {
@@ -183,7 +185,7 @@ export const infrastructureData = {
     description: 'Every facility operates under the same integrated quality management system. Same procedures, same documentation, same audit trail \u2014 regardless of geography.',
     pillars: [
       { num: '01', title: 'Unified Documentation', description: 'Shared QMS, work instructions, and weld procedures across all sites. A document revised in India is live in Germany the same day.' },
-      { num: '02', title: 'Cross-Site Audits', description: 'Regular internal audits between facilities. India audits HAW, HAW audits GBT, GBT audits India \u2014 circular accountability.' },
+      { num: '02', title: 'Cross-Site Audits', description: 'Regular internal audits between facilities. India audits HAW, HAW audits GBT, GBT audits India \u2014 circular accountability across Germany and India.' },
       { num: '03', title: 'Digital Traceability', description: 'Material test reports, inspection records, and project documentation tracked from raw material to final delivery across all locations.' }
     ],
     certifications: [

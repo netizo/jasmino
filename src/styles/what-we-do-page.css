@@ -494,7 +494,7 @@
    S6 — CTA
    ════════════════════════════════════════════════════════ */
 .wwd-page .cta-section {
-  background: var(--navy); position: relative; overflow: hidden;
+  background: var(--navy); background-image: url(/images/discuss-bg.png); background-size: cover; background-position: center; position: relative; overflow: hidden;
 }
 .wwd-page .cta-grid { position: absolute; inset: 0; }
 .wwd-page .cta-inner {

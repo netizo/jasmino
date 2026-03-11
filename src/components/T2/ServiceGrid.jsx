@@ -28,7 +28,7 @@ export default function T2ServiceGrid({ data }) {
   }, { scope: sectionRef, dependencies: [] });
 
   return (
-    <section className="svcs" ref={sectionRef}>
+    <section className={`svcs ${['corrosion-protection', 'engineering-design'].includes(divisionSlug) ? 'svcs--two-col' : ''}`} ref={sectionRef}>
       <div className="svcs-in">
         <div className="overline rv">Our Services</div>
         <h2 className="sec-h rv">

@@ -27,7 +27,20 @@ export default function T2Hero({ data, divisionSlug }) {
   };
 
   return (
-    <section className="hero" style={bgStyle} ref={containerRef}>
+    <section className={`hero ${data.hero_video_url ? 'hero-has-video-bg' : ''}`} style={!data.hero_video_url ? bgStyle : undefined} ref={containerRef}>
+      {data.hero_video_url && (
+        <>
+          <div className="hero-video-bg">
+            <video autoPlay muted loop playsInline src={data.hero_video_url} />
+          </div>
+          <div
+            className="hero-video-overlay"
+            style={{
+              background: 'linear-gradient(168deg, rgba(4,8,16,0.9) 0%, rgba(8,20,32,0.85) 35%, rgba(13,32,64,0.8) 70%, rgba(6,12,24,0.95) 100%)',
+            }}
+          />
+        </>
+      )}
       <HeroBackground />
       <div className="hero-grid" />
       <div className="hero-bgnum">{data.num}</div>

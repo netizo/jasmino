@@ -52,7 +52,7 @@ export const divisions = [
     name: 'Corrosion Protection',
     shortName: 'Corrosion',
     tagline: 'The crown jewel \u2014 protecting assets that can\u2019t afford to fail',
-    description: 'Rubber linings, plastic linings, coatings, and resin systems applied by 150+ technicians deployed globally. Backed by HAW and GBT (Germany) heritage with 2,000+ proven formulations.',
+    description: 'Rubber linings, plastic linings, coatings, and resin systems applied by 150+ technicians deployed globally. Backed by HAW (Germany) and GBT (Germany) heritage with 2,000+ proven formulations.',
     stats: [
       { num: '2,000+', label: 'Formulations' },
       { num: '150+', label: 'Field Technicians' }
@@ -65,7 +65,7 @@ export const divisions = [
     ],
     proof: {
       stat: '97% reorder rate',
-      detail: 'Clients return because our lining systems consistently outperform warranty periods. HAW and GBT bring 60+ years of combined European lining expertise.'
+      detail: 'Clients return because our lining systems consistently outperform warranty periods. HAW and GBT bring 60+ years of combined lining expertise.'
     },
     color: '#2E8B57'
   },
@@ -132,7 +132,7 @@ export const facilities = [
 ];
 
 export const companyStats = [
-  { num: '50+', label: 'Years' },
+  { num: '40+', label: 'Years' },
   { num: '15+', label: 'Countries' },
   { num: '130K+', label: 'm\u00B2 Shop Floor' },
   { num: '97%', label: 'Reorder Rate' }

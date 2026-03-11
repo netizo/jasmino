@@ -2,6 +2,7 @@ export const t2Data = {
     'engineering-design': {
         num: '01',
         heroGradient: 'linear-gradient(168deg, #060e1a 0%, #0B1D34 35%, #112e55 70%, #0a1828 100%)',
+        hero_video_url: '/videos/eng-design-t2.mp4',
         serviceCount: 4,
         advIcon: '<path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-4h6v4"/>',
         overview: {
@@ -204,6 +205,7 @@ export const t2Data = {
     'equipment-manufacturing': {
         num: '02',
         heroGradient: 'linear-gradient(168deg, #050b14 0%, #091828 35%, #0f2844 70%, #080f1c 100%)',
+        hero_video_url: '/videos/manu-t2.mp4',
         serviceCount: 2,
         advIcon: '<path d="M2 20h20M5 20V8l7-5 7 5v12M9 20v-4h6v4"/>',
         overview: {
@@ -373,16 +375,17 @@ export const t2Data = {
     'corrosion-protection': {
         num: '03',
         heroGradient: 'linear-gradient(168deg, #070f1e 0%, #0c2240 35%, #143760 70%, #091520 100%)',
+        hero_video_url: '/videos/corrosion-t2.mp4',
         serviceCount: 4,
         advIcon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
         overview: {
             body: [
-                'The Corrosion Protection division combines HAW and GBT (Germany) heritage — over 50 years of protecting critical industrial assets in the world\'s most aggressive chemical environments.',
+                'The Corrosion Protection division combines HAW and GBT heritage in Germany — over 40 years of protecting critical industrial assets in the world\'s most aggressive chemical environments.',
                 'Rubber linings, plastic linings, coatings, and resin systems applied by teams who have been involved since the equipment design phase. Every lining specification is validated against the actual chemical exposure before application begins.'
             ],
             quickFacts: [
                 { label: 'Heritage', value: 'HAW + GBT (Germany)' },
-                { label: 'Experience', value: '50+ years' },
+                { label: 'Experience', value: '40+ years' },
                 { label: 'Facilities', value: '3 global lining centres' },
                 { label: 'First-pass success', value: '98%' },
                 { label: 'Lining systems', value: 'Rubber, Plastic, Coatings, Resin' },
@@ -427,7 +430,7 @@ export const t2Data = {
             titleEm: 'engineering',
             desc: 'We don\'t just apply linings — we design equipment that\'s optimized for lining from the start. Nozzle orientation, weld access, surface geometry — every detail accounts for protection requirements.',
             list: [
-                'HAW and GBT (Germany) heritage — proven global expertise',
+                'HAW and GBT heritage in Germany — proven global expertise',
                 'Equipment designed for optimal lining application from day one',
                 'In-house compound development for exact chemical compatibility',
                 'Spark testing and holiday detection on every square meter'
@@ -555,6 +558,7 @@ export const t2Data = {
     'rubber-products': {
         num: '04',
         heroGradient: 'linear-gradient(168deg, #040810 0%, #081420 35%, #0d2040 70%, #060c18 100%)',
+        hero_video_url: '/videos/rubber-t2.mp4',
         serviceCount: 2,
         advIcon: '<circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v-2m-9-9h2m18 0h-2M5.636 5.636l1.414 1.414m9.9 9.9l1.414 1.414M5.636 18.364l1.414-1.414m9.9-9.9l1.414-1.414"/>',
         overview: {

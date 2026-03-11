@@ -28,9 +28,9 @@ const USP_SLIDES = [
     coord: 'USP.02',
     coordBr: 'PROVEN AT SCALE',
     overline: 'Proven at Scale',
-    headline: '50+ years.\nThree continents.',
+    headline: '40+ years.\nTwo countries.',
     body: [
-      'Founded in 1972 in Taloja, Maharashtra. Today, Jasmino operates 130,000+ m² of integrated manufacturing across India and Germany — including HAW Linings and GBT, acquired in 2024 to bring four decades of European lining expertise into the group.',
+      'Founded in 1984 in India. Today, Jasmino operates 130,000+ m² of integrated manufacturing across India and Germany — including HAW Linings and GBT, bringing decades of European lining expertise into the group.',
       'Pressure vessels up to 8 metres in diameter and 50 metres long — fabrication at shipyard scale, certified to ASME, API, PED, and TÜV standards.',
     ],
     evidenceLabel: 'Infrastructure at a glance',
@@ -80,7 +80,6 @@ export default function USPCards() {
     const smoothIn = 'power3.inOut';
 
     // Stagger target selectors
-    const leftEls = '.usp-card-overline, .usp-card-headline, .usp-card-body, .usp-card-dots';
     const rightEls = '.usp-evidence';
 
     // Card starts hidden — entrance animation is scroll-triggered but separate from pin
@@ -101,6 +100,9 @@ export default function USPCards() {
         scrub: 0.6,
       },
     });
+
+    // Defer heavy timeline building to avoid blocking first paint
+    const raf = requestAnimationFrame(() => {
 
     // Pin timeline — starts when card hits top, entire timeline = slide transitions
     const tl = gsap.timeline({
@@ -181,6 +183,9 @@ export default function USPCards() {
       }
       setActiveSlideIndex(Math.min(idx, USP_SLIDES.length - 1));
     });
+
+    }); // end rAF
+    return () => cancelAnimationFrame(raf);
   }, { scope: sectionRef, dependencies: [] });
 
   useEffect(() => {

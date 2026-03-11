@@ -105,18 +105,24 @@
   outline-offset: 2px;
 }
 
-/* ── Responsive ── */
-@media (max-width: 1024px) {
-  .ip-grid-inner { padding: 64px 32px 100px; }
-}
-@media (max-width: 900px) {
-  .ip-grid { grid-template-columns: repeat(2, 1fr); }
+/* ── Responsive — aligned with home page bento breakpoints ── */
+@media (max-width: 1080px) {
+  .ip-hero-inner { padding: 120px 32px 72px; }
+  .ip-grid-inner { padding: 72px 32px 100px; }
+  .ip-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
   .ip-card-span2 { grid-column: span 2; }
 }
-@media (max-width: 600px) {
-  .ip-hero-inner { padding: 120px 20px 60px; }
-  .ip-grid-inner { padding: 48px 20px 80px; }
-  .ip-grid { grid-template-columns: 1fr; gap: 16px; }
+@media (max-width: 680px) {
+  .ip-hero-inner { padding: 100px 20px 56px; }
+  .ip-hero-h { font-size: 32px; }
+  .ip-grid-inner { padding: 56px 20px 80px; }
+  .ip-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
   .ip-card-span2 { grid-column: span 1; }
   .ip-card { min-height: 260px; }
   .ip-card-name { font-size: 18px; }

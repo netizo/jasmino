@@ -39,23 +39,25 @@ const Divisions = React.memo(() => {
 
   useGSAP(() => {
     if (!stackRef.current || prefersReducedMotion()) return;
-    const cards = stackRef.current.querySelectorAll('.div-card');
-    const triggers = [];
-    cards.forEach((card) => {
-      const visual = card.querySelector('.div-visual-photo');
-      if (!visual) return;
-      const st = ScrollTrigger.create({
-        trigger: card,
-        start: 'top bottom',
-        end: 'top top',
-        scrub: 1.5,
-        onUpdate: (self) => {
-          gsap.set(visual, { scale: 0.98 + 0.02 * self.progress, transformOrigin: 'center center' });
-        },
+    const raf = requestAnimationFrame(() => {
+      const cards = stackRef.current.querySelectorAll('.div-card');
+      const triggers = [];
+      cards.forEach((card) => {
+        const visual = card.querySelector('.div-visual-photo');
+        if (!visual) return;
+        const st = ScrollTrigger.create({
+          trigger: card,
+          start: 'top bottom',
+          end: 'top top',
+          scrub: 1.5,
+          onUpdate: (self) => {
+            gsap.set(visual, { scale: 0.98 + 0.02 * self.progress, transformOrigin: 'center center' });
+          },
+        });
+        triggers.push(st);
       });
-      triggers.push(st);
     });
-    return () => triggers.forEach(t => t.kill());
+    return () => cancelAnimationFrame(raf);
   }, { scope: stackRef, dependencies: [] });
 
   return (

@@ -30,7 +30,7 @@
 .s3-video-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(11,29,52,0.88) 0%, rgba(11,29,52,0.65) 50%, rgba(11,29,52,0.8) 100%);
+    background: linear-gradient(135deg, rgba(11,29,52,0.92) 0%, rgba(11,29,52,0.82) 50%, rgba(11,29,52,0.88) 100%);
     pointer-events: none;
 }
 
@@ -399,8 +399,9 @@
 
 /* Problem card */
 .comp-card.problem {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.008) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, rgba(11, 29, 52, 0.7) 0%, rgba(11, 29, 52, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
 }
 
 .comp-card.problem:hover {
@@ -410,8 +411,9 @@
 
 /* Solution card */
 .comp-card.solution {
-    background: linear-gradient(145deg, rgba(46, 139, 87, 0.04) 0%, rgba(46, 139, 87, 0.008) 100%);
-    border: 1px solid rgba(46, 139, 87, 0.1);
+    background: linear-gradient(145deg, rgba(11, 29, 52, 0.7) 0%, rgba(11, 29, 52, 0.5) 100%);
+    border: 1px solid rgba(46, 139, 87, 0.15);
+    backdrop-filter: blur(12px);
 }
 
 .comp-card.solution:hover {

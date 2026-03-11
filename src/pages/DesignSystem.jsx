@@ -577,7 +577,7 @@ export default function DesignSystem() {
           <div className="dark-section" style={{ padding: 32, borderRadius: 'var(--r-lg)', marginBottom: 32 }}>
             <div className="hero-badge">
               <span className="hero-dot" />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>Engineering Excellence Since 1972</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12 }}>Engineering Excellence Since 1984</span>
             </div>
           </div>
 

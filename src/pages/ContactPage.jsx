@@ -33,8 +33,8 @@ const FACILITIES = [
   {
     flag: '🇩🇪',
     country: 'Germany',
-    name: 'GBT (Marl)',
-    address: 'Marl, Germany',
+    name: 'GBT (Germany)',
+    address: 'Germany',
     phone: '+49 2365 123 456',
     email: 'gbt@jasmino.com',
   },

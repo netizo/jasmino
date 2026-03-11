@@ -213,24 +213,6 @@ export default function WhatWeDoPage() {
               </p>
             </GsapReveal>
 
-            <GsapReveal delay={0.32}>
-              <div className="hero-actions">
-                <a className="btn btn-green" href="#integration">
-                  See How It Works
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                </a>
-                <Link className="btn btn-outline-lt" to="/contact">Contact Engineering</Link>
-              </div>
-            </GsapReveal>
-
-            <GsapReveal delay={0.32}>
-              <div className="hero-stats">
-                <div><div className="hero-stat-num">4</div><div className="hero-stat-label">Divisions</div></div>
-                <div><div className="hero-stat-num">12</div><div className="hero-stat-label">Services</div></div>
-                <div><div className="hero-stat-num">1</div><div className="hero-stat-label">Contract</div></div>
-                <div><div className="hero-stat-num">0</div><div className="hero-stat-label">Handoffs</div></div>
-              </div>
-            </GsapReveal>
           </div>
         </div>
 
