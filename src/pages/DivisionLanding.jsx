@@ -11,9 +11,9 @@ import T2SubNav from '../components/T2/SubNav';
 import T2Hero from '../components/T2/Hero';
 import T2Overview from '../components/T2/Overview';
 import T2ServiceGrid from '../components/T2/ServiceGrid';
-import T2StatsStrip from '../components/T2/StatsStrip';
 import T2Gallery from '../components/T2/Gallery';
 import T2CTA from '../components/T2/CTA';
+import T2StatsStrip from '../components/T2/StatsStrip';
 
 export default function DivisionLanding() {
   const { divisionSlug } = useParams();
@@ -48,7 +48,7 @@ export default function DivisionLanding() {
         <T2Overview data={t2} />
         {/* S2 — Services Grid */}
         <T2ServiceGrid data={t2} />
-        {/* S3 — Stats Strip */}
+        {/* S3 — Stats */}
         <T2StatsStrip data={t2} />
         {/* S4 — Gallery */}
         <T2Gallery data={t2} />

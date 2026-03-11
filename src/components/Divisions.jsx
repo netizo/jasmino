@@ -6,9 +6,9 @@ import { gsap, ScrollTrigger } from '../hooks/useGsap';
 import '../styles/divisions.css';
 
 const DIVISION_PHOTOS = {
-  mfg: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=300&q=75&fit=crop',
+  mfg: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=300&q=75&fit=crop',
   cor: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=400&h=300&q=75&fit=crop',
-  rub: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&q=75&fit=crop',
+  rub: '/photo-1532187863486-abf9dbad1b69.png?w=400&h=300&q=75&fit=crop',
 };
 
 // Map local IDs to divisions.js slugs

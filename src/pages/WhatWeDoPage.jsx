@@ -75,10 +75,10 @@ const modelTabs = [
 
 /* ─── Gallery data ─── */
 const galleryCards = [
-  { img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=700&h=450&q=75&fit=crop', tag: 'ENG', tagBg: 'rgba(27,75,143,0.8)', title: '3D Plant Model \u2014 SP3D', sub: 'Chemical Complex \u00B7 Process Engineering' },
-  { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=700&h=450&q=75&fit=crop', tag: 'MFG', tagBg: 'rgba(20,50,90,0.8)', title: 'Pressure Vessel Fabrication', sub: 'ASME U-Stamp \u00B7 130,000 m\u00B2 Shop Floor' },
+  { img: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=700&h=450&q=75&fit=crop', tag: 'ENG', tagBg: 'rgba(27,75,143,0.8)', title: '3D Plant Model \u2014 SP3D', sub: 'Chemical Complex \u00B7 Process Engineering' },
+  { img: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=700&h=450&q=75&fit=crop', tag: 'MFG', tagBg: 'rgba(20,50,90,0.8)', title: 'Pressure Vessel Fabrication', sub: 'ASME U-Stamp \u00B7 130,000 m\u00B2 Shop Floor' },
   { img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=700&h=450&q=75&fit=crop', tag: 'COR', tagBg: 'rgba(26,63,115,0.8)', title: 'Rubber Lining Application', sub: 'CSM Lining \u00B7 Autoclave Vulcanisation' },
-  { img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&h=450&q=75&fit=crop', tag: 'RUB', tagBg: 'rgba(15,39,68,0.8)', title: 'Compound Development Lab', sub: '2,000+ Proven Formulations' },
+  { img: '/photo-1532187863486-abf9dbad1b69.png?w=700&h=450&q=75&fit=crop', tag: 'RUB', tagBg: 'rgba(15,39,68,0.8)', title: 'Compound Development Lab', sub: '2,000+ Proven Formulations' },
   { img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&h=450&q=75&fit=crop', tag: 'QA', tagBg: 'rgba(46,139,87,0.7)', title: 'Final Inspection & Delivery', sub: 'Single Documentation Set \u00B7 One Accountability' },
   { img: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=700&h=450&q=75&fit=crop', tag: 'ALL', tagBg: 'rgba(27,75,143,0.8)', title: 'Delivered \u2014 FGD Absorber', sub: '4 Divisions \u00B7 1 Project \u00B7 0 Handoffs' },
 ];

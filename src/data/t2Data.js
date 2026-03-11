@@ -91,10 +91,10 @@ export const t2Data = {
             overlayTag: 'Engineering in Action',
             overlayTitle: 'Where precision lives',
             items: [
-                { tag: 'Engineering Office', title: '3D Plant Modelling', sub: 'SmartPlant 3D · AVEVA E3D', img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Design Review', title: 'FEA Validation', sub: 'ANSYS · Stress Analysis', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Shop Floor', title: 'Design to Production', sub: 'Seamless handoff', img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Deliverables', title: 'Production Drawings', sub: 'GA · Fabrication · Isometric', img: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=600&h=400&q=75&fit=crop' },
+                { tag: 'Engineering Office', title: '3D Plant Modelling', sub: 'SmartPlant 3D · AVEVA E3D', img: '/photo-1581093458791-9d42e3c7e117.png' },
+                { tag: 'Design Review', title: 'FEA Validation', sub: 'ANSYS · Stress Analysis', img: '/photo-1581092160607-ee22621dd758.png' },
+                { tag: 'Shop Floor', title: 'Design to Production', sub: 'Seamless handoff', img: '/photo-1504917595217-d4dc5ebe6122.png' },
+                { tag: 'Deliverables', title: 'Production Drawings', sub: 'GA · Fabrication · Isometric', img: '/photo-1581092335397-9583eb92d232.png' },
                 { tag: 'Collaboration', title: 'Integrated Review', sub: 'Cross-discipline validation', img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=400&q=75&fit=crop' }
             ]
         },
@@ -107,7 +107,7 @@ export const t2Data = {
                     num: '01',
                     title: 'Process & Plant Design',
                     desc: 'P&IDs, heat & mass balance, process simulation, and complete plant layout. The blueprint that every other discipline builds from.',
-                    img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1581093458791-9d42e3c7e117.png',
                     evidence: ['P&ID development', 'Process simulation'],
                     tags: ['P&ID', 'HAZOP', 'Plant Layout', 'Simulation'],
                     schematic: `
@@ -123,7 +123,7 @@ export const t2Data = {
                     num: '02',
                     title: 'Equipment Design',
                     desc: 'Vessel engineering, mechanical design, FEA analysis, and structural calculations. Every vessel designed with our manufacturing shop in mind.',
-                    img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1581092160607-ee22621dd758.png',
                     evidence: ['Mechanical design', 'FEA analysis'],
                     tags: ['ASME VIII', 'FEA / ANSYS', 'PV Elite', 'Compress'],
                     schematic: `
@@ -138,7 +138,7 @@ export const t2Data = {
                     num: '03',
                     title: 'Piping Design',
                     desc: 'Stress analysis, isometric generation, pipe rack design, and support engineering. Caesar II validated for every critical line.',
-                    img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1590959651373-a3db0f38a961.png',
                     evidence: ['Pipe stress analysis', 'Isometrics'],
                     tags: ['CAESAR II', 'SP3D / E3D', 'Isometrics', 'Stress Analysis'],
                     schematic: `
@@ -151,7 +151,7 @@ export const t2Data = {
                     num: '04',
                     title: 'Water Treatment',
                     desc: 'Complete ETP/STP and desalination plant design. Process engineering through to installation support for water and wastewater systems.',
-                    img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1504917595217-d4dc5ebe6122.png',
                     evidence: ['ETP / STP design', 'Desalination'],
                     tags: ['ETP / STP', 'Desalination', 'ZLD Systems'],
                     schematic: `
@@ -291,11 +291,11 @@ export const t2Data = {
             overlayTag: 'Manufacturing in Action',
             overlayTitle: 'Precision at scale',
             items: [
-                { tag: 'Fabrication Hall', title: 'Heavy Equipment Bay', sub: '150t overhead crane', img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Welding Bay', title: 'Certified Welding', sub: 'AWS · ASME IX qualified', img: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&q=75&fit=crop' },
-                { tag: 'NDT Inspection', title: 'Non-Destructive Testing', sub: 'RT · UT · MT · PT', img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Surface Prep', title: 'Blast & Prime', sub: 'SA 2.5 · SSPC-SP10', img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Quality Control', title: 'Final Inspection', sub: 'Dimensional · NDE review', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&h=400&q=75&fit=crop' }
+                { tag: 'Fabrication Hall', title: 'Heavy Equipment Bay', sub: '200t overhead crane', img: '/images/em-gallery-1.png' },
+                { tag: 'Surface Prep', title: 'Blast & Prime', sub: 'SA 2.5 · SSPC-SP10', img: '/images/em-gallery-2.png' },
+                { tag: 'NDT Inspection', title: 'Radiographic Testing', sub: 'RT · UT · MT · PT', img: '/images/em-gallery-3.png' },
+                { tag: 'Welding Bay', title: 'SAW Welding', sub: 'AWS · ASME IX qualified', img: '/images/em-gallery-4.png' },
+                { tag: 'Shop Floor', title: 'Full-Scale Assembly', sub: 'Multi-vessel production line', img: '/images/em-gallery-5.png' }
             ]
         },
         services: {
@@ -307,7 +307,7 @@ export const t2Data = {
                     num: '01',
                     title: 'Steel Equipment',
                     desc: 'Pressure vessels, heat exchangers, columns, reactors, and storage tanks. ASME U/U2/R stamped. Carbon steel to exotic alloys.',
-                    img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1504917595217-d4dc5ebe6122.png',
                     evidence: ['Pressure vessels', 'Heat exchangers'],
                     tags: ['Pressure Vessels', 'Heat Exchangers', 'Columns & Reactors', 'Storage Tanks'],
                     schematic: `
@@ -321,7 +321,7 @@ export const t2Data = {
                     num: '02',
                     title: 'Plastic & FRP Equipment',
                     desc: 'Thermoplastic and fiberglass-reinforced plastic equipment for highly corrosive applications. Hand layup and filament winding.',
-                    img: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1565193566173-7a0ee3dbe261.png',
                     evidence: ['FRP vessels', 'Scrubbers'],
                     tags: ['FRP Vessels', 'PP/PVDF Lined', 'Duct Systems', 'Scrubbers'],
                     schematic: `
@@ -454,11 +454,11 @@ export const t2Data = {
             overlayTag: 'Protection in Action',
             overlayTitle: 'Defending against corrosion',
             items: [
-                { tag: 'Rubber Lining', title: 'Application Process', sub: 'Hand-applied natural rubber', img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Surface Prep', title: 'Blast Finishing', sub: 'SA 2.5 white metal blast', img: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Spark Testing', title: 'Quality Assurance', sub: 'Holiday detection at 15kV', img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&q=75&fit=crop' },
-                { tag: 'HAW Germany', title: 'European Facility', sub: '30,000 m² lining centre', img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Inspection', title: 'In-Service Assessment', sub: 'Thickness · adhesion · visual', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&h=400&q=75&fit=crop' }
+                { tag: 'Inspection', title: 'In-Service Assessment', sub: 'Thickness · adhesion · visual', img: '/images/CP-G5.png' },
+                { tag: 'HAW Germany', title: 'European Facility', sub: '30,000 m² lining centre', img: '/images/CP-G4.png' },
+                { tag: 'Surface Prep', title: 'Blast Finishing', sub: 'SA 2.5 white metal blast', img: '/images/CP-G3.png' },
+                { tag: 'Spark Testing', title: 'Quality Assurance', sub: 'Holiday detection at 15kV', img: '/images/CP-G2.png' },
+                { tag: 'Rubber Lining', title: 'Application Process', sub: 'Hand-applied natural rubber', img: '/images/CP-G1.png' }
             ]
         },
         services: {
@@ -470,7 +470,7 @@ export const t2Data = {
                     num: '01',
                     title: 'Rubber Linings',
                     desc: 'Soft and hard rubber lining systems for chemical resistance in the most aggressive environments. Autoclave and pressure cured.',
-                    img: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=400&h=250&q=75&fit=crop',
+                    img: '/images/CP-S1.png',
                     evidence: ['Natural rubber', 'Chlorobutyl'],
                     tags: ['Soft Rubber', 'Hard Rubber', 'Autoclave Cured', 'Ebonite'],
                     schematic: `
@@ -483,7 +483,7 @@ export const t2Data = {
                     num: '02',
                     title: 'Plastic Linings',
                     desc: 'Thermoplastic linings including PP, PVDF, PTFE, and FEP for high-purity and ultra-corrosive applications.',
-                    img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=250&q=75&fit=crop',
+                    img: '/images/CP-S2.png',
                     evidence: ['PP/PVDF', 'PTFE/FEP'],
                     tags: ['PP / PE', 'PVDF', 'PTFE / FEP', 'PFA'],
                     schematic: `
@@ -495,7 +495,7 @@ export const t2Data = {
                     num: '03',
                     title: 'Coatings & Resin Systems',
                     desc: 'Protective coatings, flake glass systems, and resin mortars for atmospheric and immersion service.',
-                    img: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=250&q=75&fit=crop',
+                    img: '/images/CP-S3.png',
                     evidence: ['Epoxy systems', 'Vinyl ester'],
                     tags: ['Epoxy', 'Vinyl Ester', 'Flake Glass', 'Resin Mortar'],
                     schematic: `
@@ -506,7 +506,7 @@ export const t2Data = {
                     num: '04',
                     title: 'Inspection & Repair',
                     desc: 'Scheduled inspections, diagnostic assessments, repair services, and re-lining. Extending asset life across all lining types.',
-                    img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=250&q=75&fit=crop',
+                    img: '/images/CP-S4.png',
                     evidence: ['Spark testing', 'Visual inspection'],
                     tags: ['Spark Testing', 'Thickness Mapping', 'Repair', 'Re-lining'],
                     schematic: `
@@ -645,11 +645,11 @@ export const t2Data = {
             overlayTag: 'Compound Development',
             overlayTitle: 'The science of rubber',
             items: [
-                { tag: 'R&D Lab', title: 'Compound Development', sub: 'Rheology · Physical testing', img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Mixing', title: 'Banbury Mixing', sub: 'Precision batch processing', img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Testing', title: 'Quality Control Lab', sub: 'ASTM · DIN · ISO testing', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Products', title: 'Engineered Parts', sub: 'Custom moulded & extruded', img: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&q=75&fit=crop' },
-                { tag: 'Production', title: 'Sheet & Roll Stock', sub: 'Calendered compounds', img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop' }
+                { tag: 'R&D Lab', title: 'Compound Development', sub: 'Rheology · Physical testing', img: '/images/RP-G1.png' },
+                { tag: 'Mixing', title: 'Banbury Mixing', sub: 'Precision batch processing', img: '/images/RP-G2.png' },
+                { tag: 'Testing', title: 'Quality Control Lab', sub: 'ASTM · DIN · ISO testing', img: '/images/RP-G3.png' },
+                { tag: 'Products', title: 'Engineered Parts', sub: 'Custom moulded & extruded', img: '/images/RP-G4.png' },
+                { tag: 'Production', title: 'Sheet & Roll Stock', sub: 'Calendered compounds', img: '/images/RP-G5.png' }
             ]
         },
         services: {
@@ -661,7 +661,7 @@ export const t2Data = {
                     num: '01',
                     title: 'Custom Compounds',
                     desc: 'Proprietary rubber formulations for specific chemical environments. From natural rubber to advanced fluoroelastomers — 2,000+ proven recipes.',
-                    img: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1532187863486-abf9dbad1b69.png',
                     evidence: ['Natural rubber', 'Fluoroelastomers'],
                     tags: ['NR', 'SBR', 'EPDM', 'FKM', 'Chlorobutyl'],
                     schematic: `
@@ -672,7 +672,7 @@ export const t2Data = {
                     num: '02',
                     title: 'Engineered Products',
                     desc: 'Rubber sheets, gaskets, expansion joints, wear-resistant parts, and custom-molded components for industrial applications.',
-                    img: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=250&q=75&fit=crop',
+                    img: '/photo-1565193566173-7a0ee3dbe261.png',
                     evidence: ['Gaskets', 'Expansion joints'],
                     tags: ['Rubber Sheets', 'Gaskets', 'Expansion Joints', 'Wear Parts'],
                     schematic: `

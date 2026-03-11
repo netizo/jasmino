@@ -5,7 +5,7 @@ export const newsArticles = [
     date: '2026-02-15',
     title: 'FGD Absorber Delivered to 600MW Coal-Fired Power Plant',
     excerpt: 'Complete design-to-delivery of a 16m diameter FGD absorber with 2,400 m² CSM rubber lining — zero defects, 24-week turnaround.',
-    img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=250&q=75&fit=crop',
+    img: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=250&q=75&fit=crop',
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ export const newsArticles = [
     date: '2025-10-30',
     title: 'Technical Paper Presented at NACE Corrosion Conference',
     excerpt: 'Our corrosion engineers presented findings on long-term immersion performance of chlorobutyl rubber linings in sulphuric acid service.',
-    img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=250&q=75&fit=crop',
+    img: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=400&h=250&q=75&fit=crop',
   },
   {
     id: 7,

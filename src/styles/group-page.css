@@ -141,34 +141,78 @@
   background: var(--surface);
 }
 .gp-conv-cols {
-  display: flex; gap: 80px; align-items: center; justify-content: center;
+  display: flex; gap: 40px; align-items: stretch; justify-content: center;
   position: relative; z-index: 2;
+  padding: 0 40px;
 }
 .gp-conv-col {
-  display: flex; flex-direction: column; align-items: center; gap: 16px;
-  width: 260px; will-change: transform, opacity;
+  display: flex; flex-direction: column;
+  width: 340px; will-change: transform, opacity;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--n150);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.gp-conv-col-flag { font-size: 32px; opacity: 0.7; }
-.gp-conv-col-logo {
-  width: 80px; height: 48px; background: var(--n100);
-  border: 1.5px solid var(--n150); border-radius: var(--r);
+.gp-conv-col:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+}
+.gp-conv-col-top {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; padding: 40px 28px 32px;
+  position: relative;
+}
+.gp-conv-col-flag {
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--n500);
+}
+.gp-country-marker {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 4px 12px; border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+}
+
+.gp-conv-col-logo {
+  font-family: var(--font-serif); font-size: 36px; font-weight: 700;
+  color: #fff; letter-spacing: 0.05em;
+}
+.gp-conv-col-body {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px; padding: 28px 24px 32px; flex: 1;
+}
+.gp-conv-col-overline {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--n400); letter-spacing: 0.08em; text-transform: uppercase;
 }
 .gp-conv-col-name {
-  font-family: var(--font-serif); font-weight: 500; font-size: 22px;
-  color: var(--n800); text-align: center; line-height: 1.15;
+  font-family: var(--font-serif); font-weight: 500; font-size: 24px;
+  color: var(--n800); text-align: center; line-height: 1.2;
 }
 .gp-conv-col-loc {
-  font-family: var(--font-mono); font-size: 10px; color: var(--n400);
+  font-family: var(--font-mono); font-size: 11px; color: var(--n400);
   letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .gp-conv-col-stat {
-  font-family: var(--font-mono); font-weight: 600; font-size: 20px; color: var(--blue);
+  font-family: var(--font-mono); font-weight: 700; font-size: 32px; color: var(--blue);
+  line-height: 1;
 }
 .gp-conv-col-stat-l {
-  font-family: var(--font-mono); font-size: 9px; color: var(--n400);
-  text-align: center;
+  font-family: var(--font-mono); font-size: 11px; color: var(--n400);
+  text-align: center; line-height: 1.4; margin-bottom: 10px;
+}
+.gp-conv-col-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  margin-top: auto;
+}
+.gp-conv-col-pill {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: var(--n500); background: var(--n50, #f5f7fa);
+  padding: 6px 14px; border-radius: 20px;
+  letter-spacing: 0.02em; border: 1px solid var(--n100);
 }
 
 /* Merged result */
@@ -185,7 +229,7 @@
 }
 .gp-conv-merged-title em { font-style: italic; color: var(--blue); }
 .gp-conv-merged-logo {
-  width: 80px; height: auto; margin-bottom: 8px;
+  width: 240px; height: auto; margin-bottom: 8px;
 }
 .gp-conv-merged-line { width: 48px; height: 2px; background: var(--green); }
 .gp-conv-merged-sub {
@@ -555,8 +599,8 @@
   .gp-scroll-cue { left: 24px; }
 
   /* Convergence: stack columns vertically */
-  .gp-conv-cols { flex-direction: column; gap: 24px !important; }
-  .gp-conv-col { width: 100%; }
+  .gp-conv-cols { flex-direction: column; gap: 16px !important; padding: 0 20px; }
+  .gp-conv-col { width: 100%; max-width: 360px; }
 
   .gp-entity-content { padding: 32px 24px; }
   .gp-entity-nav { display: none; }

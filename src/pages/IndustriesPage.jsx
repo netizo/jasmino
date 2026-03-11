@@ -9,7 +9,7 @@ const INDUSTRIES = [
     span: 2,
     description: 'Reactors, storage tanks, heat exchangers, and complete piping systems engineered for aggressive chemical environments — HCl, H₂SO₄, NaOH, and organic solvents.',
     tags: ['Reactors', 'Agitators', 'Piping Systems', 'Storage Tanks'],
-    photo: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=300&q=75&fit=crop',
+    photo: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=400&h=300&q=75&fit=crop',
   },
   {
     name: 'Petrochemical',
@@ -17,7 +17,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'High-pressure vessels and columns for refining, cracking, and polymer production under extreme temperature and pressure conditions.',
     tags: ['Pressure Vessels', 'Columns', 'Exchangers'],
-    photo: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=300&q=75&fit=crop',
+    photo: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=300&q=75&fit=crop',
   },
   {
     name: 'Power Generation',

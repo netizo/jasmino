@@ -7,12 +7,19 @@ import logo from '../assets/logo.png';
 import '../styles/group-page.css';
 
 /* ═══════════════════════════════════════════════════════
+   COUNTRY MARKERS (minimal, corporate)
+   ═══════════════════════════════════════════════════════ */
+const CountryMarker = ({ code }) => (
+  <span className="gp-country-marker">{code}</span>
+);
+
+/* ═══════════════════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════════════════ */
 const ENTITIES = [
   {
     id: 'jasmino',
-    flag: '🇮🇳',
+    flag: <CountryMarker code="IN" />,
     logo: 'JASMINO',
     name: 'Jasmino Corporation',
     location: 'Taloja, India',
@@ -33,7 +40,7 @@ const ENTITIES = [
   },
   {
     id: 'haw',
-    flag: '🇩🇪',
+    flag: <CountryMarker code="DE" />,
     logo: 'HAW',
     name: 'HAW Linings',
     location: 'Bockenem, Germany',
@@ -53,7 +60,7 @@ const ENTITIES = [
   },
   {
     id: 'gbt',
-    flag: '🇩🇪',
+    flag: <CountryMarker code="DE" />,
     logo: 'GBT',
     name: 'GBT Bücolit',
     location: 'Marl, Germany',
@@ -343,12 +350,22 @@ export default function JasminoGroupPage() {
           <div className="gp-conv-cols" ref={convColsRef}>
             {ENTITIES.map((e) => (
               <div className="gp-conv-col" key={e.id}>
-                <div className="gp-conv-col-flag">{e.flag}</div>
-                <div className="gp-conv-col-logo">{e.logo}</div>
-                <div className="gp-conv-col-name" dangerouslySetInnerHTML={{ __html: e.name.replace(' ', '<br/>') }} />
-                <div className="gp-conv-col-loc">{e.location}</div>
-                <div className="gp-conv-col-stat">{e.convStat}</div>
-                <div className="gp-conv-col-stat-l">{e.convStatLabel}</div>
+                <div className="gp-conv-col-top" style={{ background: e.gradient }}>
+                  <div className="gp-conv-col-flag">{e.flag}</div>
+                  <div className="gp-conv-col-logo">{e.logo}</div>
+                </div>
+                <div className="gp-conv-col-body">
+                  <div className="gp-conv-col-overline">{e.overline}</div>
+                  <div className="gp-conv-col-name" dangerouslySetInnerHTML={{ __html: e.name.replace(' ', '<br/>') }} />
+                  <div className="gp-conv-col-loc">{e.location}</div>
+                  <div className="gp-conv-col-stat">{e.convStat}</div>
+                  <div className="gp-conv-col-stat-l">{e.convStatLabel}</div>
+                  <div className="gp-conv-col-pills">
+                    {e.pills.slice(0, 3).map((pill) => (
+                      <span key={pill} className="gp-conv-col-pill">{pill}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -395,7 +412,6 @@ export default function JasminoGroupPage() {
                 <div className="gp-entity-bignum">{entity.bigNum}</div>
               </div>
               <div className="gp-entity-content">
-                <div className="flag">{entity.flag}</div>
                 <div className="overline">{entity.overline}</div>
                 <h3>{entity.name}</h3>
                 <p className="desc">{entity.description}</p>

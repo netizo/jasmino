@@ -15,7 +15,7 @@ export default function T2StatsStrip({ data }) {
         {stats.map((stat, i) => (
           <div key={i} className="t2-stat">
             <div className="t2-stat-num">
-              <CountUp end={stat.num} suffix={stat.suffix || ''} />
+              <CountUp target={`${stat.num}${stat.suffix || ''}`} />
             </div>
             <div className="t2-stat-label">{stat.label}</div>
           </div>

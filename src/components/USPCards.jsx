@@ -84,9 +84,9 @@ export default function USPCards() {
 
     // Card starts hidden — entrance animation is scroll-triggered but separate from pin
     gsap.set(cardRef.current, {
-      y: 60, autoAlpha: 0, scale: 0.96, force3d: true,
+      y: 60, autoAlpha: 0, scale: 0.96,
     });
-    gsap.set(slides, { autoAlpha: 0, force3d: true });
+    gsap.set(slides, { autoAlpha: 0 });
     if (slides[0]) gsap.set(slides[0], { autoAlpha: 1 });
 
     // Card entrance — triggers when card area scrolls into view (before pin starts)
@@ -100,9 +100,6 @@ export default function USPCards() {
         scrub: 0.6,
       },
     });
-
-    // Defer heavy timeline building to avoid blocking first paint
-    const raf = requestAnimationFrame(() => {
 
     // Pin timeline — starts when card hits top, entire timeline = slide transitions
     const tl = gsap.timeline({
@@ -184,8 +181,6 @@ export default function USPCards() {
       setActiveSlideIndex(Math.min(idx, USP_SLIDES.length - 1));
     });
 
-    }); // end rAF
-    return () => cancelAnimationFrame(raf);
   }, { scope: sectionRef, dependencies: [] });
 
   useEffect(() => {

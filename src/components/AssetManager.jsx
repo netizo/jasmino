@@ -12,22 +12,25 @@ export default function AssetManager() {
   const [overlays, setOverlays] = useState([]);
   const [status, setStatus] = useState(null);
   const [minimized, setMinimized] = useState(false);
+  const [pendingChanges, setPendingChanges] = useState([]);
   const fileInputRef = useRef(null);
   const targetRef = useRef(null);
   const scanTimer = useRef(null);
 
-  // Scan DOM for all images and videos
+  // Scan DOM for all images, videos, and CSS backgrounds (including gradients)
   const scan = useCallback(() => {
     if (!active) { setOverlays([]); return; }
 
     const items = [];
+    const seen = new WeakSet(); // avoid duplicating elements
+
     const imgs = document.querySelectorAll('img:not(.am-ignore)');
     const videos = document.querySelectorAll('video:not(.am-ignore)');
-    const bgs = document.querySelectorAll('[style*="background-image"]:not(.am-ignore)');
 
     imgs.forEach((el, i) => {
       const rect = el.getBoundingClientRect();
       if (rect.width < 10 || rect.height < 10) return;
+      seen.add(el);
       items.push({
         id: `img-${i}`,
         type: 'image',
@@ -41,6 +44,7 @@ export default function AssetManager() {
     videos.forEach((el, i) => {
       const rect = el.getBoundingClientRect();
       if (rect.width < 10 || rect.height < 10) return;
+      seen.add(el);
       const source = el.querySelector('source');
       items.push({
         id: `vid-${i}`,
@@ -52,18 +56,54 @@ export default function AssetManager() {
       });
     });
 
-    bgs.forEach((el, i) => {
+    // Scan ALL visible elements for computed background-image (catches CSS-defined bgs + gradients)
+    let bgIdx = 0;
+    const allEls = document.querySelectorAll('section, div, header, footer, main, aside, article, span, a');
+    allEls.forEach((el) => {
+      if (el.classList.contains('am-ignore') || el.closest('.am-ignore') || seen.has(el)) return;
       const rect = el.getBoundingClientRect();
-      if (rect.width < 10 || rect.height < 10) return;
-      const bgMatch = el.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/);
-      if (!bgMatch) return;
+      if (rect.width < 30 || rect.height < 30) return;
+      // Skip elements far outside viewport
+      if (rect.bottom < -500 || rect.top > window.innerHeight + 500) return;
+
+      const computed = getComputedStyle(el);
+      const bgImage = computed.backgroundImage;
+      if (!bgImage || bgImage === 'none') return;
+
+      const hasUrl = bgImage.includes('url(');
+      const hasGradient = /gradient\(/i.test(bgImage);
+      if (!hasUrl && !hasGradient) return;
+
+      seen.add(el);
+
+      // Extract display info
+      let displaySrc = '';
+      let src = '';
+      if (hasUrl) {
+        const urlMatch = bgImage.match(/url\(["']?(.+?)["']?\)/);
+        src = urlMatch ? urlMatch[1] : '';
+        displaySrc = src.split('/').pop() || src;
+      }
+      if (hasGradient) {
+        const gradType = bgImage.match(/(linear|radial|conic)-gradient/i);
+        displaySrc = displaySrc
+          ? displaySrc + ' + gradient'
+          : (gradType ? gradType[0] : 'gradient');
+      }
+
+      // Find the CSS selector for this element (for user reference)
+      const cssHint = getCssSelector(el);
+
       items.push({
-        id: `bg-${i}`,
-        type: 'background',
+        id: `bg-${bgIdx++}`,
+        type: hasUrl ? 'background' : 'css-bg',
         el,
         rect,
-        src: bgMatch[1],
-        displaySrc: bgMatch[1],
+        src: src || bgImage,
+        displaySrc,
+        cssHint,
+        isGradient: hasGradient && !hasUrl,
+        hasGradient,
       });
     });
 
@@ -93,6 +133,23 @@ export default function AssetManager() {
     };
   }, [active, scan]);
 
+  // Build a readable CSS selector for an element (for user reference)
+  function getCssSelector(el) {
+    const parts = [];
+    let cur = el;
+    for (let depth = 0; depth < 3 && cur && cur !== document.body; depth++) {
+      let seg = cur.tagName.toLowerCase();
+      if (cur.id) { seg += `#${cur.id}`; parts.unshift(seg); break; }
+      if (cur.className && typeof cur.className === 'string') {
+        const cls = cur.className.split(/\s+/).filter(c => !c.startsWith('am-')).slice(0, 2).join('.');
+        if (cls) seg += `.${cls}`;
+      }
+      parts.unshift(seg);
+      cur = cur.parentElement;
+    }
+    return parts.join(' > ');
+  }
+
   const handleReplace = (item) => {
     targetRef.current = item;
     fileInputRef.current.accept = item.type === 'video'
@@ -110,24 +167,37 @@ export default function AssetManager() {
 
     // Determine target path — try to keep original filename/path
     let targetPath = '';
-    try {
-      const url = new URL(item.src);
-      // Strip leading slash, keep folder structure
-      targetPath = url.pathname.replace(/^\//, '');
-    } catch {
-      targetPath = item.displaySrc.replace(/^\//, '');
-    }
 
-    // If it's a bundled asset (from /src/assets/), put it in public/images/ instead
-    if (targetPath.startsWith('src/') || targetPath.includes('@fs/') || targetPath.includes('assets/')) {
-      const baseName = targetPath.split('/').pop().replace(/\.[^.]+$/, '');
-      const folder = item.type === 'video' ? 'videos' : 'images';
-      targetPath = `${folder}/${baseName}.${ext}`;
-    }
+    if (item.type === 'css-bg') {
+      // For CSS-defined backgrounds (gradients, etc.) — save with a clean name
+      const folder = 'images';
+      // Use element's first meaningful class or id as filename hint
+      const hint = item.el.id
+        || (item.el.className && typeof item.el.className === 'string'
+          ? item.el.className.split(/\s+/).filter(c => !c.startsWith('am-'))[0]
+          : '')
+        || 'bg';
+      targetPath = `${folder}/${hint}-bg.${ext}`;
+    } else {
+      try {
+        const url = new URL(item.src);
+        // Strip leading slash, keep folder structure
+        targetPath = url.pathname.replace(/^\/+/, '');
+      } catch {
+        targetPath = item.displaySrc.replace(/^\//, '');
+      }
 
-    // If path doesn't have a proper extension, add one
-    if (!/\.(png|jpe?g|gif|svg|webp|avif|mp4|webm|mov)$/i.test(targetPath)) {
-      targetPath = targetPath.replace(/\.[^.]+$/, '') + '.' + ext;
+      // If it's a bundled asset (from /src/assets/), put it in public/images/ instead
+      if (targetPath.startsWith('src/') || targetPath.includes('@fs/') || targetPath.includes('assets/')) {
+        const baseName = targetPath.split('/').pop().replace(/\.[^.]+$/, '');
+        const folder = item.type === 'video' ? 'videos' : 'images';
+        targetPath = `${folder}/${baseName}.${ext}`;
+      }
+
+      // If path doesn't have a proper extension, add one
+      if (!/\.(png|jpe?g|gif|svg|webp|avif|mp4|webm|mov)$/i.test(targetPath)) {
+        targetPath = targetPath.replace(/\.[^.]+$/, '') + '.' + ext;
+      }
     }
 
     setStatus({ type: 'uploading', msg: `Uploading ${file.name}...` });
@@ -147,6 +217,16 @@ export default function AssetManager() {
         // Update the element src to force reload
         const newSrc = data.path + '?t=' + Date.now();
 
+        // Track the old→new path replacement for "Save to Source"
+        const oldPath = item.displaySrc || '';
+        if (oldPath && oldPath !== data.path && item.type !== 'css-bg') {
+          setPendingChanges(prev => {
+            // Avoid duplicates for same old path
+            const filtered = prev.filter(c => c.oldPath !== oldPath);
+            return [...filtered, { oldPath, newPath: data.path }];
+          });
+        }
+
         if (item.type === 'image') {
           item.el.src = newSrc;
         } else if (item.type === 'video') {
@@ -157,15 +237,25 @@ export default function AssetManager() {
             item.el.src = newSrc;
           }
           item.el.load();
-        } else if (item.type === 'background') {
+        } else if (item.type === 'background' || item.type === 'css-bg') {
+          // Replace background-image (works for both url() and gradient backgrounds)
           item.el.style.backgroundImage = `url(${newSrc})`;
+          item.el.style.backgroundSize = 'cover';
+          item.el.style.backgroundPosition = 'center';
         }
 
-        setStatus({
-          type: 'success',
-          msg: `Saved to ${data.path} (${(data.size / 1024).toFixed(1)} KB)`
-        });
-        setTimeout(() => setStatus(null), 4000);
+        // Show save path + CSS hint for backgrounds so user knows what to update
+        let msg = `Saved to ${data.path} (${(data.size / 1024).toFixed(1)} KB)`;
+        if (item.type === 'css-bg' && item.cssHint) {
+          msg += `\nUpdate CSS: ${item.cssHint}`;
+          // Also copy the CSS snippet to clipboard
+          const cssSnippet = `background-image: url('${data.path}'); background-size: cover; background-position: center;`;
+          navigator.clipboard?.writeText(cssSnippet).catch(() => {});
+          msg += '\nCSS copied to clipboard!';
+        }
+
+        setStatus({ type: 'success', msg });
+        setTimeout(() => setStatus(null), item.type === 'css-bg' ? 8000 : 4000);
         scan(); // Refresh overlays
       } else {
         setStatus({ type: 'error', msg: data.error || 'Upload failed' });
@@ -229,6 +319,30 @@ export default function AssetManager() {
     handleFileSelected(e);
   };
 
+  // Save pending path changes to source files
+  const handleSaveToSource = async () => {
+    if (pendingChanges.length === 0) return;
+    setStatus({ type: 'uploading', msg: `Saving ${pendingChanges.length} path change(s) to source...` });
+    try {
+      const res = await fetch('/api/save-asset-paths', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pendingChanges),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        const files = data.updated.length > 0 ? data.updated.join(', ') : 'no files matched';
+        setStatus({ type: 'success', msg: `Updated: ${files}` });
+        setPendingChanges([]);
+        setTimeout(() => setStatus(null), 5000);
+      } else {
+        setStatus({ type: 'error', msg: data.error || 'Save failed' });
+      }
+    } catch (err) {
+      setStatus({ type: 'error', msg: err.message });
+    }
+  };
+
   // Keyboard shortcut: Alt+A to toggle
   useEffect(() => {
     const handler = (e) => {
@@ -283,7 +397,23 @@ export default function AssetManager() {
             <button className="am-btn am-btn-scan" onClick={scan}>
               Rescan
             </button>
+            {pendingChanges.length > 0 && (
+              <button className="am-btn am-btn-save" onClick={handleSaveToSource}>
+                Save to Source ({pendingChanges.length})
+              </button>
+            )}
           </div>
+          {pendingChanges.length > 0 && (
+            <div className="am-pending-list">
+              {pendingChanges.map((c, i) => (
+                <div key={i} className="am-pending-item">
+                  <span className="am-pending-old">{c.oldPath}</span>
+                  <span className="am-pending-arrow">→</span>
+                  <span className="am-pending-new">{c.newPath}</span>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="am-toolbar-hint">
             Click any highlighted element to replace it.
             <br />Press <kbd>Alt+A</kbd> to toggle.
@@ -305,6 +435,7 @@ export default function AssetManager() {
         <div
           key={item.id}
           className="am-overlay am-ignore"
+          data-bg-type={item.type === 'css-bg' ? 'css-bg' : undefined}
           style={{
             top: item.rect.top + window.scrollY,
             left: item.rect.left + window.scrollX,
@@ -314,11 +445,11 @@ export default function AssetManager() {
           onClick={() => handleReplace(item)}
         >
           <div className="am-overlay-badge">
-            {item.type === 'video' ? '▶' : item.type === 'background' ? '◧' : '🖼'}
+            {item.type === 'video' ? '▶' : item.type === 'css-bg' ? '◨' : item.type === 'background' ? '◧' : '🖼'}
             <span className="am-overlay-label">Replace</span>
           </div>
-          <div className="am-overlay-path" title={item.displaySrc}>
-            {item.displaySrc.split('/').pop() || item.displaySrc}
+          <div className="am-overlay-path" title={item.cssHint || item.displaySrc}>
+            {item.type === 'css-bg' ? (item.cssHint || item.displaySrc) : (item.displaySrc.split('/').pop() || item.displaySrc)}
           </div>
         </div>
       ))}

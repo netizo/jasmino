@@ -6,12 +6,12 @@ const INDUSTRIES = [
   {
     name: 'Chemical',
     subtitle: 'Reactors, tanks, piping',
-    photo: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=300&q=75&fit=crop',
+    photo: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=400&h=300&q=75&fit=crop',
   },
   {
     name: 'Petrochemical',
     subtitle: 'Refining & processing',
-    photo: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=300&q=75&fit=crop',
+    photo: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=300&q=75&fit=crop',
   },
   {
     name: 'Power Generation',

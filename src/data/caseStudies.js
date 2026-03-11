@@ -6,7 +6,7 @@ export const caseStudies = [
     industry: 'Power',
     badge: 'Power',
     description: 'Design-to-delivery for one of Southeast Asia\'s largest rubber-lined FGD absorbers — two towers, 18 months, zero punch list.',
-    image: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=250&q=75&fit=crop',
+    image: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=400&h=250&q=75&fit=crop',
     stats: [
       { num: '600', label: 'MW Capacity' },
       { num: '2', label: 'Towers' },
@@ -14,7 +14,7 @@ export const caseStudies = [
       { num: '16m', label: 'Diameter' },
     ],
     detail: {
-      heroImage: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=1200&h=675&q=75&fit=crop',
+      heroImage: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=1200&h=675&q=75&fit=crop',
       client: 'Major Southeast Asian Utility',
       year: '2025',
       divisions: ['Engineering Design', 'Equipment Manufacturing', 'Corrosion Protection'],
@@ -38,8 +38,8 @@ export const caseStudies = [
         company: 'Major Southeast Asian Utility',
       },
       gallery: [
-        { img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&q=75&fit=crop', caption: 'Absorber tower during fabrication' },
-        { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop', caption: 'Internal rubber lining application' },
+        { img: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=600&h=400&q=75&fit=crop', caption: 'Absorber tower during fabrication' },
+        { img: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=600&h=400&q=75&fit=crop', caption: 'Internal rubber lining application' },
         { img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&q=75&fit=crop', caption: 'Completed tower ready for dispatch' },
       ],
     },
@@ -174,8 +174,8 @@ export const caseStudies = [
       },
       gallery: [
         { img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&h=400&q=75&fit=crop', caption: 'Brine vessels in fabrication' },
-        { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop', caption: 'PVDF lining application' },
-        { img: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&q=75&fit=crop', caption: 'Completed battery installation' },
+        { img: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=600&h=400&q=75&fit=crop', caption: 'PVDF lining application' },
+        { img: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=600&h=400&q=75&fit=crop', caption: 'Completed battery installation' },
       ],
     },
   },
@@ -231,7 +231,7 @@ export const caseStudies = [
     industry: 'Petrochemical',
     badge: 'Petrochemical',
     description: 'Complete redesign and relining of a 42m distillation column for a European refinery. Upgraded internals and corrosion protection for extended turnaround cycles.',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=400&h=250&q=75&fit=crop',
+    image: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=250&q=75&fit=crop',
     stats: [
       { num: '42m', label: 'Column Height' },
       { num: '120t', label: 'Weight' },
@@ -239,7 +239,7 @@ export const caseStudies = [
       { num: '5yr', label: 'TAR Cycle' },
     ],
     detail: {
-      heroImage: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=675&q=75&fit=crop',
+      heroImage: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=1200&h=675&q=75&fit=crop',
       client: 'European Refinery Operator',
       year: '2024',
       divisions: ['Engineering Design', 'Equipment Manufacturing', 'Corrosion Protection'],
@@ -263,7 +263,7 @@ export const caseStudies = [
         company: 'European Refinery Operator',
       },
       gallery: [
-        { img: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop', caption: 'Column during turnaround' },
+        { img: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=600&h=400&q=75&fit=crop', caption: 'Column during turnaround' },
         { img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&q=75&fit=crop', caption: 'New duplex tray installation' },
         { img: 'https://images.unsplash.com/photo-1590074072786-a66914d668f1?w=600&h=400&q=75&fit=crop', caption: 'On-site rubber lining by HAW team' },
       ],

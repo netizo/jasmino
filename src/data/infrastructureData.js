@@ -3,7 +3,7 @@ export const infrastructureData = {
     badge: 'Two countries \u00B7 One quality system',
     title_html: '130,000 m\u00B2 of <em>integrated</em><br/>manufacturing capacity',
     description: 'Purpose-built facilities in India and Germany \u2014 each engineered for a specific role in the design-to-delivery chain, all governed by one quality system.',
-    fallback_image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=675&q=75&fit=crop&crop=center',
+    fallback_image: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=1200&h=675&q=75&fit=crop&crop=center',
     stats: [
       { value: '2', label: 'Countries' },
       { value: '130K+', label: 'm\u00B2 Total Capacity' },
@@ -47,8 +47,8 @@ export const infrastructureData = {
       capacity: { num: '80,000', label: 'm\u00B2 total capacity' },
       alt: false,
       gallery: [
-        { src: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&q=75&fit=crop&crop=center', alt: 'Main fabrication hall', caption: 'Main Fabrication Hall', sub: 'Heavy Vessel Bay', span2: true },
-        { src: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&fit=crop&crop=center', alt: 'Engineering', caption: 'Engineering', sub: '3D Design Office' },
+        { src: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=600&h=400&q=75&fit=crop&crop=center', alt: 'Main fabrication hall', caption: 'Main Fabrication Hall', sub: 'Heavy Vessel Bay', span2: true },
+        { src: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=600&h=400&fit=crop&crop=center', alt: 'Engineering', caption: 'Engineering', sub: '3D Design Office' },
         { src: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&h=400&fit=crop&crop=center', alt: 'Welding', caption: 'Welding', sub: 'SAW Station' },
         { src: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=600&h=400&fit=crop&crop=center', alt: 'QA', caption: 'QA/QC', sub: 'Metallurgy Lab' }
       ],
@@ -95,9 +95,9 @@ export const infrastructureData = {
       alt: true,
       gallery: [
         { src: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=400&q=75&fit=crop&crop=center', alt: 'Rubber lining', caption: 'Rubber Lining Bay', sub: 'Vessel Interior', span2: true },
-        { src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop&crop=center', alt: 'R&D', caption: 'R&D Lab', sub: 'Compound Testing' },
+        { src: '/photo-1532187863486-abf9dbad1b69.png?w=600&h=400&fit=crop&crop=center', alt: 'R&D', caption: 'R&D Lab', sub: 'Compound Testing' },
         { src: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&h=400&fit=crop&crop=center', alt: 'Surface prep', caption: 'Surface Prep', sub: 'Blast Cleaning' },
-        { src: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=600&h=400&fit=crop&crop=center', alt: 'Autoclave', caption: 'Curing', sub: 'Autoclave Bay' }
+        { src: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=600&h=400&fit=crop&crop=center', alt: 'Autoclave', caption: 'Curing', sub: 'Autoclave Bay' }
       ],
       specs: [
         {
@@ -142,7 +142,7 @@ export const infrastructureData = {
       alt: false,
       gallery: [
         { src: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=600&h=400&q=75&fit=crop&crop=center', alt: 'Application bay', caption: 'Application Bay', sub: 'Epoxy Coating System', span2: true },
-        { src: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&fit=crop&crop=center', alt: 'Workshop', caption: 'Workshop', sub: 'Pipe Lining' },
+        { src: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=600&h=400&fit=crop&crop=center', alt: 'Workshop', caption: 'Workshop', sub: 'Pipe Lining' },
         { src: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&h=400&fit=crop&crop=center', alt: 'Field service', caption: 'Field Service', sub: 'On-Site Lining' },
         { src: 'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?w=600&h=400&fit=crop&crop=center', alt: 'QC', caption: 'QC', sub: 'Holiday Testing' }
       ],

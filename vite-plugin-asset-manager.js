@@ -73,8 +73,67 @@ export default function assetManagerPlugin() {
         }));
       });
 
-      // POST /api/upload-asset-src — saves file and returns new src path
-      // For images/videos referenced from src/assets/ (bundled), saves to public/ with same name
+      // POST /api/save-asset-paths — find & replace old paths with new paths in source files
+      server.middlewares.use('/api/save-asset-paths', async (req, res) => {
+        if (req.method !== 'POST') {
+          res.statusCode = 405;
+          res.end(JSON.stringify({ error: 'Method not allowed' }));
+          return;
+        }
+
+        const chunks = [];
+        for await (const chunk of req) chunks.push(chunk);
+        let replacements;
+        try {
+          replacements = JSON.parse(Buffer.concat(chunks).toString('utf-8'));
+        } catch {
+          res.statusCode = 400;
+          res.end(JSON.stringify({ error: 'Invalid JSON' }));
+          return;
+        }
+
+        if (!Array.isArray(replacements) || replacements.length === 0) {
+          res.statusCode = 400;
+          res.end(JSON.stringify({ error: 'Expected array of {oldPath, newPath}' }));
+          return;
+        }
+
+        // Scan src/ for data files that may contain image paths
+        const srcDir = path.join(projectRoot, 'src');
+        const sourceFiles = [];
+        function collectSources(dir) {
+          if (!fs.existsSync(dir)) return;
+          for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+            const full = path.join(dir, entry.name);
+            if (entry.isDirectory()) {
+              collectSources(full);
+            } else if (/\.(js|jsx|ts|tsx|json|css)$/i.test(entry.name)) {
+              sourceFiles.push(full);
+            }
+          }
+        }
+        collectSources(srcDir);
+
+        const updated = [];
+        for (const filePath of sourceFiles) {
+          let content = fs.readFileSync(filePath, 'utf-8');
+          let changed = false;
+          for (const { oldPath, newPath } of replacements) {
+            if (content.includes(oldPath)) {
+              content = content.split(oldPath).join(newPath);
+              changed = true;
+            }
+          }
+          if (changed) {
+            fs.writeFileSync(filePath, content, 'utf-8');
+            updated.push(path.relative(projectRoot, filePath));
+          }
+        }
+
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ ok: true, updated }));
+      });
+
       server.middlewares.use('/api/list-assets', (req, res) => {
         if (req.method !== 'GET') {
           res.statusCode = 405;
