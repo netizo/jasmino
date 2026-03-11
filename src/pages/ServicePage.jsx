@@ -4,6 +4,7 @@ import { divisions } from '../data/divisions';
 import { getServiceBySlug, getSiblingServices } from '../data/services';
 import t3Content from '../data/t3Content.json';
 import GsapReveal from '../components/GsapReveal';
+import MatIcon from '../components/MatIcon';
 import { useParallax, useStagger } from '../hooks/useGsap';
 import '../styles/service-t3.css';
 
@@ -26,13 +27,98 @@ function ArrowIcon() {
   );
 }
 
-function LinkIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="4" y="4" width="16" height="16" rx="2" />
-      <path d="M4 12h16" />
+/* Per-service animated SVG icons for integration links */
+const SERVICE_ICONS = {
+  'process-plant-design': ( // Flow diagram
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect className="svc-draw" x="3" y="3" width="7" height="7" rx="1" />
+      <rect className="svc-draw" x="14" y="14" width="7" height="7" rx="1" />
+      <path className="svc-draw" d="M10 6.5h4.5v11" />
     </svg>
-  );
+  ),
+  'equipment-design': ( // Technical drawing / compass
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle className="svc-draw" cx="12" cy="12" r="9" />
+      <polygon className="svc-draw" points="16,8 14,14 8,16 10,10" />
+    </svg>
+  ),
+  'piping-design': ( // Pipe with elbow
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path className="svc-draw" d="M4 8h8a4 4 0 014 4v8" />
+      <path className="svc-draw" d="M4 12h6a4 4 0 014 4v4" />
+    </svg>
+  ),
+  'water-treatment': ( // Water drop
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path className="svc-draw" d="M12 3c-4 7-7 10-7 14a7 7 0 0014 0c0-4-3-7-7-14z" />
+      <path className="svc-draw" d="M9 18a3 3 0 006 0" />
+    </svg>
+  ),
+  'steel-equipment': ( // Pressure vessel
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <ellipse className="svc-draw" cx="12" cy="5" rx="6" ry="2" />
+      <path className="svc-draw" d="M6 5v14c0 1.1 2.69 2 6 2s6-.9 6-2V5" />
+      <path className="svc-draw" d="M8 12h8" />
+    </svg>
+  ),
+  'plastic-frp-equipment': ( // Layered material
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path className="svc-draw" d="M4 8h16M4 12h16M4 16h16" />
+      <path className="svc-draw" d="M6 8v8M18 8v8" />
+    </svg>
+  ),
+  'rubber-linings': ( // Shield with layer
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path className="svc-draw" d="M12 3l8 4v6c0 5-3.5 9.7-8 11-4.5-1.3-8-6-8-11V7z" />
+      <path className="svc-draw" d="M12 8v8M9 12h6" />
+    </svg>
+  ),
+  'plastic-linings': ( // Coating layer
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect className="svc-draw" x="4" y="6" width="16" height="12" rx="2" />
+      <path className="svc-draw" d="M4 12h16" />
+      <path className="svc-draw" d="M8 9h8" />
+    </svg>
+  ),
+  'coatings-resin-systems': ( // Paint brush
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path className="svc-draw" d="M6 16l4-4 8-8 4 4-8 8-4 4z" />
+      <path className="svc-draw" d="M14 6l4 4" />
+    </svg>
+  ),
+  'inspection-repair': ( // Magnifier with check
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle className="svc-draw" cx="11" cy="11" r="7" />
+      <path className="svc-draw" d="M16 16l5 5" />
+      <path className="svc-draw" d="M8 11l2 2 4-4" />
+    </svg>
+  ),
+  'custom-compounds': ( // Beaker / flask
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path className="svc-draw" d="M9 3v6l-5 8a2 2 0 001.7 3h12.6a2 2 0 001.7-3l-5-8V3" />
+      <path className="svc-draw" d="M9 3h6" />
+      <path className="svc-draw" d="M7 15h10" />
+    </svg>
+  ),
+  'engineered-products': ( // Gear
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle className="svc-draw" cx="12" cy="12" r="3" />
+      <path className="svc-draw" d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.6.77 1.05 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+    </svg>
+  ),
+};
+
+function ServiceIcon({ slug }) {
+  const icon = SERVICE_ICONS[slug];
+  if (!icon) {
+    // Fallback: arrow-right
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path className="svc-draw" d="M5 12h14M13 5l7 7-7 7" />
+      </svg>
+    );
+  }
+  return icon;
 }
 
 export default function ServicePage() {
@@ -66,7 +152,7 @@ export default function ServicePage() {
   // GSAP parallax (replaces manual scroll listener)
   const evidenceParallaxRef = useParallax({ speed: -50 });
   const caseBgParallaxRef = useParallax({ speed: -30 });
-  const timelineRef = useStagger('.tl-step', { stagger: 0.1, y: 28 });
+  const timelineRef = useRef(null);
 
   // Gallery drag-to-scroll
   const handleMouseDown = useCallback((e) => {
@@ -89,6 +175,52 @@ export default function ServicePage() {
     dragState.current.isDown = false;
     setIsDragging(false);
   }, []);
+
+  // Gallery autoplay — continuous scroll when in viewport, pauses on interaction
+  useEffect(() => {
+    const el = galleryRef.current;
+    if (!el) return;
+    let paused = false;
+    let visible = false;
+    let resumeTimer;
+    const speed = 0.8;
+
+    const pause = () => {
+      paused = true;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { paused = false; }, 3000);
+    };
+
+    el.addEventListener('mousedown', pause);
+    el.addEventListener('touchstart', pause, { passive: true });
+    el.addEventListener('wheel', pause, { passive: true });
+
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.1 });
+    io.observe(el);
+
+    let raf;
+    const tick = () => {
+      if (!paused && visible) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 0 && el.scrollLeft < max - 1) {
+          el.scrollLeft += speed;
+        } else if (max > 0) {
+          el.scrollLeft = 0;
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(resumeTimer);
+      io.disconnect();
+      el.removeEventListener('mousedown', pause);
+      el.removeEventListener('touchstart', pause);
+      el.removeEventListener('wheel', pause);
+    };
+  }, [t3]);
 
   if (!service || !division) {
     return (
@@ -308,7 +440,7 @@ export default function ServicePage() {
                 <GsapReveal key={i} delay={i * 0.1}>
                   <div className="mat-card">
                     <div className="mat-card-header">
-                      <div className="mat-card-symbol">{card.symbol}</div>
+                      <div className="mat-card-symbol"><MatIcon symbol={card.symbol} /></div>
                       <div className="mat-card-header-text">
                         <h3>{card.title}</h3>
                         <div className="subtitle">{card.subtitle}</div>
@@ -369,10 +501,6 @@ export default function ServicePage() {
               </div>
             ))}
           </div>
-          <div className="gallery-scroll-hint">
-            <span>Drag to explore</span>
-            <div className="gallery-scroll-hint-arrow" />
-          </div>
         </section>
       )}
 
@@ -403,7 +531,7 @@ export default function ServicePage() {
             <div className="timeline" ref={timelineRef}>
               <div className="timeline-track" />
               {process_timeline.steps.map((step, i) => (
-                <GsapReveal key={i} delay={i * 0.1}>
+                <GsapReveal key={i}>
                   <div className="tl-step">
                     <div className="tl-dot" />
                     <div className="tl-num">{step.num}</div>
@@ -498,7 +626,7 @@ export default function ServicePage() {
                         to={`/what-we-do/${is.divisionSlug}/${is.slug}`}
                         className="integration-link"
                       >
-                        <LinkIcon />
+                        <ServiceIcon slug={is.slug} />
                         {is.name}
                       </Link>
                     ))}

@@ -216,43 +216,27 @@ const Globe = () => {
             const { radius, rows, dotSize } = GLOBE;
             const landDarkPts = [], landLightPts = [], oceanPts = [], presPts = [];
 
-            // Build all lat rows, then process in yielding chunks
-            const latSteps = [];
             for (let lat = -85; lat <= 85; lat += 180 / rows) {
-                latSteps.push(lat);
-            }
+                const circ = Math.cos(lat * Math.PI / 180);
+                const cols = Math.max(1, Math.floor(rows * 2.2 * circ));
+                for (let j = 0; j < cols; j++) {
+                    const lng = -180 + (360 / cols) * j;
+                    const pos = latLngToVec3(lat, lng, radius);
+                    const onLand = landPolys.length > 0 ? isLandCheck(lng, lat, landPolys) : false;
+                    const pres = nearPresence(lat, lng);
 
-            const CHUNK = 12; // rows per frame
-            for (let c = 0; c < latSteps.length; c += CHUNK) {
-                const end = Math.min(c + CHUNK, latSteps.length);
-                for (let r = c; r < end; r++) {
-                    const lat = latSteps[r];
-                    const circ = Math.cos(lat * Math.PI / 180);
-                    const cols = Math.max(1, Math.floor(rows * 2.2 * circ));
-                    for (let j = 0; j < cols; j++) {
-                        const lng = -180 + (360 / cols) * j;
-                        const pos = latLngToVec3(lat, lng, radius);
-                        const onLand = landPolys.length > 0 ? isLandCheck(lng, lat, landPolys) : false;
-                        const pres = nearPresence(lat, lng);
-
-                        if (onLand && pres) {
-                            presPts.push(pos);
-                        } else if (onLand) {
-                            const h = hash(Math.round(lat * 10), Math.round(lng * 10));
-                            if (h % 3 === 0) {
-                                landLightPts.push(pos);
-                            } else {
-                                landDarkPts.push(pos);
-                            }
+                    if (onLand && pres) {
+                        presPts.push(pos);
+                    } else if (onLand) {
+                        const h = hash(Math.round(lat * 10), Math.round(lng * 10));
+                        if (h % 3 === 0) {
+                            landLightPts.push(pos);
                         } else {
-                            oceanPts.push(pos);
+                            landDarkPts.push(pos);
                         }
+                    } else {
+                        oceanPts.push(pos);
                     }
-                }
-                // Yield to main thread between chunks so page stays interactive
-                if (c + CHUNK < latSteps.length) {
-                    await new Promise(resolve => setTimeout(resolve, 0));
-                    if (!globeRef.current.initialized) return;
                 }
             }
 
