@@ -146,12 +146,23 @@ export default function Home({ variant = 'A' }) {
       {/* CTA Section — enhanced */}
       <section
         style={{
-          background: 'linear-gradient(135deg, var(--blue), #1A3F73)',
+          position: 'relative',
+          backgroundImage: 'url(/images/discuss-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           padding: '192px 56px',
         }}
         ref={ctaRef}
       >
-        <div className="container cta-inner" style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(27, 75, 143, 0.85), rgba(26, 63, 115, 0.8))',
+            pointerEvents: 'none',
+          }}
+        />
+        <div className="container cta-inner" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
           <h2 style={{ color: 'var(--white)', fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 1.1, marginBottom: 16 }}>
             Ready to discuss your <span style={{ fontStyle: 'italic' }}>project?</span>
           </h2>
