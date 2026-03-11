@@ -50,10 +50,10 @@
   position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
     180deg,
-    rgba(11, 29, 52, 0.15) 0%,
-    rgba(11, 29, 52, 0.08) 20%,
-    rgba(11, 29, 52, 0.35) 50%,
-    rgba(11, 29, 52, 0.85) 82%,
+    rgba(11, 29, 52, 0.30) 0%,
+    rgba(11, 29, 52, 0.23) 20%,
+    rgba(11, 29, 52, 0.50) 50%,
+    rgba(11, 29, 52, 1) 82%,
     var(--navy) 100%
   );
 }
@@ -61,7 +61,7 @@
 .gp-hero-overlay::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(11, 29, 52, 0.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(11, 29, 52, 0.65) 100%);
 }
 
 .gp-hero-inner {
@@ -184,6 +184,9 @@
   color: var(--n800); line-height: 1.08;
 }
 .gp-conv-merged-title em { font-style: italic; color: var(--blue); }
+.gp-conv-merged-logo {
+  width: 80px; height: auto; margin-bottom: 8px;
+}
 .gp-conv-merged-line { width: 48px; height: 2px; background: var(--green); }
 .gp-conv-merged-sub {
   font-size: 15px; color: var(--n500); text-align: center;

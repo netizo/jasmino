@@ -6,37 +6,97 @@ import '../styles/integrated-model.css';
 const SECTION_BG_IMAGE = '/images/onecompany.png';
 
 /* ══════════════════════════════════════════════════════════════════
-   PIPELINE STEP ICONS (24x24 stroke-based SVGs)
+   ANIMATED PIPELINE STEP ICONS (32x32 SVGs with CSS keyframe animations)
    ══════════════════════════════════════════════════════════════════ */
 const STEP_ICONS = {
-  '01': ( // Compass — Design
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" />
+  '01': ( // Compass — Design (rotating needle + orbiting dot)
+    <svg className="step-icon step-icon--compass" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="13" stroke="currentColor" strokeWidth="1.2" opacity="0.3" />
+      <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" className="compass-ticks" />
+      <g className="compass-needle">
+        <polygon points="16,4 14,16 16,17 18,16" fill="rgba(46,139,87,0.85)" />
+        <polygon points="16,28 14,16 16,15 18,16" fill="currentColor" opacity="0.35" />
+      </g>
+      <circle cx="16" cy="16" r="2" fill="currentColor" opacity="0.5" />
+      <circle className="compass-orbit" cx="16" cy="2" r="1.5" fill="var(--green, #2e8b57)" opacity="0.7" />
     </svg>
   ),
-  '02': ( // Wrench — Fabricate
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+  '02': ( // Fabricate — Gear + spark
+    <svg className="step-icon step-icon--fabricate" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <g className="gear-main">
+        <path d="M16 8 L17.5 8 L18 6.5 L20 6 L21 7.5 L22.5 7 L22.5 5.5 L24.5 5.5 L24.5 7 L26 7.5 L27 6 L28.5 7 L27.5 8.5 L29 10 L29 12 L27.5 12.5 L28 14 L29.5 14.5 L29.5 16.5 L28 16.5 L27.5 18 L29 19.5 L28 21 L26.5 20 L25 21.5 L25 23 L23 23 L22.5 21.5 L21 21 L20 22.5 L18 22 L18.5 20.5 L17 19.5 L15.5 20.5 L14 19.5 L15 18 L13.5 16.5 L12 17 L11 15.5 L12.5 14.5 L12 13 L10.5 12.5 L11 10.5 L12.5 11 L13.5 9.5 L12.5 8 L14 7 L15 8.5 Z" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.4" />
+      </g>
+      <g className="gear-inner">
+        <circle cx="20" cy="14" r="5.5" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 2.5" />
+        <circle cx="20" cy="14" r="2" fill="currentColor" opacity="0.3" />
+      </g>
+      <g className="fabricate-hammer">
+        <rect x="5" y="18" width="3" height="9" rx="1" fill="currentColor" opacity="0.5" />
+        <rect x="3" y="16" width="7" height="3" rx="1" fill="currentColor" opacity="0.7" />
+      </g>
+      <g className="sparks">
+        <line x1="10" y1="17" x2="12" y2="15" stroke="var(--green, #2e8b57)" strokeWidth="1.2" strokeLinecap="round" className="spark spark-1" />
+        <line x1="11" y1="19" x2="14" y2="18" stroke="var(--green, #2e8b57)" strokeWidth="1" strokeLinecap="round" className="spark spark-2" />
+        <line x1="9" y1="15" x2="10" y2="12" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" className="spark spark-3" />
+        <circle cx="13" cy="16" r="1" fill="var(--green, #2e8b57)" className="spark spark-4" />
+      </g>
     </svg>
   ),
-  '03': ( // Shield — Protect
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  '03': ( // Shield — Protect (pulsing shield + scanning line)
+    <svg className="step-icon step-icon--protect" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path className="shield-outer" d="M16 3 L26 7 L26 15 C26 22 16 29 16 29 C16 29 6 22 6 15 L6 7 Z" stroke="currentColor" strokeWidth="1.2" opacity="0.25" />
+      <path className="shield-body" d="M16 5 L24 8.5 L24 15 C24 20.5 16 27 16 27 C16 27 8 20.5 8 15 L8 8.5 Z" stroke="currentColor" strokeWidth="1.2" fill="rgba(46,139,87,0.08)" />
+      <path className="shield-check" d="M11 15.5 L14 19 L21 12" stroke="var(--green, #2e8b57)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <line className="shield-scan" x1="6" y1="16" x2="26" y2="16" stroke="var(--green, #2e8b57)" strokeWidth="0.6" opacity="0.5" />
+      <circle className="shield-pulse" cx="16" cy="16" r="8" stroke="var(--green, #2e8b57)" strokeWidth="0.6" fill="none" />
     </svg>
   ),
-  '04': ( // Magnifier — Inspect
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+  '04': ( // Magnifier — Inspect (scanning movement + lens flare)
+    <svg className="step-icon step-icon--inspect" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <g className="mag-body">
+        <circle cx="14" cy="14" r="9" stroke="currentColor" strokeWidth="1.2" opacity="0.3" />
+        <circle cx="14" cy="14" r="7" stroke="currentColor" strokeWidth="1.4" />
+        <line x1="21" y1="21" x2="28" y2="28" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </g>
+      <g className="mag-crosshair">
+        <line x1="14" y1="8" x2="14" y2="11" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" />
+        <line x1="14" y1="17" x2="14" y2="20" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" />
+        <line x1="8" y1="14" x2="11" y2="14" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" />
+        <line x1="17" y1="14" x2="20" y2="14" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" />
+      </g>
+      <circle className="mag-dot" cx="14" cy="14" r="1.5" fill="var(--green, #2e8b57)" opacity="0.6" />
+      <circle className="mag-flare" cx="11" cy="11" r="2" fill="white" opacity="0.15" />
+      <circle className="mag-sweep" cx="14" cy="14" r="5" stroke="var(--green, #2e8b57)" strokeWidth="0.5" strokeDasharray="1.5 8" fill="none" />
     </svg>
   ),
-  '05': ( // Truck — Deliver
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="1" y="3" width="15" height="13" />
-      <polygon points="16,8 20,8 23,11 23,16 16,16" />
-      <circle cx="5.5" cy="18.5" r="2.5" />
-      <circle cx="18.5" cy="18.5" r="2.5" />
+  '05': ( // Truck — Deliver (rolling wheels + motion lines)
+    <svg className="step-icon step-icon--deliver" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <g className="truck-body">
+        <rect x="2" y="10" width="18" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M20 14 L25 14 L28 18 L28 22 L20 22 Z" stroke="currentColor" strokeWidth="1.2" />
+        <line x1="20" y1="10" x2="20" y2="22" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+      </g>
+      <g className="wheel wheel-rear">
+        <circle cx="8" cy="23" r="3" stroke="currentColor" strokeWidth="1.2" />
+        <circle cx="8" cy="23" r="1" fill="currentColor" opacity="0.4" />
+        <line x1="8" y1="20.5" x2="8" y2="22" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+        <line x1="10.5" y1="23" x2="9" y2="23" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+        <line x1="8" y1="25.5" x2="8" y2="24" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+        <line x1="5.5" y1="23" x2="7" y2="23" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+      </g>
+      <g className="wheel wheel-front">
+        <circle cx="24" cy="23" r="3" stroke="currentColor" strokeWidth="1.2" />
+        <circle cx="24" cy="23" r="1" fill="currentColor" opacity="0.4" />
+        <line x1="24" y1="20.5" x2="24" y2="22" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+        <line x1="26.5" y1="23" x2="25" y2="23" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+        <line x1="24" y1="25.5" x2="24" y2="24" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+        <line x1="21.5" y1="23" x2="23" y2="23" stroke="currentColor" strokeWidth="0.6" className="wheel-spoke" />
+      </g>
+      <g className="motion-lines">
+        <line x1="0" y1="13" x2="4" y2="13" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" className="motion-1" />
+        <line x1="-1" y1="16" x2="3" y2="16" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" className="motion-2" />
+        <line x1="0" y1="19" x2="4" y2="19" stroke="var(--green, #2e8b57)" strokeWidth="0.8" strokeLinecap="round" className="motion-3" />
+      </g>
     </svg>
   ),
 };

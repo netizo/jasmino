@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useGSAP } from '@gsap/react';
 import { gsap, ScrollTrigger } from '../hooks/useGsap';
 import GsapReveal from '../components/GsapReveal';
+import logo from '../assets/logo.png';
 import '../styles/group-page.css';
 
 /* ═══════════════════════════════════════════════════════
@@ -161,33 +162,29 @@ export default function JasminoGroupPage() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
 
-    const raf = requestAnimationFrame(() => {
-      const cols = convColsRef.current;
-      const merged = convMergedRef.current;
-      const colEls = cols.querySelectorAll('.gp-conv-col');
+    const cols = convColsRef.current;
+    const merged = convMergedRef.current;
+    const colEls = cols.querySelectorAll('.gp-conv-col');
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: convRef.current,
-          start: 'top top',
-          end: '+=100%',
-          scrub: 0.8,
-          pin: convStickyRef.current,
-          pinSpacing: true,
-        },
-      });
-
-      // Phase 1 (0→0.5): converge columns together
-      tl.to(cols, { gap: 0, duration: 0.5, ease: 'none' }, 0);
-
-      // Phase 2 (0.45→0.7): fade columns, reveal merged
-      tl.to(colEls, { autoAlpha: 0, scale: 0.92, duration: 0.2, ease: 'power2.inOut' }, 0.45);
-      tl.to(merged, { autoAlpha: 1, scale: 1, duration: 0.25, ease: 'power2.out' }, 0.55);
-
-      // Phase 3 (0.7→1.0): hold merged
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: convRef.current,
+        start: 'top top',
+        end: '+=200%',
+        scrub: 0.8,
+        pin: convStickyRef.current,
+        pinSpacing: true,
+      },
     });
 
-    return () => cancelAnimationFrame(raf);
+    // Phase 1 (0→0.3): converge columns together
+    tl.to(cols, { gap: 0, duration: 0.3, ease: 'none' }, 0);
+
+    // Phase 2 (0.25→0.45): fade columns, reveal merged
+    tl.to(colEls, { autoAlpha: 0, scale: 0.92, duration: 0.12, ease: 'power2.inOut' }, 0.25);
+    tl.to(merged, { autoAlpha: 1, scale: 1, duration: 0.15, ease: 'power2.out' }, 0.32);
+
+    // Phase 3 (0.45→1.0): hold merged — long dwell time
   }, { scope: convRef, dependencies: [] });
 
   /* ── S3: Entity Deep Dives — proper crossfade ── */
@@ -195,48 +192,42 @@ export default function JasminoGroupPage() {
     if (!entityRef.current || !entityStickyRef.current) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const raf = requestAnimationFrame(() => {
-      const slides = entityStickyRef.current.querySelectorAll('.gp-entity-slide');
-      const count = slides.length;
+    const slides = entityStickyRef.current.querySelectorAll('.gp-entity-slide');
+    const count = slides.length;
 
-      // Set initial states: first visible, rest hidden
-      gsap.set(slides[0], { autoAlpha: 1, zIndex: 2 });
-      for (let i = 1; i < count; i++) {
-        gsap.set(slides[i], { autoAlpha: 0, zIndex: 1 });
-      }
+    // Set initial states: first visible, rest hidden
+    gsap.set(slides[0], { autoAlpha: 1, zIndex: 2 });
+    for (let i = 1; i < count; i++) {
+      gsap.set(slides[i], { autoAlpha: 0, zIndex: 1 });
+    }
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: entityRef.current,
-          start: 'top top',
-          end: '+=300%',
-          scrub: 1,
-          pin: entityStickyRef.current,
-          pinSpacing: true,
-        },
-      });
-
-      // Each transition: crossfade with overlap so there's never a white gap
-      const step = 1 / count;
-      for (let i = 1; i < count; i++) {
-        const transStart = step * i - step * 0.5;  // start transition halfway through current slide's time
-        const dur = step * 0.5;
-
-        // Bring next slide in from beneath
-        tl.to(slides[i], { autoAlpha: 1, zIndex: 2, duration: dur, ease: 'power2.inOut' }, transStart);
-        // Fade current slide out
-        tl.to(slides[i - 1], { autoAlpha: 0, zIndex: 1, duration: dur, ease: 'power2.inOut' }, transStart + dur * 0.1);
-      }
-
-      tl.eventCallback('onUpdate', () => {
-        const p = tl.progress();
-        let idx = Math.floor(p * count);
-        if (idx >= count) idx = count - 1;
-        setActiveEntity(idx);
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: entityRef.current,
+        start: 'top top',
+        end: '+=300%',
+        scrub: 1,
+        pin: entityStickyRef.current,
+        pinSpacing: true,
+      },
     });
 
-    return () => cancelAnimationFrame(raf);
+    // Each transition: crossfade with overlap so there's never a white gap
+    const step = 1 / count;
+    for (let i = 1; i < count; i++) {
+      const transStart = step * i - step * 0.5;
+      const dur = step * 0.5;
+
+      tl.to(slides[i], { autoAlpha: 1, zIndex: 2, duration: dur, ease: 'power2.inOut' }, transStart);
+      tl.to(slides[i - 1], { autoAlpha: 0, zIndex: 1, duration: dur, ease: 'power2.inOut' }, transStart + dur * 0.1);
+    }
+
+    tl.eventCallback('onUpdate', () => {
+      const p = tl.progress();
+      let idx = Math.floor(p * count);
+      if (idx >= count) idx = count - 1;
+      setActiveEntity(idx);
+    });
   }, { scope: entityRef, dependencies: [] });
 
   /* ── S4: Acquisition horizontal scroll ── */
@@ -244,50 +235,46 @@ export default function JasminoGroupPage() {
     if (!acqRef.current || !acqTrackRef.current) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const raf = requestAnimationFrame(() => {
-      const track = acqTrackRef.current;
-      const fill = acqFillRef.current;
-      const dots = acqRef.current.querySelectorAll('.gp-acq-timeline-dot');
-      const stickyEl = acqRef.current.querySelector('.gp-acq-sticky');
+    const track = acqTrackRef.current;
+    const fill = acqFillRef.current;
+    const dots = acqRef.current.querySelectorAll('.gp-acq-timeline-dot');
+    const stickyEl = acqRef.current.querySelector('.gp-acq-sticky');
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: acqRef.current,
-          start: 'top top',
-          end: '+=300%',
-          scrub: 1,
-          pin: stickyEl,
-          pinSpacing: true,
-        },
-      });
-
-      // Animate track horizontally
-      tl.to(track, {
-        x: () => {
-          const trackW = track.scrollWidth;
-          const wrapW = track.parentElement.offsetWidth;
-          return -(trackW - wrapW + 56);
-        },
-        ease: 'none',
-        duration: 1,
-      });
-
-      // Animate timeline fill bar in sync
-      tl.to(fill, { width: '100%', ease: 'none', duration: 1 }, 0);
-
-      // Animate dots as cards pass
-      dots.forEach((dot, i) => {
-        const threshold = i / Math.max(dots.length - 1, 1);
-        tl.to(dot, {
-          backgroundColor: 'var(--green)',
-          borderColor: 'var(--green)',
-          duration: 0.05,
-          ease: 'none',
-        }, threshold);
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: acqRef.current,
+        start: 'top top',
+        end: '+=300%',
+        scrub: 1,
+        pin: stickyEl,
+        pinSpacing: true,
+      },
     });
 
-    return () => cancelAnimationFrame(raf);
+    // Animate track horizontally
+    tl.to(track, {
+      x: () => {
+        const trackW = track.scrollWidth;
+        const wrapW = track.parentElement.offsetWidth;
+        return -(trackW - wrapW + 56);
+      },
+      ease: 'none',
+      duration: 1,
+    });
+
+    // Animate timeline fill bar in sync
+    tl.to(fill, { width: '100%', ease: 'none', duration: 1 }, 0);
+
+    // Animate dots as cards pass
+    dots.forEach((dot, i) => {
+      const threshold = i / Math.max(dots.length - 1, 1);
+      tl.to(dot, {
+        backgroundColor: 'var(--green)',
+        borderColor: 'var(--green)',
+        duration: 0.05,
+        ease: 'none',
+      }, threshold);
+    });
   }, { scope: acqRef, dependencies: [] });
 
   /* ═══════════════════════════════════════════════════════
@@ -366,6 +353,7 @@ export default function JasminoGroupPage() {
             ))}
           </div>
           <div className="gp-conv-merged" ref={convMergedRef}>
+            <img src={logo} alt="Jasmino" className="gp-conv-merged-logo" />
             <div className="gp-conv-merged-line" />
             <div className="gp-conv-merged-title">The Jasmino <em>Group</em></div>
             <div className="gp-conv-merged-sub">

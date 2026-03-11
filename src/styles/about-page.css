@@ -68,10 +68,10 @@
   position: absolute; inset: 0; z-index: 2;
   background: linear-gradient(
     180deg,
-    rgba(11, 29, 52, 0.15) 0%,
-    rgba(11, 29, 52, 0.08) 20%,
-    rgba(11, 29, 52, 0.35) 50%,
-    rgba(11, 29, 52, 0.85) 82%,
+    rgba(11, 29, 52, 0.30) 0%,
+    rgba(11, 29, 52, 0.23) 20%,
+    rgba(11, 29, 52, 0.50) 50%,
+    rgba(11, 29, 52, 1) 82%,
     var(--navy) 100%
   );
 }
@@ -79,7 +79,7 @@
 .about-page .hero-overlay::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(11, 29, 52, 0.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(11, 29, 52, 0.65) 100%);
 }
 .about-page .hero-content {
   position: relative; z-index: 5;

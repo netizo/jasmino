@@ -108,8 +108,8 @@ export default function HeroVariantA() {
             position: 'absolute',
             inset: 0,
             background: `
-              radial-gradient(ellipse at center, transparent 50%, rgba(11, 29, 52, 0.5) 100%),
-              linear-gradient(180deg, rgba(11, 29, 52, 0.15) 0%, rgba(11, 29, 52, 0.08) 20%, rgba(11, 29, 52, 0.35) 50%, rgba(11, 29, 52, 0.85) 82%, var(--navy) 100%)
+              radial-gradient(ellipse at center, rgba(11, 29, 52, 0.3) 0%, rgba(11, 29, 52, 0.55) 100%),
+              linear-gradient(180deg, rgba(11, 29, 52, 0.45) 0%, rgba(11, 29, 52, 0.35) 20%, rgba(11, 29, 52, 0.5) 50%, rgba(11, 29, 52, 0.85) 82%, var(--navy) 100%)
             `,
             pointerEvents: 'none',
             zIndex: 1,
