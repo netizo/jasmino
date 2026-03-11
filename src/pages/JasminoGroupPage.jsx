@@ -120,6 +120,7 @@ export default function JasminoGroupPage() {
   const acqFillRef = useRef(null);
 
   const [activeEntity, setActiveEntity] = useState(0);
+  const [heroVideoError, setHeroVideoError] = useState(false);
 
   /* ── S1: Hero entrance ── */
   useGSAP(() => {
@@ -303,6 +304,22 @@ export default function JasminoGroupPage() {
           <Link to="/about/our-story" className={!isGroupPage ? 'active' : ''}>Our Story</Link>
           <Link to="/about/jasmino-group" className={isGroupPage ? 'active' : ''}>The Jasmino Group</Link>
         </nav>
+        <div className="gp-hero-video" aria-hidden="true">
+          {!heroVideoError && (
+            <video
+              className="gp-hero-video-bg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onError={() => setHeroVideoError(true)}
+            >
+              <source src="/videos/jasmino-group.mp4" type="video/mp4" />
+            </video>
+          )}
+          <div className="gp-hero-video-fallback" />
+        </div>
+        <div className="gp-hero-overlay" />
         <div className="gp-hero-inner">
           <nav className="gp-crumb">
             <Link to="/">Home</Link>

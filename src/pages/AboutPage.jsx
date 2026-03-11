@@ -1,4 +1,4 @@
-import { useRef, lazy, Suspense } from 'react';
+import { useState, useRef, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import GsapReveal from '../components/GsapReveal';
 import CertLogo from '../components/CertLogo';
@@ -35,6 +35,7 @@ const certs = [
 ];
 
 export default function AboutPage() {
+  const [heroVideoError, setHeroVideoError] = useState(false);
   const imgRevealRef = useImageReveal({ direction: 'left' });
   const photoParallaxRef = useParallax({ speed: -50 });
   const statsRef = useStagger('.stat-block', { stagger: 0.1, y: 24 });
@@ -147,7 +148,22 @@ export default function AboutPage() {
           <Link to="/about/our-story" className="active">Our Story</Link>
           <Link to="/about/jasmino-group">The Jasmino Group</Link>
         </nav>
-        <div className="hero-photo" aria-hidden="true" />
+        <div className="hero-video" aria-hidden="true">
+          {!heroVideoError && (
+            <video
+              className="hero-video-bg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onError={() => setHeroVideoError(true)}
+            >
+              <source src="/videos/ourstory.mp4" type="video/mp4" />
+            </video>
+          )}
+          <div className="hero-video-fallback" />
+        </div>
+        <div className="hero-overlay" />
         <div className="hero-content">
           <div className="hero-badge">
             Established 1984
