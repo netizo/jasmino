@@ -147,6 +147,22 @@ const Globe = () => {
         const el = containerRef.current;
         if (!el) return;
 
+        // Only initialize when the globe is near the viewport
+        let ioCleanup;
+        const io = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    io.disconnect();
+                    startGlobe();
+                }
+            },
+            { rootMargin: '500px' }
+        );
+        io.observe(el);
+        ioCleanup = () => io.disconnect();
+
+        function startGlobe() {
+
         // Prevent double initialization in React Strict Mode
         if (globeRef.current.initialized) return;
         globeRef.current.initialized = true;
@@ -182,7 +198,7 @@ const Globe = () => {
         let visible = true;
         const markers = [];
 
-        // Async initialization
+        // Async initialization with chunked computation
         const initGlobe = async () => {
             let landPolys = [];
             try {
@@ -200,27 +216,43 @@ const Globe = () => {
             const { radius, rows, dotSize } = GLOBE;
             const landDarkPts = [], landLightPts = [], oceanPts = [], presPts = [];
 
+            // Build all lat rows, then process in yielding chunks
+            const latSteps = [];
             for (let lat = -85; lat <= 85; lat += 180 / rows) {
-                const circ = Math.cos(lat * Math.PI / 180);
-                const cols = Math.max(1, Math.floor(rows * 2.2 * circ));
-                for (let j = 0; j < cols; j++) {
-                    const lng = -180 + (360 / cols) * j;
-                    const pos = latLngToVec3(lat, lng, radius);
-                    const onLand = landPolys.length > 0 ? isLandCheck(lng, lat, landPolys) : false;
-                    const pres = nearPresence(lat, lng);
+                latSteps.push(lat);
+            }
 
-                    if (onLand && pres) {
-                        presPts.push(pos);
-                    } else if (onLand) {
-                        const h = hash(Math.round(lat * 10), Math.round(lng * 10));
-                        if (h % 3 === 0) {
-                            landLightPts.push(pos);
+            const CHUNK = 12; // rows per frame
+            for (let c = 0; c < latSteps.length; c += CHUNK) {
+                const end = Math.min(c + CHUNK, latSteps.length);
+                for (let r = c; r < end; r++) {
+                    const lat = latSteps[r];
+                    const circ = Math.cos(lat * Math.PI / 180);
+                    const cols = Math.max(1, Math.floor(rows * 2.2 * circ));
+                    for (let j = 0; j < cols; j++) {
+                        const lng = -180 + (360 / cols) * j;
+                        const pos = latLngToVec3(lat, lng, radius);
+                        const onLand = landPolys.length > 0 ? isLandCheck(lng, lat, landPolys) : false;
+                        const pres = nearPresence(lat, lng);
+
+                        if (onLand && pres) {
+                            presPts.push(pos);
+                        } else if (onLand) {
+                            const h = hash(Math.round(lat * 10), Math.round(lng * 10));
+                            if (h % 3 === 0) {
+                                landLightPts.push(pos);
+                            } else {
+                                landDarkPts.push(pos);
+                            }
                         } else {
-                            landDarkPts.push(pos);
+                            oceanPts.push(pos);
                         }
-                    } else {
-                        oceanPts.push(pos);
                     }
+                }
+                // Yield to main thread between chunks so page stays interactive
+                if (c + CHUNK < latSteps.length) {
+                    await new Promise(resolve => setTimeout(resolve, 0));
+                    if (!globeRef.current.initialized) return;
                 }
             }
 
@@ -427,8 +459,11 @@ const Globe = () => {
 
         initGlobe();
 
+        } // end startGlobe
+
         // Cleanup
         return () => {
+            if (ioCleanup) ioCleanup();
             globeRef.current.initialized = false;
             if (globeRef.current.animationId) {
                 cancelAnimationFrame(globeRef.current.animationId);
@@ -436,10 +471,11 @@ const Globe = () => {
             if (globeRef.current.cleanup) {
                 globeRef.current.cleanup();
             }
-            if (renderer && renderer.domElement && el.contains(renderer.domElement)) {
-                el.removeChild(renderer.domElement);
+            const r = globeRef.current.renderer;
+            if (r && r.domElement && el.contains(r.domElement)) {
+                el.removeChild(r.domElement);
             }
-            if (renderer) renderer.dispose();
+            if (r) r.dispose();
         };
     }, []);
 

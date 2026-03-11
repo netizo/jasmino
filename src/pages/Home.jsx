@@ -8,16 +8,8 @@ import CaseStudies from '../components/CaseStudies';
 import USPCards from '../components/USPCards';
 import { useStagger } from '../hooks/useGsap';
 
-const HeroVariantB = lazy(() => import('../components/HeroVariantB'));
-const HeroVariantC = lazy(() => import('../components/HeroVariantC'));
 const IntegratedModel = lazy(() => import('../components/IntegratedModel'));
 const GlobalPresence = lazy(() => import('../components/GlobalPresence'));
-
-const HERO_VARIANTS = {
-  A: HeroVariantA,
-  B: HeroVariantB,
-  C: HeroVariantC,
-};
 
 // Toggle: 'A' = text-only news, 'B' = recent deliveries
 const NEWS_VARIANT = 'A';
@@ -34,16 +26,13 @@ const RECENT_DELIVERIES = [
   { badge: 'Water', title: 'Desalination Pre-Treatment', location: 'Middle East', stat: '50K', statLabel: 'm³/day' },
 ];
 
-export default function Home({ variant = 'A' }) {
-  const HeroComponent = HERO_VARIANTS[variant] || HeroVariantA;
+export default function Home() {
   const newsRef = useStagger('.news-card', { stagger: 0.1, y: 28 });
   const ctaRef = useStagger('.cta-inner > *', { stagger: 0.1, y: 24 });
 
   return (
     <main>
-      <Suspense fallback={null}>
-        <HeroComponent />
-      </Suspense>
+      <HeroVariantA />
 
       <USPCards />
 

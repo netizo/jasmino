@@ -55,10 +55,7 @@ export default function App() {
       <Navbar />
       <Suspense fallback={null}>
         <Routes>
-          <Route path="/" element={<Home variant="A" />} />
-          <Route path="/v1" element={<Home variant="A" />} />
-          <Route path="/v2" element={<Home variant="B" />} />
-          <Route path="/v3" element={<Home variant="C" />} />
+          <Route path="/" element={<Home />} />
           <Route path="/what-we-do" element={<WhatWeDoPage />} />
           <Route path="/what-we-do/:divisionSlug" element={<DivisionLanding />} />
           <Route path="/what-we-do/:divisionSlug/:serviceSlug" element={<ServicePage />} />

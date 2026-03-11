@@ -70,12 +70,10 @@ export default function AboutPage() {
     });
   }, { scope: heroRef, dependencies: [] });
 
-  /* ─── Pinned scroll story (deferred to avoid blocking paint) ─── */
+  /* ─── Pinned scroll story ─── */
   useGSAP(() => {
     const pin = storyPinRef.current;
     if (!pin || window.innerWidth < 768) return;
-    // Defer heavy timeline setup so it doesn't block first paint
-    const raf = requestAnimationFrame(() => {
 
     const count = timelineCards.length;
     const images = pin.querySelectorAll('.ss-bg-img');
@@ -139,9 +137,6 @@ export default function AboutPage() {
         }, i - 0.3);
       });
     }
-
-    });
-    return () => cancelAnimationFrame(raf);
   }, { scope: storyPinRef, dependencies: [] });
 
   return (

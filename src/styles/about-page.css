@@ -156,7 +156,7 @@
   padding: 100px 0 0; background: var(--surface);
 }
 .about-page .manifesto-inner {
-  max-width: 1320px; margin: 0 auto; padding: 0 56px;
+  max-width: 1200px; margin: 0 auto; padding: 0 56px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
 }
 .about-page .manifesto h2 {
@@ -452,7 +452,7 @@
    ═══════════════════════════════════════════════════════ */
 .about-page .values { padding: 120px 0 0; background: var(--surface); }
 .about-page .values-inner {
-  max-width: 1320px; margin: 0 auto; padding: 0 56px;
+  max-width: 1200px; margin: 0 auto; padding: 0 56px;
 }
 .about-page .values-header { margin-bottom: 64px; }
 .about-page .values-header h2 {
@@ -520,7 +520,7 @@
   background: linear-gradient(175deg, #060e1a, var(--navy) 40%, var(--dark));
 }
 .about-page .infra-inner {
-  max-width: 1320px; margin: 0 auto; padding: 0 56px;
+  max-width: 1200px; margin: 0 auto; padding: 0 56px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
 }
 .about-page .infra-text .overline { color: var(--green); }
@@ -579,7 +579,7 @@
   border-top: 1px solid var(--n150); border-bottom: 1px solid var(--n150);
 }
 .about-page .stats-inner {
-  max-width: 1320px; margin: 0 auto; padding: 0 56px;
+  max-width: 1200px; margin: 0 auto; padding: 0 56px;
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
   text-align: center;
 }
@@ -596,7 +596,7 @@
 /* ═══ CERTIFICATIONS ═══ */
 .about-page .certs { padding: 120px 0; background: var(--surface); }
 .about-page .certs-inner {
-  max-width: 1320px; margin: 0 auto; padding: 0 56px;
+  max-width: 1200px; margin: 0 auto; padding: 0 56px;
 }
 .about-page .certs-header { text-align: center; margin-bottom: 56px; }
 .about-page .certs-header h2 {
@@ -671,7 +671,7 @@
 }
 
 /* ═══ CTA ═══ */
-.about-page .cta { max-width: 1320px; margin: 0 auto 100px; padding: 0 56px; }
+.about-page .cta { max-width: 1200px; margin: 0 auto 100px; padding: 0 56px; }
 .about-page .cta-inner {
   position: relative; overflow: hidden; border-radius: 16px;
   padding: 72px 56px;
