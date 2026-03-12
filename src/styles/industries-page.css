@@ -47,12 +47,12 @@
 .ip-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 /* ── Card ── */
 .ip-card {
-  position: relative; min-height: 320px;
+  position: relative; min-height: 400px;
   border-radius: 18px; overflow: hidden;
   opacity: 0; transform: translateY(28px);
   transition: opacity 0.65s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
@@ -63,31 +63,41 @@
 .ip-card-bg {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
-  filter: saturate(0.06) brightness(0.40) contrast(1.3);
+  filter: saturate(0.12) brightness(0.55) contrast(1.2);
   transition: filter 0.5s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
     transform 0.6s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
 .ip-card:hover .ip-card-bg {
-  filter: saturate(0.2) brightness(0.5) contrast(1.3);
+  filter: saturate(0.4) brightness(0.82) contrast(1.15);
   transform: scale(1.03);
 }
 .ip-card-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(11, 29, 52, 0.92) 0%, rgba(11, 29, 52, 0.45) 45%, rgba(11, 29, 52, 0.15) 100%);
+  background: linear-gradient(to top, rgba(11, 29, 52, 0.78) 0%, rgba(11, 29, 52, 0.32) 45%, rgba(11, 29, 52, 0.06) 100%);
   pointer-events: none;
+  transition: opacity 0.5s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+.ip-card:hover .ip-card-overlay {
+  opacity: 0.72;
 }
 .ip-card-content {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 28px 28px;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  padding: 36px 32px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  background: linear-gradient(to top, rgba(11, 29, 52, 0.85) 0%, rgba(11, 29, 52, 0.2) 70%, transparent 100%);
+}
+.ip-card:hover .ip-card-content {
+  background: linear-gradient(to top, rgba(11, 29, 52, 0.92) 0%, rgba(11, 29, 52, 0.4) 70%, transparent 100%);
 }
 .ip-card-name {
-  font-family: var(--font-sans); font-size: 22px; font-weight: 700;
+  font-family: var(--font-sans); font-size: 24px; font-weight: 700;
   color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 .ip-card-desc {
-  font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.6);
-  max-width: 500px;
+  font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.7);
+  max-width: 540px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
 }
 .ip-card-tags {
   display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
@@ -114,6 +124,7 @@
     gap: 16px;
   }
   .ip-card-span2 { grid-column: span 2; }
+  .ip-card { min-height: 360px; }
 }
 @media (max-width: 680px) {
   .ip-hero-inner { padding: 100px 20px 56px; }
@@ -124,7 +135,7 @@
     gap: 16px;
   }
   .ip-card-span2 { grid-column: span 1; }
-  .ip-card { min-height: 260px; }
-  .ip-card-name { font-size: 18px; }
-  .ip-card-desc { font-size: 13px; }
+  .ip-card { min-height: 320px; }
+  .ip-card-name { font-size: 20px; }
+  .ip-card-desc { font-size: 14px; }
 }
