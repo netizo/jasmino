@@ -399,3 +399,8 @@
         margin: 0 auto;
     }
 }
+@media (max-width: 480px) {
+    .s6-inner { padding: 40px 16px 32px; }
+    .s6-h2 { font-size: 28px; }
+    .globe-wrap { max-width: 300px; }
+}

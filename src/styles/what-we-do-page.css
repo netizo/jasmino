@@ -545,7 +545,7 @@
     flex-direction: column; gap: 16px; text-align: center;
   }
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .wwd-page .hero-title { font-size: 36px; }
   .wwd-page .hero-stats { gap: 24px; }
   .wwd-page .hero-stat-num { font-size: 24px; }
@@ -553,4 +553,14 @@
   .wwd-page .gallery-card { flex: 0 0 85%; min-width: 280px; }
   .wwd-page .contain { padding: 0 20px; }
   .wwd-page .hero-content { padding: 0 20px; }
+}
+@media (max-width: 480px) {
+  .wwd-page .hero-title { font-size: 30px; }
+  .wwd-page .hero-stat-num { font-size: 20px; }
+  .wwd-page .gallery-card { min-width: 240px; }
+  .wwd-page .contain { padding: 0 16px; }
+  .wwd-page .hero-content { padding: 0 16px; }
+  .wwd-page .gallery-scroll { padding: 0 16px 32px; }
+  .wwd-page .proj-card { padding: 24px; }
+  .wwd-page .proj-stat-num { font-size: 16px; }
 }

@@ -447,7 +447,7 @@
 }
 
 /* ── Mobile fallback: simple stacked cards ── */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .about-page .scroll-story-pin {
     height: auto !important;
     background: var(--navy, #0B1D34);
@@ -494,7 +494,7 @@
 }
 .about-page .values-header { margin-bottom: 64px; }
 .about-page .values-header h2 {
-  font-family: var(--font-serif); font-weight: 400; font-size: 44px;
+  font-family: var(--font-serif); font-weight: 400; font-size: clamp(28px, 4vw, 44px);
   line-height: 1.1; letter-spacing: -0.02em; color: var(--n800);
 }
 .about-page .values-header h2 em { font-style: italic; font-weight: 300; }
@@ -798,4 +798,21 @@
   .about-page .cta-inner { padding: 48px 24px; }
   .about-page .photo-break-caption { padding: 20px 24px; }
   .about-page .eq-inner { padding: 0 24px; }
+}
+
+@media (max-width: 480px) {
+  .about-page .hero-content { padding: 0 16px 40px; }
+  .about-page .manifesto-inner,
+  .about-page .values-inner,
+  .about-page .certs-inner,
+  .about-page .stats-inner,
+  .about-page .infra-inner,
+  .about-page .eq-inner { padding: 0 16px; }
+  .about-page .cert-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .about-page .stats-inner { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .about-page .value-row-text { padding: 36px 24px; }
+  .about-page .value-row-num { font-size: 64px; }
+  .about-page .about-sub-nav a { padding: 12px 16px; font-size: 11px; }
+  .about-page .cta { padding: 0 16px; }
+  .about-page .cta-inner { padding: 36px 20px; }
 }

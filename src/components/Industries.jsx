@@ -6,47 +6,47 @@ const INDUSTRIES = [
   {
     name: 'Chemical',
     subtitle: 'Reactors, tanks, piping',
-    photo: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-01.webp',
   },
   {
     name: 'Petrochemical',
     subtitle: 'Refining & processing',
-    photo: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-07.webp',
   },
   {
     name: 'Power Generation',
     subtitle: 'Boilers, FGD, cooling',
-    photo: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-03.webp',
   },
   {
     name: 'Water Treatment',
     subtitle: 'Filtration & purification',
-    photo: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-06.webp',
   },
   {
     name: 'Fertilizer',
     subtitle: 'Acid plants, storage',
-    photo: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-04.webp',
   },
   {
     name: 'Mining & Metals',
     subtitle: 'Leaching, flotation',
-    photo: 'https://images.unsplash.com/photo-1541888946428-d63bb8f8377a?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-05.webp',
   },
   {
     name: 'Pulp & Paper',
     subtitle: 'Digesters, bleach towers',
-    gradient: 'linear-gradient(135deg, #0B1D34 0%, #1B4B8F 100%)',
+    photo: '/images/ind-08.webp',
   },
   {
     name: 'Food & Beverage',
     subtitle: 'Processing equipment',
-    photo: 'https://images.unsplash.com/photo-1567789884554-0b844b597180?w=400&h=300&q=75&fit=crop',
+    gradient: 'linear-gradient(135deg, #0B1D34 0%, #1B4B8F 100%)',
   },
   {
     name: 'Pharmaceuticals',
     subtitle: 'Reaction vessels, HP piping',
-    photo: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-02.webp',
   },
 ];
 

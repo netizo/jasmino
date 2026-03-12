@@ -116,7 +116,7 @@
 }
 
 /* ── Responsive — aligned with home page bento breakpoints ── */
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
   .ip-hero-inner { padding: 120px 32px 72px; }
   .ip-grid-inner { padding: 72px 32px 100px; }
   .ip-grid {
@@ -126,7 +126,7 @@
   .ip-card-span2 { grid-column: span 2; }
   .ip-card { min-height: 360px; }
 }
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .ip-hero-inner { padding: 100px 20px 56px; }
   .ip-hero-h { font-size: 32px; }
   .ip-grid-inner { padding: 56px 20px 80px; }
@@ -138,4 +138,12 @@
   .ip-card { min-height: 320px; }
   .ip-card-name { font-size: 20px; }
   .ip-card-desc { font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  .ip-hero-inner { padding: 88px 16px 48px; }
+  .ip-grid-inner { padding: 40px 16px 64px; }
+  .ip-card { min-height: 280px; }
+  .ip-card-content { padding: 24px 20px; }
+  .ip-card-name { font-size: 18px; }
 }

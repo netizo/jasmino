@@ -307,7 +307,7 @@
    ═══════════════════════════════════════════════════════ */
 
 /* Tablet — 3 columns */
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
   .s4-inner {
     padding: 72px 32px 84px;
   }
@@ -333,7 +333,7 @@
 }
 
 /* Mobile — 2 columns */
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .s4-inner {
     padding: 56px 20px 64px;
   }
@@ -375,4 +375,12 @@
   .bento-arrow {
     display: none;
   }
+}
+
+@media (max-width: 480px) {
+  .s4-inner { padding: 40px 16px 48px; }
+  .s4-h2 { font-size: 28px; }
+  .bento { grid-auto-rows: 160px; gap: 10px; }
+  .bento-content { padding: 16px; }
+  .bento-name { font-size: 14px; }
 }

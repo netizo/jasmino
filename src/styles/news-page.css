@@ -162,10 +162,12 @@
 @media (max-width: 1024px) {
   .np-body-inner { padding: 48px 32px 100px; }
 }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .np-grid { grid-template-columns: repeat(2, 1fr); }
+  .np-tab { min-height: 44px; }
+  .np-page-num { min-width: 44px; min-height: 44px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .np-hero-inner { padding: 120px 20px 60px; }
   .np-body-inner { padding: 32px 20px 80px; }
   .np-grid { grid-template-columns: 1fr; gap: 20px; }

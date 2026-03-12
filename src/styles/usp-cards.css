@@ -539,3 +539,10 @@
   .usp-card-body { font-size: 16px; }
   .usp-evidence { padding: 28px 24px; }
 }
+@media (max-width: 480px) {
+  .usp-inner { padding: 0 16px; }
+  .usp-scroll-mode .usp-card { padding: 28px 16px; }
+  .usp-slide { padding: 28px 16px; }
+  .usp-card-headline { font-size: 24px; }
+  .usp-title { font-size: 28px; }
+}

@@ -22,22 +22,7 @@ const specIcons = {
   team: <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
 };
 
-/* ── SVG map paths (continents) ── */
-const mapPaths = [
-  'M120 180 C130 160,180 140,220 150 C240 155,260 170,270 190 C275 200,265 220,250 230 C235 240,200 250,180 245 C160 240,130 220,120 200 Z',
-  'M370 120 C380 110,410 105,430 115 C445 125,450 140,445 155 C440 165,420 175,400 170 C385 165,370 150,365 140 Z',
-  'M390 180 C400 175,430 180,440 200 C448 220,445 260,435 280 C425 300,405 310,390 300 C375 290,365 260,370 240 C372 220,380 195,390 180 Z',
-  'M450 100 C480 90,530 95,570 110 C600 120,630 140,640 165 C645 180,635 200,615 210 C600 218,575 215,555 205 C540 195,520 180,505 175 C490 170,465 160,455 145 C448 135,445 115,450 100 Z',
-  'M530 180 C540 175,560 180,565 195 C568 210,560 235,550 248 C540 258,530 255,525 240 C520 225,522 200,530 180 Z',
-  'M220 260 C230 250,260 255,270 275 C278 295,275 330,265 350 C255 365,235 370,225 355 C215 340,210 310,215 290 C218 275,220 265,220 260 Z',
-  'M600 310 C615 305,640 310,650 325 C655 335,650 350,635 355 C620 358,600 350,595 340 C590 330,593 315,600 310 Z',
-];
-
-const mapConnections = [
-  'M545 210 Q490 160 430 135',
-  'M430 135 Q435 142 445 155',
-  'M545 210 Q500 175 445 155',
-];
+import { CONTINENT_PATHS, MAP_PINS, MAP_CONNECTIONS, FLOW_PARTICLES } from '../data/worldMapPaths';
 
 export default function InfrastructurePage() {
   const [activeNav, setActiveNav] = useState(data.facilityNav[0].id);
@@ -56,6 +41,66 @@ export default function InfrastructurePage() {
     gsap.set(targets, { opacity: 0, y: 24 });
     gsap.to(targets, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.12, delay: 0.15 });
   }, { scope: heroRef, dependencies: [] });
+
+  /* ── GSAP map entrance animation ── */
+  useGSAP(() => {
+    const frame = mapFrameRef.current;
+    if (!frame || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const continents = frame.querySelectorAll('.map-continent');
+    const connLines = frame.querySelectorAll('.map-conn-line');
+    const connTrails = frame.querySelectorAll('.map-conn-trail');
+    const pins = frame.querySelectorAll('.map-pin');
+    const particles = frame.querySelectorAll('.map-particle-g');
+
+    // Initial states
+    gsap.set(continents, { opacity: 0 });
+    gsap.set(connTrails, { opacity: 0 });
+    gsap.set(particles, { opacity: 0 });
+    gsap.set(pins, { opacity: 0, scale: 0, transformOrigin: 'center center' });
+
+    // Measure and set stroke-dasharray for line draw
+    connLines.forEach(line => {
+      const len = line.getTotalLength();
+      line.style.strokeDasharray = len;
+      line.style.strokeDashoffset = len;
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: frame,
+        start: 'top 80%',
+        end: 'bottom 30%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // 1. Continents fade in
+    tl.to(continents, {
+      opacity: 1, duration: 0.6, stagger: 0.05, ease: 'power2.out',
+    }, 0);
+
+    // 2. Connection trails appear
+    tl.to(connTrails, {
+      opacity: 1, duration: 0.4, ease: 'power2.out',
+    }, 0.3);
+
+    // 3. Connection lines draw
+    tl.to(connLines, {
+      strokeDashoffset: 0, duration: 1.2, stagger: 0.15, ease: 'power2.inOut',
+    }, 0.5);
+
+    // 4. Pins pop in
+    tl.to(pins, {
+      opacity: 1, scale: 1, duration: 0.5, stagger: 0.12,
+      ease: 'back.out(2.5)',
+    }, 1.0);
+
+    // 5. Particles fade in
+    tl.to(particles, {
+      opacity: 1, duration: 0.6, ease: 'power2.out',
+    }, 1.4);
+  }, { scope: mapFrameRef, dependencies: [] });
 
   /* ── IntersectionObserver: track active facility ── */
   useEffect(() => {
@@ -92,11 +137,13 @@ export default function InfrastructurePage() {
     const svg = mapFrameRef.current.querySelector('svg');
     if (!svg) return;
     const svgRect = svg.getBoundingClientRect();
-    // Convert SVG coords to pixel coords within the frame
+    // Convert SVG coords (672×315 space scaled to 800×400) to pixel coords
+    const scaledCx = pin.cx * 1.19048;
+    const scaledCy = pin.cy * 1.26984;
     const scaleX = svgRect.width / 800;
-    const scaleY = svgRect.height / 500;
-    const pixelX = (svgRect.left - fr.left) + pin.cx * scaleX;
-    const pixelY = (svgRect.top - fr.top) + pin.cy * scaleY;
+    const scaleY = svgRect.height / 400;
+    const pixelX = (svgRect.left - fr.left) + scaledCx * scaleX;
+    const pixelY = (svgRect.top - fr.top) + scaledCy * scaleY;
     setTooltip({ name: pin.name, meta: pin.meta, x: pixelX, y: pixelY - 52 });
   }, []);
 
@@ -212,49 +259,90 @@ export default function InfrastructurePage() {
               </div>
             </GsapReveal>
 
-            <GsapReveal delay={0.2}>
-              <div className="map-frame" ref={mapFrameRef}>
+            <div className="map-frame" ref={mapFrameRef}>
                 <div className="map-corner map-corner--tl" />
                 <div className="map-corner map-corner--tr" />
                 <div className="map-corner map-corner--bl" />
                 <div className="map-corner map-corner--br" />
 
-                <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {mapPaths.map((d, i) => (
-                    <path key={i} d={d} fill="#E8EBF0" stroke="#D5D9E0" strokeWidth="0.5" />
-                  ))}
+                <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="connGrad">
-                      <stop offset="0%" stopColor="#1B4B8F" />
+                    <linearGradient id="connGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#2E8B57" />
+                      <stop offset="50%" stopColor="#2A6AAF" />
                       <stop offset="100%" stopColor="#2E8B57" />
                     </linearGradient>
                     <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#2E8B57" stopOpacity="0.2" />
+                      <stop offset="0%" stopColor="#2E8B57" stopOpacity="0.25" />
                       <stop offset="100%" stopColor="#2E8B57" stopOpacity="0" />
                     </radialGradient>
+                    <filter id="particleGlow" x="-100%" y="-100%" width="300%" height="300%">
+                      <feGaussianBlur stdDeviation="2" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
                   </defs>
 
-                  {mapConnections.map((d, i) => (
-                    <path key={i} d={d} stroke="url(#connGrad)" strokeWidth="1" strokeDasharray="5 4" fill="none" opacity="0.35" />
-                  ))}
+                  <g transform="scale(1.19048, 1.26984)">
+                    {/* Continents */}
+                    {CONTINENT_PATHS.map((d, i) => (
+                      <path key={i} d={d} className="map-continent" fill="#E8EBF0" stroke="#D5D9E0" strokeWidth="0.4" />
+                    ))}
 
-                  {data.overview.mapPins.map(pin => (
-                    <g
-                      key={pin.id}
-                      className="map-pin"
-                      onMouseEnter={(e) => handlePinEnter(pin, e)}
-                      onMouseLeave={handlePinLeave}
-                    >
-                      <circle cx={pin.cx} cy={pin.cy} r="24" fill="url(#pinGlow)" />
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR} fill="rgba(46,139,87,0.06)" stroke="rgba(46,139,87,0.2)" strokeWidth="0.5">
-                        <animate attributeName="r" values={`${pin.pulseR};${pin.pulseR + 4};${pin.pulseR}`} dur={pin.pulseDur} repeatCount="indefinite" />
-                        <animate attributeName="opacity" values="1;0.3;1" dur={pin.pulseDur} repeatCount="indefinite" />
-                      </circle>
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 6 : 5} fill="#2E8B57" opacity="0.9" />
-                      <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 2.5 : 2} fill="#fff" />
-                      <text x={pin.labelX} y={pin.labelY} fontFamily="var(--font-mono)" fontSize="7.5" fontWeight="500" fill="#8892A2" textAnchor="middle" letterSpacing="0.08em">{pin.labelText}</text>
-                    </g>
-                  ))}
+                    {/* Connection trail (wide, soft) */}
+                    {MAP_CONNECTIONS.map((d, i) => (
+                      <path key={`trail-${i}`} d={d} stroke="rgba(42,106,175,0.1)" strokeWidth="5" fill="none" strokeLinecap="round" className="map-conn-trail" />
+                    ))}
+
+                    {/* Connection paths — drawn on scroll */}
+                    {MAP_CONNECTIONS.map((d, i) => (
+                      <path key={`conn-${i}`} d={d} className="map-conn-line" stroke="url(#connGrad)" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                    ))}
+
+                    {/* Hidden paths for flow particles */}
+                    {FLOW_PARTICLES.map((fp, i) => (
+                      <path key={`fp-${i}`} id={`flowPath${i}`} d={fp.path} fill="none" stroke="none" />
+                    ))}
+
+                    {/* Flow particles */}
+                    {FLOW_PARTICLES.map((fp, i) => (
+                      <g key={`particle-${i}`} filter="url(#particleGlow)" className="map-particle-g">
+                        <circle r="2.5" fill={fp.color} opacity="0.9">
+                          <animateMotion dur={fp.dur} begin={fp.delay} repeatCount="indefinite">
+                            <mpath href={`#flowPath${i}`} />
+                          </animateMotion>
+                        </circle>
+                        <circle r="5" fill={fp.color} opacity="0.15">
+                          <animateMotion dur={fp.dur} begin={fp.delay} repeatCount="indefinite">
+                            <mpath href={`#flowPath${i}`} />
+                          </animateMotion>
+                        </circle>
+                      </g>
+                    ))}
+
+                    {/* Location pins */}
+                    {MAP_PINS.filter(pin => pin.pulseR > 0).map(pin => (
+                      <g
+                        key={pin.id}
+                        className="map-pin"
+                        onMouseEnter={(e) => handlePinEnter(pin, e)}
+                        onMouseLeave={handlePinLeave}
+                      >
+                        <circle cx={pin.cx} cy={pin.cy} r="22" fill="url(#pinGlow)" className="map-pin-glow" />
+                        <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR} fill="rgba(46,139,87,0.04)" stroke="rgba(46,139,87,0.25)" strokeWidth="0.5" className="map-pin-pulse">
+                          <animate attributeName="r" values={`${pin.pulseR};${pin.pulseR + 5};${pin.pulseR}`} dur={pin.pulseDur} repeatCount="indefinite" />
+                          <animate attributeName="opacity" values="1;0.2;1" dur={pin.pulseDur} repeatCount="indefinite" />
+                        </circle>
+                        <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 6 : 4.5} fill="#2E8B57" opacity="0.9" className="map-pin-dot" />
+                        <circle cx={pin.cx} cy={pin.cy} r={pin.pulseR === 14 ? 2.5 : 1.8} fill="#fff" className="map-pin-center" />
+                        {pin.labelText && (
+                          <text x={pin.labelX} y={pin.labelY} className="map-pin-label" fontFamily="var(--font-mono)" fontSize="6.5" fontWeight="600" fill="#5A6678" textAnchor="middle" letterSpacing="0.1em">{pin.labelText}</text>
+                        )}
+                      </g>
+                    ))}
+                  </g>
                 </svg>
 
                 {/* Tooltip */}
@@ -266,7 +354,6 @@ export default function InfrastructurePage() {
                   <div className="map-tooltip-meta">{tooltip?.meta}</div>
                 </div>
               </div>
-            </GsapReveal>
           </div>
         </div>
       </section>

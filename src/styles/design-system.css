@@ -77,6 +77,7 @@ body {
   line-height: 1.75;
   color: var(--n700);
   background: var(--surface);
+  overflow-x: hidden;
 }
 img { max-width: 100%; display: block; }
 
@@ -293,4 +294,9 @@ h4 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; line-heig
   .division-card { grid-template-columns: 1fr !important; }
   .division-card.reverse { direction: ltr; }
   .division-card-visual { min-height: 200px !important; }
+}
+
+@media (max-width: 480px) {
+  .section-pad { padding: 40px 16px; }
+  .stat-number { font-size: 28px; }
 }

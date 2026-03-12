@@ -607,6 +607,7 @@
   .gp-syn-c4, .gp-syn-c5, .gp-syn-c6 {
     grid-column: span 1; grid-row: span 1;
   }
+  .gp-entity-bignum { font-size: 120px; }
   .gp-synergies-inner { padding: 72px 32px; }
   .gp-acq-header { padding: 48px 32px 0; }
   .gp-acq-track { padding: 0 32px; }
@@ -627,6 +628,7 @@
   .gp-conv-cols { flex-direction: column; gap: 16px !important; padding: 0 20px; }
   .gp-conv-col { width: 100%; max-width: 360px; }
 
+  .gp-entity-bignum { display: none; }
   .gp-entity-content { padding: 32px 24px; }
   .gp-entity-nav { display: none; }
 

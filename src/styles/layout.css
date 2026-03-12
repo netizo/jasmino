@@ -445,7 +445,7 @@
 /* ═══════════════════════════════════════════════════════
    NAV RESPONSIVE
    ═══════════════════════════════════════════════════════ */
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
   .nav-inner { padding: 0 32px; }
   .mega-inner { padding: 28px 32px 32px; }
   .mega-col { padding: 0 16px; }
@@ -883,6 +883,9 @@
   .footer-five-col .footer-col:last-child {
     border-bottom: none;
   }
+
+  .footer-col a,
+  .footer-links a { padding: 8px 0; }
 
   .footer-bottom {
     flex-direction: column;

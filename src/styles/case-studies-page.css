@@ -210,12 +210,13 @@
 @media (max-width: 1024px) {
   .csp-body-inner { padding: 48px 32px 100px; }
 }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .csp-grid { grid-template-columns: repeat(2, 1fr); }
   .csp-stats-inner { flex-wrap: wrap; gap: 24px; }
   .csp-stat { flex: 0 0 calc(50% - 12px); }
+  .csp-tab { min-height: 44px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .csp-hero-inner { padding: 120px 20px 60px; }
   .csp-body-inner { padding: 32px 20px 80px; }
   .csp-stats-inner { padding: 32px 20px; }
@@ -502,12 +503,12 @@
   .csd-approach-inner { padding: 56px 32px; }
   .csd-results-inner { padding: 56px 32px; }
 }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .csd-approach-grid { grid-template-columns: 1fr; }
   .csd-results-row { gap: 24px; }
   .csd-result { min-width: 120px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .csd-hero-inner { padding: 130px 20px 56px; }
   .csd-divisions-inner { padding: 16px 20px; }
   .csd-narrative-inner { padding: 48px 20px; }

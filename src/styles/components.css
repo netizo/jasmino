@@ -568,3 +568,8 @@
   .division-card-content { padding: 32px 28px; }
   .stat-inline { flex-wrap: wrap; gap: 20px; }
 }
+@media (max-width: 480px) {
+  .ibb-pin-wrapper { padding: 0 16px; }
+  .division-card-content { padding: 24px 20px; }
+  .division-card-visual { min-height: 200px; }
+}

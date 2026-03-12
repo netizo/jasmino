@@ -423,7 +423,7 @@
   border: 1px solid var(--n150);
   border-radius: var(--r-xl, 24px);
   overflow: hidden;
-  aspect-ratio: 5 / 3.5;
+  aspect-ratio: 2 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -447,6 +447,19 @@
   z-index: 2;
 }
 
+/* Map animation elements */
+.infra-page .map-conn-line {
+  will-change: stroke-dashoffset;
+}
+
+.infra-page .map-conn-trail {
+  opacity: 0;
+}
+
+.infra-page .map-particle-g {
+  opacity: 0;
+}
+
 .infra-page .map-pin {
   cursor: pointer;
   transition: transform 0.35s var(--bounce, cubic-bezier(0.34, 1.56, 0.64, 1));
@@ -454,6 +467,14 @@
 
 .infra-page .map-pin:hover {
   transform: scale(1.25);
+}
+
+.infra-page .map-pin-label {
+  transition: fill 0.3s ease;
+}
+
+.infra-page .map-pin:hover .map-pin-label {
+  fill: var(--navy, #0b1d34);
 }
 
 .infra-page .map-tooltip {
@@ -1320,4 +1341,14 @@
   .infra-page .ov-stats { flex-wrap: wrap; gap: 20px; }
   .infra-page .fac-ghost-num { display: none; }
   .infra-page .hero-flare { display: none; }
+}
+@media (max-width: 480px) {
+  .infra-page .hero-content { padding: 0 16px 36px; }
+  .infra-page .overview .inner,
+  .infra-page .fac-sec .inner,
+  .infra-page .quality .inner,
+  .infra-page .infra-cta .inner { padding: 48px 16px; }
+  .infra-page .hero-stats { gap: 16px; }
+  .infra-page .ov-stats { gap: 16px; }
+  .infra-page .cert-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
 }

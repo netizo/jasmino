@@ -1885,6 +1885,7 @@
   .t3-page .hero-lead { font-size: 15px; }
   .t3-page .hero-actions { flex-direction: column; align-items: flex-start; }
 
+  .t3-page .hero { min-height: 60vh; max-height: none; }
   .t3-page .sibling-nav-inner { padding: 0 20px; }
   .t3-page .sib-division { padding-right: 12px; font-size: 9px; }
   .t3-page .sib-link { padding: 0 12px; font-size: 11px; }
@@ -1964,4 +1965,11 @@
   .t3-page .intro-text h2 { font-size: 26px; }
   .t3-page .sec-title { font-size: 26px; }
   .t3-page .pull-quote p { font-size: 17px; }
+}
+
+@media (max-width: 480px) {
+  .t3-contain { padding: 0 16px; }
+  .t3-page .hero-content { padding: 0 16px 72px; }
+  .t3-page .gallery-slide { min-width: 240px; }
+  .t3-page .sibling-nav-inner { padding: 0 16px; }
 }

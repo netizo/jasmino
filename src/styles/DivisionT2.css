@@ -1420,7 +1420,9 @@
 /* REVEALS — GSAP handles animation via useScrollReveal / useGSAP hooks */
 
 /* RESPONSIVE */
-@media(max-width:1080px) {
+@media(max-width:1024px) {
+    .topnav-in { padding: 0 32px; }
+
     .hero-inner {
         grid-template-columns: 1fr;
         gap: 40px
@@ -1858,7 +1860,7 @@
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE — new sections
    ═══════════════════════════════════════════════════════ */
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
     .hero-inner--split {
         grid-template-columns: 1fr;
         max-width: 100%;
@@ -1890,4 +1892,24 @@
         height: 60vh;
     }
     .hero-scene-col { display: none; }
+}
+
+@media (max-width: 480px) {
+    .hero-inner,
+    .adv-in,
+    .svcs-in,
+    .tsec-in,
+    .flowsec-in,
+    .cta-in,
+    .ft-in,
+    .topnav-in {
+        padding-left: 16px;
+        padding-right: 16px
+    }
+    .t2-gallery-slide { min-width: 240px; }
+    .t2-gallery-header { padding: 36px 16px 16px; }
+    .t2-gallery-track { padding: 0 16px 32px; }
+    .ft-grid { grid-template-columns: 1fr; }
+    .htitle { font-size: 30px; }
+    .scard-body { padding: 24px 20px 28px; }
 }
