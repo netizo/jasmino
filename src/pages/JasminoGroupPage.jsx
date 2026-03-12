@@ -81,11 +81,11 @@ const ENTITIES = [
 ];
 
 const TIMELINE_CARDS = [
-  { year: '1984', title: 'Jasmino Founded', desc: 'A rubber products company is born in Taloja, Maharashtra — beginning the journey from elastomers to integrated engineering.' },
-  { year: '1968', title: 'HAW Linings Established', desc: 'In Bockenem, Germany, HAW begins rubber lining operations — pioneering corrosion protection techniques that would become European industry standards.' },
-  { year: '2000', title: 'Jasmino Polymertech Era', desc: 'Jasmino expands beyond rubber into full engineering and manufacturing. The Taloja facility grows to 80,000 m² with equipment fabrication capabilities.' },
-  { year: '2018', title: 'Strategic Partnership Begins', desc: 'Jasmino and HAW/GBT begin collaborating on global projects — Indian manufacturing paired with German lining expertise. The integration thesis is tested.' },
-  { year: '2024', title: 'Acquisition Completed', desc: 'Jasmino acquires HAW Linings and GBT Bücolit. Three companies, two continents, one unified industrial group. The integrated model becomes permanent.' },
+  { year: '1984', title: 'Jasmino Founded', desc: 'A rubber products company is born in Taloja, Maharashtra — beginning the journey from elastomers to integrated engineering.', image: '/images/jg-tl-01.webp' },
+  { year: '1968', title: 'HAW Linings Established', desc: 'In Bockenem, Germany, HAW begins rubber lining operations — pioneering corrosion protection techniques that would become European industry standards.', image: '/images/jg-tl-02.webp' },
+  { year: '2000', title: 'Jasmino Polymertech Era', desc: 'Jasmino expands beyond rubber into full engineering and manufacturing. The Taloja facility grows to 80,000 m² with equipment fabrication capabilities.', image: '/images/jg-tl-03.webp' },
+  { year: '2018', title: 'Strategic Partnership Begins', desc: 'Jasmino and HAW/GBT begin collaborating on global projects — Indian manufacturing paired with German lining expertise. The integration thesis is tested.', image: '/images/jg-tl-04.webp' },
+  { year: '2024', title: 'Acquisition Completed', desc: 'Jasmino acquires HAW Linings and GBT Bücolit. Three companies, two continents, one unified industrial group. The integrated model becomes permanent.', image: '/images/jg-tl-05.webp' },
 ];
 
 const SYNERGIES = [
@@ -97,10 +97,25 @@ const SYNERGIES = [
   { icon: '📄', title: 'Single Contract', desc: 'One PO. One PM. One accountability chain — regardless of which facility executes.', gridClass: 'gp-syn-c6' },
 ];
 
-const MOSAIC_LABELS = {
-  jasmino: ['Fabrication hall', 'Engineering office', 'Rubber mixing', 'Aerial facility'],
-  haw: ['Lining workshop', 'Autoclave curing', 'Quality inspection', 'Bockenem facility'],
-  gbt: ['Coating application', 'Resin systems lab', 'On-site crew', 'Marl facility'],
+const MOSAIC_DATA = {
+  jasmino: [
+    { label: 'Fabrication hall', image: '/images/jg-mj-01.webp' },
+    { label: 'Engineering office', image: '/images/jg-mj-02.webp' },
+    { label: 'Rubber mixing', image: '/images/jg-mj-03.webp' },
+    { label: 'Aerial facility', image: '/images/jg-mj-04.webp' },
+  ],
+  haw: [
+    { label: 'Lining workshop', image: '/images/jg-mh-01.webp' },
+    { label: 'Autoclave curing', image: '/images/jg-mh-02.webp' },
+    { label: 'Quality inspection', image: '/images/jg-mh-03.webp' },
+    { label: 'Bockenem facility', image: '/images/jg-mh-04.webp' },
+  ],
+  gbt: [
+    { label: 'Coating application', image: '/images/jg-mg-01.webp' },
+    { label: 'Resin systems lab', image: '/images/jg-mg-02.webp' },
+    { label: 'On-site crew', image: '/images/jg-mg-03.webp' },
+    { label: 'Marl facility', image: '/images/jg-mg-04.webp' },
+  ],
 };
 
 const ArrowIcon = () => (
@@ -311,7 +326,9 @@ export default function JasminoGroupPage() {
               <source src="/videos/jasmino-group.mp4" type="video/mp4" />
             </video>
           )}
-          <div className="gp-hero-video-fallback" />
+          <div className="gp-hero-video-fallback">
+            <img src="/images/jg-01.webp" alt="" className="gp-hero-fallback-img" />
+          </div>
         </div>
         <div className="gp-hero-overlay" />
         <div className="gp-hero-inner">
@@ -403,8 +420,11 @@ export default function JasminoGroupPage() {
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, position: 'relative', zIndex: 2 }}>
                     <div className="gp-entity-logo">{entity.logo}</div>
                     <div className="gp-entity-mosaic">
-                      {MOSAIC_LABELS[entity.id].map((label) => (
-                        <div key={label} className="gp-entity-mosaic-item">{label}</div>
+                      {MOSAIC_DATA[entity.id].map((item) => (
+                        <div key={item.label} className="gp-entity-mosaic-item">
+                          <img src={item.image} alt={item.label} className="gp-mosaic-img" loading="lazy" />
+                          <span className="gp-mosaic-label">{item.label}</span>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -452,7 +472,9 @@ export default function JasminoGroupPage() {
                   <div className="gp-acq-year-tag">{card.year}</div>
                   <h4>{card.title}</h4>
                   <p>{card.desc}</p>
-                  <div className="gp-acq-photo-placeholder">[ Photo ]</div>
+                  <div className="gp-acq-photo">
+                    <img src={card.image} alt={card.title} loading="lazy" />
+                  </div>
                 </div>
               ))}
             </div>

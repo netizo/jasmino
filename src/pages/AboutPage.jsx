@@ -11,18 +11,18 @@ const GlobalPresence = lazy(() => import('../components/GlobalPresence'));
 
 /* ─── Timeline data ─── */
 const timelineCards = [
-  { year: '1984', title: 'Founded in India', desc: 'Jasmino established as an engineering-led equipment manufacturer. One workshop. One vision: integrate design and fabrication.', gradient: 'linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0d2240 100%)' },
-  { year: '1996', title: 'Corrosion Division Added', desc: 'Rubber lining capability established \u2014 closing the design \u2192 build \u2192 protect loop. The integrated model is born.', gradient: 'linear-gradient(135deg, #0d1f35 0%, #1e4a6e 50%, #0a1a2e 100%)' },
-  { year: '2004', title: 'Major Expansion', desc: 'Shop floor grows to 80,000+ m\u00B2. ASME U, U2, and R stamp certifications secured. International projects begin.', gradient: 'linear-gradient(160deg, #0b1d34 0%, #2a5a3a 45%, #0d2240 100%)' },
-  { year: '2008', title: 'HAW Acquisition', desc: 'Acquired German lining specialist HAW GmbH \u2014 gaining 40+ years of European corrosion protection expertise and market access.', gradient: 'linear-gradient(145deg, #101828 0%, #1a4a7d 50%, #0a1628 100%)' },
-  { year: '2015', title: 'GBT Germany', desc: 'GBT established in Germany \u2014 extending lining and coating services into European and adjacent markets.', gradient: 'linear-gradient(140deg, #0d1f35 0%, #2e5b3e 40%, #152a4a 100%)' },
-  { year: 'Today', title: 'Global Integrated Enterprise', desc: 'Two countries. 15+ countries served. 130,000+ m\u00B2 combined capacity. Four divisions. One standard. Zero handoffs.', gradient: 'linear-gradient(150deg, #0b1d34 0%, #1e4a7d 35%, #2e8b57 100%)' },
+  { year: '1984', title: 'Founded in India', desc: 'Jasmino established as an engineering-led equipment manufacturer. One workshop. One vision: integrate design and fabrication.', gradient: 'linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0d2240 100%)', image: '/images/a-02.webp' },
+  { year: '1996', title: 'Corrosion Division Added', desc: 'Rubber lining capability established \u2014 closing the design \u2192 build \u2192 protect loop. The integrated model is born.', gradient: 'linear-gradient(135deg, #0d1f35 0%, #1e4a6e 50%, #0a1a2e 100%)', image: '/images/a-03.webp' },
+  { year: '2004', title: 'Major Expansion', desc: 'Shop floor grows to 80,000+ m\u00B2. ASME U, U2, and R stamp certifications secured. International projects begin.', gradient: 'linear-gradient(160deg, #0b1d34 0%, #2a5a3a 45%, #0d2240 100%)', image: '/images/a-04.webp' },
+  { year: '2008', title: 'HAW Acquisition', desc: 'Acquired German lining specialist HAW GmbH \u2014 gaining 40+ years of European corrosion protection expertise and market access.', gradient: 'linear-gradient(145deg, #101828 0%, #1a4a7d 50%, #0a1628 100%)', image: '/images/a-05.webp' },
+  { year: '2015', title: 'GBT Germany', desc: 'GBT established in Germany \u2014 extending lining and coating services into European and adjacent markets.', gradient: 'linear-gradient(140deg, #0d1f35 0%, #2e5b3e 40%, #152a4a 100%)', image: '/images/a-06.webp' },
+  { year: 'Today', title: 'Global Integrated Enterprise', desc: 'Two countries. 15+ countries served. 130,000+ m\u00B2 combined capacity. Four divisions. One standard. Zero handoffs.', gradient: 'linear-gradient(150deg, #0b1d34 0%, #1e4a7d 35%, #2e8b57 100%)', image: '/images/a-11.webp' },
 ];
 
 const values = [
-  { num: '01', tag: 'Principle 01', title: 'Design for fabrication.', desc: "Every engineering decision is made with manufacturing constraints in mind. The drawing isn't done until the shop floor says it's buildable.", gradient: 'linear-gradient(135deg, #1a3a5c 0%, #0d2240 60%, #0a1628 100%)' },
-  { num: '02', tag: 'Principle 02', title: 'Protect from day one.', desc: "Corrosion protection isn't an afterthought. Lining requirements inform steel selection, weld prep, and surface finish from the first specification.", gradient: 'linear-gradient(135deg, #1e4a6e 0%, #152a4a 50%, #0b1d34 100%)' },
-  { num: '03', tag: 'Principle 03', title: 'Own the outcome.', desc: "One company, one contract, one point of accountability. When something goes wrong, there's no one else to blame \u2014 and that's exactly how we want it.", gradient: 'linear-gradient(135deg, #2a5a3a 0%, #1a3a5c 50%, #0d1f35 100%)' },
+  { num: '01', tag: 'Principle 01', title: 'Design for fabrication.', desc: "Every engineering decision is made with manufacturing constraints in mind. The drawing isn't done until the shop floor says it's buildable.", gradient: 'linear-gradient(135deg, #1a3a5c 0%, #0d2240 60%, #0a1628 100%)', image: '/images/a-07.webp' },
+  { num: '02', tag: 'Principle 02', title: 'Protect from day one.', desc: "Corrosion protection isn't an afterthought. Lining requirements inform steel selection, weld prep, and surface finish from the first specification.", gradient: 'linear-gradient(135deg, #1e4a6e 0%, #152a4a 50%, #0b1d34 100%)', image: '/images/a-08.webp' },
+  { num: '03', tag: 'Principle 03', title: 'Own the outcome.', desc: "One company, one contract, one point of accountability. When something goes wrong, there's no one else to blame \u2014 and that's exactly how we want it.", gradient: 'linear-gradient(135deg, #2a5a3a 0%, #1a3a5c 50%, #0d1f35 100%)', image: '/images/a-12.webp' },
 ];
 
 const certs = [
@@ -212,7 +212,7 @@ export default function AboutPage() {
           </GsapReveal>
           <GsapReveal delay={0.2}>
             <div className="img-reveal" ref={imgRevealRef}>
-              <div className="img-reveal-placeholder" />
+              <img src="/images/a-09.webp" alt="Jasmino fabrication hall interior" className="img-reveal-photo" loading="lazy" />
               <div className="img-reveal-frame" />
               <div className="img-reveal-caption">
                 <span className="caption-dot" />
@@ -225,10 +225,13 @@ export default function AboutPage() {
 
       {/* ═══ PHOTO BREAK ═══ */}
       <div className="photo-break">
-        <div
+        <img
           ref={photoParallaxRef}
-          className="photo-break-placeholder"
+          src="/images/a-10.webp"
+          alt="Jasmino fabrication floor panoramic"
+          className="photo-break-img"
           style={{ willChange: 'transform' }}
+          loading="lazy"
         />
         <div className="photo-break-caption">
           <span className="caption-dot" />
@@ -260,8 +263,11 @@ export default function AboutPage() {
             <div
               key={card.year}
               className="ss-bg-img"
-              style={{ background: card.gradient, opacity: i === 0 ? 1 : 0 }}
-            />
+              style={{ opacity: i === 0 ? 1 : 0 }}
+            >
+              <img src={card.image} alt="" className="ss-bg-photo" loading={i === 0 ? 'eager' : 'lazy'} />
+              <div className="ss-bg-img-overlay" style={{ background: card.gradient }} />
+            </div>
           ))}
           <div className="ss-bg-gradient" />
         </div>
@@ -311,7 +317,9 @@ export default function AboutPage() {
         {values.map((v) => (
           <GsapReveal key={v.num}>
             <div className="value-row">
-              <div className="value-row-img" style={{ background: v.gradient }}>
+              <div className="value-row-img">
+                <img src={v.image} alt="" className="value-row-photo" loading="lazy" />
+                <div className="value-row-img-overlay" style={{ background: v.gradient }} />
                 <div className="value-row-num">{v.num}</div>
               </div>
               <div className="value-row-text">

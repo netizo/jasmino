@@ -256,10 +256,8 @@
 .about-page .photo-break img,
 .about-page .photo-break-placeholder {
   width: 100%; height: 100%;
+  object-fit: cover;
   will-change: transform;
-}
-.about-page .photo-break-placeholder {
-  background: linear-gradient(135deg, #0b1d34 0%, #1a4a6e 40%, #0d2240 70%, #050d18 100%);
 }
 .about-page .photo-break-fade {
   position: absolute; inset: 0; pointer-events: none;
@@ -324,6 +322,17 @@
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   will-change: opacity;
+}
+.about-page .ss-bg-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.2) brightness(0.4);
+}
+.about-page .ss-bg-img-overlay {
+  position: absolute; inset: 0;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
 }
 .about-page .ss-bg-gradient {
   position: absolute; inset: 0;
@@ -510,6 +519,12 @@
 }
 .about-page .value-row:hover .value-row-img img {
   filter: saturate(0.25) brightness(0.6); transform: scale(1);
+}
+.about-page .value-row-img-overlay {
+  position: absolute; inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 .about-page .value-row-img:not(:has(img)) {
   min-height: 100%;

@@ -3,7 +3,6 @@ import { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import AssetManager from './components/AssetManager';
 
 const WhatWeDoPage = lazy(() => import('./pages/WhatWeDoPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -72,8 +71,6 @@ export default function App() {
         </Routes>
       </Suspense>
       <Footer />
-      {/* DEV ONLY — remove when done managing assets */}
-      <AssetManager />
     </>
   );
 }
