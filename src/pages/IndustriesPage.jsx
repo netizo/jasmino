@@ -9,7 +9,7 @@ const INDUSTRIES = [
     span: 2,
     description: 'Reactors, storage tanks, heat exchangers, and complete piping systems engineered for aggressive chemical environments — HCl, H₂SO₄, NaOH, and organic solvents.',
     tags: ['Reactors', 'Agitators', 'Piping Systems', 'Storage Tanks'],
-    photo: 'https://images.unsplash.com//photo-1581093458791-9d42e3c7e117.png?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-01.webp',
   },
   {
     name: 'Petrochemical',
@@ -17,7 +17,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'High-pressure vessels and columns for refining, cracking, and polymer production under extreme temperature and pressure conditions.',
     tags: ['Pressure Vessels', 'Columns', 'Exchangers'],
-    photo: 'https://images.unsplash.com//photo-1504917595217-d4dc5ebe6122.png?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-07.webp',
   },
   {
     name: 'Power Generation',
@@ -25,7 +25,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'FGD absorbers, boiler components, cooling water systems, and wet electrostatic precipitators for thermal and nuclear power plants.',
     tags: ['FGD', 'Boilers', 'Cooling Towers', 'WESP'],
-    photo: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-03.webp',
   },
   {
     name: 'Water Treatment',
@@ -33,7 +33,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'Complete ETP/STP packages, filtration vessels, clarifiers, and aeration systems — from process design through commissioning.',
     tags: ['Filtration', 'ETP/STP', 'Clarifiers', 'RO Systems'],
-    photo: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-06.webp',
   },
   {
     name: 'Fertilizer',
@@ -41,7 +41,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'Acid-resistant storage farms, phosphoric acid reactors, ammonium sulphate crystallizers, and granulation equipment with long-term corrosion protection.',
     tags: ['Acid Plants', 'Storage Farms', 'Crystallizers'],
-    photo: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-04.webp',
   },
   {
     name: 'Mining & Metals',
@@ -49,7 +49,7 @@ const INDUSTRIES = [
     span: 2,
     description: 'Leaching vessels, flotation cells, electro-winning tanks, and rubber-lined slurry piping engineered to withstand extreme abrasion and chemical attack.',
     tags: ['Leaching', 'Flotation', 'Electro-winning', 'Slurry Pipes'],
-    photo: 'https://images.unsplash.com/photo-1541888946428-d63bb8f8377a?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-05.webp',
   },
   {
     name: 'Pulp & Paper',
@@ -57,7 +57,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'Digesters, bleach towers, and chemical recovery equipment with corrosion-resistant linings for the harshest pulping environments.',
     tags: ['Digesters', 'Bleach Towers', 'Recovery'],
-    photo: 'https://images.unsplash.com/photo-1590074072786-a66914d668f1?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-08.webp',
   },
   {
     name: 'Pharmaceuticals',
@@ -65,7 +65,7 @@ const INDUSTRIES = [
     span: 1,
     description: 'Glass-lined and PTFE-lined reaction vessels, solvent recovery systems, and high-purity piping for API manufacturing and formulation.',
     tags: ['Reaction Vessels', 'Solvent Recovery', 'HP Piping'],
-    photo: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=400&h=300&q=75&fit=crop',
+    photo: '/images/ind-02.webp',
   },
 ];
 

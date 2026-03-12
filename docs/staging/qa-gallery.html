@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<title>Jasmino Image QA Gallery</title>
+<style>
+body{font-family:system-ui;background:#111;color:#eee;padding:24px}
+h1{font-size:24px;margin-bottom:8px}
+h2{font-size:18px;color:#04E586;margin-top:40px;border-bottom:1px solid #333;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:16px}
+.card{background:#1a1a1a;border-radius:8px;overflow:hidden;border:1px solid #333}
+.card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.card-info{padding:12px}
+.card-id{font-family:monospace;font-size:11px;color:#04E586}
+.card-caption{font-size:13px;margin-top:4px}
+.card-dims{font-family:monospace;font-size:10px;color:#666;margin-top:4px}
+.card.skipped{opacity:0.3}
+.status-bar{display:flex;gap:16px;margin:16px 0;font-family:monospace;font-size:13px}
+.status-bar span{padding:4px 12px;border-radius:4px}
+.s-gen{background:#0a2a1a;color:#04E586}
+.s-skip{background:#1a1a1a;color:#555}
+</style></head><body>
+<h1>Jasmino - Image QA Gallery</h1>
+<div class="status-bar"><span class="s-gen">generated: 117</span><span class="s-skip">skipped: 82</span></div><h2>Industries (8/8)</h2><div class="grid"><div class="card generated">
+            <img src="industries/ind-01.webp" alt="Chemical Processing" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-01</div>
+                <div class="card-caption">Chemical Processing</div>
+                <div class="card-dims">800x600 - 110KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-02.webp" alt="Pharmaceuticals" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-02</div>
+                <div class="card-caption">Pharmaceuticals</div>
+                <div class="card-dims">800x600 - 68KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-03.webp" alt="Power Generation" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-03</div>
+                <div class="card-caption">Power Generation</div>
+                <div class="card-dims">800x600 - 86KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-04.webp" alt="Fertilizers" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-04</div>
+                <div class="card-caption">Fertilizers</div>
+                <div class="card-dims">800x600 - 130KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-05.webp" alt="Mining & Metals" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-05</div>
+                <div class="card-caption">Mining & Metals</div>
+                <div class="card-dims">800x600 - 159KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-06.webp" alt="Water & Wastewater" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-06</div>
+                <div class="card-caption">Water & Wastewater</div>
+                <div class="card-dims">800x600 - 135KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-07.webp" alt="Oil & Gas" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-07</div>
+                <div class="card-caption">Oil & Gas</div>
+                <div class="card-dims">800x600 - 101KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="industries/ind-08.webp" alt="Pulp & Paper" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IND-08</div>
+                <div class="card-caption">Pulp & Paper</div>
+                <div class="card-dims">800x600 - 125KB</div>
+            </div>
+        </div></div><h2>Infrastructure (13/13)</h2><div class="grid"><div class="card generated">
+            <img src="infrastructure/infra-01.webp" alt="Hero Fallback (1200×675)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-01</div>
+                <div class="card-caption">Hero Fallback (1200×675)</div>
+                <div class="card-dims">2400x1350 - 532KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-in-01.webp" alt="Main Fabrication Hall (spans 2 columns)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-IN-01</div>
+                <div class="card-caption">Main Fabrication Hall (spans 2 columns)</div>
+                <div class="card-dims">1200x800 - 218KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-in-02.webp" alt="Engineering / 3D Design Office" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-IN-02</div>
+                <div class="card-caption">Engineering / 3D Design Office</div>
+                <div class="card-dims">1200x800 - 205KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-in-03.webp" alt="Welding Station (SAW)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-IN-03</div>
+                <div class="card-caption">Welding Station (SAW)</div>
+                <div class="card-dims">1200x800 - 191KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-in-04.webp" alt="QA/QC Metallurgy Lab" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-IN-04</div>
+                <div class="card-caption">QA/QC Metallurgy Lab</div>
+                <div class="card-dims">1200x800 - 125KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-haw-01.webp" alt="Rubber Lining Bay (spans 2 columns)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-HAW-01</div>
+                <div class="card-caption">Rubber Lining Bay (spans 2 columns)</div>
+                <div class="card-dims">1200x800 - 210KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-haw-02.webp" alt="R&D Lab / Compound Testing" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-HAW-02</div>
+                <div class="card-caption">R&D Lab / Compound Testing</div>
+                <div class="card-dims">1200x800 - 135KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-haw-03.webp" alt="Surface Prep / Blast Cleaning" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-HAW-03</div>
+                <div class="card-caption">Surface Prep / Blast Cleaning</div>
+                <div class="card-dims">1200x800 - 197KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-haw-04.webp" alt="Curing / Autoclave Bay" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-HAW-04</div>
+                <div class="card-caption">Curing / Autoclave Bay</div>
+                <div class="card-dims">1200x800 - 224KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-gbt-01.webp" alt="Coating Application Bay (spans 2 columns)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-GBT-01</div>
+                <div class="card-caption">Coating Application Bay (spans 2 columns)</div>
+                <div class="card-dims">1200x800 - 176KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-gbt-02.webp" alt="Workshop / Pipe Lining" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-GBT-02</div>
+                <div class="card-caption">Workshop / Pipe Lining</div>
+                <div class="card-dims">1200x800 - 152KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-gbt-03.webp" alt="Field Service / On-Site Lining" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-GBT-03</div>
+                <div class="card-caption">Field Service / On-Site Lining</div>
+                <div class="card-dims">1200x800 - 238KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="infrastructure/infra-gbt-04.webp" alt="QC / Holiday Testing" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">INFRA-GBT-04</div>
+                <div class="card-caption">QC / Holiday Testing</div>
+                <div class="card-dims">1200x800 - 155KB</div>
+            </div>
+        </div></div><h2>T3 Service (96/96)</h2><div class="grid"><div class="card generated">
+            <img src="t3_service/rl-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 145KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 259KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-03.webp" alt="Gallery 1: Hot Vulcanisation (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-03</div>
+                <div class="card-caption">Gallery 1: Hot Vulcanisation (600×450)</div>
+                <div class="card-dims">1200x900 - 150KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-04.webp" alt="Gallery 2: Spark Testing / Holiday Detection (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-04</div>
+                <div class="card-caption">Gallery 2: Spark Testing / Holiday Detection (600×450)</div>
+                <div class="card-dims">1200x900 - 199KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-05.webp" alt="Gallery 3: FGD Absorber Interior (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-05</div>
+                <div class="card-caption">Gallery 3: FGD Absorber Interior (600×450)</div>
+                <div class="card-dims">1200x900 - 235KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-06.webp" alt="Gallery 4: Abrasive Blast Cleaning (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-06</div>
+                <div class="card-caption">Gallery 4: Abrasive Blast Cleaning (600×450)</div>
+                <div class="card-dims">1200x900 - 270KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-07.webp" alt="Gallery 5: Autoclave Vulcanisation (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-07</div>
+                <div class="card-caption">Gallery 5: Autoclave Vulcanisation (600×450)</div>
+                <div class="card-dims">1200x900 - 247KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/rl-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">RL-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 169KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 164KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 222KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-03.webp" alt="Gallery 1: Plant Model in SP3D (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-03</div>
+                <div class="card-caption">Gallery 1: Plant Model in SP3D (600×450)</div>
+                <div class="card-dims">1200x900 - 206KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-04.webp" alt="Gallery 2: Design-to-Shop Floor (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-04</div>
+                <div class="card-caption">Gallery 2: Design-to-Shop Floor (600×450)</div>
+                <div class="card-dims">1200x900 - 167KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-05.webp" alt="Gallery 3: Client Design Review (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-05</div>
+                <div class="card-caption">Gallery 3: Client Design Review (600×450)</div>
+                <div class="card-dims">1200x900 - 184KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-06.webp" alt="Gallery 4: Piping & Instrumentation Development (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-06</div>
+                <div class="card-caption">Gallery 4: Piping & Instrumentation Development (600×450)</div>
+                <div class="card-dims">1200x900 - 152KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-07.webp" alt="Gallery 5: Commissioned Plant (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-07</div>
+                <div class="card-caption">Gallery 5: Commissioned Plant (600×450)</div>
+                <div class="card-dims">1200x900 - 253KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ppd-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PPD-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 155KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 192KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 190KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-03.webp" alt="Gallery 1: ASME VIII Pressure Vessel (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-03</div>
+                <div class="card-caption">Gallery 1: ASME VIII Pressure Vessel (600×450)</div>
+                <div class="card-dims">1200x900 - 269KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-04.webp" alt="Gallery 2: Shell & Tube Heat Exchanger (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-04</div>
+                <div class="card-caption">Gallery 2: Shell & Tube Heat Exchanger (600×450)</div>
+                <div class="card-dims">1200x900 - 247KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-05.webp" alt="Gallery 3: Agitated Reactor (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-05</div>
+                <div class="card-caption">Gallery 3: Agitated Reactor (600×450)</div>
+                <div class="card-dims">1200x900 - 271KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-06.webp" alt="Gallery 4: Absorption Column with FRP Internals (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-06</div>
+                <div class="card-caption">Gallery 4: Absorption Column with FRP Internals (600×450)</div>
+                <div class="card-dims">1200x900 - 219KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-07.webp" alt="Gallery 5: API 650 Storage Tank (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-07</div>
+                <div class="card-caption">Gallery 5: API 650 Storage Tank (600×450)</div>
+                <div class="card-dims">1200x900 - 273KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/eqd-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EQD-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 222KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 261KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 201KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-03.webp" alt="Gallery 1: Full Plant Piping Model (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-03</div>
+                <div class="card-caption">Gallery 1: Full Plant Piping Model (600×450)</div>
+                <div class="card-dims">1200x900 - 189KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-04.webp" alt="Gallery 2: Pipe Spool Fabrication (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-04</div>
+                <div class="card-caption">Gallery 2: Pipe Spool Fabrication (600×450)</div>
+                <div class="card-dims">1200x900 - 234KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-05.webp" alt="Gallery 3: CAESAR II Stress Analysis (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-05</div>
+                <div class="card-caption">Gallery 3: CAESAR II Stress Analysis (600×450)</div>
+                <div class="card-dims">1200x900 - 142KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-06.webp" alt="Gallery 4: Installed Piping at Commissioning (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-06</div>
+                <div class="card-caption">Gallery 4: Installed Piping at Commissioning (600×450)</div>
+                <div class="card-dims">1200x900 - 284KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-07.webp" alt="Gallery 5: Auto-Extracted Isometrics (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-07</div>
+                <div class="card-caption">Gallery 5: Auto-Extracted Isometrics (600×450)</div>
+                <div class="card-dims">1200x900 - 152KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pd-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PD-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 317KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 270KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 211KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-03.webp" alt="Gallery 1 (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-03</div>
+                <div class="card-caption">Gallery 1 (600×450)</div>
+                <div class="card-dims">1200x900 - 181KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-04.webp" alt="Gallery 2 (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-04</div>
+                <div class="card-caption">Gallery 2 (600×450)</div>
+                <div class="card-dims">1200x900 - 223KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-05.webp" alt="Gallery 3 (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-05</div>
+                <div class="card-caption">Gallery 3 (600×450)</div>
+                <div class="card-dims">1200x900 - 137KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-06.webp" alt="Gallery 4 (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-06</div>
+                <div class="card-caption">Gallery 4 (600×450)</div>
+                <div class="card-dims">1200x900 - 261KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-07.webp" alt="Gallery 5 (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-07</div>
+                <div class="card-caption">Gallery 5 (600×450)</div>
+                <div class="card-dims">1200x900 - 243KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/wt-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">WT-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 205KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 271KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 361KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-03.webp" alt="Gallery 1: Vessel Fabrication (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-03</div>
+                <div class="card-caption">Gallery 1: Vessel Fabrication (600×450)</div>
+                <div class="card-dims">1200x900 - 292KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-04.webp" alt="Gallery 2: Welding Operations (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-04</div>
+                <div class="card-caption">Gallery 2: Welding Operations (600×450)</div>
+                <div class="card-dims">1200x900 - 211KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-05.webp" alt="Gallery 3: NDT (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-05</div>
+                <div class="card-caption">Gallery 3: NDT (600×450)</div>
+                <div class="card-dims">1200x900 - 150KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-06.webp" alt="Gallery 4: Blast & Prime (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-06</div>
+                <div class="card-caption">Gallery 4: Blast & Prime (600×450)</div>
+                <div class="card-dims">1200x900 - 161KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-07.webp" alt="Gallery 5: Final Inspection (600×450)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-07</div>
+                <div class="card-caption">Gallery 5: Final Inspection (600×450)</div>
+                <div class="card-dims">1200x900 - 140KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/se-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">SE-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 350KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 304KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 154KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-03.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-03</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1200x900 - 243KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-04.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-04</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 211KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-05.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-05</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 363KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-06.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-06</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 249KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-07.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-07</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 322KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/frp-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">FRP-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 244KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 173KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 240KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-03.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-03</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1200x900 - 71KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-04.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-04</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 271KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-05.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-05</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 148KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-06.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-06</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 272KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-07.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-07</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 157KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/pl-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">PL-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 219KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 222KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 189KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-03.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-03</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1200x900 - 155KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-04.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-04</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 247KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-05.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-05</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 194KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-06.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-06</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 158KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-07.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-07</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 267KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cr-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CR-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 253KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 172KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 228KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-03.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-03</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1200x900 - 186KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-04.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-04</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 143KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-05.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-05</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 220KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-06.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-06</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 212KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-07.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-07</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 138KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ir-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">IR-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 389KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 183KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 233KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-03.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-03</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1200x900 - 120KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-04.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-04</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 342KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-05.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-05</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 211KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-06.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-06</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 277KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-07.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-07</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 263KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/cc-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">CC-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 178KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-01.webp" alt="Hero (800×533)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-01</div>
+                <div class="card-caption">Hero (800×533)</div>
+                <div class="card-dims">1600x1066 - 198KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-02.webp" alt="Evidence Strip (800×356)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-02</div>
+                <div class="card-caption">Evidence Strip (800×356)</div>
+                <div class="card-dims">1600x712 - 327KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-03.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-03</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1200x900 - 180KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-04.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-04</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 307KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-05.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-05</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 211KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-06.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-06</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 278KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-07.webp" alt="07 — Gallery 1–5 (600×450 each)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-07</div>
+                <div class="card-caption">07 — Gallery 1–5 (600×450 each)</div>
+                <div class="card-dims">1600x1066 - 324KB</div>
+            </div>
+        </div><div class="card generated">
+            <img src="t3_service/ep-08.webp" alt="CTA Background (1800×1000)" loading="lazy">
+            <div class="card-info">
+                <div class="card-id">EP-08</div>
+                <div class="card-caption">CTA Background (1800×1000)</div>
+                <div class="card-dims">1800x1000 - 436KB</div>
+            </div>
+        </div></div></body></html>
